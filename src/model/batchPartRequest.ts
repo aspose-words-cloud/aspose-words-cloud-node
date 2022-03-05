@@ -25,12 +25,13 @@
  * --------------------------------------------------------------------------------
  */
 
+import http = require("http");
 import { Readable } from 'stream';
 import request = require('request');
-import RSA = require('node-rsa');
 import { Configuration } from "../internal/configuration";
 import { RequestInterface } from './model';
 import { v4 as uuidv4 } from 'uuid';
+import { Encryptor } from '../api';
 
 /**
  * BatchPartRequest class
@@ -59,34 +60,30 @@ export class BatchPartRequest {
 	 * set parent request
 	 * @param parentRequest
 	 */
-    dependsOn(parentRequest: BatchPartRequest) {
+    public dependsOn(parentRequest: BatchPartRequest) {
         this.parentId = parentRequest.id;
     }
 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param key a RSA key     
+	 * @param data encryptor     
 	 */
-	createRequestOptions(configuration: Configuration, key: RSA) : request.OptionsWithUri {
-        return this.innerRequest.createRequestOptions(configuration, key);
+	public async createRequestOptions(configuration: Configuration, encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        return this.innerRequest.createRequestOptions(configuration, encryptor);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(response: Buffer, _boundary?: string): any {
-        if (_boundary == null) {
-            return this.innerRequest.createResponse(response);
-        }
-
-        return this.innerRequest.createResponse(response, _boundary);
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return this.innerRequest.createResponse(_response, _headers);
     }
 
 	/**
 	 * create resultOf stream
 	 */
-	useAsSource(): Readable {
+	public useAsSource(): Readable {
         return Readable.from(Buffer.from("resultOf(" + this.id + ")"));
     }
 }

@@ -28,9 +28,9 @@
 import http = require("http");
 import request = require("request");
 import requestDebug = require("request-debug");
-import RSA = require('node-rsa');
 import { Configuration } from "./configuration";
 import { ObjectSerializer } from "./objectSerializer";
+import { Encryptor } from "../api";
 
 /**
  * Get boundary for IncomingHttpHeaders
@@ -86,14 +86,14 @@ export async function invokeApiMethod(requestOptions: request.OptionsWithUri, co
  * @param queryParameters queryParameters
  * @param parameterName parameterName
  * @param parameterValue parameterValue
- * @param key RSA key
+ * @param data encryptor
  */
-export function addQueryParameterToUrl(url, queryParameters, parameterName, parameterValue, key: RSA) {
+export async function addQueryParameterToUrl(url, queryParameters, parameterName, parameterValue, encryptor: Encryptor) : Promise<string> {
     if (parameterValue !== undefined) {
         if (parameterName === "password")
         {
             parameterName = "encryptedPassword";
-            parameterValue = encrypt(parameterValue, key);
+            parameterValue = await encryptor.encrypt(parameterValue);
         }
 
         if (url.indexOf("{" + parameterName + "}") >= 0) {
@@ -105,17 +105,7 @@ export function addQueryParameterToUrl(url, queryParameters, parameterName, para
         url = url.replace("/{" + parameterName + "}", "");
     }
 
-    return url;
-}
-
-/**
- * Encrypt a string
- * @parameterValue string to encrypt
- * @key RSA key
- */
-function encrypt(parameterValue: string, key: RSA) : string {
-
-    return key.encrypt(Buffer.from(parameterValue, 'utf8'), 'base64');
+    return Promise.resolve(url);
 }
 
 /**
@@ -141,7 +131,7 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
     requestOptions.timeout = 1000 * confguration.timeout;
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "22.2";
+    requestOptions.headers["x-aspose-client-version"] = "22.3";
 
 	requestOptions.uri = encodeURI(requestOptions.uri.toString());
 
@@ -192,8 +182,79 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
 /**
  * Parse multipart response body for given boundary
  */
-export function parseMultipartBody(multipartBodyBuffer, boundary, withStatus) {
-	const allParts = [];
+export function parseMultipart(body: Buffer, boundary: string): any {
+    const allParts = [];
+
+    let partHeaders = [];
+    let buffer = [];
+
+    const UNKNOWN = 0;
+    const PART_HEADERS = 1;
+    const CONTENT = 4;
+    const PART_END = 5;
+
+    let state = UNKNOWN; 
+	let lastline = '';
+
+	for (let i = 0; i < body.length; i++) {
+		const oneByte = body[i];
+		const prevByte = i > 0 ? body[i-1] : null;
+		const newLineDetected = ((oneByte === 0x0a) && (prevByte === 0x0d)) ? true : false;
+		const newLineChar = ((oneByte === 0x0a) || (oneByte === 0x0d)) ? true : false;
+
+		if(!newLineChar)
+			lastline += String.fromCharCode(oneByte);
+
+		if((UNKNOWN === state) && newLineDetected){
+			if(("--"+boundary) === lastline){
+				state = PART_HEADERS;
+                lastline = '';
+			};
+		} else
+        if((PART_HEADERS === state) && newLineDetected){
+            if (lastline !== '') {
+                partHeaders.push(lastline);
+            }
+            else {
+                state = CONTENT;
+            }
+            lastline = '';
+        } else  
+		if(CONTENT === state){
+			if(lastline.length > (boundary.length+4)) lastline='';
+			if(((("--" + boundary) === lastline))){              
+                const part = { 
+                    headers: partHeaders.reduce((headers, header) => {
+                        if (header.indexOf(':') !== -1) {
+                            const [ key, value ] = header.split(/:\s+/)
+                            headers[key.toLowerCase()] = value
+                        }
+                        return headers
+                        }, {}),
+                    body: Buffer.from(buffer.slice(0,buffer.length - lastline.length - 1))
+                };
+
+				allParts.push(part);
+
+				buffer = []; lastline = ''; state = PART_END; partHeaders = [];
+			} else {
+				buffer.push(oneByte);
+			}
+			if(newLineDetected) lastline='';
+		} else
+		if(PART_END === state){
+			if(newLineDetected)
+				state = PART_HEADERS;
+		}
+	}
+	return allParts;
+}
+
+/**
+ * Parse multipart response body for batch part
+ */
+export function parseBatchParts(multipartBodyBuffer: Buffer, boundary: string, withStatus: boolean): any {
+    const allParts = [];
 
     let partHeaders = [];
 	let info = ''; 
@@ -272,6 +333,54 @@ export function parseMultipartBody(multipartBodyBuffer, boundary, withStatus) {
 		}
 	}
 	return allParts;
+}
+
+/**
+ * Get multipart part by name
+ */
+export function findMultipartElement(parts: any[], name: string): any {
+    for (const part of parts) {
+        const disp = part.headers['content-disposition'];
+        const subs = disp.split(';');
+        let subn = null;
+        subs.forEach(element => {
+            if (element.trim().startsWith("name=")) {
+                subn = element.trim().substr(5).replace(new RegExp('"', 'g'), '');
+            }
+        });
+        if (subn === name) {
+            return part;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Get files collection from Response
+ */
+export function parseFilesCollection(response: Buffer, headers: http.IncomingHttpHeaders): Map<string, Buffer> {
+    const result = new Map<string, Buffer>();
+    if (headers["content-type"]?.startsWith("multipart/mixed")) {
+        const boundary = getBoundary(headers);
+        const parts = parseMultipart(response, boundary);
+        for (const part of parts) {
+            const disp = part.headers['content-disposition'];
+            const subs = disp.split(';');
+            let filename = null;
+            subs.forEach(element => {
+                if (element.trim().startsWith("filename=")) {
+                    filename = element.trim().substr(9).replace(new RegExp('"', 'g'), '');
+                }
+            });
+            result.set(filename, part.body);
+        };
+    }
+    else {
+        result.set("", response);
+    }
+
+    return result;
 }
 
 /**

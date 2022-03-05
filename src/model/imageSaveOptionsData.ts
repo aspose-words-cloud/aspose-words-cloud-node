@@ -53,7 +53,7 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "imageColorMode",
             baseName: "ImageColorMode",
-            type: "string",
+            type: "ImageSaveOptionsData.ImageColorModeEnum",
         },
         {
             name: "imageContrast",
@@ -68,7 +68,7 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "pixelFormat",
             baseName: "PixelFormat",
-            type: "string",
+            type: "ImageSaveOptionsData.PixelFormatEnum",
         },
         {
             name: "resolution",
@@ -124,7 +124,7 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the color mode of the image.
      */
-    public imageColorMode: string;
+    public imageColorMode: ImageSaveOptionsData.ImageColorModeEnum;
 
     /**
      * Gets or sets the contrast level of the image.
@@ -139,7 +139,7 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the pixel format of the image.
      */
-    public pixelFormat: string;
+    public pixelFormat: ImageSaveOptionsData.PixelFormatEnum;
 
     /**
      * Gets or sets both horizontal and vertical resolution in dots per inch for the generated images.
@@ -180,4 +180,32 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for ImageSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace ImageSaveOptionsData {
+    export enum ImageColorModeEnum {
+        None = 'None' as any,
+        Grayscale = 'Grayscale' as any,
+        BlackAndWhite = 'BlackAndWhite' as any
+    }
+
+    export enum PixelFormatEnum {
+        Format16BppRgb555 = 'Format16BppRgb555' as any,
+        Format16BppRgb565 = 'Format16BppRgb565' as any,
+        Format16BppArgb1555 = 'Format16BppArgb1555' as any,
+        Format24BppRgb = 'Format24BppRgb' as any,
+        Format32BppRgb = 'Format32BppRgb' as any,
+        Format32BppArgb = 'Format32BppArgb' as any,
+        Format32BppPArgb = 'Format32BppPArgb' as any,
+        Format48BppRgb = 'Format48BppRgb' as any,
+        Format64BppArgb = 'Format64BppArgb' as any,
+        Format64BppPArgb = 'Format64BppPArgb' as any,
+        Format1bppIndexed = 'Format1bppIndexed' as any
+    }
+}
+// tslint:enable:quotemark
 

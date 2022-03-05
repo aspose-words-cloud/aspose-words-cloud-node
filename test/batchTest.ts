@@ -388,7 +388,7 @@ describe("batch tests", () => {
                         // Assert
                         expect(resultApi.response.statusCode).to.equal(200);
                         expect(resultApi.body[0].constructor.name).to.equal("Buffer");
-                        expect(resultApi.body[1].constructor.name).to.equal("Buffer");
+                        expect(resultApi.body[1].constructor.name).to.equal("Map");
                         expect(resultApi.body[2].constructor.name).to.equal("Buffer");
                     });
             });

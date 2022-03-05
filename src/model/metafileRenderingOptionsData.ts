@@ -41,7 +41,7 @@ export class MetafileRenderingOptionsData {
         {
             name: "emfPlusDualRenderingMode",
             baseName: "EmfPlusDualRenderingMode",
-            type: "string",
+            type: "MetafileRenderingOptionsData.EmfPlusDualRenderingModeEnum",
         },
         {
             name: "emulateRasterOperations",
@@ -51,7 +51,7 @@ export class MetafileRenderingOptionsData {
         {
             name: "renderingMode",
             baseName: "RenderingMode",
-            type: "string",
+            type: "MetafileRenderingOptionsData.RenderingModeEnum",
         },
         {
             name: "scaleWmfFontsToMetafileSize",
@@ -75,7 +75,7 @@ export class MetafileRenderingOptionsData {
     /**
      * Gets or sets the option that controls how EMF+ Dual metafiles should be rendered.
      */
-    public emfPlusDualRenderingMode: string;
+    public emfPlusDualRenderingMode: MetafileRenderingOptionsData.EmfPlusDualRenderingModeEnum;
 
     /**
      * Gets or sets a value indicating whether the raster operations should be emulated.
@@ -85,7 +85,7 @@ export class MetafileRenderingOptionsData {
     /**
      * Gets or sets the option that controls how metafile images should be rendered.
      */
-    public renderingMode: string;
+    public renderingMode: MetafileRenderingOptionsData.RenderingModeEnum;
 
     /**
      * Gets or sets a value indicating whether to scale fonts in WMF metafile according to metafile size on the page.
@@ -102,4 +102,24 @@ export class MetafileRenderingOptionsData {
         Object.assign(this, init);
     }
 }
+
+/**
+ * Enums for MetafileRenderingOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace MetafileRenderingOptionsData {
+    export enum EmfPlusDualRenderingModeEnum {
+        EmfPlusWithFallback = 'EmfPlusWithFallback' as any,
+        EmfPlus = 'EmfPlus' as any,
+        Emf = 'Emf' as any
+    }
+
+    export enum RenderingModeEnum {
+        VectorWithFallback = 'VectorWithFallback' as any,
+        Vector = 'Vector' as any,
+        Bitmap = 'Bitmap' as any
+    }
+}
+// tslint:enable:quotemark
 

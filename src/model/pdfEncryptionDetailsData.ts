@@ -26,8 +26,10 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { PdfPermissions } from './pdfPermissions';
 
 export const importsMapPdfEncryptionDetailsData = {
+    PdfPermissions,
 };
 
 /**
@@ -39,11 +41,6 @@ export class PdfEncryptionDetailsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "encryptionAlgorithm",
-            baseName: "EncryptionAlgorithm",
-            type: "string",
-        },
-        {
             name: "ownerPassword",
             baseName: "OwnerPassword",
             type: "string",
@@ -51,7 +48,7 @@ export class PdfEncryptionDetailsData {
         {
             name: "permissions",
             baseName: "Permissions",
-            type: "string",
+            type: "Array<PdfPermissions>",
         },
         {
             name: "userPassword",
@@ -68,11 +65,6 @@ export class PdfEncryptionDetailsData {
     }
 
     /**
-     * Gets or sets the encryption algorithm to use.
-     */
-    public encryptionAlgorithm: string;
-
-    /**
      * Gets or sets the owner password for the encrypted PDF document.
      */
     public ownerPassword: string;
@@ -80,7 +72,7 @@ export class PdfEncryptionDetailsData {
     /**
      * Gets or sets the operations that are allowed to a user on the encrypted PDF document.
      */
-    public permissions: string;
+    public permissions: Array<PdfPermissions>;
 
     /**
      * Gets or sets the user password required for opening the encrypted PDF document.

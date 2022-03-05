@@ -39,6 +39,11 @@ export class DocumentEntry {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "encryptedPassword",
+            baseName: "EncryptedPassword",
+            type: "string",
+        },
+        {
             name: "href",
             baseName: "Href",
             type: "string",
@@ -46,11 +51,6 @@ export class DocumentEntry {
         {
             name: "importFormatMode",
             baseName: "ImportFormatMode",
-            type: "string",
-        },
-        {
-            name: "password",
-            baseName: "Password",
             type: "string",
         }
     ];
@@ -63,6 +63,11 @@ export class DocumentEntry {
     }
 
     /**
+     * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
+     */
+    public encryptedPassword: string;
+
+    /**
      * Gets or sets the path to document to append at the server.
      */
     public href: string;
@@ -71,11 +76,6 @@ export class DocumentEntry {
      * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
      */
     public importFormatMode: string;
-
-    /**
-     * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
-     */
-    public password: string;
 
     public constructor(init?: Partial< DocumentEntry >) {
         Object.assign(this, init);

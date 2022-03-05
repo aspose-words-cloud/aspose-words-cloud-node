@@ -51,7 +51,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "compliance",
             baseName: "Compliance",
-            type: "string",
+            type: "PdfSaveOptionsData.ComplianceEnum",
         },
         {
             name: "createNoteHyperlinks",
@@ -61,7 +61,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "customPropertiesExport",
             baseName: "CustomPropertiesExport",
-            type: "string",
+            type: "PdfSaveOptionsData.CustomPropertiesExportEnum",
         },
         {
             name: "digitalSignatureDetails",
@@ -101,7 +101,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "fontEmbeddingMode",
             baseName: "FontEmbeddingMode",
-            type: "string",
+            type: "PdfSaveOptionsData.FontEmbeddingModeEnum",
         },
         {
             name: "headerFooterBookmarksExportMode",
@@ -111,7 +111,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "imageColorSpaceExportMode",
             baseName: "ImageColorSpaceExportMode",
-            type: "string",
+            type: "PdfSaveOptionsData.ImageColorSpaceExportModeEnum",
         },
         {
             name: "imageCompression",
@@ -136,7 +136,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "pageMode",
             baseName: "PageMode",
-            type: "string",
+            type: "PdfSaveOptionsData.PageModeEnum",
         },
         {
             name: "preblendImages",
@@ -151,7 +151,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "textCompression",
             baseName: "TextCompression",
-            type: "string",
+            type: "PdfSaveOptionsData.TextCompressionEnum",
         },
         {
             name: "useBookFoldPrintingSettings",
@@ -166,7 +166,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         {
             name: "zoomBehavior",
             baseName: "ZoomBehavior",
-            type: "string",
+            type: "PdfSaveOptionsData.ZoomBehaviorEnum",
         },
         {
             name: "zoomFactor",
@@ -185,7 +185,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the PDF standards compliance level for output documents.
      */
-    public compliance: string;
+    public compliance: PdfSaveOptionsData.ComplianceEnum;
 
     /**
      * Gets or sets a value indicating whether to convert footnote/endnote references in main text story into active hyperlinks.
@@ -198,7 +198,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the option that controls the way CustomDocumentProperties are exported to PDF file.
      * The default value is None.
      */
-    public customPropertiesExport: string;
+    public customPropertiesExport: PdfSaveOptionsData.CustomPropertiesExportEnum;
 
     /**
      * Gets or sets the details for signing the output PDF document.
@@ -238,7 +238,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the font embedding mode.
      */
-    public fontEmbeddingMode: string;
+    public fontEmbeddingMode: PdfSaveOptionsData.FontEmbeddingModeEnum;
 
     /**
      * Gets or sets the option that controls how bookmarks in headers/footers are exported.
@@ -249,7 +249,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the option that controls how the color space will be selected for the images in PDF document.
      */
-    public imageColorSpaceExportMode: string;
+    public imageColorSpaceExportMode: PdfSaveOptionsData.ImageColorSpaceExportModeEnum;
 
     /**
      * Gets or sets the compression type to be used for all images in the document.
@@ -274,7 +274,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the option that controls how the PDF document should be displayed when opened in the PDF reader.
      */
-    public pageMode: string;
+    public pageMode: PdfSaveOptionsData.PageModeEnum;
 
     /**
      * Gets or sets a value indicating whether to preblend transparent images with black background color.
@@ -289,7 +289,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the compression type to be used for all textual content in the document.
      */
-    public textCompression: string;
+    public textCompression: PdfSaveOptionsData.TextCompressionEnum;
 
     /**
      * Gets or sets a value indicating whether the document should be saved using a booklet printing layout.
@@ -304,7 +304,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the option that controls what type of zoom should be applied when a document is opened with a PDF viewer.
      */
-    public zoomBehavior: string;
+    public zoomBehavior: PdfSaveOptionsData.ZoomBehaviorEnum;
 
     /**
      * Gets or sets the zoom factor (in percentages) for a document.
@@ -325,10 +325,60 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace PdfSaveOptionsData {
+    export enum ComplianceEnum {
+        Pdf17 = 'Pdf17' as any,
+        Pdf20 = 'Pdf20' as any,
+        PdfA1a = 'PdfA1a' as any,
+        PdfA1b = 'PdfA1b' as any,
+        PdfA2a = 'PdfA2a' as any,
+        PdfA2u = 'PdfA2u' as any,
+        PdfUa1 = 'PdfUa1' as any
+    }
+
+    export enum CustomPropertiesExportEnum {
+        None = 'None' as any,
+        Standard = 'Standard' as any,
+        Metadata = 'Metadata' as any
+    }
+
+    export enum FontEmbeddingModeEnum {
+        EmbedAll = 'EmbedAll' as any,
+        EmbedNonstandard = 'EmbedNonstandard' as any,
+        EmbedNone = 'EmbedNone' as any
+    }
+
     export enum HeaderFooterBookmarksExportModeEnum {
         None = 'None' as any,
         First = 'First' as any,
         All = 'All' as any
+    }
+
+    export enum ImageColorSpaceExportModeEnum {
+        Auto = 'Auto' as any,
+        SimpleCmyk = 'SimpleCmyk' as any
+    }
+
+    export enum PageModeEnum {
+        UseNone = 'UseNone' as any,
+        UseOutlines = 'UseOutlines' as any,
+        UseThumbs = 'UseThumbs' as any,
+        FullScreen = 'FullScreen' as any,
+        UseOC = 'UseOC' as any,
+        UseAttachments = 'UseAttachments' as any
+    }
+
+    export enum TextCompressionEnum {
+        None = 'None' as any,
+        Flate = 'Flate' as any
+    }
+
+    export enum ZoomBehaviorEnum {
+        None = 'None' as any,
+        ZoomFactor = 'ZoomFactor' as any,
+        FitPage = 'FitPage' as any,
+        FitWidth = 'FitWidth' as any,
+        FitHeight = 'FitHeight' as any,
+        FitBox = 'FitBox' as any
     }
 }
 // tslint:enable:quotemark

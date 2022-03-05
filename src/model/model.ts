@@ -25,14 +25,15 @@
  * --------------------------------------------------------------------------------
  */
 
+import http = require("http");
 import { v4 as uuidv4 } from 'uuid';
 import { Readable } from "stream";
 import { IncomingMessage } from 'http';
 import request = require("request");
-import RSA = require('node-rsa');
 import { Configuration } from "../internal/configuration";
-import { addQueryParameterToUrl, parseMultipartBody } from "../internal/requestHelper";
+import { addQueryParameterToUrl, getBoundary, parseFilesCollection, findMultipartElement, parseMultipart } from "../internal/requestHelper";
 import { ObjectSerializer } from "../internal/objectSerializer";
+import { Encryptor } from '../api';
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
 import * as importedBmpSaveOptionsData from './bmpSaveOptionsData';
@@ -199,6 +200,7 @@ import * as importedParagraphResponse from './paragraphResponse';
 import * as importedPclSaveOptionsData from './pclSaveOptionsData';
 import * as importedPdfDigitalSignatureDetailsData from './pdfDigitalSignatureDetailsData';
 import * as importedPdfEncryptionDetailsData from './pdfEncryptionDetailsData';
+import * as importedPdfPermissions from './pdfPermissions';
 import * as importedPdfSaveOptionsData from './pdfSaveOptionsData';
 import * as importedPngSaveOptionsData from './pngSaveOptionsData';
 import * as importedPreferredWidth from './preferredWidth';
@@ -464,6 +466,7 @@ export * from './paragraphResponse';
 export * from './pclSaveOptionsData';
 export * from './pdfDigitalSignatureDetailsData';
 export * from './pdfEncryptionDetailsData';
+export * from './pdfPermissions';
 export * from './pdfSaveOptionsData';
 export * from './pngSaveOptionsData';
 export * from './preferredWidth';
@@ -593,6 +596,8 @@ const enumsMap = {
     "DrawingObjectUpdate.WrapTypeEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.WrapTypeEnum,
     "FieldOptions.FieldIndexFormatEnum": importedFieldOptions.FieldOptions.FieldIndexFormatEnum,
     "FieldOptions.FieldUpdateCultureSourceEnum": importedFieldOptions.FieldOptions.FieldUpdateCultureSourceEnum,
+    "FixedPageSaveOptionsData.ColorModeEnum": importedFixedPageSaveOptionsData.FixedPageSaveOptionsData.ColorModeEnum,
+    "FixedPageSaveOptionsData.NumeralFormatEnum": importedFixedPageSaveOptionsData.FixedPageSaveOptionsData.NumeralFormatEnum,
     "Font.StyleIdentifierEnum": importedFont.Font.StyleIdentifierEnum,
     "Font.TextEffectEnum": importedFont.Font.TextEffectEnum,
     "Font.UnderlineEnum": importedFont.Font.UnderlineEnum,
@@ -600,9 +605,18 @@ const enumsMap = {
     "FootnoteBase.FootnoteTypeEnum": importedFootnoteBase.FootnoteBase.FootnoteTypeEnum,
     "FormFieldTextInput.TextInputTypeEnum": importedFormFieldTextInput.FormFieldTextInput.TextInputTypeEnum,
     "HeaderFooterLink.TypeEnum": importedHeaderFooterLink.HeaderFooterLink.TypeEnum,
+    "HtmlFixedSaveOptionsData.FontFormatEnum": importedHtmlFixedSaveOptionsData.HtmlFixedSaveOptionsData.FontFormatEnum,
+    "HtmlFixedSaveOptionsData.PageHorizontalAlignmentEnum": importedHtmlFixedSaveOptionsData.HtmlFixedSaveOptionsData.PageHorizontalAlignmentEnum,
+    "HtmlSaveOptionsData.CssStyleSheetTypeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.CssStyleSheetTypeEnum,
+    "HtmlSaveOptionsData.DocumentSplitCriteriaEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.DocumentSplitCriteriaEnum,
+    "HtmlSaveOptionsData.ExportHeadersFootersModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.ExportHeadersFootersModeEnum,
+    "HtmlSaveOptionsData.ExportListLabelsEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.ExportListLabelsEnum,
     "HtmlSaveOptionsData.HtmlVersionEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.HtmlVersionEnum,
     "HtmlSaveOptionsData.MetafileFormatEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.MetafileFormatEnum,
     "HtmlSaveOptionsData.OfficeMathOutputModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.OfficeMathOutputModeEnum,
+    "HtmlSaveOptionsData.TableWidthOutputModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.TableWidthOutputModeEnum,
+    "ImageSaveOptionsData.ImageColorModeEnum": importedImageSaveOptionsData.ImageSaveOptionsData.ImageColorModeEnum,
+    "ImageSaveOptionsData.PixelFormatEnum": importedImageSaveOptionsData.ImageSaveOptionsData.PixelFormatEnum,
     "JsonDataLoadOptions.SimpleValueParseModeEnum": importedJsonDataLoadOptions.JsonDataLoadOptions.SimpleValueParseModeEnum,
     "ListInsert.TemplateEnum": importedListInsert.ListInsert.TemplateEnum,
     "ListLevel.AlignmentEnum": importedListLevel.ListLevel.AlignmentEnum,
@@ -612,10 +626,13 @@ const enumsMap = {
     "ListLevelUpdate.NumberStyleEnum": importedListLevelUpdate.ListLevelUpdate.NumberStyleEnum,
     "ListLevelUpdate.TrailingCharacterEnum": importedListLevelUpdate.ListLevelUpdate.TrailingCharacterEnum,
     "MarkdownSaveOptionsData.TableContentAlignmentEnum": importedMarkdownSaveOptionsData.MarkdownSaveOptionsData.TableContentAlignmentEnum,
+    "MetafileRenderingOptionsData.EmfPlusDualRenderingModeEnum": importedMetafileRenderingOptionsData.MetafileRenderingOptionsData.EmfPlusDualRenderingModeEnum,
+    "MetafileRenderingOptionsData.RenderingModeEnum": importedMetafileRenderingOptionsData.MetafileRenderingOptionsData.RenderingModeEnum,
     "OdtSaveOptionsData.MeasureUnitEnum": importedOdtSaveOptionsData.OdtSaveOptionsData.MeasureUnitEnum,
     "OfficeMathObject.DisplayTypeEnum": importedOfficeMathObject.OfficeMathObject.DisplayTypeEnum,
     "OfficeMathObject.JustificationEnum": importedOfficeMathObject.OfficeMathObject.JustificationEnum,
     "OfficeMathObject.MathObjectTypeEnum": importedOfficeMathObject.OfficeMathObject.MathObjectTypeEnum,
+    "OoxmlSaveOptionsData.ComplianceEnum": importedOoxmlSaveOptionsData.OoxmlSaveOptionsData.ComplianceEnum,
     "OoxmlSaveOptionsData.CompressionLevelEnum": importedOoxmlSaveOptionsData.OoxmlSaveOptionsData.CompressionLevelEnum,
     "OptimizationOptions.MsWordVersionEnum": importedOptimizationOptions.OptimizationOptions.MsWordVersionEnum,
     "PageSetup.BorderAppliesToEnum": importedPageSetup.PageSetup.BorderAppliesToEnum,
@@ -631,16 +648,28 @@ const enumsMap = {
     "ParagraphFormatBase.LineSpacingRuleEnum": importedParagraphFormatBase.ParagraphFormatBase.LineSpacingRuleEnum,
     "ParagraphFormatBase.OutlineLevelEnum": importedParagraphFormatBase.ParagraphFormatBase.OutlineLevelEnum,
     "ParagraphFormatBase.StyleIdentifierEnum": importedParagraphFormatBase.ParagraphFormatBase.StyleIdentifierEnum,
+    "PdfDigitalSignatureDetailsData.HashAlgorithmEnum": importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData.HashAlgorithmEnum,
+    "PdfSaveOptionsData.ComplianceEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ComplianceEnum,
+    "PdfSaveOptionsData.CustomPropertiesExportEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.CustomPropertiesExportEnum,
+    "PdfSaveOptionsData.FontEmbeddingModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.FontEmbeddingModeEnum,
     "PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.HeaderFooterBookmarksExportModeEnum,
+    "PdfSaveOptionsData.ImageColorSpaceExportModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ImageColorSpaceExportModeEnum,
+    "PdfSaveOptionsData.PageModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.PageModeEnum,
+    "PdfSaveOptionsData.TextCompressionEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.TextCompressionEnum,
+    "PdfSaveOptionsData.ZoomBehaviorEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ZoomBehaviorEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
     "ReplaceRangeDto.TextTypeEnum": importedReplaceRangeDto.ReplaceRangeDto.TextTypeEnum,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
     "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
+    "SaveOptionsData.DmlEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.DmlEffectsRenderingModeEnum,
+    "SaveOptionsData.DmlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.DmlRenderingModeEnum,
+    "SaveOptionsData.ImlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.ImlRenderingModeEnum,
     "Shading.TextureEnum": importedShading.Shading.TextureEnum,
     "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
     "Style.TypeEnum": importedStyle.Style.TypeEnum,
     "StyleInsert.StyleTypeEnum": importedStyleInsert.StyleInsert.StyleTypeEnum,
+    "SvgSaveOptionsData.TextOutputModeEnum": importedSvgSaveOptionsData.SvgSaveOptionsData.TextOutputModeEnum,
     "TableCellFormat.HorizontalMergeEnum": importedTableCellFormat.TableCellFormat.HorizontalMergeEnum,
     "TableCellFormat.OrientationEnum": importedTableCellFormat.TableCellFormat.OrientationEnum,
     "TableCellFormat.VerticalAlignmentEnum": importedTableCellFormat.TableCellFormat.VerticalAlignmentEnum,
@@ -652,6 +681,8 @@ const enumsMap = {
     "TableRowFormat.HeightRuleEnum": importedTableRowFormat.TableRowFormat.HeightRuleEnum,
     "TabStopBase.AlignmentEnum": importedTabStopBase.TabStopBase.AlignmentEnum,
     "TabStopBase.LeaderEnum": importedTabStopBase.TabStopBase.LeaderEnum,
+    "TiffSaveOptionsData.TiffBinarizationMethodEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffBinarizationMethodEnum,
+    "TiffSaveOptionsData.TiffCompressionEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffCompressionEnum,
     "TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum": importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum,
 
 };
@@ -823,6 +854,7 @@ const typeMap = {
     PclSaveOptionsData: importedPclSaveOptionsData.PclSaveOptionsData,
     PdfDigitalSignatureDetailsData: importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData,
     PdfEncryptionDetailsData: importedPdfEncryptionDetailsData.PdfEncryptionDetailsData,
+    PdfPermissions: importedPdfPermissions.PdfPermissions,
     PdfSaveOptionsData: importedPdfSaveOptionsData.PdfSaveOptionsData,
     PngSaveOptionsData: importedPngSaveOptionsData.PngSaveOptionsData,
     PreferredWidth: importedPreferredWidth.PreferredWidth,
@@ -929,14 +961,14 @@ export interface RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, key: RSA) : request.OptionsWithUri;
+	createRequestOptions(configuration: Configuration, encryptor: Encryptor) : Promise<request.OptionsWithUri>;
 
 	/**
 	 * create response from string
 	 */
-	createResponse(response: Buffer, _boundary?: string): any;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any;
 }
 
 /**
@@ -996,9 +1028,9 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/revisions/acceptAll"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -1013,12 +1045,12 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling acceptAllRevisions.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -1028,13 +1060,13 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RevisionsModificationResponse");
 	}
 }
@@ -1077,9 +1109,9 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/revisions/acceptAll"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1094,10 +1126,10 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling acceptAllRevisionsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -1113,19 +1145,21 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new AcceptAllRevisionsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "RevisionsModificationResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new AcceptAllRevisionsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RevisionsModificationResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -1194,9 +1228,9 @@ export class AppendDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/appendDocument"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -1221,14 +1255,14 @@ export class AppendDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentList" was null when calling appendDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -1239,13 +1273,13 @@ export class AppendDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -1303,9 +1337,9 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/appendDocument"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1330,12 +1364,12 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentList" was null when calling appendDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -1354,19 +1388,21 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new AppendDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new AppendDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -1440,9 +1476,9 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{styledNodePath}/style"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
@@ -1478,14 +1514,14 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleApply" was null when calling applyStyleToDocumentElement.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -1496,13 +1532,13 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "WordsResponse");
 	}
 }
@@ -1565,9 +1601,9 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{styledNodePath}/style"
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
             .replace("//", "/");
@@ -1603,12 +1639,12 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
             throw new Error('Required parameter "this.styleApply" was null when calling applyStyleToDocumentElementOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -1627,19 +1663,21 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new ApplyStyleToDocumentElementOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "WordsResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new ApplyStyleToDocumentElementOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "WordsResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -1703,9 +1741,9 @@ export class BuildReportRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/buildReport"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -1741,12 +1779,12 @@ export class BuildReportRequest implements RequestInterface {
             throw new Error('Required parameter "this.reportEngineSettings" was null when calling buildReport.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(this.data, "string");
         }
@@ -1765,13 +1803,13 @@ export class BuildReportRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -1809,9 +1847,9 @@ export class BuildReportOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/buildReport"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1846,7 +1884,7 @@ export class BuildReportOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.reportEngineSettings" was null when calling buildReportOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
             formParams.Template = this.template;
         }
@@ -1868,13 +1906,13 @@ export class BuildReportOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -1902,9 +1940,9 @@ export class ClassifyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/classify"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -1918,7 +1956,7 @@ export class ClassifyRequest implements RequestInterface {
             throw new Error('Required parameter "this.text" was null when calling classify.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -1929,13 +1967,13 @@ export class ClassifyRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
 }
@@ -1993,9 +2031,9 @@ export class ClassifyDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/classify"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -2010,13 +2048,13 @@ export class ClassifyDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling classifyDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -2026,13 +2064,13 @@ export class ClassifyDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
 }
@@ -2080,9 +2118,9 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/classify"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -2097,11 +2135,11 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling classifyDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2117,13 +2155,13 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ClassificationResponse");
 	}
 }
@@ -2186,9 +2224,9 @@ export class CompareDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/compareDocument"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -2213,13 +2251,13 @@ export class CompareDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.compareData" was null when calling compareDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2230,13 +2268,13 @@ export class CompareDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -2294,9 +2332,9 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/compareDocument"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -2321,11 +2359,11 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.compareData" was null when calling compareDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2347,19 +2385,21 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new CompareDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new CompareDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -2408,9 +2448,9 @@ export class ConvertDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/convert"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -2435,11 +2475,11 @@ export class ConvertDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling convertDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", this.fileNameFieldValue, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", this.fileNameFieldValue, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2455,13 +2495,13 @@ export class ConvertDocumentRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -2504,9 +2544,9 @@ export class CopyFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/copy/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
@@ -2526,10 +2566,10 @@ export class CopyFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.srcPath" was null when calling copyFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2539,13 +2579,13 @@ export class CopyFileRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -2583,9 +2623,9 @@ export class CopyFolderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/copy/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
@@ -2605,9 +2645,9 @@ export class CopyFolderRequest implements RequestInterface {
             throw new Error('Required parameter "this.srcPath" was null when calling copyFolder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2617,13 +2657,13 @@ export class CopyFolderRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -2691,9 +2731,9 @@ export class CopyStyleRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/copy"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -2718,14 +2758,14 @@ export class CopyStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleCopy" was null when calling copyStyle.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -2736,13 +2776,13 @@ export class CopyStyleRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -2800,9 +2840,9 @@ export class CopyStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/styles/copy"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -2827,12 +2867,12 @@ export class CopyStyleOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleCopy" was null when calling copyStyleOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -2851,19 +2891,21 @@ export class CopyStyleOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new CopyStyleOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "StyleResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new CopyStyleOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -2897,15 +2939,15 @@ export class CreateDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/create"
             .replace("//", "/");
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fileName", this.fileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fileName", this.fileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2915,13 +2957,13 @@ export class CreateDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -2949,9 +2991,9 @@ export class CreateFolderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -2966,7 +3008,7 @@ export class CreateFolderRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling createFolder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -2976,13 +3018,13 @@ export class CreateFolderRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -3055,9 +3097,9 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
@@ -3093,14 +3135,14 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
             throw new Error('Required parameter "this.property" was null when calling createOrUpdateDocumentProperty.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -3111,13 +3153,13 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
 }
@@ -3180,9 +3222,9 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
@@ -3218,12 +3260,12 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
             throw new Error('Required parameter "this.property" was null when calling createOrUpdateDocumentPropertyOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -3242,19 +3284,21 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new CreateOrUpdateDocumentPropertyOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentPropertyResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new CreateOrUpdateDocumentPropertyOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentPropertyResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -3318,9 +3362,9 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -3347,12 +3391,12 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteAllParagraphTabStops.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -3362,13 +3406,13 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -3421,9 +3465,9 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -3450,10 +3494,10 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
             throw new Error('Required parameter "this.index" was null when calling deleteAllParagraphTabStopsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -3469,19 +3513,21 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteAllParagraphTabStopsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TabStopsResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteAllParagraphTabStopsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -3555,9 +3601,9 @@ export class DeleteBorderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
@@ -3584,14 +3630,14 @@ export class DeleteBorderRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling deleteBorder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -3601,13 +3647,13 @@ export class DeleteBorderRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
 }
@@ -3670,9 +3716,9 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/borders/{borderType}"
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -3699,12 +3745,12 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling deleteBorderOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -3720,19 +3766,21 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteBorderOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "BorderResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteBorderOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BorderResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -3801,9 +3849,9 @@ export class DeleteBordersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -3819,14 +3867,14 @@ export class DeleteBordersRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteBorders.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -3836,13 +3884,13 @@ export class DeleteBordersRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
 }
@@ -3900,9 +3948,9 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/borders"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -3918,12 +3966,12 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteBordersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -3939,19 +3987,21 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteBordersOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "BordersResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteBordersOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BordersResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -4020,9 +4070,9 @@ export class DeleteCommentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
@@ -4048,14 +4098,14 @@ export class DeleteCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.commentIndex" was null when calling deleteComment.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4065,13 +4115,13 @@ export class DeleteCommentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4129,9 +4179,9 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
@@ -4157,12 +4207,12 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.commentIndex" was null when calling deleteCommentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4171,21 +4221,21 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -4247,9 +4297,9 @@ export class DeleteCommentsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -4264,14 +4314,14 @@ export class DeleteCommentsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteComments.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4281,13 +4331,13 @@ export class DeleteCommentsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4340,9 +4390,9 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/comments"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -4357,12 +4407,12 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteCommentsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4371,21 +4421,21 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -4452,9 +4502,9 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
@@ -4480,14 +4530,14 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling deleteCustomXmlPart.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4497,13 +4547,13 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4561,9 +4611,9 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
@@ -4589,12 +4639,12 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling deleteCustomXmlPartOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4603,21 +4653,21 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -4679,9 +4729,9 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -4696,14 +4746,14 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteCustomXmlParts.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4713,13 +4763,13 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4772,9 +4822,9 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/customXmlParts"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -4789,12 +4839,12 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteCustomXmlPartsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -4803,21 +4853,21 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -4884,9 +4934,9 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
@@ -4912,14 +4962,14 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
             throw new Error('Required parameter "this.propertyName" was null when calling deleteDocumentProperty.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -4929,13 +4979,13 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -4993,9 +5043,9 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
@@ -5021,12 +5071,12 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.propertyName" was null when calling deleteDocumentPropertyOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -5035,21 +5085,21 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -5121,9 +5171,9 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -5150,14 +5200,14 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteDrawingObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5167,13 +5217,13 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5236,9 +5286,9 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -5265,12 +5315,12 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteDrawingObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -5279,21 +5329,21 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -5365,9 +5415,9 @@ export class DeleteFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -5394,14 +5444,14 @@ export class DeleteFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5411,13 +5461,13 @@ export class DeleteFieldRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5480,9 +5530,9 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/fields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -5509,12 +5559,12 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -5523,21 +5573,21 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -5604,9 +5654,9 @@ export class DeleteFieldsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -5622,14 +5672,14 @@ export class DeleteFieldsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteFields.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5639,13 +5689,13 @@ export class DeleteFieldsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5703,9 +5753,9 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -5721,12 +5771,12 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteFieldsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -5735,21 +5785,21 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -5781,9 +5831,9 @@ export class DeleteFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -5798,8 +5848,8 @@ export class DeleteFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling deleteFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5809,13 +5859,13 @@ export class DeleteFileRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5848,9 +5898,9 @@ export class DeleteFolderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -5865,8 +5915,8 @@ export class DeleteFolderRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling deleteFolder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "recursive", this.recursive, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "recursive", this.recursive, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -5876,13 +5926,13 @@ export class DeleteFolderRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -5955,9 +6005,9 @@ export class DeleteFootnoteRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -5984,14 +6034,14 @@ export class DeleteFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFootnote.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6001,13 +6051,13 @@ export class DeleteFootnoteRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6070,9 +6120,9 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/footnotes/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -6099,12 +6149,12 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFootnoteOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6113,21 +6163,21 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -6199,9 +6249,9 @@ export class DeleteFormFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -6228,14 +6278,14 @@ export class DeleteFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFormField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6245,13 +6295,13 @@ export class DeleteFormFieldRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6314,9 +6364,9 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/formfields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -6343,12 +6393,12 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteFormFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6357,21 +6407,21 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -6443,9 +6493,9 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
@@ -6477,14 +6527,14 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteHeaderFooter.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6494,13 +6544,13 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6563,9 +6613,9 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{sectionPath}/headersfooters/{index}"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -6597,12 +6647,12 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteHeaderFooterOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6611,21 +6661,21 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -6697,9 +6747,9 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
@@ -6720,15 +6770,15 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeadersFooters.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6738,13 +6788,13 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -6807,9 +6857,9 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
@@ -6830,13 +6880,13 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeadersFootersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -6845,21 +6895,21 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -6921,9 +6971,9 @@ export class DeleteMacrosRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/macros"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -6938,14 +6988,14 @@ export class DeleteMacrosRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteMacros.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -6955,13 +7005,13 @@ export class DeleteMacrosRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -7014,9 +7064,9 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/macros"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -7031,12 +7081,12 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteMacrosOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -7045,21 +7095,21 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -7131,9 +7181,9 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -7160,14 +7210,14 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteOfficeMathObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7177,13 +7227,13 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -7246,9 +7296,9 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -7275,12 +7325,12 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteOfficeMathObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -7289,21 +7339,21 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -7375,9 +7425,9 @@ export class DeleteParagraphRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -7404,14 +7454,14 @@ export class DeleteParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraph.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7421,13 +7471,13 @@ export class DeleteParagraphRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -7500,9 +7550,9 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -7529,14 +7579,14 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphListFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7546,13 +7596,13 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
 }
@@ -7615,9 +7665,9 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -7644,12 +7694,12 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphListFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -7665,19 +7715,21 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteParagraphListFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ParagraphListFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteParagraphListFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphListFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -7741,9 +7793,9 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/paragraphs/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -7770,12 +7822,12 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -7784,21 +7836,21 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -7865,9 +7917,9 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstop"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -7904,13 +7956,13 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphTabStop.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -7920,13 +7972,13 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -7984,9 +8036,9 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/paragraphs/{index}/tabstop"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -8023,11 +8075,11 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphTabStopOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8043,19 +8095,21 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteParagraphTabStopOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TabStopsResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteParagraphTabStopOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -8129,9 +8183,9 @@ export class DeleteRunRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -8163,14 +8217,14 @@ export class DeleteRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteRun.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -8180,13 +8234,13 @@ export class DeleteRunRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -8249,9 +8303,9 @@ export class DeleteRunOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{paragraphPath}/runs/{index}"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -8283,12 +8337,12 @@ export class DeleteRunOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteRunOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8297,21 +8351,21 @@ export class DeleteRunOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -8378,9 +8432,9 @@ export class DeleteSectionRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -8406,14 +8460,14 @@ export class DeleteSectionRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling deleteSection.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -8423,13 +8477,13 @@ export class DeleteSectionRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -8487,9 +8541,9 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/sections/{sectionIndex}"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
@@ -8515,12 +8569,12 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling deleteSectionOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8529,21 +8583,21 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -8615,9 +8669,9 @@ export class DeleteTableRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -8644,14 +8698,14 @@ export class DeleteTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTable.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -8661,13 +8715,13 @@ export class DeleteTableRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -8740,9 +8794,9 @@ export class DeleteTableCellRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -8774,14 +8828,14 @@ export class DeleteTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableCell.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -8791,13 +8845,13 @@ export class DeleteTableCellRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -8860,9 +8914,9 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{tableRowPath}/cells/{index}"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -8894,12 +8948,12 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableCellOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -8908,21 +8962,21 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -8984,9 +9038,9 @@ export class DeleteTableOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/tables/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -9013,12 +9067,12 @@ export class DeleteTableOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9027,21 +9081,21 @@ export class DeleteTableOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -9113,9 +9167,9 @@ export class DeleteTableRowRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -9147,14 +9201,14 @@ export class DeleteTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableRow.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -9164,13 +9218,13 @@ export class DeleteTableRowRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -9233,9 +9287,9 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{tablePath}/rows/{index}"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -9267,12 +9321,12 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling deleteTableRowOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9281,21 +9335,21 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -9357,9 +9411,9 @@ export class DeleteWatermarkRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/deleteLast"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -9374,14 +9428,14 @@ export class DeleteWatermarkRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling deleteWatermark.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -9391,13 +9445,13 @@ export class DeleteWatermarkRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -9450,9 +9504,9 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/deleteLast"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -9467,12 +9521,12 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling deleteWatermarkOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -9488,19 +9542,21 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new DeleteWatermarkOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new DeleteWatermarkOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -9534,9 +9590,9 @@ export class DownloadFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -9551,8 +9607,8 @@ export class DownloadFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling downloadFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9562,13 +9618,13 @@ export class DownloadFileRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -9651,9 +9707,9 @@ export class ExecuteMailMergeRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/MailMerge"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -9669,16 +9725,16 @@ export class ExecuteMailMergeRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling executeMailMerge.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", this.mailMergeDataFile, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", this.useWholeParagraphAsRegion, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", this.mailMergeDataFile, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", this.useWholeParagraphAsRegion, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.data !== undefined) {
             formParams.Data = ObjectSerializer.serialize(this.data, "string");
         }
@@ -9697,13 +9753,13 @@ export class ExecuteMailMergeRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -9751,9 +9807,9 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/MailMerge"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -9778,9 +9834,9 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.data" was null when calling executeMailMergeOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
             formParams.Template = this.template;
         }
@@ -9802,13 +9858,13 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -9831,13 +9887,13 @@ export class GetAvailableFontsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/fonts/available"
             .replace("//", "/");
         const queryParameters: any = {};
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9847,13 +9903,13 @@ export class GetAvailableFontsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "AvailableFontsResponse");
 	}
 }
@@ -9906,9 +9962,9 @@ export class GetBookmarkByNameRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
@@ -9934,11 +9990,11 @@ export class GetBookmarkByNameRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkName" was null when calling getBookmarkByName.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -9948,13 +10004,13 @@ export class GetBookmarkByNameRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
 }
@@ -9997,9 +10053,9 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/bookmarks/{bookmarkName}"
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
@@ -10025,9 +10081,9 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkName" was null when calling getBookmarkByNameOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10043,13 +10099,13 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
 }
@@ -10097,9 +10153,9 @@ export class GetBookmarksRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -10114,11 +10170,11 @@ export class GetBookmarksRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getBookmarks.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10128,13 +10184,13 @@ export class GetBookmarksRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarksResponse");
 	}
 }
@@ -10172,9 +10228,9 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/bookmarks"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -10189,9 +10245,9 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getBookmarksOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10207,13 +10263,13 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarksResponse");
 	}
 }
@@ -10271,9 +10327,9 @@ export class GetBorderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
@@ -10300,11 +10356,11 @@ export class GetBorderRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling getBorder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10314,13 +10370,13 @@ export class GetBorderRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
 }
@@ -10368,9 +10424,9 @@ export class GetBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/borders/{borderType}"
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -10397,9 +10453,9 @@ export class GetBorderOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling getBorderOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10415,13 +10471,13 @@ export class GetBorderOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
 }
@@ -10474,9 +10530,9 @@ export class GetBordersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -10492,11 +10548,11 @@ export class GetBordersRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getBorders.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10506,13 +10562,13 @@ export class GetBordersRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
 }
@@ -10555,9 +10611,9 @@ export class GetBordersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/borders"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -10573,9 +10629,9 @@ export class GetBordersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getBordersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10591,13 +10647,13 @@ export class GetBordersOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BordersResponse");
 	}
 }
@@ -10650,9 +10706,9 @@ export class GetCommentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
@@ -10678,11 +10734,11 @@ export class GetCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.commentIndex" was null when calling getComment.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10692,13 +10748,13 @@ export class GetCommentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
 }
@@ -10741,9 +10797,9 @@ export class GetCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
@@ -10769,9 +10825,9 @@ export class GetCommentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.commentIndex" was null when calling getCommentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10787,13 +10843,13 @@ export class GetCommentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
 }
@@ -10841,9 +10897,9 @@ export class GetCommentsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -10858,11 +10914,11 @@ export class GetCommentsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getComments.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -10872,13 +10928,13 @@ export class GetCommentsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentsResponse");
 	}
 }
@@ -10916,9 +10972,9 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/comments"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -10933,9 +10989,9 @@ export class GetCommentsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getCommentsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -10951,13 +11007,13 @@ export class GetCommentsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentsResponse");
 	}
 }
@@ -11010,9 +11066,9 @@ export class GetCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
@@ -11038,11 +11094,11 @@ export class GetCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling getCustomXmlPart.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11052,13 +11108,13 @@ export class GetCustomXmlPartRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
 	}
 }
@@ -11101,9 +11157,9 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
@@ -11129,9 +11185,9 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling getCustomXmlPartOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11147,13 +11203,13 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
 	}
 }
@@ -11201,9 +11257,9 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -11218,11 +11274,11 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getCustomXmlParts.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11232,13 +11288,13 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartsResponse");
 	}
 }
@@ -11276,9 +11332,9 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/customXmlParts"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -11293,9 +11349,9 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getCustomXmlPartsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11311,13 +11367,13 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartsResponse");
 	}
 }
@@ -11365,9 +11421,9 @@ export class GetDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{documentName}"
             .replace("/{" + "documentName" + "}", (this.documentName !== null && this.documentName !== undefined) ? "/" + String(this.documentName) : "")
             .replace("//", "/");
@@ -11382,11 +11438,11 @@ export class GetDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentName" was null when calling getDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11396,13 +11452,13 @@ export class GetDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -11460,9 +11516,9 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -11489,11 +11545,11 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectByIndex.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11503,13 +11559,13 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
 }
@@ -11557,9 +11613,9 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -11586,9 +11642,9 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectByIndexOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11604,13 +11660,13 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
 }
@@ -11668,9 +11724,9 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/imageData"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -11697,11 +11753,11 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectImageData.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11711,13 +11767,13 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -11765,9 +11821,9 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects/{index}/imageData"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -11794,9 +11850,9 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectImageDataOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -11812,13 +11868,13 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -11876,9 +11932,9 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/oleData"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -11905,11 +11961,11 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectOleData.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -11919,13 +11975,13 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -11973,9 +12029,9 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects/{index}/oleData"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -12002,9 +12058,9 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectOleDataOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12020,13 +12076,13 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -12079,9 +12135,9 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -12097,11 +12153,11 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentDrawingObjects.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12111,13 +12167,13 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectsResponse");
 	}
 }
@@ -12160,9 +12216,9 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -12178,9 +12234,9 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
             throw new Error('Required parameter "this.document" was null when calling getDocumentDrawingObjectsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12196,13 +12252,13 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectsResponse");
 	}
 }
@@ -12255,9 +12311,9 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/mailMerge/FieldNames"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -12272,12 +12328,12 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentFieldNames.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12287,13 +12343,13 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldNamesResponse");
 	}
 }
@@ -12336,9 +12392,9 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/mailMerge/FieldNames"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -12353,10 +12409,10 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.template" was null when calling getDocumentFieldNamesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
         if (this.template !== undefined) {
             formParams.Template = this.template;
         }
@@ -12372,13 +12428,13 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldNamesResponse");
 	}
 }
@@ -12431,9 +12487,9 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/hyperlinks/{hyperlinkIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "hyperlinkIndex" + "}", (this.hyperlinkIndex !== null && this.hyperlinkIndex !== undefined) ? "/" + String(this.hyperlinkIndex) : "")
@@ -12459,11 +12515,11 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
             throw new Error('Required parameter "this.hyperlinkIndex" was null when calling getDocumentHyperlinkByIndex.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12473,13 +12529,13 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HyperlinkResponse");
 	}
 }
@@ -12522,9 +12578,9 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/hyperlinks/{hyperlinkIndex}"
             .replace("/{" + "hyperlinkIndex" + "}", (this.hyperlinkIndex !== null && this.hyperlinkIndex !== undefined) ? "/" + String(this.hyperlinkIndex) : "")
             .replace("//", "/");
@@ -12550,9 +12606,9 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
             throw new Error('Required parameter "this.hyperlinkIndex" was null when calling getDocumentHyperlinkByIndexOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12568,13 +12624,13 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HyperlinkResponse");
 	}
 }
@@ -12622,9 +12678,9 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/hyperlinks"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -12639,11 +12695,11 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentHyperlinks.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12653,13 +12709,13 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HyperlinksResponse");
 	}
 }
@@ -12697,9 +12753,9 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/hyperlinks"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -12714,9 +12770,9 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getDocumentHyperlinksOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12732,13 +12788,13 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HyperlinksResponse");
 	}
 }
@@ -12786,9 +12842,9 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -12803,11 +12859,11 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentProperties.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12817,13 +12873,13 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertiesResponse");
 	}
 }
@@ -12861,9 +12917,9 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/documentProperties"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -12878,9 +12934,9 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getDocumentPropertiesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -12896,13 +12952,13 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertiesResponse");
 	}
 }
@@ -12955,9 +13011,9 @@ export class GetDocumentPropertyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties/{propertyName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
@@ -12983,11 +13039,11 @@ export class GetDocumentPropertyRequest implements RequestInterface {
             throw new Error('Required parameter "this.propertyName" was null when calling getDocumentProperty.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -12997,13 +13053,13 @@ export class GetDocumentPropertyRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
 }
@@ -13046,9 +13102,9 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
@@ -13074,9 +13130,9 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.propertyName" was null when calling getDocumentPropertyOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13092,13 +13148,13 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
 	}
 }
@@ -13146,9 +13202,9 @@ export class GetDocumentProtectionRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -13163,11 +13219,11 @@ export class GetDocumentProtectionRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentProtection.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13177,13 +13233,13 @@ export class GetDocumentProtectionRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
 }
@@ -13221,9 +13277,9 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/protection"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -13238,9 +13294,9 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getDocumentProtectionOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13256,13 +13312,13 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
 }
@@ -13325,9 +13381,9 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/statistics"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -13342,14 +13398,14 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getDocumentStatistics.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13359,13 +13415,13 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StatDataResponse");
 	}
 }
@@ -13418,9 +13474,9 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/statistics"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -13435,12 +13491,12 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getDocumentStatisticsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13456,13 +13512,13 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StatDataResponse");
 	}
 }
@@ -13525,9 +13581,9 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -13552,14 +13608,14 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling getDocumentWithFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13569,13 +13625,13 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -13633,9 +13689,9 @@ export class GetFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -13662,11 +13718,11 @@ export class GetFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13676,13 +13732,13 @@ export class GetFieldRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
 }
@@ -13730,9 +13786,9 @@ export class GetFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/fields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -13759,9 +13815,9 @@ export class GetFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13777,13 +13833,13 @@ export class GetFieldOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
 }
@@ -13836,9 +13892,9 @@ export class GetFieldsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -13854,11 +13910,11 @@ export class GetFieldsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getFields.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -13868,13 +13924,13 @@ export class GetFieldsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldsResponse");
 	}
 }
@@ -13917,9 +13973,9 @@ export class GetFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -13935,9 +13991,9 @@ export class GetFieldsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getFieldsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -13953,13 +14009,13 @@ export class GetFieldsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldsResponse");
 	}
 }
@@ -13987,9 +14043,9 @@ export class GetFilesListRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -14004,7 +14060,7 @@ export class GetFilesListRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling getFilesList.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14014,13 +14070,13 @@ export class GetFilesListRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FilesList");
 	}
 }
@@ -14078,9 +14134,9 @@ export class GetFootnoteRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -14107,11 +14163,11 @@ export class GetFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFootnote.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14121,13 +14177,13 @@ export class GetFootnoteRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
 }
@@ -14175,9 +14231,9 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/footnotes/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -14204,9 +14260,9 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFootnoteOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14222,13 +14278,13 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
 }
@@ -14281,9 +14337,9 @@ export class GetFootnotesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -14299,11 +14355,11 @@ export class GetFootnotesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getFootnotes.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14313,13 +14369,13 @@ export class GetFootnotesRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnotesResponse");
 	}
 }
@@ -14362,9 +14418,9 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/footnotes"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -14380,9 +14436,9 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getFootnotesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14398,13 +14454,13 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnotesResponse");
 	}
 }
@@ -14462,9 +14518,9 @@ export class GetFormFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -14491,11 +14547,11 @@ export class GetFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFormField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14505,13 +14561,13 @@ export class GetFormFieldRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
 }
@@ -14559,9 +14615,9 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/formfields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -14588,9 +14644,9 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getFormFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14606,13 +14662,13 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
 }
@@ -14665,9 +14721,9 @@ export class GetFormFieldsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -14683,11 +14739,11 @@ export class GetFormFieldsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getFormFields.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14697,13 +14753,13 @@ export class GetFormFieldsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldsResponse");
 	}
 }
@@ -14746,9 +14802,9 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/formfields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -14764,9 +14820,9 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getFormFieldsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -14782,13 +14838,13 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldsResponse");
 	}
 }
@@ -14846,9 +14902,9 @@ export class GetHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
@@ -14874,12 +14930,12 @@ export class GetHeaderFooterRequest implements RequestInterface {
             throw new Error('Required parameter "this.headerFooterIndex" was null when calling getHeaderFooter.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -14889,13 +14945,13 @@ export class GetHeaderFooterRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -14958,9 +15014,9 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
@@ -14997,12 +15053,12 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getHeaderFooterOfSection.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15012,13 +15068,13 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -15071,9 +15127,9 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}/headersfooters/{headerFooterIndex}"
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -15110,10 +15166,10 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getHeaderFooterOfSectionOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15129,13 +15185,13 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -15183,9 +15239,9 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/headersfooters/{headerFooterIndex}"
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
             .replace("//", "/");
@@ -15211,10 +15267,10 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.headerFooterIndex" was null when calling getHeaderFooterOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15230,13 +15286,13 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -15294,9 +15350,9 @@ export class GetHeaderFootersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
@@ -15317,12 +15373,12 @@ export class GetHeaderFootersRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling getHeaderFooters.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15332,13 +15388,13 @@ export class GetHeaderFootersRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
 	}
 }
@@ -15386,9 +15442,9 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
@@ -15409,10 +15465,10 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling getHeaderFootersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15428,13 +15484,13 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
 	}
 }
@@ -15453,9 +15509,9 @@ export class GetInfoRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         const localVarPath = configuration.getApiBaseUrl() + "/words/info"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -15468,13 +15524,13 @@ export class GetInfoRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "InfoResponse");
 	}
 }
@@ -15527,9 +15583,9 @@ export class GetListRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
@@ -15555,11 +15611,11 @@ export class GetListRequest implements RequestInterface {
             throw new Error('Required parameter "this.listId" was null when calling getList.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15569,13 +15625,13 @@ export class GetListRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -15618,9 +15674,9 @@ export class GetListOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/lists/{listId}"
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("//", "/");
@@ -15646,9 +15702,9 @@ export class GetListOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.listId" was null when calling getListOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15664,13 +15720,13 @@ export class GetListOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -15718,9 +15774,9 @@ export class GetListsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -15735,11 +15791,11 @@ export class GetListsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getLists.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15749,13 +15805,13 @@ export class GetListsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListsResponse");
 	}
 }
@@ -15793,9 +15849,9 @@ export class GetListsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/lists"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -15810,9 +15866,9 @@ export class GetListsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getListsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -15828,13 +15884,13 @@ export class GetListsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListsResponse");
 	}
 }
@@ -15892,9 +15948,9 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -15921,11 +15977,11 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getOfficeMathObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -15935,13 +15991,13 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectResponse");
 	}
 }
@@ -15989,9 +16045,9 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/OfficeMathObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -16018,9 +16074,9 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getOfficeMathObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16036,13 +16092,13 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectResponse");
 	}
 }
@@ -16095,9 +16151,9 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -16113,11 +16169,11 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getOfficeMathObjects.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16127,13 +16183,13 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectsResponse");
 	}
 }
@@ -16176,9 +16232,9 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/OfficeMathObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -16194,9 +16250,9 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getOfficeMathObjectsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16212,13 +16268,13 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "OfficeMathObjectsResponse");
 	}
 }
@@ -16276,9 +16332,9 @@ export class GetParagraphRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -16305,11 +16361,11 @@ export class GetParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraph.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16319,13 +16375,13 @@ export class GetParagraphRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
 }
@@ -16383,9 +16439,9 @@ export class GetParagraphFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -16412,11 +16468,11 @@ export class GetParagraphFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16426,13 +16482,13 @@ export class GetParagraphFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
 }
@@ -16480,9 +16536,9 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -16509,9 +16565,9 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16527,13 +16583,13 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
 }
@@ -16591,9 +16647,9 @@ export class GetParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -16620,11 +16676,11 @@ export class GetParagraphListFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphListFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16634,13 +16690,13 @@ export class GetParagraphListFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
 }
@@ -16688,9 +16744,9 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -16717,9 +16773,9 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphListFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16735,13 +16791,13 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
 }
@@ -16789,9 +16845,9 @@ export class GetParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -16818,9 +16874,9 @@ export class GetParagraphOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -16836,13 +16892,13 @@ export class GetParagraphOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
 }
@@ -16895,9 +16951,9 @@ export class GetParagraphsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -16913,11 +16969,11 @@ export class GetParagraphsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getParagraphs.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -16927,13 +16983,13 @@ export class GetParagraphsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphLinkCollectionResponse");
 	}
 }
@@ -16976,9 +17032,9 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -16994,9 +17050,9 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getParagraphsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17012,13 +17068,13 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphLinkCollectionResponse");
 	}
 }
@@ -17076,9 +17132,9 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -17105,11 +17161,11 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphTabStops.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17119,13 +17175,13 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -17173,9 +17229,9 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -17202,9 +17258,9 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getParagraphTabStopsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17220,13 +17276,13 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -17245,9 +17301,9 @@ export class GetPublicKeyRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         const localVarPath = configuration.getApiBaseUrl() + "/words/encryption/publickey"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -17260,13 +17316,13 @@ export class GetPublicKeyRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "PublicKeyResponse");
 	}
 }
@@ -17324,9 +17380,9 @@ export class GetRangeTextRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
@@ -17353,11 +17409,11 @@ export class GetRangeTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling getRangeText.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17367,13 +17423,13 @@ export class GetRangeTextRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RangeTextResponse");
 	}
 }
@@ -17421,9 +17477,9 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
@@ -17450,9 +17506,9 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling getRangeTextOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17468,13 +17524,13 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RangeTextResponse");
 	}
 }
@@ -17532,9 +17588,9 @@ export class GetRunRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -17566,11 +17622,11 @@ export class GetRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getRun.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17580,13 +17636,13 @@ export class GetRunRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
 }
@@ -17644,9 +17700,9 @@ export class GetRunFontRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -17678,11 +17734,11 @@ export class GetRunFontRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getRunFont.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -17692,13 +17748,13 @@ export class GetRunFontRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
 }
@@ -17746,9 +17802,9 @@ export class GetRunFontOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -17780,9 +17836,9 @@ export class GetRunFontOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getRunFontOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17798,13 +17854,13 @@ export class GetRunFontOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
 }
@@ -17852,9 +17908,9 @@ export class GetRunOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{paragraphPath}/runs/{index}"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -17886,9 +17942,9 @@ export class GetRunOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getRunOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -17904,13 +17960,13 @@ export class GetRunOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
 }
@@ -17963,9 +18019,9 @@ export class GetRunsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -17986,11 +18042,11 @@ export class GetRunsRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRuns.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18000,13 +18056,13 @@ export class GetRunsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunsResponse");
 	}
 }
@@ -18049,9 +18105,9 @@ export class GetRunsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{paragraphPath}/runs"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("//", "/");
@@ -18072,9 +18128,9 @@ export class GetRunsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18090,13 +18146,13 @@ export class GetRunsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunsResponse");
 	}
 }
@@ -18149,9 +18205,9 @@ export class GetSectionRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -18177,11 +18233,11 @@ export class GetSectionRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSection.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18191,13 +18247,13 @@ export class GetSectionRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionResponse");
 	}
 }
@@ -18240,9 +18296,9 @@ export class GetSectionOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
@@ -18268,9 +18324,9 @@ export class GetSectionOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18286,13 +18342,13 @@ export class GetSectionOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionResponse");
 	}
 }
@@ -18345,9 +18401,9 @@ export class GetSectionPageSetupRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -18373,11 +18429,11 @@ export class GetSectionPageSetupRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionPageSetup.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18387,13 +18443,13 @@ export class GetSectionPageSetupRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
 }
@@ -18436,9 +18492,9 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
@@ -18464,9 +18520,9 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionPageSetupOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18482,13 +18538,13 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
 }
@@ -18536,9 +18592,9 @@ export class GetSectionsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -18553,11 +18609,11 @@ export class GetSectionsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getSections.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18567,13 +18623,13 @@ export class GetSectionsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionLinkCollectionResponse");
 	}
 }
@@ -18611,9 +18667,9 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -18628,9 +18684,9 @@ export class GetSectionsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getSectionsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18646,13 +18702,13 @@ export class GetSectionsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionLinkCollectionResponse");
 	}
 }
@@ -18705,9 +18761,9 @@ export class GetStyleRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/{styleName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
@@ -18733,11 +18789,11 @@ export class GetStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleName" was null when calling getStyle.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18747,13 +18803,13 @@ export class GetStyleRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -18806,9 +18862,9 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{styledNodePath}/style"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
@@ -18834,11 +18890,11 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
             throw new Error('Required parameter "this.styledNodePath" was null when calling getStyleFromDocumentElement.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -18848,13 +18904,13 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -18897,9 +18953,9 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{styledNodePath}/style"
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
             .replace("//", "/");
@@ -18925,9 +18981,9 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
             throw new Error('Required parameter "this.styledNodePath" was null when calling getStyleFromDocumentElementOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -18943,13 +18999,13 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -18992,9 +19048,9 @@ export class GetStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/styles/{styleName}"
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
             .replace("//", "/");
@@ -19020,9 +19076,9 @@ export class GetStyleOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleName" was null when calling getStyleOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19038,13 +19094,13 @@ export class GetStyleOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -19092,9 +19148,9 @@ export class GetStylesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -19109,11 +19165,11 @@ export class GetStylesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getStyles.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19123,13 +19179,13 @@ export class GetStylesRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StylesResponse");
 	}
 }
@@ -19167,9 +19223,9 @@ export class GetStylesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/styles"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -19184,9 +19240,9 @@ export class GetStylesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getStylesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19202,13 +19258,13 @@ export class GetStylesOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StylesResponse");
 	}
 }
@@ -19266,9 +19322,9 @@ export class GetTableRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -19295,11 +19351,11 @@ export class GetTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTable.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19309,13 +19365,13 @@ export class GetTableRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
 }
@@ -19373,9 +19429,9 @@ export class GetTableCellRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -19407,11 +19463,11 @@ export class GetTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableCell.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19421,13 +19477,13 @@ export class GetTableCellRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
 }
@@ -19485,9 +19541,9 @@ export class GetTableCellFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -19519,11 +19575,11 @@ export class GetTableCellFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableCellFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19533,13 +19589,13 @@ export class GetTableCellFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
 }
@@ -19587,9 +19643,9 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -19621,9 +19677,9 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableCellFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19639,13 +19695,13 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
 }
@@ -19693,9 +19749,9 @@ export class GetTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{tableRowPath}/cells/{index}"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -19727,9 +19783,9 @@ export class GetTableCellOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableCellOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19745,13 +19801,13 @@ export class GetTableCellOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
 }
@@ -19799,9 +19855,9 @@ export class GetTableOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -19828,9 +19884,9 @@ export class GetTableOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -19846,13 +19902,13 @@ export class GetTableOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
 }
@@ -19910,9 +19966,9 @@ export class GetTablePropertiesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -19939,11 +19995,11 @@ export class GetTablePropertiesRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableProperties.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -19953,13 +20009,13 @@ export class GetTablePropertiesRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
 }
@@ -20007,9 +20063,9 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables/{index}/properties"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -20036,9 +20092,9 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTablePropertiesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20054,13 +20110,13 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
 }
@@ -20118,9 +20174,9 @@ export class GetTableRowRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -20152,11 +20208,11 @@ export class GetTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableRow.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -20166,13 +20222,13 @@ export class GetTableRowRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
 }
@@ -20230,9 +20286,9 @@ export class GetTableRowFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -20264,11 +20320,11 @@ export class GetTableRowFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableRowFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -20278,13 +20334,13 @@ export class GetTableRowFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
 }
@@ -20332,9 +20388,9 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -20366,9 +20422,9 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableRowFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20384,13 +20440,13 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
 }
@@ -20438,9 +20494,9 @@ export class GetTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{tablePath}/rows/{index}"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -20472,9 +20528,9 @@ export class GetTableRowOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling getTableRowOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20490,13 +20546,13 @@ export class GetTableRowOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
 }
@@ -20549,9 +20605,9 @@ export class GetTablesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -20567,11 +20623,11 @@ export class GetTablesRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling getTables.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -20581,13 +20637,13 @@ export class GetTablesRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableLinkCollectionResponse");
 	}
 }
@@ -20630,9 +20686,9 @@ export class GetTablesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -20648,9 +20704,9 @@ export class GetTablesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling getTablesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20666,13 +20722,13 @@ export class GetTablesOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableLinkCollectionResponse");
 	}
 }
@@ -20740,9 +20796,9 @@ export class InsertCommentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -20767,14 +20823,14 @@ export class InsertCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling insertComment.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -20785,13 +20841,13 @@ export class InsertCommentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
 }
@@ -20849,9 +20905,9 @@ export class InsertCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/comments"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -20876,12 +20932,12 @@ export class InsertCommentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling insertCommentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -20900,19 +20956,21 @@ export class InsertCommentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertCommentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CommentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertCommentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CommentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -20981,9 +21039,9 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -21008,14 +21066,14 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPart.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -21026,13 +21084,13 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
 	}
 }
@@ -21090,9 +21148,9 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/customXmlParts"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -21117,12 +21175,12 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPartOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -21141,19 +21199,21 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertCustomXmlPartOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CustomXmlPartResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertCustomXmlPartOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CustomXmlPartResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -21232,9 +21292,9 @@ export class InsertDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -21271,14 +21331,14 @@ export class InsertDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.imageFile" was null when calling insertDrawingObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.drawingObject !== undefined) {
             formParams.DrawingObject = JSON.stringify(this.drawingObject);
         }
@@ -21297,13 +21357,13 @@ export class InsertDrawingObjectRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
 }
@@ -21371,9 +21431,9 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/drawingObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -21409,12 +21469,12 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.imageFile" was null when calling insertDrawingObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -21436,19 +21496,21 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertDrawingObjectOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DrawingObjectResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertDrawingObjectOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DrawingObjectResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -21527,9 +21589,9 @@ export class InsertFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -21555,15 +21617,15 @@ export class InsertFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.field" was null when calling insertField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -21574,13 +21636,13 @@ export class InsertFieldRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
 }
@@ -21648,9 +21710,9 @@ export class InsertFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -21676,13 +21738,13 @@ export class InsertFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.field" was null when calling insertFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -21701,19 +21763,21 @@ export class InsertFieldOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertFieldOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FieldResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertFieldOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FieldResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -21787,9 +21851,9 @@ export class InsertFootnoteRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -21815,14 +21879,14 @@ export class InsertFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.footnoteDto" was null when calling insertFootnote.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -21833,13 +21897,13 @@ export class InsertFootnoteRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
 }
@@ -21902,9 +21966,9 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/footnotes"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -21930,12 +21994,12 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.footnoteDto" was null when calling insertFootnoteOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -21954,19 +22018,21 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertFootnoteOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FootnoteResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertFootnoteOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FootnoteResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -22045,9 +22111,9 @@ export class InsertFormFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -22073,15 +22139,15 @@ export class InsertFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.formField" was null when calling insertFormField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -22092,13 +22158,13 @@ export class InsertFormFieldRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
 }
@@ -22166,9 +22232,9 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/formfields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -22194,13 +22260,13 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.formField" was null when calling insertFormFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -22219,19 +22285,21 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertFormFieldOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FormFieldResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertFormFieldOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FormFieldResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -22305,9 +22373,9 @@ export class InsertHeaderFooterRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{sectionPath}/headersfooters"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
@@ -22338,14 +22406,14 @@ export class InsertHeaderFooterRequest implements RequestInterface {
             throw new Error('Required parameter "this.headerFooterType" was null when calling insertHeaderFooter.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -22356,13 +22424,13 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
 	}
 }
@@ -22425,9 +22493,9 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
@@ -22458,12 +22526,12 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.headerFooterType" was null when calling insertHeaderFooterOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -22482,19 +22550,21 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertHeaderFooterOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "HeaderFooterResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertHeaderFooterOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "HeaderFooterResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -22563,9 +22633,9 @@ export class InsertListRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -22590,14 +22660,14 @@ export class InsertListRequest implements RequestInterface {
             throw new Error('Required parameter "this.listInsert" was null when calling insertList.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -22608,13 +22678,13 @@ export class InsertListRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -22672,9 +22742,9 @@ export class InsertListOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/lists"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -22699,12 +22769,12 @@ export class InsertListOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.listInsert" was null when calling insertListOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -22723,19 +22793,21 @@ export class InsertListOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertListOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ListResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertListOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -22804,9 +22876,9 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -22843,12 +22915,12 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
             throw new Error('Required parameter "this.tabStopInsertDto" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -22859,13 +22931,13 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TabStopsResponse");
 	}
 }
@@ -22923,9 +22995,9 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/paragraphs/{index}/tabstops"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -22962,10 +23034,10 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
             throw new Error('Required parameter "this.index" was null when calling insertOrUpdateParagraphTabStopOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -22984,19 +23056,21 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertOrUpdateParagraphTabStopOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TabStopsResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertOrUpdateParagraphTabStopOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -23065,9 +23139,9 @@ export class InsertPageNumbersRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/PageNumbers"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -23092,14 +23166,14 @@ export class InsertPageNumbersRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageNumber" was null when calling insertPageNumbers.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -23110,13 +23184,13 @@ export class InsertPageNumbersRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -23174,9 +23248,9 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/PageNumbers"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -23201,12 +23275,12 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageNumber" was null when calling insertPageNumbersOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -23225,19 +23299,21 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertPageNumbersOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertPageNumbersOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -23316,9 +23392,9 @@ export class InsertParagraphRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -23344,15 +23420,15 @@ export class InsertParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraph" was null when calling insertParagraph.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -23363,13 +23439,13 @@ export class InsertParagraphRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphResponse");
 	}
 }
@@ -23437,9 +23513,9 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/paragraphs"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -23465,13 +23541,13 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraph" was null when calling insertParagraphOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -23490,19 +23566,21 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertParagraphOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ParagraphResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertParagraphOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -23581,9 +23659,9 @@ export class InsertRunRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -23614,15 +23692,15 @@ export class InsertRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.run" was null when calling insertRun.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -23633,13 +23711,13 @@ export class InsertRunRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
 }
@@ -23707,9 +23785,9 @@ export class InsertRunOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{paragraphPath}/runs"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("//", "/");
@@ -23740,13 +23818,13 @@ export class InsertRunOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.run" was null when calling insertRunOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -23765,19 +23843,21 @@ export class InsertRunOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertRunOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "RunResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertRunOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RunResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -23846,9 +23926,9 @@ export class InsertStyleRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/insert"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -23873,14 +23953,14 @@ export class InsertStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleInsert" was null when calling insertStyle.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -23891,13 +23971,13 @@ export class InsertStyleRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -23955,9 +24035,9 @@ export class InsertStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/styles/insert"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -23982,12 +24062,12 @@ export class InsertStyleOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleInsert" was null when calling insertStyleOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -24006,19 +24086,21 @@ export class InsertStyleOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertStyleOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "StyleResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertStyleOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -24092,9 +24174,9 @@ export class InsertTableRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -24120,14 +24202,14 @@ export class InsertTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.table" was null when calling insertTable.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -24138,13 +24220,13 @@ export class InsertTableRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableResponse");
 	}
 }
@@ -24217,9 +24299,9 @@ export class InsertTableCellRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -24250,14 +24332,14 @@ export class InsertTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.cell" was null when calling insertTableCell.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -24268,13 +24350,13 @@ export class InsertTableCellRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellResponse");
 	}
 }
@@ -24337,9 +24419,9 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{tableRowPath}/cells"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("//", "/");
@@ -24370,12 +24452,12 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.cell" was null when calling insertTableCellOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -24394,19 +24476,21 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertTableCellOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableCellResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertTableCellOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableCellResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -24470,9 +24554,9 @@ export class InsertTableOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/tables"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
@@ -24498,12 +24582,12 @@ export class InsertTableOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.table" was null when calling insertTableOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -24522,19 +24606,21 @@ export class InsertTableOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertTableOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertTableOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -24608,9 +24694,9 @@ export class InsertTableRowRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -24641,14 +24727,14 @@ export class InsertTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.row" was null when calling insertTableRow.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -24659,13 +24745,13 @@ export class InsertTableRowRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowResponse");
 	}
 }
@@ -24728,9 +24814,9 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{tablePath}/rows"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("//", "/");
@@ -24761,12 +24847,12 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.row" was null when calling insertTableRowOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -24785,19 +24871,21 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertTableRowOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableRowResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertTableRowOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableRowResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -24876,9 +24964,9 @@ export class InsertWatermarkImageRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/images"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -24894,16 +24982,16 @@ export class InsertWatermarkImageRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling insertWatermarkImage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _encryptor);
         if (this.imageFile !== undefined) {
             formParams.ImageFile = this.imageFile;
         }
@@ -24919,13 +25007,13 @@ export class InsertWatermarkImageRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -24993,9 +25081,9 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/images"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -25020,14 +25108,14 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.imageFile" was null when calling insertWatermarkImageOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25046,19 +25134,21 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertWatermarkImageOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertWatermarkImageOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -25127,9 +25217,9 @@ export class InsertWatermarkTextRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/texts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -25154,14 +25244,14 @@ export class InsertWatermarkTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.watermarkText" was null when calling insertWatermarkText.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -25172,13 +25262,13 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -25236,9 +25326,9 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/texts"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -25263,12 +25353,12 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.watermarkText" was null when calling insertWatermarkTextOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25287,19 +25377,21 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new InsertWatermarkTextOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertWatermarkTextOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -25328,9 +25420,9 @@ export class LoadWebDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/loadWebDocument"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -25344,7 +25436,7 @@ export class LoadWebDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.data" was null when calling loadWebDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -25355,13 +25447,13 @@ export class LoadWebDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
 }
@@ -25404,9 +25496,9 @@ export class MoveFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/move/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
@@ -25426,10 +25518,10 @@ export class MoveFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.srcPath" was null when calling moveFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -25439,13 +25531,13 @@ export class MoveFileRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -25483,9 +25575,9 @@ export class MoveFolderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/move/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
@@ -25505,9 +25597,9 @@ export class MoveFolderRequest implements RequestInterface {
             throw new Error('Required parameter "this.srcPath" was null when calling moveFolder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -25517,13 +25609,13 @@ export class MoveFolderRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -25591,9 +25683,9 @@ export class OptimizeDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/compatibility/optimize"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -25618,14 +25710,14 @@ export class OptimizeDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.options" was null when calling optimizeDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -25636,13 +25728,13 @@ export class OptimizeDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -25700,9 +25792,9 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/compatibility/optimize"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -25727,12 +25819,12 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.options" was null when calling optimizeDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25744,21 +25836,21 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
             method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
-            encoding: null,
+            json: true,
         };
 
         if (Object.keys(formParams).length > 0) {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        return _response;
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
 	}
 }
 
@@ -25815,9 +25907,9 @@ export class ProtectDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -25842,12 +25934,12 @@ export class ProtectDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling protectDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -25858,13 +25950,13 @@ export class ProtectDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
 }
@@ -25912,9 +26004,9 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/protection"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -25939,10 +26031,10 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling protectDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -25961,19 +26053,21 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new ProtectDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ProtectionDataResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new ProtectDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ProtectionDataResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -26027,9 +26121,9 @@ export class RejectAllRevisionsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/revisions/rejectAll"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -26044,12 +26138,12 @@ export class RejectAllRevisionsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling rejectAllRevisions.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -26059,13 +26153,13 @@ export class RejectAllRevisionsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RevisionsModificationResponse");
 	}
 }
@@ -26108,9 +26202,9 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/revisions/rejectAll"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -26125,10 +26219,10 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling rejectAllRevisionsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -26144,19 +26238,21 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new RejectAllRevisionsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "RevisionsModificationResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new RejectAllRevisionsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RevisionsModificationResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -26220,9 +26316,9 @@ export class RemoveRangeRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
@@ -26249,12 +26345,12 @@ export class RemoveRangeRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling removeRange.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -26264,13 +26360,13 @@ export class RemoveRangeRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -26323,9 +26419,9 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
@@ -26352,10 +26448,10 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling removeRangeOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -26371,19 +26467,21 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new RemoveRangeOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new RemoveRangeOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -26457,9 +26555,9 @@ export class RenderDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -26496,14 +26594,14 @@ export class RenderDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderDrawingObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -26513,13 +26611,13 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -26582,9 +26680,9 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects/{index}/render"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -26621,12 +26719,12 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderDrawingObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -26642,13 +26740,13 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -26721,9 +26819,9 @@ export class RenderMathObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/OfficeMathObjects/{index}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -26760,14 +26858,14 @@ export class RenderMathObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderMathObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -26777,13 +26875,13 @@ export class RenderMathObjectRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -26846,9 +26944,9 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/OfficeMathObjects/{index}/render"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -26885,12 +26983,12 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderMathObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -26906,13 +27004,13 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -26975,9 +27073,9 @@ export class RenderPageRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/pages/{pageIndex}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "pageIndex" + "}", (this.pageIndex !== null && this.pageIndex !== undefined) ? "/" + String(this.pageIndex) : "")
@@ -27013,13 +27111,13 @@ export class RenderPageRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling renderPage.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -27029,13 +27127,13 @@ export class RenderPageRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27088,9 +27186,9 @@ export class RenderPageOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/pages/{pageIndex}/render"
             .replace("/{" + "pageIndex" + "}", (this.pageIndex !== null && this.pageIndex !== undefined) ? "/" + String(this.pageIndex) : "")
             .replace("//", "/");
@@ -27126,11 +27224,11 @@ export class RenderPageOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling renderPageOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27146,13 +27244,13 @@ export class RenderPageOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27225,9 +27323,9 @@ export class RenderParagraphRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -27264,14 +27362,14 @@ export class RenderParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderParagraph.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -27281,13 +27379,13 @@ export class RenderParagraphRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27350,9 +27448,9 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs/{index}/render"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -27389,12 +27487,12 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderParagraphOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27410,13 +27508,13 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27489,9 +27587,9 @@ export class RenderTableRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/render"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -27528,14 +27626,14 @@ export class RenderTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderTable.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -27545,13 +27643,13 @@ export class RenderTableRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27614,9 +27712,9 @@ export class RenderTableOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables/{index}/render"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -27653,12 +27751,12 @@ export class RenderTableOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling renderTableOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27674,13 +27772,13 @@ export class RenderTableOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
 }
@@ -27748,9 +27846,9 @@ export class ReplaceTextRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/replaceText"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -27775,14 +27873,14 @@ export class ReplaceTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.replaceText" was null when calling replaceText.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -27793,13 +27891,13 @@ export class ReplaceTextRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ReplaceTextResponse");
 	}
 }
@@ -27857,9 +27955,9 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/replaceText"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -27884,12 +27982,12 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.replaceText" was null when calling replaceTextOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -27908,19 +28006,21 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new ReplaceTextOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ReplaceTextResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new ReplaceTextOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ReplaceTextResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -27989,9 +28089,9 @@ export class ReplaceWithTextRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
@@ -28028,12 +28128,12 @@ export class ReplaceWithTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeText" was null when calling replaceWithText.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -28044,13 +28144,13 @@ export class ReplaceWithTextRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -28108,9 +28208,9 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/range/{rangeStartIdentifier}/{rangeEndIdentifier}"
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
@@ -28147,10 +28247,10 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeText" was null when calling replaceWithTextOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -28169,19 +28269,21 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new ReplaceWithTextOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new ReplaceWithTextOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -28201,9 +28303,9 @@ export class ResetCacheRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         const localVarPath = configuration.getApiBaseUrl() + "/words/fonts/cache"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -28216,13 +28318,13 @@ export class ResetCacheRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
 }
@@ -28280,9 +28382,9 @@ export class SaveAsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/saveAs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -28307,12 +28409,12 @@ export class SaveAsRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptionsData" was null when calling saveAs.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -28323,13 +28425,13 @@ export class SaveAsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
 }
@@ -28377,9 +28479,9 @@ export class SaveAsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/saveAs"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -28404,10 +28506,10 @@ export class SaveAsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptionsData" was null when calling saveAsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -28426,19 +28528,21 @@ export class SaveAsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new SaveAsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "SaveResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new SaveAsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SaveResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -28502,9 +28606,9 @@ export class SaveAsRangeRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/range/{rangeStartIdentifier}/{rangeEndIdentifier}/SaveAs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
@@ -28541,11 +28645,11 @@ export class SaveAsRangeRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentParameters" was null when calling saveAsRange.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "POST",
@@ -28556,13 +28660,13 @@ export class SaveAsRangeRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -28615,9 +28719,9 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/range/{rangeStartIdentifier}/{rangeEndIdentifier}/SaveAs"
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
@@ -28654,9 +28758,9 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentParameters" was null when calling saveAsRangeOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -28675,19 +28779,21 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new SaveAsRangeOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new SaveAsRangeOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -28831,9 +28937,9 @@ export class SaveAsTiffRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/saveAs/tiff"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -28858,29 +28964,29 @@ export class SaveAsTiffRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptions" was null when calling saveAsTiff.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", this.imageColorMode, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", this.imageContrast, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", this.numeralFormat, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", this.pageCount, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", this.pageIndex, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", this.paperColor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", this.pixelFormat, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", this.resolution, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scale", this.scale, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", this.tiffCompression, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", this.dmlRenderingMode, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", this.dmlEffectsRenderingMode, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", this.imageColorMode, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", this.imageContrast, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", this.numeralFormat, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", this.pageCount, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", this.pageIndex, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", this.paperColor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", this.pixelFormat, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "resolution", this.resolution, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "scale", this.scale, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", this.tiffCompression, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", this.dmlRenderingMode, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", this.dmlEffectsRenderingMode, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -28891,13 +28997,13 @@ export class SaveAsTiffRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SaveResponse");
 	}
 }
@@ -29030,9 +29136,9 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/saveAs/tiff"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -29057,27 +29163,27 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptions" was null when calling saveAsTiffOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", this.imageColorMode, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", this.imageContrast, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", this.numeralFormat, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", this.pageCount, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", this.pageIndex, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", this.paperColor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", this.pixelFormat, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "resolution", this.resolution, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "scale", this.scale, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", this.tiffCompression, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", this.dmlRenderingMode, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", this.dmlEffectsRenderingMode, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "imageColorMode", this.imageColorMode, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "imageContrast", this.imageContrast, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "numeralFormat", this.numeralFormat, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pageCount", this.pageCount, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pageIndex", this.pageIndex, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "paperColor", this.paperColor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pixelFormat", this.pixelFormat, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "resolution", this.resolution, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "scale", this.scale, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "tiffCompression", this.tiffCompression, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "dmlRenderingMode", this.dmlRenderingMode, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "dmlEffectsRenderingMode", this.dmlEffectsRenderingMode, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -29096,19 +29202,21 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new SaveAsTiffOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "SaveResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new SaveAsTiffOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SaveResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -29162,9 +29270,9 @@ export class SearchRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/search"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -29184,12 +29292,12 @@ export class SearchRequest implements RequestInterface {
             throw new Error('Required parameter "this.pattern" was undefined when calling search.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         const requestOptions: request.Options = {
             method: "GET",
@@ -29199,13 +29307,13 @@ export class SearchRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SearchResponse");
 	}
 }
@@ -29248,9 +29356,9 @@ export class SearchOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/search"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -29270,10 +29378,10 @@ export class SearchOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.pattern" was undefined when calling searchOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -29289,13 +29397,13 @@ export class SearchOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SearchResponse");
 	}
 }
@@ -29373,9 +29481,9 @@ export class SplitDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/split"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -29400,17 +29508,17 @@ export class SplitDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling splitDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -29420,13 +29528,13 @@ export class SplitDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SplitDocumentResponse");
 	}
 }
@@ -29494,9 +29602,9 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/split"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -29521,15 +29629,15 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling splitDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -29545,19 +29653,21 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new SplitDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "SplitDocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new SplitDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SplitDocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -29616,9 +29726,9 @@ export class UnprotectDocumentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -29643,12 +29753,12 @@ export class UnprotectDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocument.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "DELETE",
@@ -29659,13 +29769,13 @@ export class UnprotectDocumentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
 	}
 }
@@ -29713,9 +29823,9 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/protection"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -29740,10 +29850,10 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocumentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -29762,19 +29872,21 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UnprotectDocumentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ProtectionDataResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UnprotectDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ProtectionDataResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -29848,9 +29960,9 @@ export class UpdateBookmarkRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks/{bookmarkName}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
@@ -29886,14 +29998,14 @@ export class UpdateBookmarkRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkData" was null when calling updateBookmark.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -29904,13 +30016,13 @@ export class UpdateBookmarkRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BookmarkResponse");
 	}
 }
@@ -29973,9 +30085,9 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/bookmarks/{bookmarkName}"
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
@@ -30011,12 +30123,12 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkData" was null when calling updateBookmarkOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -30035,19 +30147,21 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateBookmarkOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "BookmarkResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateBookmarkOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BookmarkResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -30126,9 +30240,9 @@ export class UpdateBorderRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/borders/{borderType}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
@@ -30165,14 +30279,14 @@ export class UpdateBorderRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderProperties" was null when calling updateBorder.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -30183,13 +30297,13 @@ export class UpdateBorderRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "BorderResponse");
 	}
 }
@@ -30257,9 +30371,9 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/borders/{borderType}"
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -30296,12 +30410,12 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderType" was null when calling updateBorderOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -30320,19 +30434,21 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateBorderOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "BorderResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateBorderOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BorderResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -30406,9 +30522,9 @@ export class UpdateCommentRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments/{commentIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
@@ -30444,14 +30560,14 @@ export class UpdateCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling updateComment.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -30462,13 +30578,13 @@ export class UpdateCommentRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CommentResponse");
 	}
 }
@@ -30531,9 +30647,9 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
@@ -30569,12 +30685,12 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling updateCommentOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -30593,19 +30709,21 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateCommentOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CommentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateCommentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CommentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -30679,9 +30797,9 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
@@ -30717,14 +30835,14 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPart.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -30735,13 +30853,13 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
 	}
 }
@@ -30804,9 +30922,9 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
@@ -30842,12 +30960,12 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPartOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -30866,19 +30984,21 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateCustomXmlPartOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "CustomXmlPartResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateCustomXmlPartOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CustomXmlPartResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -30962,9 +31082,9 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -31012,14 +31132,14 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateDrawingObject.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.drawingObject !== undefined) {
             formParams.DrawingObject = JSON.stringify(this.drawingObject);
         }
@@ -31038,13 +31158,13 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
 	}
 }
@@ -31117,9 +31237,9 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/drawingObjects/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -31166,12 +31286,12 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateDrawingObjectOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -31193,19 +31313,21 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateDrawingObjectOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DrawingObjectResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateDrawingObjectOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DrawingObjectResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -31284,9 +31406,9 @@ export class UpdateFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/fields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -31323,14 +31445,14 @@ export class UpdateFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.field" was null when calling updateField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -31341,13 +31463,13 @@ export class UpdateFieldRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FieldResponse");
 	}
 }
@@ -31415,9 +31537,9 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/fields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -31454,12 +31576,12 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -31478,19 +31600,21 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateFieldOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FieldResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateFieldOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FieldResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -31544,9 +31668,9 @@ export class UpdateFieldsRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/updateFields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
@@ -31561,12 +31685,12 @@ export class UpdateFieldsRequest implements RequestInterface {
             throw new Error('Required parameter "this.name" was null when calling updateFields.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -31576,13 +31700,13 @@ export class UpdateFieldsRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "DocumentResponse");
 	}
 }
@@ -31625,9 +31749,9 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/updateFields"
             .replace("//", "/");
         const queryParameters: any = {};
@@ -31642,10 +31766,10 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.document" was null when calling updateFieldsOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -31661,19 +31785,21 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateFieldsOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "DocumentResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateFieldsOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -31752,9 +31878,9 @@ export class UpdateFootnoteRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/footnotes/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -31791,14 +31917,14 @@ export class UpdateFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.footnoteDto" was null when calling updateFootnote.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -31809,13 +31935,13 @@ export class UpdateFootnoteRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FootnoteResponse");
 	}
 }
@@ -31883,9 +32009,9 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/footnotes/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -31922,12 +32048,12 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateFootnoteOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -31946,19 +32072,21 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateFootnoteOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FootnoteResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateFootnoteOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FootnoteResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -32037,9 +32165,9 @@ export class UpdateFormFieldRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/formfields/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -32076,14 +32204,14 @@ export class UpdateFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.formField" was null when calling updateFormField.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -32094,13 +32222,13 @@ export class UpdateFormFieldRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FormFieldResponse");
 	}
 }
@@ -32168,9 +32296,9 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/formfields/{index}"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -32207,12 +32335,12 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateFormFieldOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -32231,19 +32359,21 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateFormFieldOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FormFieldResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateFormFieldOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FormFieldResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -32317,9 +32447,9 @@ export class UpdateListRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
@@ -32355,14 +32485,14 @@ export class UpdateListRequest implements RequestInterface {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateList.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -32373,13 +32503,13 @@ export class UpdateListRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -32457,9 +32587,9 @@ export class UpdateListLevelRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists/{listId}/listLevels/{listLevel}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
@@ -32506,14 +32636,14 @@ export class UpdateListLevelRequest implements RequestInterface {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListLevel.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -32524,13 +32654,13 @@ export class UpdateListLevelRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ListResponse");
 	}
 }
@@ -32598,9 +32728,9 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/lists/{listId}/listLevels/{listLevel}"
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("/{" + "listLevel" + "}", (this.listLevel !== null && this.listLevel !== undefined) ? "/" + String(this.listLevel) : "")
@@ -32647,12 +32777,12 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.listLevel" was null when calling updateListLevelOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -32671,19 +32801,21 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateListLevelOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ListResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateListLevelOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -32747,9 +32879,9 @@ export class UpdateListOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/lists/{listId}"
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("//", "/");
@@ -32785,12 +32917,12 @@ export class UpdateListOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -32809,19 +32941,21 @@ export class UpdateListOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateListOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ListResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateListOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -32900,9 +33034,9 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -32939,14 +33073,14 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphFormatDto" was null when calling updateParagraphFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -32957,13 +33091,13 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
 	}
 }
@@ -33031,9 +33165,9 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/paragraphs/{index}/format"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -33070,12 +33204,12 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateParagraphFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -33094,19 +33228,21 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateParagraphFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ParagraphFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateParagraphFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -33185,9 +33321,9 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -33224,14 +33360,14 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.listFormatDto" was null when calling updateParagraphListFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -33242,13 +33378,13 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
 	}
 }
@@ -33316,9 +33452,9 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/paragraphs/{index}/listFormat"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -33355,12 +33491,12 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
             throw new Error('Required parameter "this.index" was null when calling updateParagraphListFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -33379,19 +33515,21 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateParagraphListFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "ParagraphListFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateParagraphListFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphListFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -33470,9 +33608,9 @@ export class UpdateRunRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -33514,14 +33652,14 @@ export class UpdateRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.run" was null when calling updateRun.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -33532,13 +33670,13 @@ export class UpdateRunRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "RunResponse");
 	}
 }
@@ -33616,9 +33754,9 @@ export class UpdateRunFontRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
@@ -33660,14 +33798,14 @@ export class UpdateRunFontRequest implements RequestInterface {
             throw new Error('Required parameter "this.fontDto" was null when calling updateRunFont.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -33678,13 +33816,13 @@ export class UpdateRunFontRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FontResponse");
 	}
 }
@@ -33752,9 +33890,9 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{paragraphPath}/runs/{index}/font"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -33796,12 +33934,12 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateRunFontOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -33820,19 +33958,21 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateRunFontOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "FontResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateRunFontOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FontResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -33901,9 +34041,9 @@ export class UpdateRunOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{paragraphPath}/runs/{index}"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -33945,12 +34085,12 @@ export class UpdateRunOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateRunOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -33969,19 +34109,21 @@ export class UpdateRunOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateRunOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "RunResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateRunOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RunResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -34055,9 +34197,9 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
@@ -34093,14 +34235,14 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageSetup" was null when calling updateSectionPageSetup.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -34111,13 +34253,13 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
 	}
 }
@@ -34180,9 +34322,9 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
@@ -34218,12 +34360,12 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageSetup" was null when calling updateSectionPageSetupOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -34242,19 +34384,21 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateSectionPageSetupOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "SectionPageSetupResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateSectionPageSetupOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SectionPageSetupResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -34328,9 +34472,9 @@ export class UpdateStyleRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/{styleName}/update"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
@@ -34366,14 +34510,14 @@ export class UpdateStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleUpdate" was null when calling updateStyle.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -34384,13 +34528,13 @@ export class UpdateStyleRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "StyleResponse");
 	}
 }
@@ -34453,9 +34597,9 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/styles/{styleName}/update"
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
             .replace("//", "/");
@@ -34491,12 +34635,12 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleUpdate" was null when calling updateStyleOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -34515,19 +34659,21 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateStyleOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "StyleResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateStyleOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -34606,9 +34752,9 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
@@ -34650,14 +34796,14 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling updateTableCellFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -34668,13 +34814,13 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
 	}
 }
@@ -34742,9 +34888,9 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{tableRowPath}/cells/{index}/cellformat"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -34786,12 +34932,12 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateTableCellFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -34810,19 +34956,21 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateTableCellFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableCellFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateTableCellFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableCellFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -34901,9 +35049,9 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/tables/{index}/properties"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -34940,14 +35088,14 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
             throw new Error('Required parameter "this.properties" was null when calling updateTableProperties.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -34958,13 +35106,13 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
 	}
 }
@@ -35032,9 +35180,9 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/tables/{index}/properties"
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
@@ -35071,12 +35219,12 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateTablePropertiesOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -35095,19 +35243,21 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateTablePropertiesOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TablePropertiesResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateTablePropertiesOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TablePropertiesResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -35186,9 +35336,9 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
@@ -35230,14 +35380,14 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling updateTableRowFormat.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         const requestOptions: request.Options = {
             method: "PUT",
@@ -35248,13 +35398,13 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         };
 
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
 	}
 }
@@ -35322,9 +35472,9 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{tablePath}/rows/{index}/rowformat"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
@@ -35366,12 +35516,12 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.index" was null when calling updateTableRowFormatOnline.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _key);
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;
         }
@@ -35390,19 +35540,21 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
-        const result = new UpdateTableRowFormatOnlineResponse();    
-        const parts = parseMultipartBody(_response, _boundary, false);
-        result.model = ObjectSerializer.deserialize(JSON.parse(parts[0].body), "TableRowFormatResponse");
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateTableRowFormatOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableRowFormatResponse");
 
 
-        result.document = parts[1].body;
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
 	}
@@ -35438,9 +35590,9 @@ export class UploadFileRequest implements RequestInterface {
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
-	 * @param _key a RSA key 
+	 * @param data encryptor 
 	 */
-	createRequestOptions(configuration: Configuration, _key: RSA) : request.OptionsWithUri {
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
@@ -35466,7 +35618,7 @@ export class UploadFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.path" was null when calling uploadFile.');
         }
 
-        localVarPath = addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _key);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         if (this.fileContent !== undefined) {
             formParams.FileContent = this.fileContent;
         }
@@ -35482,13 +35634,13 @@ export class UploadFileRequest implements RequestInterface {
             requestOptions.formData = formParams;
         }
 
-        return requestOptions;
+        return Promise.resolve(requestOptions);
     }
 
 	/**
 	 * create response from string
 	 */
-	createResponse(_response: Buffer, _boundary?: string): any {
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(_response, "FilesUploadResult");
 	}
 }
@@ -35506,7 +35658,7 @@ export class AcceptAllRevisionsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35522,7 +35674,7 @@ export class AppendDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35538,7 +35690,7 @@ export class ApplyStyleToDocumentElementOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35554,7 +35706,7 @@ export class CompareDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35570,7 +35722,7 @@ export class CopyStyleOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35586,7 +35738,7 @@ export class CreateOrUpdateDocumentPropertyOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35602,7 +35754,7 @@ export class DeleteAllParagraphTabStopsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35618,7 +35770,7 @@ export class DeleteBorderOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35634,7 +35786,7 @@ export class DeleteBordersOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35650,7 +35802,7 @@ export class DeleteParagraphListFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35666,7 +35818,7 @@ export class DeleteParagraphTabStopOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35682,7 +35834,7 @@ export class DeleteWatermarkOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35698,7 +35850,7 @@ export class InsertCommentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35714,7 +35866,7 @@ export class InsertCustomXmlPartOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35730,7 +35882,7 @@ export class InsertDrawingObjectOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35746,7 +35898,7 @@ export class InsertFieldOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35762,7 +35914,7 @@ export class InsertFootnoteOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35778,7 +35930,7 @@ export class InsertFormFieldOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35794,7 +35946,7 @@ export class InsertHeaderFooterOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35810,7 +35962,7 @@ export class InsertListOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35826,7 +35978,7 @@ export class InsertOrUpdateParagraphTabStopOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35842,7 +35994,7 @@ export class InsertPageNumbersOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35858,7 +36010,7 @@ export class InsertParagraphOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35874,7 +36026,7 @@ export class InsertRunOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35890,7 +36042,7 @@ export class InsertStyleOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35906,7 +36058,7 @@ export class InsertTableCellOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35922,7 +36074,7 @@ export class InsertTableOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35938,7 +36090,7 @@ export class InsertTableRowOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35954,7 +36106,7 @@ export class InsertWatermarkImageOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35970,7 +36122,7 @@ export class InsertWatermarkTextOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -35986,7 +36138,7 @@ export class ProtectDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36002,7 +36154,7 @@ export class RejectAllRevisionsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36018,7 +36170,7 @@ export class RemoveRangeOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36034,7 +36186,7 @@ export class ReplaceTextOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36050,7 +36202,7 @@ export class ReplaceWithTextOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36066,7 +36218,7 @@ export class SaveAsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36082,7 +36234,7 @@ export class SaveAsRangeOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36098,7 +36250,7 @@ export class SaveAsTiffOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36114,7 +36266,7 @@ export class SplitDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36130,7 +36282,7 @@ export class UnprotectDocumentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36146,7 +36298,7 @@ export class UpdateBookmarkOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36162,7 +36314,7 @@ export class UpdateBorderOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36178,7 +36330,7 @@ export class UpdateCommentOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36194,7 +36346,7 @@ export class UpdateCustomXmlPartOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36210,7 +36362,7 @@ export class UpdateDrawingObjectOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36226,7 +36378,7 @@ export class UpdateFieldOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36242,7 +36394,7 @@ export class UpdateFieldsOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36258,7 +36410,7 @@ export class UpdateFootnoteOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36274,7 +36426,7 @@ export class UpdateFormFieldOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36290,7 +36442,7 @@ export class UpdateListLevelOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36306,7 +36458,7 @@ export class UpdateListOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36322,7 +36474,7 @@ export class UpdateParagraphFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36338,7 +36490,7 @@ export class UpdateParagraphListFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36354,7 +36506,7 @@ export class UpdateRunFontOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36370,7 +36522,7 @@ export class UpdateRunOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36386,7 +36538,7 @@ export class UpdateSectionPageSetupOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36402,7 +36554,7 @@ export class UpdateStyleOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36418,7 +36570,7 @@ export class UpdateTableCellFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36434,7 +36586,7 @@ export class UpdateTablePropertiesOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }
 
 /**
@@ -36450,5 +36602,5 @@ export class UpdateTableRowFormatOnlineResponse {
     /**
      * The document after modification.
      */
-    public document: Buffer;
+    public document: Map<string, Buffer>;
 }

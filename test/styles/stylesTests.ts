@@ -421,4 +421,42 @@ describe("styles", () => {
 
        });
     });
+
+    // Test for copying styles from a template.
+    describe("copyStylesFromTemplate test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestCopyStylesFromTemplate.docx";
+            const templateFolder = "DocumentElements/Styles";
+            const templateName = "StyleTemplate.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                return wordsApi.uploadFileToStorage(
+                    remoteDataFolder + "/" + templateName,
+                    BaseTest.localBaseTestDataFolder + templateFolder + "/" + templateName
+                ).then((result1) => {
+                    expect(result1.response.statusMessage).to.equal("OK");
+                    const request = new model.CopyStylesFromTemplateRequest({
+                        name: remoteFileName,
+                        templateName: templateName,
+                        folder: remoteDataFolder
+                    });
+
+                    // Act
+                    return wordsApi.copyStylesFromTemplate(request)
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusCode).to.equal(200);
+                    });
+
+                });
+
+            });
+
+       });
+    });
 });

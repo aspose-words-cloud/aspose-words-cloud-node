@@ -424,6 +424,24 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Copies styles from the origin document to the target document.
+     * @param requestObj contains request parameters
+     */
+    public async copyStylesFromTemplate(requestObj: model.CopyStylesFromTemplateRequest): Promise< model.WordsIncomingMessage< model.WordsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling copyStylesFromTemplate.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.WordsResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Supported extensions: ".doc", ".docx", ".docm", ".dot", ".dotm", ".dotx", ".flatopc", ".fopc", ".flatopc_macro", ".fopc_macro", ".flatopc_template", ".fopc_template", ".flatopc_template_macro", ".fopc_template_macro", ".wordml", ".wml", ".rtf".
      * @param requestObj contains request parameters
      */

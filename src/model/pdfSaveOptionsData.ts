@@ -332,6 +332,7 @@ export namespace PdfSaveOptionsData {
         PdfA1b = 'PdfA1b' as any,
         PdfA2a = 'PdfA2a' as any,
         PdfA2u = 'PdfA2u' as any,
+        PdfA4 = 'PdfA4' as any,
         PdfUa1 = 'PdfUa1' as any
     }
 

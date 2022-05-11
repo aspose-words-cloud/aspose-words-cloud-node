@@ -190,4 +190,23 @@ describe("section", () => {
 
        });
     });
+
+    // Test for linking headers and footers to previous section.
+    describe("linkHeaderFootersToPrevious test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const request = new model.LinkHeaderFootersToPreviousRequest({
+                name: "DocumentElements/Sections/Source.docx",
+                sectionIndex: 1
+            });
+
+            // Act
+            return wordsApi.linkHeaderFootersToPrevious(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.statusCode).to.equal(200);
+            });
+
+       });
+    });
 });

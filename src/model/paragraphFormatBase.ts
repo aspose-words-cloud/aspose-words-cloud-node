@@ -333,7 +333,8 @@ export namespace ParagraphFormatBase {
         ArabicMediumKashida = 'ArabicMediumKashida' as any,
         ArabicHighKashida = 'ArabicHighKashida' as any,
         ArabicLowKashida = 'ArabicLowKashida' as any,
-        ThaiDistributed = 'ThaiDistributed' as any
+        ThaiDistributed = 'ThaiDistributed' as any,
+        MathElementCenterAsGroup = 'MathElementCenterAsGroup' as any
     }
 
     export enum DropCapPositionEnum {

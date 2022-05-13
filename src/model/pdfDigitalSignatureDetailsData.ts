@@ -109,11 +109,9 @@ export class PdfDigitalSignatureDetailsData {
 // tslint:disable-next-line:no-namespace
 export namespace PdfDigitalSignatureDetailsData {
     export enum HashAlgorithmEnum {
-        Sha1 = 'Sha1' as any,
         Sha256 = 'Sha256' as any,
         Sha384 = 'Sha384' as any,
         Sha512 = 'Sha512' as any,
-        Md5 = 'Md5' as any,
         RipeMD160 = 'RipeMD160' as any
     }
 }

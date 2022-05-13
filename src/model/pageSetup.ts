@@ -457,6 +457,7 @@ export namespace PageSetup {
         Tabloid = 'Tabloid' as any,
         Paper10x14 = 'Paper10x14' as any,
         Paper11x17 = 'Paper11x17' as any,
+        Number10Envelope = 'Number10Envelope' as any,
         Custom = 'Custom' as any
     }
 

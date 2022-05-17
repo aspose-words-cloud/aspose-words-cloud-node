@@ -25623,7 +25623,7 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mode", this.mode, _encryptor);
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             uri: localVarPath,
             json: true,

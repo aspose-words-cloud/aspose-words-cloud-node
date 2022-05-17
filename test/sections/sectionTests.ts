@@ -195,16 +195,26 @@ describe("section", () => {
     describe("linkHeaderFootersToPrevious test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const request = new model.LinkHeaderFootersToPreviousRequest({
-                name: "DocumentElements/Sections/Source.docx",
-                sectionIndex: 1
-            });
+            const remoteFileName = "TestLinkHeaderFootersToPrevious.docx";
 
-            // Act
-            return wordsApi.linkHeaderFootersToPrevious(request)
-            .then((resultApi) => {
-                // Assert
-                expect(resultApi.statusCode).to.equal(200);
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + "DocumentElements/Sections/Source.docx"
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.LinkHeaderFootersToPreviousRequest({
+                    name: remoteFileName,
+                    sectionIndex: 1,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.linkHeaderFootersToPrevious(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.statusCode).to.equal(200);
+                });
+
             });
 
        });

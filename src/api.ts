@@ -4171,6 +4171,21 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Links headers / footers of the section to the previous one.
+     * @param requestObj contains request parameters
+     */
+    public async linkHeaderFootersToPrevious(requestObj: model.LinkHeaderFootersToPreviousRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling linkHeaderFootersToPrevious.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
      * Downloads a document from the Web using URL and saves it to cloud storage in the specified format.
      * @param requestObj contains request parameters
      */

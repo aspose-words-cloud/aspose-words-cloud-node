@@ -20,6 +20,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 - Internal API fixes and improvments.
 
+
 ## Enhancements in Version 22.4
 
 - Added ExportShapesAsSvg to HtmlSaveOption.

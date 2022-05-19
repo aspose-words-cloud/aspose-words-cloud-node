@@ -25517,6 +25517,131 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 }
 
 /**
+ * Request model for LinkHeaderFootersToPrevious operation.
+ * Links headers / footers of the section to the previous one.
+ */
+export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
+
+    public constructor(init?: Partial< LinkHeaderFootersToPreviousRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * The index of the section.
+     */
+    public sectionIndex: number;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+    /**
+     * Linking mode.
+     */
+    public mode: boolean;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections/{sectionIndex}/link"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
+            .replace("//", "/");
+        const queryParameters: any = {};
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling linkHeaderFootersToPrevious.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling linkHeaderFootersToPrevious.');
+        }
+
+        // verify required parameter 'this.sectionIndex' is not undefined
+        if (this.sectionIndex === undefined) {
+            throw new Error('Required parameter "this.sectionIndex" was undefined when calling linkHeaderFootersToPrevious.');
+        }
+
+        // verify required parameter 'this.sectionIndex' is not null
+        if (this.sectionIndex === null) {
+            throw new Error('Required parameter "this.sectionIndex" was null when calling linkHeaderFootersToPrevious.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mode", this.mode, _encryptor);
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            uri: localVarPath,
+            json: true,
+        };
+
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return null;
+	}
+}
+
+/**
  * Request model for LoadWebDocument operation.
  * Downloads a document from the Web using URL and saves it to cloud storage in the specified format.
  */

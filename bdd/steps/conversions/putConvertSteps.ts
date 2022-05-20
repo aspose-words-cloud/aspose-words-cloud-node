@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import { Given, When } from "cucumber";
+import { Given, When } from "@cucumber/cucumber";
 import * as fs from "fs";
 import { ConvertDocumentRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
@@ -33,10 +33,10 @@ Given(/^I have specified document (.*) to send it in request body$/, {timeout: 6
 });
 
 When(/^I execute conversion \(PUT convert\)$/, async function() {
-    const wordsApi = BaseTest.initializeWordsApi();
+
     const request = new ConvertDocumentRequest(this.request);
         
-    const result = await wordsApi.convertDocument(request);
+    const result = await this.wordsApi.convertDocument(request);
     this.response = result;
     return result;
 });

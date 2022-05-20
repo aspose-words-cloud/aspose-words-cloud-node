@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import { Given } from "cucumber";
+import { Given } from "@cucumber/cucumber";
 
 Given(/^I have specified withRegions (.*)$/, function(withRegions) {
     this.request.withRegions = withRegions;

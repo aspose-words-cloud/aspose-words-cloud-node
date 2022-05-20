@@ -22,10 +22,17 @@
 * SOFTWARE.
 */
 
-import { Given } from "cucumber";
+import { Given, Before, setDefaultTimeout } from "@cucumber/cucumber";
 import * as BaseTest from "../../../test/baseTest";
 
 const testFolder = "DocumentActions/MailMerge/";
+
+setDefaultTimeout(100*1000);
+
+Before(function() {
+    this.wordsApi = BaseTest.initializeWordsApi(false, "../../testConfig.json");
+    this.request = {}; 
+});
 
 Given(/^I have specified document (.*) with folder (.*) in URL$/, function(documentName, folder) {
     this.request.name = documentName;

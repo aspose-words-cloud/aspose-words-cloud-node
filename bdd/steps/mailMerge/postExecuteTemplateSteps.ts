@@ -23,7 +23,7 @@
 */
 
 import { expect } from "chai";
-import { Given, Then, When } from "cucumber";
+import { Given, Then, When } from "@cucumber/cucumber";
 import * as fs from "fs";
 import { ExecuteMailMergeRequest, GetDocumentDrawingObjectsRequest } from "../../../src/api";
 import * as BaseTest from "../../../test/baseTest";
@@ -32,15 +32,13 @@ const testFolder = "DocumentActions/MailMerge/";
 
 Given(/^I have specified a template file name (.*) in storage$/, {timeout: 60000}, async function(templateName) {
 
-    const worsApi = BaseTest.initializeWordsApi();
-
     const remotePath = BaseTest.remoteBaseFolder + testFolder;
     const localPath = BaseTest.localBaseTestDataFolder + testFolder + templateName;
 
     this.request.name = templateName;
     this.request.folder = remotePath.slice(0, -1);
 
-    const result =  await worsApi.uploadFileToStorage(remotePath + templateName, localPath)
+    const result =  await this.wordsApi.uploadFileToStorage(remotePath + templateName, localPath)
     expect(result.response.statusMessage).to.equal("OK");
 });
 
@@ -49,22 +47,22 @@ Given(/^I have specified a body (.*)$/, function(fileWithBodyContent) {
 });
 
 When(/^I execute template$/, {timeout: 60000}, async function() {
-    const wordsApi = BaseTest.initializeWordsApi();
+
     const request = new ExecuteMailMergeRequest(this.request);
 
-    const result =  await wordsApi.executeMailMerge(request)
+    const result =  await this.wordsApi.executeMailMerge(request)
     this.response = result;
     return result;
 });
 
 Then(/^image should be rendered$/, {timeout: 60000}, async function() {
-    const wordsApi = BaseTest.initializeWordsApi();
+
     const request = new GetDocumentDrawingObjectsRequest({
         folder: BaseTest.remoteBaseFolder + "DocumentActions/MailMerge",
         name: "ExecuteTemplateWithImagesResult.doc",
         nodePath: null
     });
 
-    const result = await wordsApi.getDocumentDrawingObjects(request);
+    const result = await this.wordsApi.getDocumentDrawingObjects(request);
     expect(result.body.drawingObjects.list.length).to.greaterThan(0);
 });

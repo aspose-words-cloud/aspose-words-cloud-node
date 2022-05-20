@@ -25,6 +25,7 @@
   "scripts": {
     "test": "mocha -r ts-node/register 'test/**/*.ts' --timeout 120000 --reporter mocha-jenkins-reporter",
     "test-jenkins": "cross-env JUNIT_REPORT_PATH=reports/test_report.xml mocha -r ts-node/register 'test/**/*.ts' --timeout 120000 --reporter mocha-jenkins-reporter",
+    "lint": "eslint . --ext .ts",
     "cucumber": "cucumber-js ./bdd/features -r ./dist/bdd/steps"
   },
   "dependencies": {
@@ -40,9 +41,12 @@
     "@cucumber/cucumber": "^8.2.1",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
     "chai": "^4.2.0",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",
+    "eslint": "^8.15.0",
     "mocha": "^9.1.3",
     "mocha-cases": "^0.3.0",
     "mocha-jenkins-reporter": "^0.4.3",

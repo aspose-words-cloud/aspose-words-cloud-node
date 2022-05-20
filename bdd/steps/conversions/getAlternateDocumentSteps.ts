@@ -22,15 +22,15 @@
 * SOFTWARE.
 */
 
-import { When } from "cucumber";
+import { When } from "@cucumber/cucumber";
 import { GetDocumentWithFormatRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
 When(/^I execute conversion from storage \(GET document with format\)$/, {timeout: 60000}, async function() {
-    const wordsApi = BaseTest.initializeWordsApi();
+
     const request = new GetDocumentWithFormatRequest(this.request);
         
-    const result =  await wordsApi.getDocumentWithFormat(request);
+    const result =  await this.wordsApi.getDocumentWithFormat(request);
     this.response = result;
     return result;
 });

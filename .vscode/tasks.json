@@ -32,21 +32,5 @@
                 "isDefault": true           
             }
         },
-        {
-            "label": "runTsLint",
-            "type": "npm",
-            "script": "lint",
-            "problemMatcher": {
-                "base": "$tslint5",
-                "fileLocation": "relative"
-            }
-        },
-        {
-            "label": "runCucumber",
-            "type": "gulp",
-            "task": "cucumber",
-            "problemMatcher": [],
-            "group": "test"
-        },
     ]
 }

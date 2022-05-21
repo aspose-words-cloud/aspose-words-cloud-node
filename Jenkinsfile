@@ -67,7 +67,7 @@ def runtests(dockerImageVersion)
                             ]) {
                                 sh "npm install"
                                                         
-                                sh "npm run gulp build"
+                                sh "npm run tsc"
                                 if (params.branch == 'refs/heads/master'){
                                     sh "npm run lint"
                                 }
@@ -88,7 +88,7 @@ def runtests(dockerImageVersion)
                     gitlabCommitStatus("bdd-tests") {
                         stage('bdd-tests'){
                             try {
-                                sh "npm run gulp cucumber"
+                                sh "npm run cucumber"
                             } finally {
                                 cucumber 'reports/**.json'
                             }

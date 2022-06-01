@@ -16,6 +16,13 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 22.6
+
+- Added 'DeleteBookmark' and 'DeleteBookmarkOnline' API methods for delete bookmarks by name from the document.
+- Added 'DeleteBookmarks' and 'DeleteBookmarksOnline' API methods for delete all bookmarks from the document.
+- Added 'InsertBookmark' and 'InsertBookmarkOnline' API methods for create new bookmarks in the document.
+
+
 ## Enhancements in Version 22.5
 
 - Internal API fixes and improvments.

@@ -547,6 +547,72 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Removes a bookmark from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteBookmark(requestObj: model.DeleteBookmarkRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteBookmark.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes a bookmark from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteBookmarkOnline(requestObj: model.DeleteBookmarkOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteBookmarkOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes all bookmarks from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteBookmarks(requestObj: model.DeleteBookmarksRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteBookmarks.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes all bookmarks from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteBookmarksOnline(requestObj: model.DeleteBookmarksOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteBookmarksOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
@@ -3517,6 +3583,42 @@ export class WordsApi implements Encryptor {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.TableLinkCollectionResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new bookmark to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertBookmark(requestObj: model.InsertBookmarkRequest): Promise< model.WordsIncomingMessage< model.BookmarkResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertBookmark.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.BookmarkResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new bookmark to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertBookmarkOnline(requestObj: model.InsertBookmarkOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertBookmarkOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertBookmarkOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.InsertBookmarkOnlineResponse >();
         result.response = response;
         result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);

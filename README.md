@@ -21,6 +21,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Added 'DeleteBookmark' and 'DeleteBookmarkOnline' API methods for delete bookmarks by name from the document.
 - Added 'DeleteBookmarks' and 'DeleteBookmarksOnline' API methods for delete all bookmarks from the document.
 - Added 'InsertBookmark' and 'InsertBookmarkOnline' API methods for create new bookmarks in the document.
+- Support all save formats for 'CreateDocument' operation.
 
 
 ## Enhancements in Version 22.5

@@ -33,8 +33,8 @@ import { v4 as uuidv4 } from 'uuid';
 /**
  * Initialize WordsApi
  */
-export function initializeWordsApi(debugMode?: boolean) {
-    const config = require("../testConfig.json");
+export function initializeWordsApi(debugMode?: boolean, configFile: string = "../testConfig.json") {
+    const config = require(configFile);
     const wordsApi = new TestWordsApi(config.ClientId, config.ClientSecret, config.BaseUrl, debugMode);
     return wordsApi;
 }

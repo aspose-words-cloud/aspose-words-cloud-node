@@ -27,7 +27,8 @@
     "test": "mocha -r ts-node/register 'test/**/*.ts' --timeout 120000 --reporter mocha-jenkins-reporter",
     "test-jenkins": "cross-env JUNIT_REPORT_PATH=reports/test_report.xml mocha -r ts-node/register 'test/**/*.ts' --timeout 120000 --reporter mocha-jenkins-reporter",
     "lint": "eslint . --ext .ts",
-    "cucumber": "cucumber-js ./bdd/features -r ./dist/bdd/steps"
+    "cucumber": "cucumber-js ./bdd/features -r ./dist/bdd/steps",
+    "release": "tsc --project tsconfigPack.json"
   },
   "dependencies": {
     "@types/node-rsa": "^1.1.1",

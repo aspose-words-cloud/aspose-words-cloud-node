@@ -24,7 +24,7 @@
 
 import { Buffer } from "buffer";
 import { expect } from "chai";
-import { Then } from "cucumber";
+import { Then } from "@cucumber/cucumber";
 
 Then(/^document is returned as an attachment$/, function() {
     expect(this.response.body).to.is.instanceof(Buffer);

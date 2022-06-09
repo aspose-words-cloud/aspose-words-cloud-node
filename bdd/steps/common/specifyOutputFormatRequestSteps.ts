@@ -22,10 +22,10 @@
 * SOFTWARE.
 */
 
-import { Given } from "cucumber";
+import { Given } from "@cucumber/cucumber";
 import * as BaseTest from "../../../test/baseTest";
 
-Given(/^I have specified format (.*) document to be converted$/, function(format) {    
+Given(/^I have specified format (.*) document to be converted$/, function(format) {
     this.request.format = format;
 });
 

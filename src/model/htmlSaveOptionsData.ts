@@ -141,16 +141,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         },
         {
-            name: "exportShapesAsSvg",
-            baseName: "ExportShapesAsSvg",
-            type: "boolean",
-        },
-        {
-            name: "exportTextBoxAsSvg",
-            baseName: "ExportTextBoxAsSvg",
-            type: "boolean",
-        },
-        {
             name: "exportTextInputFormFieldAsText",
             baseName: "ExportTextInputFormFieldAsText",
             type: "boolean",
@@ -353,17 +343,6 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      * Gets or sets a value indicating whether to write the roundtrip information when saving to HTML. The default value is true.
      */
     public exportRoundtripInformation: boolean;
-
-    /**
-     * Gets or sets the flag, that controls whether Aspose.Words.Drawing.Shape nodes are converted to SVG images when saving to HTML, MHTML or EPUB. Default value is false.
-     */
-    public exportShapesAsSvg: boolean;
-
-    /**
-     * Gets or sets the flag, that controls how textboxes represented by Aspose.Words.Drawing.Shape are saved to HTML, MHTML or EPUB. The default value is false.
-     * When set to true, exports textboxes as inline "svg" elements. When false, exports as "image" elements.
-     */
-    public exportTextBoxAsSvg: boolean;
 
     /**
      * Gets or sets the flag, that controls how text input form fields are saved.

@@ -198,4 +198,185 @@ describe("bookmark", () => {
 
        });
     });
+
+    // Test for deleting bookmark by specified name.
+    describe("deleteBookmark test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestDeleteBookmark.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.DeleteBookmarkRequest({
+                    name: remoteFileName,
+                    bookmarkName: bookmarkName,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.deleteBookmark(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // Test for deleting bookmark by specified name online.
+    describe("deleteBookmarkOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.DeleteBookmarkOnlineRequest({
+                document: requestDocument,
+                bookmarkName: bookmarkName
+            });
+
+            // Act
+            return wordsApi.deleteBookmarkOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
+    // Test for deleting all bookmarks from document.
+    describe("deleteBookmarks test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestDeleteBookmarks.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.DeleteBookmarksRequest({
+                    name: remoteFileName,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.deleteBookmarks(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // Test for deleting all bookmarks from document online.
+    describe("deleteBookmarksOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.DeleteBookmarksOnlineRequest({
+                document: requestDocument
+            });
+
+            // Act
+            return wordsApi.deleteBookmarksOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
+    // Test for inserting new bookmark.
+    describe("insertBookmark test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestInsertBookmark.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const requestBookmarkStartRangeNode = new model.NodeLink({
+                    nodeId: "0.0.0.0"
+                })
+                const requestBookmarkStartRange = new model.DocumentPosition({
+                    node: requestBookmarkStartRangeNode
+                })
+                const requestBookmarkEndRangeNode = new model.NodeLink({
+                    nodeId: "0.0.0.0"
+                })
+                const requestBookmarkEndRange = new model.DocumentPosition({
+                    node: requestBookmarkEndRangeNode
+                })
+                const requestBookmark = new model.BookmarkInsert({
+                    startRange: requestBookmarkStartRange,
+                    endRange: requestBookmarkEndRange,
+                    name: "new_bookmark",
+                    text: "Some text"
+                })
+                const request = new model.InsertBookmarkRequest({
+                    name: remoteFileName,
+                    bookmark: requestBookmark,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.insertBookmark(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // Test for inserting new bookmark online.
+    describe("insertBookmarkOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestBookmarkStartRangeNode = new model.NodeLink({
+                nodeId: "0.0.0.0"
+            })
+            const requestBookmarkStartRange = new model.DocumentPosition({
+                node: requestBookmarkStartRangeNode
+            })
+            const requestBookmarkEndRangeNode = new model.NodeLink({
+                nodeId: "0.0.0.0"
+            })
+            const requestBookmarkEndRange = new model.DocumentPosition({
+                node: requestBookmarkEndRangeNode
+            })
+            const requestBookmark = new model.BookmarkInsert({
+                startRange: requestBookmarkStartRange,
+                endRange: requestBookmarkEndRange,
+                name: "new_bookmark",
+                text: "Some text"
+            })
+            const request = new model.InsertBookmarkOnlineRequest({
+                document: requestDocument,
+                bookmark: requestBookmark
+            });
+
+            // Act
+            return wordsApi.insertBookmarkOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
 });

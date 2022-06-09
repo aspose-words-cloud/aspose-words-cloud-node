@@ -23,24 +23,20 @@
 */
 
 import { expect } from "chai";
-import { Given, Then } from "cucumber";
+import { Given, Then } from "@cucumber/cucumber";
 import * as BaseTest from "../../../test/baseTest";
 import { DeleteFileRequest, DownloadFileRequest } from "../../../src/api";
 
 Given(/^I have uploaded document with name (.*) and subfolder is (.*) to storage$/, {timeout: 60000}, async function (documentName, folder) {
 
-    const wordsApi = BaseTest.initializeWordsApi();
-
     const remotePath = BaseTest.remoteBaseFolder + folder;
     const localPath = BaseTest.localBaseTestDataFolder + folder + documentName;
 
-    const result = await wordsApi.uploadFileToStorage(remotePath + documentName, localPath);
+    const result = await this.wordsApi.uploadFileToStorage(remotePath + documentName, localPath);
     expect(result.response.statusMessage).to.equal("OK");
 });
 
 Given(/^There is no file (.*) on storage in (.*) folder$/, {timeout: 60000}, async function (documentName, folder) {
-
-    const wordsApi = BaseTest.initializeWordsApi();
 
     let remotePath = BaseTest.remoteBaseFolder + folder + documentName;
     if (folder === "output") {
@@ -50,13 +46,11 @@ Given(/^There is no file (.*) on storage in (.*) folder$/, {timeout: 60000}, asy
     const request = new DeleteFileRequest();
     request.path = remotePath;
 
-    const result = await wordsApi.deleteFile(request);
+    const result = await this.wordsApi.deleteFile(request);
     expect(result.statusMessage).to.equal("OK");
 });
 
 Then(/^document (.*) is existed on storage in (.*) folder$/, {timeout: 60000}, async function (documentName, folder) {
-
-    const wordsApi = BaseTest.initializeWordsApi();
 
     let remotePath = BaseTest.remoteBaseFolder + folder + documentName;
 
@@ -67,6 +61,6 @@ Then(/^document (.*) is existed on storage in (.*) folder$/, {timeout: 60000}, a
     const request =  new DownloadFileRequest();
     request.path = remotePath;
 
-    const result = await wordsApi.downloadFile(request);
+    const result = await this.wordsApi.downloadFile(request);
     expect(result.response.statusMessage).to.equal("OK");
 });

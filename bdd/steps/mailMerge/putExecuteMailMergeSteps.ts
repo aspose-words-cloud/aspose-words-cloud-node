@@ -22,15 +22,15 @@
 * SOFTWARE.
 */
 
-import { When } from "cucumber";
+import { When } from "@cucumber/cucumber";
 import { ExecuteMailMergeOnlineRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
 
 When(/^I execute mail merge online$/, {timeout: 60000}, async function() {
-    const wordsApi = BaseTest.initializeWordsApi();
+
     const request = new ExecuteMailMergeOnlineRequest(this.request);
         
-    const result = await wordsApi.executeMailMergeOnline(request)
+    const result = await this.wordsApi.executeMailMergeOnline(request)
     this.response = result;
     return result;
 });

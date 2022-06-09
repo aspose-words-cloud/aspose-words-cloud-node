@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import { Given, When } from "cucumber";
+import { Given, When } from "@cucumber/cucumber";
 import * as fs from "fs";
 import { ExecuteMailMergeOnlineRequest } from "../../../src/model/model";
 import * as BaseTest from "../../../test/baseTest";
@@ -34,10 +34,10 @@ Given(/^I have specified a template file (.*) in request$/, {timeout: 60000}, fu
 });
 
 When(/^I execute template online$/, async function() {
-    const wordsApi = BaseTest.initializeWordsApi();
+
     const request = new ExecuteMailMergeOnlineRequest(this.request);
         
-    const result =  await wordsApi.executeMailMergeOnline(request)
+    const result =  await this.wordsApi.executeMailMergeOnline(request)
     this.response = result;
 
     return result;

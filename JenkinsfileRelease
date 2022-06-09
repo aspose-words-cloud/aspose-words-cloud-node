@@ -28,7 +28,7 @@ node('words-linux') {
 					stage('build package')
 					{
 						sh "npm install"
-						sh "npm run gulp buildRelease"
+						sh "npm run release"
 						packageName = sh(returnStdout: true, script: 'npm pack').trim()
 						
 						stash name: "newPackage", includes: "${packageName}" 
@@ -49,7 +49,7 @@ node('words-linux') {
 				
 				gitlabCommitStatus("rebuild with the package") {
 					stage('rebuild with the package'){												
-						sh "npm run gulp build"
+						sh "npm run tsc"
 						
 						if (params.branch == 'refs/heads/master'){
 							sh "npm run lint"
@@ -70,7 +70,7 @@ node('words-linux') {
 				gitlabCommitStatus("bdd package tests") {
 					stage('bdd package tests'){
 						try {
-							sh "npm run gulp cucumber"
+							sh "npm run cucumber"
 						} finally {
 							cucumber 'reports/**.json'
 						}

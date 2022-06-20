@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="documentEntryList.ts">
+ * <copyright company="Aspose" file="imageEntry.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,52 +26,31 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { BaseEntryList } from './baseEntryList';
-import { DocumentEntry } from './documentEntry';
+import { BaseEntry } from './baseEntry';
 
-export const importsMapDocumentEntryList = {
-    BaseEntryList,
-    DocumentEntry,
+export const importsMapImageEntry = {
+    BaseEntry,
 };
 
 /**
- * Represents a list of documents which will be appended to the original resource document.
+ * Represents a image which will be appended to the original resource image or document.
  */
-export class DocumentEntryList extends BaseEntryList {
+export class ImageEntry extends BaseEntry {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            type: "boolean",
-        },
-        {
-            name: "documentEntries",
-            baseName: "DocumentEntries",
-            type: "Array<DocumentEntry>",
-        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(DocumentEntryList.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ImageEntry.attributeTypeMap);
     }
 
-    /**
-     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
-     */
-    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
 
-    /**
-     * Gets or sets the list of documents.
-     */
-    public documentEntries: Array<DocumentEntry>;
-
-    public constructor(init?: Partial< DocumentEntryList >) {
+    public constructor(init?: Partial< ImageEntry >) {
         super(init);
         Object.assign(this, init);
     }

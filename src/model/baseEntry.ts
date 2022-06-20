@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="documentEntryList.ts">
+ * <copyright company="Aspose" file="baseEntry.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,31 +26,22 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { BaseEntryList } from './baseEntryList';
-import { DocumentEntry } from './documentEntry';
 
-export const importsMapDocumentEntryList = {
-    BaseEntryList,
-    DocumentEntry,
+export const importsMapBaseEntry = {
 };
 
 /**
- * Represents a list of documents which will be appended to the original resource document.
+ * Represents a entry which will be appended to the original resource document.
  */
-export class DocumentEntryList extends BaseEntryList {
+export class BaseEntry {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            type: "boolean",
-        },
-        {
-            name: "documentEntries",
-            baseName: "DocumentEntries",
-            type: "Array<DocumentEntry>",
+            name: "href",
+            baseName: "Href",
+            type: "string",
         }
     ];
 
@@ -58,21 +49,15 @@ export class DocumentEntryList extends BaseEntryList {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(DocumentEntryList.attributeTypeMap);
+        return BaseEntry.attributeTypeMap;
     }
 
     /**
-     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
+     * Gets or sets the path to entry to append at the server.
      */
-    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
+    public href: string;
 
-    /**
-     * Gets or sets the list of documents.
-     */
-    public documentEntries: Array<DocumentEntry>;
-
-    public constructor(init?: Partial< DocumentEntryList >) {
-        super(init);
+    public constructor(init?: Partial< BaseEntry >) {
         Object.assign(this, init);
     }
 }

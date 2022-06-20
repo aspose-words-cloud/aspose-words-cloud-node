@@ -36,6 +36,8 @@ import { ObjectSerializer } from "../internal/objectSerializer";
 import { Encryptor } from '../api';
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
+import * as importedBaseEntry from './baseEntry';
+import * as importedBaseEntryList from './baseEntryList';
 import * as importedBmpSaveOptionsData from './bmpSaveOptionsData';
 import * as importedBookmark from './bookmark';
 import * as importedBookmarkData from './bookmarkData';
@@ -149,6 +151,8 @@ import * as importedHyperlink from './hyperlink';
 import * as importedHyperlinkResponse from './hyperlinkResponse';
 import * as importedHyperlinks from './hyperlinks';
 import * as importedHyperlinksResponse from './hyperlinksResponse';
+import * as importedImageEntry from './imageEntry';
+import * as importedImageEntryList from './imageEntryList';
 import * as importedImageSaveOptionsData from './imageSaveOptionsData';
 import * as importedInfoAdditionalItem from './infoAdditionalItem';
 import * as importedInfoResponse from './infoResponse';
@@ -303,6 +307,8 @@ import * as importedXpsSaveOptionsData from './xpsSaveOptionsData';
 export { AttributeInfo } from '../internal/attributeInfo';
 export * from './apiError';
 export * from './availableFontsResponse';
+export * from './baseEntry';
+export * from './baseEntryList';
 export * from './bmpSaveOptionsData';
 export * from './bookmark';
 export * from './bookmarkData';
@@ -416,6 +422,8 @@ export * from './hyperlink';
 export * from './hyperlinkResponse';
 export * from './hyperlinks';
 export * from './hyperlinksResponse';
+export * from './imageEntry';
+export * from './imageEntryList';
 export * from './imageSaveOptionsData';
 export * from './infoAdditionalItem';
 export * from './infoResponse';
@@ -692,6 +700,8 @@ const enumsMap = {
 const typeMap = {
     ApiError: importedApiError.ApiError,
     AvailableFontsResponse: importedAvailableFontsResponse.AvailableFontsResponse,
+    BaseEntry: importedBaseEntry.BaseEntry,
+    BaseEntryList: importedBaseEntryList.BaseEntryList,
     BmpSaveOptionsData: importedBmpSaveOptionsData.BmpSaveOptionsData,
     Bookmark: importedBookmark.Bookmark,
     BookmarkData: importedBookmarkData.BookmarkData,
@@ -805,6 +815,8 @@ const typeMap = {
     HyperlinkResponse: importedHyperlinkResponse.HyperlinkResponse,
     Hyperlinks: importedHyperlinks.Hyperlinks,
     HyperlinksResponse: importedHyperlinksResponse.HyperlinksResponse,
+    ImageEntry: importedImageEntry.ImageEntry,
+    ImageEntryList: importedImageEntryList.ImageEntryList,
     ImageSaveOptionsData: importedImageSaveOptionsData.ImageSaveOptionsData,
     InfoAdditionalItem: importedInfoAdditionalItem.InfoAdditionalItem,
     InfoResponse: importedInfoResponse.InfoResponse,
@@ -1184,9 +1196,9 @@ export class AppendDocumentRequest implements RequestInterface {
     public name: string;
 
     /**
-     * <see cref="DocumentEntryList"/> with a list of documents to append.
+     * <see cref="BaseEntryList"/> with a list of entries to append.
      */
-    public documentList: importedDocumentEntryList.DocumentEntryList;
+    public documentList: importedBaseEntryList.BaseEntryList;
 
     /**
      * Original document folder.
@@ -1272,7 +1284,7 @@ export class AppendDocumentRequest implements RequestInterface {
             qs: queryParameters,
             uri: localVarPath,
             json: true,
-            body: ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedDocumentEntryList.DocumentEntryList" : this.documentList.constructor.name),
+            body: ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name),
         };
 
 
@@ -1303,9 +1315,9 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * <see cref="DocumentEntryList"/> with a list of documents to append.
+     * <see cref="BaseEntryList"/> with a list of entries to append.
      */
-    public documentList: importedDocumentEntryList.DocumentEntryList;
+    public documentList: importedBaseEntryList.BaseEntryList;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.

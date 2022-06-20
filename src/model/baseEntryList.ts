@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="documentEntryList.ts">
+ * <copyright company="Aspose" file="baseEntryList.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -26,53 +26,29 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { BaseEntryList } from './baseEntryList';
-import { DocumentEntry } from './documentEntry';
 
-export const importsMapDocumentEntryList = {
-    BaseEntryList,
-    DocumentEntry,
+export const importsMapBaseEntryList = {
 };
 
 /**
- * Represents a list of documents which will be appended to the original resource document.
+ * Represents a list of entries which will be appended to the original resource entry.
  */
-export class DocumentEntryList extends BaseEntryList {
+export abstract class BaseEntryList {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            type: "boolean",
-        },
-        {
-            name: "documentEntries",
-            baseName: "DocumentEntries",
-            type: "Array<DocumentEntry>",
-        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(DocumentEntryList.attributeTypeMap);
+        return BaseEntryList.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
-     */
-    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
 
-    /**
-     * Gets or sets the list of documents.
-     */
-    public documentEntries: Array<DocumentEntry>;
-
-    public constructor(init?: Partial< DocumentEntryList >) {
-        super(init);
+    public constructor(init?: Partial< BaseEntryList >) {
         Object.assign(this, init);
     }
 }

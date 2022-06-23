@@ -340,6 +340,42 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * The default settings allows to reduce the size of the document without any visible degradation of images quality.
+     * @param requestObj contains request parameters
+     */
+    public async compressDocument(requestObj: model.CompressDocumentRequest): Promise< model.WordsIncomingMessage< model.CompressResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling compressDocument.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.CompressResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Compress and resize images inside the document.
+     * @param requestObj contains request parameters
+     */
+    public async compressDocumentOnline(requestObj: model.CompressDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.CompressDocumentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling compressDocumentOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.CompressDocumentOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Converts a document on a local drive to the specified format.
      * @param requestObj contains request parameters
      */

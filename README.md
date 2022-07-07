@@ -19,6 +19,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 ## Enhancements in Version 22.7
 
 - Expand 'AppendDocument' API method to support 'ImageEntryList' for directly appending images to documents and another images.
+- Added 'CompressDocument' API method to support compression and resizing images inside the document for reduce the size of the document.
 
 
 ## Enhancements in Version 22.6

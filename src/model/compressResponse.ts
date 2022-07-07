@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="reportBuildOptions.ts">
+ * <copyright company="Aspose" file="compressResponse.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,11 +25,45 @@
  * --------------------------------------------------------------------------------
  */
 
-export enum ReportBuildOptions {
-    None = 'None' as any,
-    AllowMissingMembers = 'AllowMissingMembers' as any,
-    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any,
-    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any,
-    RespectJpegExifOrientation = 'RespectJpegExifOrientation' as any
+import { AttributeInfo } from '../internal/attributeInfo';
+import { Document } from './document';
+import { WordsResponse } from './wordsResponse';
+
+export const importsMapCompressResponse = {
+    Document,
+    WordsResponse,
+};
+
+/**
+ * The REST response of compressed document.
+ */
+export class CompressResponse extends WordsResponse {
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "document",
+            baseName: "Document",
+            type: "Document",
+        }
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(CompressResponse.attributeTypeMap);
+    }
+
+    /**
+     * Gets or sets the destination document info.
+     */
+    public document: Document;
+
+    public constructor(init?: Partial< CompressResponse >) {
+        super(init);
+        Object.assign(this, init);
+    }
 }
+

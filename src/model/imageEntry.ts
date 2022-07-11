@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="reportBuildOptions.ts">
+ * <copyright company="Aspose" file="imageEntry.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,11 +25,34 @@
  * --------------------------------------------------------------------------------
  */
 
-export enum ReportBuildOptions {
-    None = 'None' as any,
-    AllowMissingMembers = 'AllowMissingMembers' as any,
-    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any,
-    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any,
-    RespectJpegExifOrientation = 'RespectJpegExifOrientation' as any
+import { AttributeInfo } from '../internal/attributeInfo';
+import { BaseEntry } from './baseEntry';
+
+export const importsMapImageEntry = {
+    BaseEntry,
+};
+
+/**
+ * Represents a image which will be appended to the original resource image or document.
+ */
+export class ImageEntry extends BaseEntry {
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<AttributeInfo> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return super.getAttributeTypeMap().concat(ImageEntry.attributeTypeMap);
+    }
+
+
+    public constructor(init?: Partial< ImageEntry >) {
+        super(init);
+        Object.assign(this, init);
+    }
 }
+

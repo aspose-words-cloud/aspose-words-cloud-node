@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="reportBuildOptions.ts">
+ * <copyright company="Aspose" file="baseEntryList.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,11 +25,31 @@
  * --------------------------------------------------------------------------------
  */
 
-export enum ReportBuildOptions {
-    None = 'None' as any,
-    AllowMissingMembers = 'AllowMissingMembers' as any,
-    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any,
-    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any,
-    RespectJpegExifOrientation = 'RespectJpegExifOrientation' as any
+import { AttributeInfo } from '../internal/attributeInfo';
+
+export const importsMapBaseEntryList = {
+};
+
+/**
+ * Represents a list of entries which will be appended to the original resource entry.
+ */
+export abstract class BaseEntryList {
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<AttributeInfo> = [
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return BaseEntryList.attributeTypeMap;
+    }
+
+
+    public constructor(init?: Partial< BaseEntryList >) {
+        Object.assign(this, init);
+    }
 }
+

@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="reportBuildOptions.ts">
+ * <copyright company="Aspose" file="baseEntry.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,11 +25,40 @@
  * --------------------------------------------------------------------------------
  */
 
-export enum ReportBuildOptions {
-    None = 'None' as any,
-    AllowMissingMembers = 'AllowMissingMembers' as any,
-    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any,
-    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any,
-    RespectJpegExifOrientation = 'RespectJpegExifOrientation' as any
+import { AttributeInfo } from '../internal/attributeInfo';
+
+export const importsMapBaseEntry = {
+};
+
+/**
+ * Represents a entry which will be appended to the original resource document.
+ */
+export class BaseEntry {
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "href",
+            baseName: "Href",
+            type: "string",
+        }
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return BaseEntry.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets the path to entry to append at the server.
+     */
+    public href: string;
+
+    public constructor(init?: Partial< BaseEntry >) {
+        Object.assign(this, init);
+    }
 }
+

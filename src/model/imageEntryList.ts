@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="documentEntryList.ts">
+ * <copyright company="Aspose" file="imageEntryList.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,30 +27,30 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { BaseEntryList } from './baseEntryList';
-import { DocumentEntry } from './documentEntry';
+import { ImageEntry } from './imageEntry';
 
-export const importsMapDocumentEntryList = {
+export const importsMapImageEntryList = {
     BaseEntryList,
-    DocumentEntry,
+    ImageEntry,
 };
 
 /**
- * Represents a list of documents which will be appended to the original resource document.
+ * Represents a list of images which will be appended to the original resource document or image.
  */
-export class DocumentEntryList extends BaseEntryList {
+export class ImageEntryList extends BaseEntryList {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
+            name: "appendEachImageOnNewPage",
+            baseName: "AppendEachImageOnNewPage",
             type: "boolean",
         },
         {
-            name: "documentEntries",
-            baseName: "DocumentEntries",
-            type: "Array<DocumentEntry>",
+            name: "imageEntries",
+            baseName: "ImageEntries",
+            type: "Array<ImageEntry>",
         }
     ];
 
@@ -58,20 +58,20 @@ export class DocumentEntryList extends BaseEntryList {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(DocumentEntryList.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(ImageEntryList.attributeTypeMap);
     }
 
     /**
-     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
+     * Gets or sets a value indicating whether each image should be added to a new page in the document.
      */
-    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
+    public appendEachImageOnNewPage: boolean;
 
     /**
-     * Gets or sets the list of documents.
+     * Gets or sets the list of images.
      */
-    public documentEntries: Array<DocumentEntry>;
+    public imageEntries: Array<ImageEntry>;
 
-    public constructor(init?: Partial< DocumentEntryList >) {
+    public constructor(init?: Partial< ImageEntryList >) {
         super(init);
         Object.assign(this, init);
     }

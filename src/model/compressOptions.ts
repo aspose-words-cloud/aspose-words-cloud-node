@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="reportBuildOptions.ts">
+ * <copyright company="Aspose" file="compressOptions.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,11 +25,52 @@
  * --------------------------------------------------------------------------------
  */
 
-export enum ReportBuildOptions {
-    None = 'None' as any,
-    AllowMissingMembers = 'AllowMissingMembers' as any,
-    RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
-    InlineErrorMessages = 'InlineErrorMessages' as any,
-    UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any,
-    RespectJpegExifOrientation = 'RespectJpegExifOrientation' as any
+import { AttributeInfo } from '../internal/attributeInfo';
+
+export const importsMapCompressOptions = {
+};
+
+/**
+ * Options of document compress.
+ */
+export class CompressOptions {
+    /**
+     * Attribute type map
+     */
+    public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "imagesQuality",
+            baseName: "ImagesQuality",
+            type: "number",
+        },
+        {
+            name: "imagesReduceSizeFactor",
+            baseName: "ImagesReduceSizeFactor",
+            type: "number",
+        }
+    ];
+
+    /**
+     * Returns attribute type map
+     */
+    public static getAttributeTypeMap() {
+        return CompressOptions.attributeTypeMap;
+    }
+
+    /**
+     * Gets or sets the quality level of images from 0 to 100. Default value is 75.
+     */
+    public imagesQuality: number;
+
+    /**
+     * Gets or sets the resize factor of images.
+     * This value determines how many times the size of the images in the document will be reduced.
+     * The parameter value must be greater than 1 for resizing. Default value is 1 and has no effect on images size.
+     */
+    public imagesReduceSizeFactor: number;
+
+    public constructor(init?: Partial< CompressOptions >) {
+        Object.assign(this, init);
+    }
 }
+

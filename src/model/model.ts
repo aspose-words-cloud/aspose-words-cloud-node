@@ -2707,7 +2707,6 @@ export class ConvertDocumentRequest implements RequestInterface {
 	 */
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/convert"
-            .replace("/{" + "outPath" + "}", (this.outPath !== null && this.outPath !== undefined) ? "/" + String(this.outPath) : "")
             .replace("//", "/");
         const queryParameters: any = {};
         const formParams: any = {};
@@ -2732,6 +2731,7 @@ export class ConvertDocumentRequest implements RequestInterface {
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", this.fileNameFieldValue, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);

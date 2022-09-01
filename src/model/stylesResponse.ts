@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Style } from './style';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,17 @@ export class StylesResponse extends WordsResponse {
     public constructor(init?: Partial< StylesResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.styles)
+        {
+            for (let element of this.styles)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

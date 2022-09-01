@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 
 export const importsMapHyperlink = {
@@ -72,6 +73,9 @@ export class Hyperlink extends LinkElement {
     public constructor(init?: Partial< Hyperlink >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

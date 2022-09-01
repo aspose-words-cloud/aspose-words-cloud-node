@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SaveResult } from './saveResult';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class SaveResponse extends WordsResponse {
     public constructor(init?: Partial< SaveResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.saveResult)
+        {
+            this.saveResult.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

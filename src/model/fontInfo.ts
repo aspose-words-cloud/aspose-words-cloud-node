@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapFontInfo = {
 };
@@ -33,7 +34,7 @@ export const importsMapFontInfo = {
 /**
  * DTO container with font info.
  */
-export class FontInfo {
+export class FontInfo implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -89,6 +90,9 @@ export class FontInfo {
 
     public constructor(init?: Partial< FontInfo >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

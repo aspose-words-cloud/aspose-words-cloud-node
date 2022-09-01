@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentStatData } from './documentStatData';
 import { FileLink } from './fileLink';
 import { WordsResponse } from './wordsResponse';
@@ -76,6 +77,19 @@ export class StatDataResponse extends WordsResponse {
     public constructor(init?: Partial< StatDataResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.documentLink)
+        {
+            this.documentLink.collectFilesContent(_resultFilesContent);
+        }
+
+        if (this.statData)
+        {
+            this.statData.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

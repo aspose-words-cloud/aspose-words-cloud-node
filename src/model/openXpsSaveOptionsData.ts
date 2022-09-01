@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { XpsSaveOptionsData } from './xpsSaveOptionsData';
 
 export const importsMapOpenXpsSaveOptionsData = {
@@ -55,6 +56,9 @@ export class OpenXpsSaveOptionsData extends XpsSaveOptionsData {
         this.saveFormat = 'openxps';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

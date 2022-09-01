@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FileLink } from './fileLink';
 
 export const importsMapModificationOperationResult = {
@@ -35,7 +36,7 @@ export const importsMapModificationOperationResult = {
 /**
  * result of the operation which modifies the original document and saves the result.
  */
-export class ModificationOperationResult {
+export class ModificationOperationResult implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -71,6 +72,19 @@ export class ModificationOperationResult {
 
     public constructor(init?: Partial< ModificationOperationResult >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.dest)
+        {
+            this.dest.collectFilesContent(_resultFilesContent);
+        }
+
+        if (this.source)
+        {
+            this.source.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

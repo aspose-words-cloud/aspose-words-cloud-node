@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { ImageSaveOptionsData } from './imageSaveOptionsData';
 
 export const importsMapJpegSaveOptionsData = {
@@ -55,6 +56,9 @@ export class JpegSaveOptionsData extends ImageSaveOptionsData {
         this.saveFormat = 'jpeg';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

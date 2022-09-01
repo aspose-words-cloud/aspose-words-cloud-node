@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapWatermarkText = {
 };
@@ -33,7 +34,7 @@ export const importsMapWatermarkText = {
 /**
  * Class for insert watermark text request building.
  */
-export class WatermarkText {
+export class WatermarkText implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class WatermarkText {
 
     public constructor(init?: Partial< WatermarkText >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

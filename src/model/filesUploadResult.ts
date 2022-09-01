@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Error } from './error';
 
 export const importsMapFilesUploadResult = {
@@ -35,7 +36,7 @@ export const importsMapFilesUploadResult = {
 /**
  * File upload result.
  */
-export class FilesUploadResult {
+export class FilesUploadResult implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -71,6 +72,18 @@ export class FilesUploadResult {
 
     public constructor(init?: Partial< FilesUploadResult >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.errors)
+        {
+            for (let element of this.errors)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
+
     }
 }
 

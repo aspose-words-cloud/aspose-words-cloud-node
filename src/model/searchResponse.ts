@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SearchResultsCollection } from './searchResultsCollection';
 import { WordsResponse } from './wordsResponse';
 
@@ -74,6 +75,14 @@ export class SearchResponse extends WordsResponse {
     public constructor(init?: Partial< SearchResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.searchResults)
+        {
+            this.searchResults.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

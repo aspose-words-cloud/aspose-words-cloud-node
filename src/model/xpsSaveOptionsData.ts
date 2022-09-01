@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 import { OutlineOptionsData } from './outlineOptionsData';
 
@@ -96,6 +97,16 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
         this.saveFormat = 'xps';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.outlineOptions)
+        {
+            this.outlineOptions.collectFilesContent(_resultFilesContent);
+        }
+
+
+
     }
 }
 

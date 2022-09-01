@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapUserInformation = {
 };
@@ -33,7 +34,7 @@ export const importsMapUserInformation = {
 /**
  * DTO for user information.
  */
-export class UserInformation {
+export class UserInformation implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -79,6 +80,9 @@ export class UserInformation {
 
     public constructor(init?: Partial< UserInformation >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

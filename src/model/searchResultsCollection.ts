@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { SearchResult } from './searchResult';
 
@@ -64,6 +65,17 @@ export class SearchResultsCollection extends LinkElement {
     public constructor(init?: Partial< SearchResultsCollection >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.resultsList)
+        {
+            for (let element of this.resultsList)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

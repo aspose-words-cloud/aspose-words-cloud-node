@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { StorageFile } from './storageFile';
 
 export const importsMapFilesList = {
@@ -35,7 +36,7 @@ export const importsMapFilesList = {
 /**
  * Files list.
  */
-export class FilesList {
+export class FilesList implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -61,6 +62,17 @@ export class FilesList {
 
     public constructor(init?: Partial< FilesList >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.value)
+        {
+            for (let element of this.value)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

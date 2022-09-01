@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 
 export const importsMapListFormat = {
@@ -82,6 +83,9 @@ export class ListFormat extends LinkElement {
     public constructor(init?: Partial< ListFormat >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -84,36 +84,29 @@ describe("appendDocument", () => {
     describe("appendDocumentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestAppendDocument.docx";
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocumentListOnlineDocumentEntries0FileStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocumentListOnlineDocumentEntries0File = new model.FileContent(localFile, requestDocumentListOnlineDocumentEntries0FileStream);
+            const requestDocumentListOnlineDocumentEntries0 = new model.OnlineDocumentEntry({
+                file: requestDocumentListOnlineDocumentEntries0File,
+                importFormatMode: "KeepSourceFormatting"
+            })
+            const requestDocumentListOnlineDocumentEntries = [
+                requestDocumentListOnlineDocumentEntries0
+            ]
+            const requestDocumentList = new model.OnlineDocumentEntryList({
+                onlineDocumentEntries: requestDocumentListOnlineDocumentEntries
+            })
+            const request = new model.AppendDocumentOnlineRequest({
+                document: requestDocument,
+                documentList: requestDocumentList
+            });
 
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-                const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
-                    href: remoteDataFolder + "/" + remoteFileName,
-                    importFormatMode: "KeepSourceFormatting"
-                })
-                const requestDocumentListDocumentEntries = [
-                    requestDocumentListDocumentEntries0
-                ]
-                const requestDocumentList = new model.DocumentEntryList({
-                    documentEntries: requestDocumentListDocumentEntries
-                })
-                const request = new model.AppendDocumentOnlineRequest({
-                    document: requestDocument,
-                    documentList: requestDocumentList
-                });
-
-                // Act
-                return wordsApi.appendDocumentOnline(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                });
-
+            // Act
+            return wordsApi.appendDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

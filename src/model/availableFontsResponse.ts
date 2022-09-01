@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FontInfo } from './fontInfo';
 import { WordsResponse } from './wordsResponse';
 
@@ -84,6 +85,33 @@ export class AvailableFontsResponse extends WordsResponse {
     public constructor(init?: Partial< AvailableFontsResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.additionalFonts)
+        {
+            for (let element of this.additionalFonts)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
+        if (this.customFonts)
+        {
+            for (let element of this.customFonts)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
+        if (this.systemFonts)
+        {
+            for (let element of this.systemFonts)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

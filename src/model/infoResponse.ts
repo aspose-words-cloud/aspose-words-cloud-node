@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { InfoAdditionalItem } from './infoAdditionalItem';
 import { WordsResponse } from './wordsResponse';
 
@@ -84,6 +85,19 @@ export class InfoResponse extends WordsResponse {
     public constructor(init?: Partial< InfoResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.additionalInfo)
+        {
+            for (let element of this.additionalInfo)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
+
+
     }
 }
 

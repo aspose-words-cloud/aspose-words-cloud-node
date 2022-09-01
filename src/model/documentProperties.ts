@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentProperty } from './documentProperty';
 import { LinkElement } from './linkElement';
 
@@ -64,6 +65,17 @@ export class DocumentProperties extends LinkElement {
     public constructor(init?: Partial< DocumentProperties >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.list)
+        {
+            for (let element of this.list)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

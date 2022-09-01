@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SaveOptionsData } from './saveOptionsData';
 
 export const importsMapOoxmlSaveOptionsData = {
@@ -92,6 +93,9 @@ export abstract class OoxmlSaveOptionsData extends SaveOptionsData {
     public constructor(init?: Partial< OoxmlSaveOptionsData >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

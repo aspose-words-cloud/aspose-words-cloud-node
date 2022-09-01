@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SectionLinkCollection } from './sectionLinkCollection';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class SectionLinkCollectionResponse extends WordsResponse {
     public constructor(init?: Partial< SectionLinkCollectionResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.sections)
+        {
+            this.sections.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

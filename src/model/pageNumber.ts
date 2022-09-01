@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapPageNumber = {
 };
@@ -33,7 +34,7 @@ export const importsMapPageNumber = {
 /**
  * Class is used for insert page number request building.
  */
-export class PageNumber {
+export class PageNumber implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -89,6 +90,9 @@ export class PageNumber {
 
     public constructor(init?: Partial< PageNumber >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

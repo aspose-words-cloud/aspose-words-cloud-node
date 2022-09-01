@@ -26,27 +26,23 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { BaseEntryList } from './baseEntryList';
+import { ModelInterface } from './modelInterface';
+import { BaseDocumentEntryList } from './baseDocumentEntryList';
 import { DocumentEntry } from './documentEntry';
 
 export const importsMapDocumentEntryList = {
-    BaseEntryList,
+    BaseDocumentEntryList,
     DocumentEntry,
 };
 
 /**
  * Represents a list of documents which will be appended to the original resource document.
  */
-export class DocumentEntryList extends BaseEntryList {
+export class DocumentEntryList extends BaseDocumentEntryList {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
-            type: "boolean",
-        },
         {
             name: "documentEntries",
             baseName: "DocumentEntries",
@@ -62,11 +58,6 @@ export class DocumentEntryList extends BaseEntryList {
     }
 
     /**
-     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
-     */
-    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
-
-    /**
      * Gets or sets the list of documents.
      */
     public documentEntries: Array<DocumentEntry>;
@@ -74,6 +65,17 @@ export class DocumentEntryList extends BaseEntryList {
     public constructor(init?: Partial< DocumentEntryList >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.documentEntries)
+        {
+            for (let element of this.documentEntries)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

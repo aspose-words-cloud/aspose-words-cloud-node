@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { BookmarkData } from './bookmarkData';
 import { DocumentPosition } from './documentPosition';
 
@@ -74,6 +75,19 @@ export class BookmarkInsert extends BookmarkData {
     public constructor(init?: Partial< BookmarkInsert >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.endRange)
+        {
+            this.endRange.collectFilesContent(_resultFilesContent);
+        }
+
+        if (this.startRange)
+        {
+            this.startRange.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

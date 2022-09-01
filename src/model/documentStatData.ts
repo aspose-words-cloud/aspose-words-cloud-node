@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FootnotesStatData } from './footnotesStatData';
 import { PageStatData } from './pageStatData';
 
@@ -37,7 +38,7 @@ export const importsMapDocumentStatData = {
 /**
  * Container for the document's statistical data.
  */
-export class DocumentStatData {
+export class DocumentStatData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -103,6 +104,25 @@ export class DocumentStatData {
 
     public constructor(init?: Partial< DocumentStatData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.footnotesStatData)
+        {
+            this.footnotesStatData.collectFilesContent(_resultFilesContent);
+        }
+
+
+        if (this.pageStatData)
+        {
+            for (let element of this.pageStatData)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
+
+
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { PdfPermissions } from './pdfPermissions';
 
 export const importsMapPdfEncryptionDetailsData = {
@@ -35,7 +36,7 @@ export const importsMapPdfEncryptionDetailsData = {
 /**
  * Container class for details of encryption.
  */
-export class PdfEncryptionDetailsData {
+export class PdfEncryptionDetailsData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -81,6 +82,9 @@ export class PdfEncryptionDetailsData {
 
     public constructor(init?: Partial< PdfEncryptionDetailsData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

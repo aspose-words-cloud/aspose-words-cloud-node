@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Document } from './document';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class CompressResponse extends WordsResponse {
     public constructor(init?: Partial< CompressResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.document)
+        {
+            this.document.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

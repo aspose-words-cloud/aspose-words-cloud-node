@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapCsvDataLoadOptions = {
 };
@@ -33,7 +34,7 @@ export const importsMapCsvDataLoadOptions = {
 /**
  * Represents options for parsing CSV data.
  */
-export class CsvDataLoadOptions {
+export class CsvDataLoadOptions implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -89,6 +90,9 @@ export class CsvDataLoadOptions {
 
     public constructor(init?: Partial< CsvDataLoadOptions >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

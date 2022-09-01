@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapRunBase = {
 };
@@ -33,7 +34,7 @@ export const importsMapRunBase = {
 /**
  * Run element.
  */
-export abstract class RunBase {
+export abstract class RunBase implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -59,6 +60,9 @@ export abstract class RunBase {
 
     public constructor(init?: Partial< RunBase >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

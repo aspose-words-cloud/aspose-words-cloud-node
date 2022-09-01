@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { TabStop } from './tabStop';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,17 @@ export class TabStopsResponse extends WordsResponse {
     public constructor(init?: Partial< TabStopsResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.tabStops)
+        {
+            for (let element of this.tabStops)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

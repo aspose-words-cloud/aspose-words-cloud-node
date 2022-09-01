@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { ListLevels } from './listLevels';
 import { Style } from './style';
@@ -126,6 +127,19 @@ export class ListInfo extends LinkElement {
     public constructor(init?: Partial< ListInfo >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.listLevels)
+        {
+            this.listLevels.collectFilesContent(_resultFilesContent);
+        }
+
+        if (this.style)
+        {
+            this.style.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

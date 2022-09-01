@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { ParagraphFormatBase } from './paragraphFormatBase';
 
 export const importsMapParagraphFormat = {
@@ -72,6 +73,9 @@ export class ParagraphFormat extends ParagraphFormatBase {
     public constructor(init?: Partial< ParagraphFormat >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

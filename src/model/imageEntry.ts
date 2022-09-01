@@ -26,33 +26,43 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
-import { BaseEntry } from './baseEntry';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapImageEntry = {
-    BaseEntry,
 };
 
 /**
  * Represents a image which will be appended to the original resource image or document.
  */
-export class ImageEntry extends BaseEntry {
+export class ImageEntry implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "href",
+            baseName: "Href",
+            type: "string",
+        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ImageEntry.attributeTypeMap);
+        return ImageEntry.attributeTypeMap;
     }
 
+    /**
+     * Gets or sets the path to entry to append at the server.
+     */
+    public href: string;
 
     public constructor(init?: Partial< ImageEntry >) {
-        super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FormField } from './formField';
 
 export const importsMapFormFieldDropDown = {
@@ -72,6 +73,9 @@ export class FormFieldDropDown extends FormField {
     public constructor(init?: Partial< FormFieldDropDown >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapOptimizationOptions = {
 };
@@ -33,7 +34,7 @@ export const importsMapOptimizationOptions = {
 /**
  * Container class for the document optimization options.
  */
-export class OptimizationOptions {
+export class OptimizationOptions implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -59,6 +60,9 @@ export class OptimizationOptions {
 
     public constructor(init?: Partial< OptimizationOptions >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

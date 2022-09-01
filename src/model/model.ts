@@ -36,8 +36,10 @@ import { ObjectSerializer } from "../internal/objectSerializer";
 import { Encryptor } from '../api';
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
-import * as importedBaseEntry from './baseEntry';
+import * as importedBaseDocumentEntry from './baseDocumentEntry';
+import * as importedBaseDocumentEntryList from './baseDocumentEntryList';
 import * as importedBaseEntryList from './baseEntryList';
+import * as importedBaseImageEntryList from './baseImageEntryList';
 import * as importedBmpSaveOptionsData from './bmpSaveOptionsData';
 import * as importedBookmark from './bookmark';
 import * as importedBookmarkData from './bookmarkData';
@@ -113,6 +115,7 @@ import * as importedFieldOptions from './fieldOptions';
 import * as importedFieldResponse from './fieldResponse';
 import * as importedFieldsResponse from './fieldsResponse';
 import * as importedFieldUpdate from './fieldUpdate';
+import * as importedFileContent from './fileContent';
 import * as importedFileLink from './fileLink';
 import * as importedFilesList from './filesList';
 import * as importedFilesUploadResult from './filesUploadResult';
@@ -185,6 +188,10 @@ import * as importedOfficeMathObject from './officeMathObject';
 import * as importedOfficeMathObjectResponse from './officeMathObjectResponse';
 import * as importedOfficeMathObjectsCollection from './officeMathObjectsCollection';
 import * as importedOfficeMathObjectsResponse from './officeMathObjectsResponse';
+import * as importedOnlineDocumentEntry from './onlineDocumentEntry';
+import * as importedOnlineDocumentEntryList from './onlineDocumentEntryList';
+import * as importedOnlineImageEntry from './onlineImageEntry';
+import * as importedOnlineImageEntryList from './onlineImageEntryList';
 import * as importedOoxmlSaveOptionsData from './ooxmlSaveOptionsData';
 import * as importedOpenXpsSaveOptionsData from './openXpsSaveOptionsData';
 import * as importedOptimizationOptions from './optimizationOptions';
@@ -309,8 +316,10 @@ import * as importedXpsSaveOptionsData from './xpsSaveOptionsData';
 export { AttributeInfo } from '../internal/attributeInfo';
 export * from './apiError';
 export * from './availableFontsResponse';
-export * from './baseEntry';
+export * from './baseDocumentEntry';
+export * from './baseDocumentEntryList';
 export * from './baseEntryList';
+export * from './baseImageEntryList';
 export * from './bmpSaveOptionsData';
 export * from './bookmark';
 export * from './bookmarkData';
@@ -386,6 +395,7 @@ export * from './fieldOptions';
 export * from './fieldResponse';
 export * from './fieldsResponse';
 export * from './fieldUpdate';
+export * from './fileContent';
 export * from './fileLink';
 export * from './filesList';
 export * from './filesUploadResult';
@@ -458,6 +468,10 @@ export * from './officeMathObject';
 export * from './officeMathObjectResponse';
 export * from './officeMathObjectsCollection';
 export * from './officeMathObjectsResponse';
+export * from './onlineDocumentEntry';
+export * from './onlineDocumentEntryList';
+export * from './onlineImageEntry';
+export * from './onlineImageEntryList';
 export * from './ooxmlSaveOptionsData';
 export * from './openXpsSaveOptionsData';
 export * from './optimizationOptions';
@@ -663,6 +677,7 @@ const enumsMap = {
     "ParagraphFormatBase.OutlineLevelEnum": importedParagraphFormatBase.ParagraphFormatBase.OutlineLevelEnum,
     "ParagraphFormatBase.StyleIdentifierEnum": importedParagraphFormatBase.ParagraphFormatBase.StyleIdentifierEnum,
     "PdfDigitalSignatureDetailsData.HashAlgorithmEnum": importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData.HashAlgorithmEnum,
+    "PdfPermissions": importedPdfPermissions.PdfPermissions,
     "PdfSaveOptionsData.ComplianceEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ComplianceEnum,
     "PdfSaveOptionsData.CustomPropertiesExportEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.CustomPropertiesExportEnum,
     "PdfSaveOptionsData.FontEmbeddingModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.FontEmbeddingModeEnum,
@@ -674,6 +689,7 @@ const enumsMap = {
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
     "ReplaceRangeDto.TextTypeEnum": importedReplaceRangeDto.ReplaceRangeDto.TextTypeEnum,
+    "ReportBuildOptions": importedReportBuildOptions.ReportBuildOptions,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
     "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
     "SaveOptionsData.DmlEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.DmlEffectsRenderingModeEnum,
@@ -704,8 +720,10 @@ const enumsMap = {
 const typeMap = {
     ApiError: importedApiError.ApiError,
     AvailableFontsResponse: importedAvailableFontsResponse.AvailableFontsResponse,
-    BaseEntry: importedBaseEntry.BaseEntry,
+    BaseDocumentEntry: importedBaseDocumentEntry.BaseDocumentEntry,
+    BaseDocumentEntryList: importedBaseDocumentEntryList.BaseDocumentEntryList,
     BaseEntryList: importedBaseEntryList.BaseEntryList,
+    BaseImageEntryList: importedBaseImageEntryList.BaseImageEntryList,
     BmpSaveOptionsData: importedBmpSaveOptionsData.BmpSaveOptionsData,
     Bookmark: importedBookmark.Bookmark,
     BookmarkData: importedBookmarkData.BookmarkData,
@@ -781,6 +799,7 @@ const typeMap = {
     FieldResponse: importedFieldResponse.FieldResponse,
     FieldsResponse: importedFieldsResponse.FieldsResponse,
     FieldUpdate: importedFieldUpdate.FieldUpdate,
+    FileContent: importedFileContent.FileContent,
     FileLink: importedFileLink.FileLink,
     FilesList: importedFilesList.FilesList,
     FilesUploadResult: importedFilesUploadResult.FilesUploadResult,
@@ -853,6 +872,10 @@ const typeMap = {
     OfficeMathObjectResponse: importedOfficeMathObjectResponse.OfficeMathObjectResponse,
     OfficeMathObjectsCollection: importedOfficeMathObjectsCollection.OfficeMathObjectsCollection,
     OfficeMathObjectsResponse: importedOfficeMathObjectsResponse.OfficeMathObjectsResponse,
+    OnlineDocumentEntry: importedOnlineDocumentEntry.OnlineDocumentEntry,
+    OnlineDocumentEntryList: importedOnlineDocumentEntryList.OnlineDocumentEntryList,
+    OnlineImageEntry: importedOnlineImageEntry.OnlineImageEntry,
+    OnlineImageEntryList: importedOnlineImageEntryList.OnlineImageEntryList,
     OoxmlSaveOptionsData: importedOoxmlSaveOptionsData.OoxmlSaveOptionsData,
     OpenXpsSaveOptionsData: importedOpenXpsSaveOptionsData.OpenXpsSaveOptionsData,
     OptimizationOptions: importedOptimizationOptions.OptimizationOptions,
@@ -1055,7 +1078,10 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/revisions/acceptAll"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling acceptAllRevisions.');
@@ -1073,13 +1099,35 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -1088,7 +1136,7 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RevisionsModificationResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RevisionsModificationResponse");
 	}
 }
 
@@ -1135,8 +1183,10 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/revisions/acceptAll"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling acceptAllRevisionsOnline.');
@@ -1152,18 +1202,37 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -1176,7 +1245,7 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
         const result = new AcceptAllRevisionsOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RevisionsModificationResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "RevisionsModificationResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -1255,7 +1324,10 @@ export class AppendDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/appendDocument"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling appendDocument.');
@@ -1284,15 +1356,41 @@ export class AppendDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.documentList !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name);
+            formParams.push(['DocumentList', JSON.stringify(_obj), 'application/json']);
+            this.documentList.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -1301,7 +1399,7 @@ export class AppendDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -1363,8 +1461,10 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/appendDocument"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling appendDocumentOnline.');
@@ -1392,21 +1492,42 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.documentList !== undefined) {
-            formParams.DocumentList = JSON.stringify(ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name);
+            formParams.push(['DocumentList', JSON.stringify(_obj), 'application/json']);
+            this.documentList.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -1419,7 +1540,7 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         const result = new AppendDocumentOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -1504,7 +1625,10 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling applyStyleToDocumentElement.');
@@ -1543,15 +1667,41 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.styleApply !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.styleApply, this.styleApply.constructor.name === "Object" ? "importedStyleApply.StyleApply" : this.styleApply.constructor.name);
+            formParams.push(['StyleApply', JSON.stringify(_obj), 'application/json']);
+            this.styleApply.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.styleApply, this.styleApply.constructor.name === "Object" ? "importedStyleApply.StyleApply" : this.styleApply.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -1560,7 +1710,7 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "WordsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "WordsResponse");
 	}
 }
 
@@ -1628,8 +1778,10 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{styledNodePath}/style"
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling applyStyleToDocumentElementOnline.');
@@ -1667,21 +1819,42 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.styleApply !== undefined) {
-            formParams.StyleApply = JSON.stringify(ObjectSerializer.serialize(this.styleApply, this.styleApply.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.styleApply, this.styleApply.constructor.name === "Object" ? "importedStyleApply.StyleApply" : this.styleApply.constructor.name);
+            formParams.push(['StyleApply', JSON.stringify(_obj), 'application/json']);
+            this.styleApply.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -1694,7 +1867,7 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         const result = new ApplyStyleToDocumentElementOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "WordsResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "WordsResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -1768,8 +1941,10 @@ export class BuildReportRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/buildReport"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling buildReport.');
@@ -1807,21 +1982,42 @@ export class BuildReportRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.data !== undefined) {
-            formParams.Data = ObjectSerializer.serialize(this.data, "string");
+            formParams.push(['Data', this.data, 'text/plain']);
         }
         if (this.reportEngineSettings !== undefined) {
-            formParams.ReportEngineSettings = JSON.stringify(this.reportEngineSettings);
+            let _obj = ObjectSerializer.serialize(this.reportEngineSettings, this.reportEngineSettings.constructor.name === "Object" ? "importedReportEngineSettings.ReportEngineSettings" : this.reportEngineSettings.constructor.name);
+            formParams.push(['ReportEngineSettings', JSON.stringify(_obj), 'application/json']);
+            this.reportEngineSettings.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -1831,7 +2027,7 @@ export class BuildReportRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -1873,8 +2069,10 @@ export class BuildReportOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/buildReport"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.template' is not undefined
         if (this.template === undefined) {
             throw new Error('Required parameter "this.template" was undefined when calling buildReportOnline.');
@@ -1907,24 +2105,45 @@ export class BuildReportOnlineRequest implements RequestInterface {
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
-            formParams.Template = this.template;
+            formParams.push(['Template', this.template, 'application/octet-stream']);
         }
         if (this.data !== undefined) {
-            formParams.Data = ObjectSerializer.serialize(this.data, "string");
+            formParams.push(['Data', this.data, 'text/plain']);
         }
         if (this.reportEngineSettings !== undefined) {
-            formParams.ReportEngineSettings = JSON.stringify(this.reportEngineSettings);
+            let _obj = ObjectSerializer.serialize(this.reportEngineSettings, this.reportEngineSettings.constructor.name === "Object" ? "importedReportEngineSettings.ReportEngineSettings" : this.reportEngineSettings.constructor.name);
+            formParams.push(['ReportEngineSettings', JSON.stringify(_obj), 'application/json']);
+            this.reportEngineSettings.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -1966,7 +2185,10 @@ export class ClassifyRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/classify"
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.text' is not undefined
         if (this.text === undefined) {
             throw new Error('Required parameter "this.text" was undefined when calling classify.');
@@ -1978,15 +2200,39 @@ export class ClassifyRequest implements RequestInterface {
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
+        if (this.text !== undefined) {
+            formParams.push(['Text', this.text, 'text/plain']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.text, this.text.constructor.name === "Object" ? "string" : this.text.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -1995,7 +2241,7 @@ export class ClassifyRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ClassificationResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ClassificationResponse");
 	}
 }
 
@@ -2058,7 +2304,10 @@ export class ClassifyDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/classify"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling classifyDocument.');
@@ -2077,13 +2326,35 @@ export class ClassifyDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -2092,7 +2363,7 @@ export class ClassifyDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ClassificationResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ClassificationResponse");
 	}
 }
 
@@ -2144,8 +2415,10 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/classify"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling classifyDocumentOnline.');
@@ -2162,18 +2435,37 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -2183,7 +2475,7 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ClassificationResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ClassificationResponse");
 	}
 }
 
@@ -2251,7 +2543,10 @@ export class CompareDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/compareDocument"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling compareDocument.');
@@ -2279,15 +2574,41 @@ export class CompareDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _encryptor);
+        if (this.compareData !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
+            formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
+            this.compareData.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -2296,7 +2617,7 @@ export class CompareDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -2358,8 +2679,10 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/compareDocument"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling compareDocumentOnline.');
@@ -2386,24 +2709,45 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.compareData !== undefined) {
-            formParams.CompareData = JSON.stringify(ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
+            formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
+            this.compareData.collectFilesContent(filesContent);
         }
         if (this.comparingDocument !== undefined) {
-            formParams.ComparingDocument = this.comparingDocument;
+            formParams.push(['ComparingDocument', this.comparingDocument, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -2416,7 +2760,7 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         const result = new CompareDocumentOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -2485,7 +2829,10 @@ export class CompressDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/compress"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling compressDocument.');
@@ -2512,15 +2859,41 @@ export class CompressDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        if (this.compressOptions !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name === "Object" ? "importedCompressOptions.CompressOptions" : this.compressOptions.constructor.name);
+            formParams.push(['CompressOptions', JSON.stringify(_obj), 'application/json']);
+            this.compressOptions.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name === "Object" ? "importedCompressOptions.CompressOptions" : this.compressOptions.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -2529,7 +2902,7 @@ export class CompressDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CompressResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CompressResponse");
 	}
 }
 
@@ -2581,8 +2954,10 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/compress"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling compressDocumentOnline.');
@@ -2608,21 +2983,42 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.compressOptions !== undefined) {
-            formParams.CompressOptions = JSON.stringify(ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name === "Object" ? "importedCompressOptions.CompressOptions" : this.compressOptions.constructor.name);
+            formParams.push(['CompressOptions', JSON.stringify(_obj), 'application/json']);
+            this.compressOptions.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -2635,7 +3031,7 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         const result = new CompressDocumentOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CompressResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "CompressResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -2708,8 +3104,10 @@ export class ConvertDocumentRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/convert"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling convertDocument.');
@@ -2739,18 +3137,37 @@ export class ConvertDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -2808,7 +3225,10 @@ export class CopyFileRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/copy/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.destPath' is not undefined
         if (this.destPath === undefined) {
             throw new Error('Required parameter "this.destPath" was undefined when calling copyFile.');
@@ -2829,13 +3249,35 @@ export class CopyFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -2887,7 +3329,10 @@ export class CopyFolderRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/copy/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.destPath' is not undefined
         if (this.destPath === undefined) {
             throw new Error('Required parameter "this.destPath" was undefined when calling copyFolder.');
@@ -2907,13 +3352,35 @@ export class CopyFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -2995,7 +3462,10 @@ export class CopyStyleRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/copy"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling copyStyle.');
@@ -3024,15 +3494,41 @@ export class CopyStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.styleCopy !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.styleCopy, this.styleCopy.constructor.name === "Object" ? "importedStyleCopy.StyleCopy" : this.styleCopy.constructor.name);
+            formParams.push(['StyleCopy', JSON.stringify(_obj), 'application/json']);
+            this.styleCopy.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.styleCopy, this.styleCopy.constructor.name === "Object" ? "importedStyleCopy.StyleCopy" : this.styleCopy.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -3041,7 +3537,7 @@ export class CopyStyleRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StyleResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
 }
 
@@ -3103,8 +3599,10 @@ export class CopyStyleOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/styles/copy"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling copyStyleOnline.');
@@ -3132,21 +3630,42 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.styleCopy !== undefined) {
-            formParams.StyleCopy = JSON.stringify(ObjectSerializer.serialize(this.styleCopy, this.styleCopy.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.styleCopy, this.styleCopy.constructor.name === "Object" ? "importedStyleCopy.StyleCopy" : this.styleCopy.constructor.name);
+            formParams.push(['StyleCopy', JSON.stringify(_obj), 'application/json']);
+            this.styleCopy.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -3159,7 +3678,7 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         const result = new CopyStyleOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "StyleResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -3238,7 +3757,10 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/copy_from"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling copyStylesFromTemplate.');
@@ -3269,13 +3791,35 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -3284,7 +3828,7 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "WordsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "WordsResponse");
 	}
 }
 
@@ -3321,18 +3865,43 @@ export class CreateDocumentRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/create"
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fileName", this.fileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -3341,7 +3910,7 @@ export class CreateDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -3374,7 +3943,10 @@ export class CreateFolderRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.path' is not undefined
         if (this.path === undefined) {
             throw new Error('Required parameter "this.path" was undefined when calling createFolder.');
@@ -3387,13 +3959,35 @@ export class CreateFolderRequest implements RequestInterface {
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -3481,7 +4075,10 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling createOrUpdateDocumentProperty.');
@@ -3520,15 +4117,41 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.property !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.property, this.property.constructor.name === "Object" ? "importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate" : this.property.constructor.name);
+            formParams.push(['Property', JSON.stringify(_obj), 'application/json']);
+            this.property.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.property, this.property.constructor.name === "Object" ? "importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate" : this.property.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -3537,7 +4160,7 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertyResponse");
 	}
 }
 
@@ -3605,8 +4228,10 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling createOrUpdateDocumentPropertyOnline.');
@@ -3644,21 +4269,42 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.property !== undefined) {
-            formParams.Property = JSON.stringify(ObjectSerializer.serialize(this.property, this.property.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.property, this.property.constructor.name === "Object" ? "importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate" : this.property.constructor.name);
+            formParams.push(['Property', JSON.stringify(_obj), 'application/json']);
+            this.property.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -3671,7 +4317,7 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         const result = new CreateOrUpdateDocumentPropertyOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentPropertyResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentPropertyResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -3747,7 +4393,10 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteAllParagraphTabStops.');
@@ -3775,13 +4424,35 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -3790,7 +4461,7 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TabStopsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
 }
 
@@ -3849,8 +4520,10 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteAllParagraphTabStopsOnline.');
@@ -3876,18 +4549,37 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -3900,7 +4592,7 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
         const result = new DeleteAllParagraphTabStopsOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TabStopsResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -3980,7 +4672,10 @@ export class DeleteBookmarkRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteBookmark.');
@@ -4010,13 +4705,35 @@ export class DeleteBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -4088,8 +4805,10 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/bookmarks/{bookmarkName}"
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteBookmarkOnline.');
@@ -4117,18 +4836,37 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -4206,7 +4944,10 @@ export class DeleteBookmarksRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteBookmarks.');
@@ -4226,13 +4967,35 @@ export class DeleteBookmarksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -4298,8 +5061,10 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/bookmarks"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteBookmarksOnline.');
@@ -4317,18 +5082,37 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -4418,7 +5202,10 @@ export class DeleteBorderRequest implements RequestInterface {
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteBorder.');
@@ -4448,13 +5235,35 @@ export class DeleteBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -4463,7 +5272,7 @@ export class DeleteBorderRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BorderResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BorderResponse");
 	}
 }
 
@@ -4532,8 +5341,10 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteBorderOnline.');
@@ -4561,18 +5372,37 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -4585,7 +5415,7 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
         const result = new DeleteBorderOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BorderResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "BorderResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -4665,7 +5495,10 @@ export class DeleteBordersRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteBorders.');
@@ -4685,13 +5518,35 @@ export class DeleteBordersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -4700,7 +5555,7 @@ export class DeleteBordersRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BordersResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BordersResponse");
 	}
 }
 
@@ -4763,8 +5618,10 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/borders"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteBordersOnline.');
@@ -4782,18 +5639,37 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -4806,7 +5682,7 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
         const result = new DeleteBordersOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BordersResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "BordersResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -4886,7 +5762,10 @@ export class DeleteCommentRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteComment.');
@@ -4916,13 +5795,35 @@ export class DeleteCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -4994,8 +5895,10 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteCommentOnline.');
@@ -5023,18 +5926,37 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -5112,7 +6034,10 @@ export class DeleteCommentsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteComments.');
@@ -5132,13 +6057,35 @@ export class DeleteCommentsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -5204,8 +6151,10 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/comments"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteCommentsOnline.');
@@ -5223,18 +6172,37 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -5318,7 +6286,10 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteCustomXmlPart.');
@@ -5348,13 +6319,35 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -5426,8 +6419,10 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteCustomXmlPartOnline.');
@@ -5455,18 +6450,37 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -5544,7 +6558,10 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteCustomXmlParts.');
@@ -5564,13 +6581,35 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -5636,8 +6675,10 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/customXmlParts"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteCustomXmlPartsOnline.');
@@ -5655,18 +6696,37 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -5750,7 +6810,10 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteDocumentProperty.');
@@ -5780,13 +6843,35 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -5858,8 +6943,10 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteDocumentPropertyOnline.');
@@ -5887,18 +6974,37 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -5988,7 +7094,10 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteDrawingObject.');
@@ -6018,13 +7127,35 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -6102,8 +7233,10 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteDrawingObjectOnline.');
@@ -6131,18 +7264,37 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -6232,7 +7384,10 @@ export class DeleteFieldRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteField.');
@@ -6262,13 +7417,35 @@ export class DeleteFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -6346,8 +7523,10 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteFieldOnline.');
@@ -6375,18 +7554,37 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -6470,7 +7668,10 @@ export class DeleteFieldsRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteFields.');
@@ -6490,13 +7691,35 @@ export class DeleteFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -6568,8 +7791,10 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteFieldsOnline.');
@@ -6587,18 +7812,37 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -6646,7 +7890,10 @@ export class DeleteFileRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.path' is not undefined
         if (this.path === undefined) {
             throw new Error('Required parameter "this.path" was undefined when calling deleteFile.');
@@ -6660,13 +7907,35 @@ export class DeleteFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -6713,7 +7982,10 @@ export class DeleteFolderRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.path' is not undefined
         if (this.path === undefined) {
             throw new Error('Required parameter "this.path" was undefined when calling deleteFolder.');
@@ -6727,13 +7999,35 @@ export class DeleteFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "recursive", this.recursive, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -6822,7 +8116,10 @@ export class DeleteFootnoteRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteFootnote.');
@@ -6852,13 +8149,35 @@ export class DeleteFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -6936,8 +8255,10 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteFootnoteOnline.');
@@ -6965,18 +8286,37 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -7066,7 +8406,10 @@ export class DeleteFormFieldRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteFormField.');
@@ -7096,13 +8439,35 @@ export class DeleteFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -7180,8 +8545,10 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteFormFieldOnline.');
@@ -7209,18 +8576,37 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -7310,7 +8696,10 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteHeaderFooter.');
@@ -7345,13 +8734,35 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -7429,8 +8840,10 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteHeaderFooterOnline.');
@@ -7463,18 +8876,37 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -7563,7 +8995,10 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteHeadersFooters.');
@@ -7589,13 +9024,35 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -7672,8 +9129,10 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteHeadersFootersOnline.');
@@ -7697,18 +9156,37 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -7786,7 +9264,10 @@ export class DeleteMacrosRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/macros"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteMacros.');
@@ -7806,13 +9287,35 @@ export class DeleteMacrosRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -7878,8 +9381,10 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/macros"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteMacrosOnline.');
@@ -7897,18 +9402,37 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -7998,7 +9522,10 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteOfficeMathObject.');
@@ -8028,13 +9555,35 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -8112,8 +9661,10 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteOfficeMathObjectOnline.');
@@ -8141,18 +9692,37 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -8242,7 +9812,10 @@ export class DeleteParagraphRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteParagraph.');
@@ -8272,13 +9845,35 @@ export class DeleteParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -8367,7 +9962,10 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteParagraphListFormat.');
@@ -8397,13 +9995,35 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -8412,7 +10032,7 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphListFormatResponse");
 	}
 }
 
@@ -8481,8 +10101,10 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteParagraphListFormatOnline.');
@@ -8510,18 +10132,37 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -8534,7 +10175,7 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
         const result = new DeleteParagraphListFormatOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphListFormatResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ParagraphListFormatResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -8609,8 +10250,10 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteParagraphOnline.');
@@ -8638,18 +10281,37 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -8734,7 +10396,10 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteParagraphTabStop.');
@@ -8773,13 +10438,35 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -8788,7 +10475,7 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TabStopsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
 }
 
@@ -8852,8 +10539,10 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteParagraphTabStopOnline.');
@@ -8890,18 +10579,37 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -8914,7 +10622,7 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         const result = new DeleteParagraphTabStopOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TabStopsResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -9000,7 +10708,10 @@ export class DeleteRunRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteRun.');
@@ -9035,13 +10746,35 @@ export class DeleteRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -9119,8 +10852,10 @@ export class DeleteRunOnlineRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteRunOnline.');
@@ -9153,18 +10888,37 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -9248,7 +11002,10 @@ export class DeleteSectionRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteSection.');
@@ -9278,13 +11035,35 @@ export class DeleteSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -9356,8 +11135,10 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/sections/{sectionIndex}"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteSectionOnline.');
@@ -9385,18 +11166,37 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -9486,7 +11286,10 @@ export class DeleteTableRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteTable.');
@@ -9516,13 +11319,35 @@ export class DeleteTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -9611,7 +11436,10 @@ export class DeleteTableCellRequest implements RequestInterface {
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteTableCell.');
@@ -9646,13 +11474,35 @@ export class DeleteTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -9730,8 +11580,10 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteTableCellOnline.');
@@ -9764,18 +11616,37 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -9854,8 +11725,10 @@ export class DeleteTableOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteTableOnline.');
@@ -9883,18 +11756,37 @@ export class DeleteTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -9984,7 +11876,10 @@ export class DeleteTableRowRequest implements RequestInterface {
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteTableRow.');
@@ -10019,13 +11914,35 @@ export class DeleteTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -10103,8 +12020,10 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteTableRowOnline.');
@@ -10137,18 +12056,37 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -10226,7 +12164,10 @@ export class DeleteWatermarkRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/deleteLast"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling deleteWatermark.');
@@ -10246,13 +12187,35 @@ export class DeleteWatermarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -10261,7 +12224,7 @@ export class DeleteWatermarkRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -10318,8 +12281,10 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/deleteLast"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling deleteWatermarkOnline.');
@@ -10337,18 +12302,37 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -10361,7 +12345,7 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
         const result = new DeleteWatermarkOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -10405,7 +12389,10 @@ export class DownloadFileRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.path' is not undefined
         if (this.path === undefined) {
             throw new Error('Required parameter "this.path" was undefined when calling downloadFile.');
@@ -10419,13 +12406,35 @@ export class DownloadFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -10522,8 +12531,10 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/MailMerge"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling executeMailMerge.');
@@ -10545,21 +12556,42 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", this.useWholeParagraphAsRegion, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.data !== undefined) {
-            formParams.Data = ObjectSerializer.serialize(this.data, "string");
+            formParams.push(['Data', this.data, 'text/plain']);
         }
         if (this.options !== undefined) {
-            formParams.Options = JSON.stringify(this.options);
+            let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
+            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            this.options.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -10569,7 +12601,7 @@ export class ExecuteMailMergeRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -10621,8 +12653,10 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/MailMerge"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.template' is not undefined
         if (this.template === undefined) {
             throw new Error('Required parameter "this.template" was undefined when calling executeMailMergeOnline.');
@@ -10647,24 +12681,45 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
-            formParams.Template = this.template;
+            formParams.push(['Template', this.template, 'application/octet-stream']);
         }
         if (this.data !== undefined) {
-            formParams.Data = this.data;
+            formParams.push(['Data', this.data, 'application/octet-stream']);
         }
         if (this.options !== undefined) {
-            formParams.Options = JSON.stringify(this.options);
+            let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
+            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            this.options.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -10701,16 +12756,41 @@ export class GetAvailableFontsRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/fonts/available"
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -10719,7 +12799,7 @@ export class GetAvailableFontsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "AvailableFontsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "AvailableFontsResponse");
 	}
 }
 
@@ -10778,7 +12858,10 @@ export class GetBookmarkByNameRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getBookmarkByName.');
@@ -10805,13 +12888,35 @@ export class GetBookmarkByNameRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -10820,7 +12925,7 @@ export class GetBookmarkByNameRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BookmarkResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarkResponse");
 	}
 }
 
@@ -10868,8 +12973,10 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/bookmarks/{bookmarkName}"
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getBookmarkByNameOnline.');
@@ -10894,18 +13001,37 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -10915,7 +13041,7 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BookmarkResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarkResponse");
 	}
 }
 
@@ -10968,7 +13094,10 @@ export class GetBookmarksRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getBookmarks.');
@@ -10985,13 +13114,35 @@ export class GetBookmarksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -11000,7 +13151,7 @@ export class GetBookmarksRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BookmarksResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarksResponse");
 	}
 }
 
@@ -11042,8 +13193,10 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/bookmarks"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getBookmarksOnline.');
@@ -11058,18 +13211,37 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -11079,7 +13251,7 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BookmarksResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarksResponse");
 	}
 }
 
@@ -11144,7 +13316,10 @@ export class GetBorderRequest implements RequestInterface {
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getBorder.');
@@ -11171,13 +13346,35 @@ export class GetBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -11186,7 +13383,7 @@ export class GetBorderRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BorderResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BorderResponse");
 	}
 }
 
@@ -11240,8 +13437,10 @@ export class GetBorderOnlineRequest implements RequestInterface {
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getBorderOnline.');
@@ -11266,18 +13465,37 @@ export class GetBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -11287,7 +13505,7 @@ export class GetBorderOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BorderResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BorderResponse");
 	}
 }
 
@@ -11346,7 +13564,10 @@ export class GetBordersRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getBorders.');
@@ -11363,13 +13584,35 @@ export class GetBordersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -11378,7 +13621,7 @@ export class GetBordersRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BordersResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BordersResponse");
 	}
 }
 
@@ -11426,8 +13669,10 @@ export class GetBordersOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/borders"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getBordersOnline.');
@@ -11442,18 +13687,37 @@ export class GetBordersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -11463,7 +13727,7 @@ export class GetBordersOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BordersResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BordersResponse");
 	}
 }
 
@@ -11522,7 +13786,10 @@ export class GetCommentRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getComment.');
@@ -11549,13 +13816,35 @@ export class GetCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -11564,7 +13853,7 @@ export class GetCommentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CommentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentResponse");
 	}
 }
 
@@ -11612,8 +13901,10 @@ export class GetCommentOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getCommentOnline.');
@@ -11638,18 +13929,37 @@ export class GetCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -11659,7 +13969,7 @@ export class GetCommentOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CommentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentResponse");
 	}
 }
 
@@ -11712,7 +14022,10 @@ export class GetCommentsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getComments.');
@@ -11729,13 +14042,35 @@ export class GetCommentsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -11744,7 +14079,7 @@ export class GetCommentsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CommentsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentsResponse");
 	}
 }
 
@@ -11786,8 +14121,10 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/comments"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getCommentsOnline.');
@@ -11802,18 +14139,37 @@ export class GetCommentsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -11823,7 +14179,7 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CommentsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentsResponse");
 	}
 }
 
@@ -11882,7 +14238,10 @@ export class GetCustomXmlPartRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getCustomXmlPart.');
@@ -11909,13 +14268,35 @@ export class GetCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -11924,7 +14305,7 @@ export class GetCustomXmlPartRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartResponse");
 	}
 }
 
@@ -11972,8 +14353,10 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getCustomXmlPartOnline.');
@@ -11998,18 +14381,37 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -12019,7 +14421,7 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartResponse");
 	}
 }
 
@@ -12072,7 +14474,10 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getCustomXmlParts.');
@@ -12089,13 +14494,35 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -12104,7 +14531,7 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CustomXmlPartsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartsResponse");
 	}
 }
 
@@ -12146,8 +14573,10 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/customXmlParts"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getCustomXmlPartsOnline.');
@@ -12162,18 +14591,37 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -12183,7 +14631,7 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CustomXmlPartsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartsResponse");
 	}
 }
 
@@ -12236,7 +14684,10 @@ export class GetDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{documentName}"
             .replace("/{" + "documentName" + "}", (this.documentName !== null && this.documentName !== undefined) ? "/" + String(this.documentName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.documentName' is not undefined
         if (this.documentName === undefined) {
             throw new Error('Required parameter "this.documentName" was undefined when calling getDocument.');
@@ -12253,13 +14704,35 @@ export class GetDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -12268,7 +14741,7 @@ export class GetDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -12333,7 +14806,10 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentDrawingObjectByIndex.');
@@ -12360,13 +14836,35 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -12375,7 +14873,7 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectResponse");
 	}
 }
 
@@ -12429,8 +14927,10 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentDrawingObjectByIndexOnline.');
@@ -12455,18 +14955,37 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -12476,7 +14995,7 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectResponse");
 	}
 }
 
@@ -12541,7 +15060,10 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentDrawingObjectImageData.');
@@ -12568,13 +15090,35 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -12637,8 +15181,10 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentDrawingObjectImageDataOnline.');
@@ -12663,18 +15209,37 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -12749,7 +15314,10 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentDrawingObjectOleData.');
@@ -12776,13 +15344,35 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -12845,8 +15435,10 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentDrawingObjectOleDataOnline.');
@@ -12871,18 +15463,37 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -12951,7 +15562,10 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentDrawingObjects.');
@@ -12968,13 +15582,35 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -12983,7 +15619,7 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DrawingObjectsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectsResponse");
 	}
 }
 
@@ -13031,8 +15667,10 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/drawingObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentDrawingObjectsOnline.');
@@ -13047,18 +15685,37 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -13068,7 +15725,7 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DrawingObjectsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectsResponse");
 	}
 }
 
@@ -13126,7 +15783,10 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/mailMerge/FieldNames"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentFieldNames.');
@@ -13144,13 +15804,35 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -13159,7 +15841,7 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FieldNamesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldNamesResponse");
 	}
 }
 
@@ -13206,8 +15888,10 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/mailMerge/FieldNames"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.template' is not undefined
         if (this.template === undefined) {
             throw new Error('Required parameter "this.template" was undefined when calling getDocumentFieldNamesOnline.');
@@ -13223,18 +15907,37 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
         if (this.template !== undefined) {
-            formParams.Template = this.template;
+            formParams.push(['Template', this.template, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -13244,7 +15947,7 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FieldNamesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldNamesResponse");
 	}
 }
 
@@ -13303,7 +16006,10 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "hyperlinkIndex" + "}", (this.hyperlinkIndex !== null && this.hyperlinkIndex !== undefined) ? "/" + String(this.hyperlinkIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentHyperlinkByIndex.');
@@ -13330,13 +16036,35 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -13345,7 +16073,7 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HyperlinkResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HyperlinkResponse");
 	}
 }
 
@@ -13393,8 +16121,10 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/hyperlinks/{hyperlinkIndex}"
             .replace("/{" + "hyperlinkIndex" + "}", (this.hyperlinkIndex !== null && this.hyperlinkIndex !== undefined) ? "/" + String(this.hyperlinkIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentHyperlinkByIndexOnline.');
@@ -13419,18 +16149,37 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -13440,7 +16189,7 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HyperlinkResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HyperlinkResponse");
 	}
 }
 
@@ -13493,7 +16242,10 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/hyperlinks"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentHyperlinks.');
@@ -13510,13 +16262,35 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -13525,7 +16299,7 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HyperlinksResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HyperlinksResponse");
 	}
 }
 
@@ -13567,8 +16341,10 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/hyperlinks"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentHyperlinksOnline.');
@@ -13583,18 +16359,37 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -13604,7 +16399,7 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HyperlinksResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HyperlinksResponse");
 	}
 }
 
@@ -13657,7 +16452,10 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/documentProperties"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentProperties.');
@@ -13674,13 +16472,35 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -13689,7 +16509,7 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentPropertiesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertiesResponse");
 	}
 }
 
@@ -13731,8 +16551,10 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/documentProperties"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentPropertiesOnline.');
@@ -13747,18 +16569,37 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -13768,7 +16609,7 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentPropertiesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertiesResponse");
 	}
 }
 
@@ -13827,7 +16668,10 @@ export class GetDocumentPropertyRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentProperty.');
@@ -13854,13 +16698,35 @@ export class GetDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -13869,7 +16735,7 @@ export class GetDocumentPropertyRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertyResponse");
 	}
 }
 
@@ -13917,8 +16783,10 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/documentProperties/{propertyName}"
             .replace("/{" + "propertyName" + "}", (this.propertyName !== null && this.propertyName !== undefined) ? "/" + String(this.propertyName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentPropertyOnline.');
@@ -13943,18 +16811,37 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -13964,7 +16851,7 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentPropertyResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertyResponse");
 	}
 }
 
@@ -14017,7 +16904,10 @@ export class GetDocumentProtectionRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentProtection.');
@@ -14034,13 +16924,35 @@ export class GetDocumentProtectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -14049,7 +16961,7 @@ export class GetDocumentProtectionRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ProtectionDataResponse");
 	}
 }
 
@@ -14091,8 +17003,10 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/protection"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentProtectionOnline.');
@@ -14107,18 +17021,37 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -14128,7 +17061,7 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ProtectionDataResponse");
 	}
 }
 
@@ -14196,7 +17129,10 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/statistics"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentStatistics.');
@@ -14216,13 +17152,35 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -14231,7 +17189,7 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StatDataResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StatDataResponse");
 	}
 }
 
@@ -14288,8 +17246,10 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/statistics"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getDocumentStatisticsOnline.');
@@ -14307,18 +17267,37 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -14328,7 +17307,7 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StatDataResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StatDataResponse");
 	}
 }
 
@@ -14396,7 +17375,10 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getDocumentWithFormat.');
@@ -14426,13 +17408,35 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -14506,7 +17510,10 @@ export class GetFieldRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getField.');
@@ -14533,13 +17540,35 @@ export class GetFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -14548,7 +17577,7 @@ export class GetFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FieldResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldResponse");
 	}
 }
 
@@ -14602,8 +17631,10 @@ export class GetFieldOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getFieldOnline.');
@@ -14628,18 +17659,37 @@ export class GetFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -14649,7 +17699,7 @@ export class GetFieldOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FieldResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldResponse");
 	}
 }
 
@@ -14708,7 +17758,10 @@ export class GetFieldsRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getFields.');
@@ -14725,13 +17778,35 @@ export class GetFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -14740,7 +17815,7 @@ export class GetFieldsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FieldsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldsResponse");
 	}
 }
 
@@ -14788,8 +17863,10 @@ export class GetFieldsOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getFieldsOnline.');
@@ -14804,18 +17881,37 @@ export class GetFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -14825,7 +17921,7 @@ export class GetFieldsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FieldsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldsResponse");
 	}
 }
 
@@ -14858,7 +17954,10 @@ export class GetFilesListRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.path' is not undefined
         if (this.path === undefined) {
             throw new Error('Required parameter "this.path" was undefined when calling getFilesList.');
@@ -14871,13 +17970,35 @@ export class GetFilesListRequest implements RequestInterface {
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -14886,7 +18007,7 @@ export class GetFilesListRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FilesList");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FilesList");
 	}
 }
 
@@ -14951,7 +18072,10 @@ export class GetFootnoteRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getFootnote.');
@@ -14978,13 +18102,35 @@ export class GetFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -14993,7 +18139,7 @@ export class GetFootnoteRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FootnoteResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnoteResponse");
 	}
 }
 
@@ -15047,8 +18193,10 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getFootnoteOnline.');
@@ -15073,18 +18221,37 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -15094,7 +18261,7 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FootnoteResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnoteResponse");
 	}
 }
 
@@ -15153,7 +18320,10 @@ export class GetFootnotesRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getFootnotes.');
@@ -15170,13 +18340,35 @@ export class GetFootnotesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -15185,7 +18377,7 @@ export class GetFootnotesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FootnotesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnotesResponse");
 	}
 }
 
@@ -15233,8 +18425,10 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/footnotes"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getFootnotesOnline.');
@@ -15249,18 +18443,37 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -15270,7 +18483,7 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FootnotesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnotesResponse");
 	}
 }
 
@@ -15335,7 +18548,10 @@ export class GetFormFieldRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getFormField.');
@@ -15362,13 +18578,35 @@ export class GetFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -15377,7 +18615,7 @@ export class GetFormFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FormFieldResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldResponse");
 	}
 }
 
@@ -15431,8 +18669,10 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getFormFieldOnline.');
@@ -15457,18 +18697,37 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -15478,7 +18737,7 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FormFieldResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldResponse");
 	}
 }
 
@@ -15537,7 +18796,10 @@ export class GetFormFieldsRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getFormFields.');
@@ -15554,13 +18816,35 @@ export class GetFormFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -15569,7 +18853,7 @@ export class GetFormFieldsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FormFieldsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldsResponse");
 	}
 }
 
@@ -15617,8 +18901,10 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/formfields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getFormFieldsOnline.');
@@ -15633,18 +18919,37 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -15654,7 +18959,7 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FormFieldsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldsResponse");
 	}
 }
 
@@ -15718,7 +19023,10 @@ export class GetHeaderFooterRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getHeaderFooter.');
@@ -15746,13 +19054,35 @@ export class GetHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -15761,7 +19091,7 @@ export class GetHeaderFooterRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
 }
 
@@ -15831,7 +19161,10 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getHeaderFooterOfSection.');
@@ -15869,13 +19202,35 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -15884,7 +19239,7 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
 }
 
@@ -15943,8 +19298,10 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getHeaderFooterOfSectionOnline.');
@@ -15980,18 +19337,37 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -16001,7 +19377,7 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
 }
 
@@ -16054,8 +19430,10 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/headersfooters/{headerFooterIndex}"
             .replace("/{" + "headerFooterIndex" + "}", (this.headerFooterIndex !== null && this.headerFooterIndex !== undefined) ? "/" + String(this.headerFooterIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getHeaderFooterOnline.');
@@ -16081,18 +19459,37 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -16102,7 +19499,7 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
 }
 
@@ -16166,7 +19563,10 @@ export class GetHeaderFootersRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getHeaderFooters.');
@@ -16189,13 +19589,35 @@ export class GetHeaderFootersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -16204,7 +19626,7 @@ export class GetHeaderFootersRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFootersResponse");
 	}
 }
 
@@ -16257,8 +19679,10 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getHeaderFootersOnline.');
@@ -16279,18 +19703,37 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -16300,7 +19743,7 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HeaderFootersResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFootersResponse");
 	}
 }
 
@@ -16323,15 +19766,40 @@ export class GetInfoRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         const localVarPath = configuration.getApiBaseUrl() + "/words/info"
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -16340,7 +19808,7 @@ export class GetInfoRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "InfoResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "InfoResponse");
 	}
 }
 
@@ -16399,7 +19867,10 @@ export class GetListRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getList.');
@@ -16426,13 +19897,35 @@ export class GetListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -16441,7 +19934,7 @@ export class GetListRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ListResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
 }
 
@@ -16489,8 +19982,10 @@ export class GetListOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/lists/{listId}"
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getListOnline.');
@@ -16515,18 +20010,37 @@ export class GetListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -16536,7 +20050,7 @@ export class GetListOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ListResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
 }
 
@@ -16589,7 +20103,10 @@ export class GetListsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getLists.');
@@ -16606,13 +20123,35 @@ export class GetListsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -16621,7 +20160,7 @@ export class GetListsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ListsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListsResponse");
 	}
 }
 
@@ -16663,8 +20202,10 @@ export class GetListsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/lists"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getListsOnline.');
@@ -16679,18 +20220,37 @@ export class GetListsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -16700,7 +20260,7 @@ export class GetListsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ListsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListsResponse");
 	}
 }
 
@@ -16765,7 +20325,10 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getOfficeMathObject.');
@@ -16792,13 +20355,35 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -16807,7 +20392,7 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "OfficeMathObjectResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "OfficeMathObjectResponse");
 	}
 }
 
@@ -16861,8 +20446,10 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getOfficeMathObjectOnline.');
@@ -16887,18 +20474,37 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -16908,7 +20514,7 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "OfficeMathObjectResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "OfficeMathObjectResponse");
 	}
 }
 
@@ -16967,7 +20573,10 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getOfficeMathObjects.');
@@ -16984,13 +20593,35 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -16999,7 +20630,7 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "OfficeMathObjectsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "OfficeMathObjectsResponse");
 	}
 }
 
@@ -17047,8 +20678,10 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/OfficeMathObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getOfficeMathObjectsOnline.');
@@ -17063,18 +20696,37 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -17084,7 +20736,7 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "OfficeMathObjectsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "OfficeMathObjectsResponse");
 	}
 }
 
@@ -17149,7 +20801,10 @@ export class GetParagraphRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getParagraph.');
@@ -17176,13 +20831,35 @@ export class GetParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -17191,7 +20868,7 @@ export class GetParagraphRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphResponse");
 	}
 }
 
@@ -17256,7 +20933,10 @@ export class GetParagraphFormatRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getParagraphFormat.');
@@ -17283,13 +20963,35 @@ export class GetParagraphFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -17298,7 +21000,7 @@ export class GetParagraphFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphFormatResponse");
 	}
 }
 
@@ -17352,8 +21054,10 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getParagraphFormatOnline.');
@@ -17378,18 +21082,37 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -17399,7 +21122,7 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphFormatResponse");
 	}
 }
 
@@ -17464,7 +21187,10 @@ export class GetParagraphListFormatRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getParagraphListFormat.');
@@ -17491,13 +21217,35 @@ export class GetParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -17506,7 +21254,7 @@ export class GetParagraphListFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphListFormatResponse");
 	}
 }
 
@@ -17560,8 +21308,10 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getParagraphListFormatOnline.');
@@ -17586,18 +21336,37 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -17607,7 +21376,7 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphListFormatResponse");
 	}
 }
 
@@ -17661,8 +21430,10 @@ export class GetParagraphOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getParagraphOnline.');
@@ -17687,18 +21458,37 @@ export class GetParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -17708,7 +21498,7 @@ export class GetParagraphOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphResponse");
 	}
 }
 
@@ -17767,7 +21557,10 @@ export class GetParagraphsRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getParagraphs.');
@@ -17784,13 +21577,35 @@ export class GetParagraphsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -17799,7 +21614,7 @@ export class GetParagraphsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphLinkCollectionResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphLinkCollectionResponse");
 	}
 }
 
@@ -17847,8 +21662,10 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/paragraphs"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getParagraphsOnline.');
@@ -17863,18 +21680,37 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -17884,7 +21720,7 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphLinkCollectionResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphLinkCollectionResponse");
 	}
 }
 
@@ -17949,7 +21785,10 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getParagraphTabStops.');
@@ -17976,13 +21815,35 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -17991,7 +21852,7 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TabStopsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
 }
 
@@ -18045,8 +21906,10 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getParagraphTabStopsOnline.');
@@ -18071,18 +21934,37 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -18092,7 +21974,7 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TabStopsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
 }
 
@@ -18115,15 +21997,40 @@ export class GetPublicKeyRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         const localVarPath = configuration.getApiBaseUrl() + "/words/encryption/publickey"
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -18132,7 +22039,7 @@ export class GetPublicKeyRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "PublicKeyResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "PublicKeyResponse");
 	}
 }
 
@@ -18197,7 +22104,10 @@ export class GetRangeTextRequest implements RequestInterface {
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getRangeText.');
@@ -18224,13 +22134,35 @@ export class GetRangeTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -18239,7 +22171,7 @@ export class GetRangeTextRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RangeTextResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RangeTextResponse");
 	}
 }
 
@@ -18293,8 +22225,10 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getRangeTextOnline.');
@@ -18319,18 +22253,37 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -18340,7 +22293,7 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RangeTextResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RangeTextResponse");
 	}
 }
 
@@ -18405,7 +22358,10 @@ export class GetRunRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getRun.');
@@ -18437,13 +22393,35 @@ export class GetRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -18452,7 +22430,7 @@ export class GetRunRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RunResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunResponse");
 	}
 }
 
@@ -18517,7 +22495,10 @@ export class GetRunFontRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getRunFont.');
@@ -18549,13 +22530,35 @@ export class GetRunFontRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -18564,7 +22567,7 @@ export class GetRunFontRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FontResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FontResponse");
 	}
 }
 
@@ -18618,8 +22621,10 @@ export class GetRunFontOnlineRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getRunFontOnline.');
@@ -18649,18 +22654,37 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -18670,7 +22694,7 @@ export class GetRunFontOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FontResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FontResponse");
 	}
 }
 
@@ -18724,8 +22748,10 @@ export class GetRunOnlineRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getRunOnline.');
@@ -18755,18 +22781,37 @@ export class GetRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -18776,7 +22821,7 @@ export class GetRunOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RunResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunResponse");
 	}
 }
 
@@ -18835,7 +22880,10 @@ export class GetRunsRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getRuns.');
@@ -18857,13 +22905,35 @@ export class GetRunsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -18872,7 +22942,7 @@ export class GetRunsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RunsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunsResponse");
 	}
 }
 
@@ -18920,8 +22990,10 @@ export class GetRunsOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{paragraphPath}/runs"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getRunsOnline.');
@@ -18941,18 +23013,37 @@ export class GetRunsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -18962,7 +23053,7 @@ export class GetRunsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RunsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunsResponse");
 	}
 }
 
@@ -19021,7 +23112,10 @@ export class GetSectionRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getSection.');
@@ -19048,13 +23142,35 @@ export class GetSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -19063,7 +23179,7 @@ export class GetSectionRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SectionResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionResponse");
 	}
 }
 
@@ -19111,8 +23227,10 @@ export class GetSectionOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getSectionOnline.');
@@ -19137,18 +23255,37 @@ export class GetSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -19158,7 +23295,7 @@ export class GetSectionOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SectionResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionResponse");
 	}
 }
 
@@ -19217,7 +23354,10 @@ export class GetSectionPageSetupRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getSectionPageSetup.');
@@ -19244,13 +23384,35 @@ export class GetSectionPageSetupRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -19259,7 +23421,7 @@ export class GetSectionPageSetupRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionPageSetupResponse");
 	}
 }
 
@@ -19307,8 +23469,10 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getSectionPageSetupOnline.');
@@ -19333,18 +23497,37 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -19354,7 +23537,7 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionPageSetupResponse");
 	}
 }
 
@@ -19407,7 +23590,10 @@ export class GetSectionsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/sections"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getSections.');
@@ -19424,13 +23610,35 @@ export class GetSectionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -19439,7 +23647,7 @@ export class GetSectionsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SectionLinkCollectionResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionLinkCollectionResponse");
 	}
 }
 
@@ -19481,8 +23689,10 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/sections"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getSectionsOnline.');
@@ -19497,18 +23707,37 @@ export class GetSectionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -19518,7 +23747,7 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SectionLinkCollectionResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionLinkCollectionResponse");
 	}
 }
 
@@ -19577,7 +23806,10 @@ export class GetStyleRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getStyle.');
@@ -19604,13 +23836,35 @@ export class GetStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -19619,7 +23873,7 @@ export class GetStyleRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StyleResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
 }
 
@@ -19678,7 +23932,10 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getStyleFromDocumentElement.');
@@ -19705,13 +23962,35 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -19720,7 +23999,7 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StyleResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
 }
 
@@ -19768,8 +24047,10 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{styledNodePath}/style"
             .replace("/{" + "styledNodePath" + "}", (this.styledNodePath !== null && this.styledNodePath !== undefined) ? "/" + String(this.styledNodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getStyleFromDocumentElementOnline.');
@@ -19794,18 +24075,37 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -19815,7 +24115,7 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StyleResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
 }
 
@@ -19863,8 +24163,10 @@ export class GetStyleOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/styles/{styleName}"
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getStyleOnline.');
@@ -19889,18 +24191,37 @@ export class GetStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -19910,7 +24231,7 @@ export class GetStyleOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StyleResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
 }
 
@@ -19963,7 +24284,10 @@ export class GetStylesRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getStyles.');
@@ -19980,13 +24304,35 @@ export class GetStylesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -19995,7 +24341,7 @@ export class GetStylesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StylesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StylesResponse");
 	}
 }
 
@@ -20037,8 +24383,10 @@ export class GetStylesOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/styles"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getStylesOnline.');
@@ -20053,18 +24401,37 @@ export class GetStylesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -20074,7 +24441,7 @@ export class GetStylesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StylesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StylesResponse");
 	}
 }
 
@@ -20139,7 +24506,10 @@ export class GetTableRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getTable.');
@@ -20166,13 +24536,35 @@ export class GetTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -20181,7 +24573,7 @@ export class GetTableRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableResponse");
 	}
 }
 
@@ -20246,7 +24638,10 @@ export class GetTableCellRequest implements RequestInterface {
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getTableCell.');
@@ -20278,13 +24673,35 @@ export class GetTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -20293,7 +24710,7 @@ export class GetTableCellRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableCellResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellResponse");
 	}
 }
 
@@ -20358,7 +24775,10 @@ export class GetTableCellFormatRequest implements RequestInterface {
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getTableCellFormat.');
@@ -20390,13 +24810,35 @@ export class GetTableCellFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -20405,7 +24847,7 @@ export class GetTableCellFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellFormatResponse");
 	}
 }
 
@@ -20459,8 +24901,10 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getTableCellFormatOnline.');
@@ -20490,18 +24934,37 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -20511,7 +24974,7 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellFormatResponse");
 	}
 }
 
@@ -20565,8 +25028,10 @@ export class GetTableCellOnlineRequest implements RequestInterface {
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getTableCellOnline.');
@@ -20596,18 +25061,37 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -20617,7 +25101,7 @@ export class GetTableCellOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableCellResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellResponse");
 	}
 }
 
@@ -20671,8 +25155,10 @@ export class GetTableOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getTableOnline.');
@@ -20697,18 +25183,37 @@ export class GetTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -20718,7 +25223,7 @@ export class GetTableOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableResponse");
 	}
 }
 
@@ -20783,7 +25288,10 @@ export class GetTablePropertiesRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getTableProperties.');
@@ -20810,13 +25318,35 @@ export class GetTablePropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -20825,7 +25355,7 @@ export class GetTablePropertiesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TablePropertiesResponse");
 	}
 }
 
@@ -20879,8 +25409,10 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getTablePropertiesOnline.');
@@ -20905,18 +25437,37 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -20926,7 +25477,7 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TablePropertiesResponse");
 	}
 }
 
@@ -20991,7 +25542,10 @@ export class GetTableRowRequest implements RequestInterface {
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getTableRow.');
@@ -21023,13 +25577,35 @@ export class GetTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -21038,7 +25614,7 @@ export class GetTableRowRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableRowResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowResponse");
 	}
 }
 
@@ -21103,7 +25679,10 @@ export class GetTableRowFormatRequest implements RequestInterface {
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getTableRowFormat.');
@@ -21135,13 +25714,35 @@ export class GetTableRowFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -21150,7 +25751,7 @@ export class GetTableRowFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowFormatResponse");
 	}
 }
 
@@ -21204,8 +25805,10 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getTableRowFormatOnline.');
@@ -21235,18 +25838,37 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -21256,7 +25878,7 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowFormatResponse");
 	}
 }
 
@@ -21310,8 +25932,10 @@ export class GetTableRowOnlineRequest implements RequestInterface {
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getTableRowOnline.');
@@ -21341,18 +25965,37 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -21362,7 +26005,7 @@ export class GetTableRowOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableRowResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowResponse");
 	}
 }
 
@@ -21421,7 +26064,10 @@ export class GetTablesRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling getTables.');
@@ -21438,13 +26084,35 @@ export class GetTablesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -21453,7 +26121,7 @@ export class GetTablesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableLinkCollectionResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableLinkCollectionResponse");
 	}
 }
 
@@ -21501,8 +26169,10 @@ export class GetTablesOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/tables"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling getTablesOnline.');
@@ -21517,18 +26187,37 @@ export class GetTablesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -21538,7 +26227,7 @@ export class GetTablesOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableLinkCollectionResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableLinkCollectionResponse");
 	}
 }
 
@@ -21611,7 +26300,10 @@ export class InsertBookmarkRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/bookmarks"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertBookmark.');
@@ -21640,15 +26332,41 @@ export class InsertBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.bookmark !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.bookmark, this.bookmark.constructor.name === "Object" ? "importedBookmarkInsert.BookmarkInsert" : this.bookmark.constructor.name);
+            formParams.push(['Bookmark', JSON.stringify(_obj), 'application/json']);
+            this.bookmark.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.bookmark, this.bookmark.constructor.name === "Object" ? "importedBookmarkInsert.BookmarkInsert" : this.bookmark.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -21657,7 +26375,7 @@ export class InsertBookmarkRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BookmarkResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarkResponse");
 	}
 }
 
@@ -21719,8 +26437,10 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/bookmarks"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertBookmarkOnline.');
@@ -21748,21 +26468,42 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.bookmark !== undefined) {
-            formParams.Bookmark = JSON.stringify(ObjectSerializer.serialize(this.bookmark, this.bookmark.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.bookmark, this.bookmark.constructor.name === "Object" ? "importedBookmarkInsert.BookmarkInsert" : this.bookmark.constructor.name);
+            formParams.push(['Bookmark', JSON.stringify(_obj), 'application/json']);
+            this.bookmark.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -21775,7 +26516,7 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         const result = new InsertBookmarkOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BookmarkResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "BookmarkResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -21854,7 +26595,10 @@ export class InsertCommentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/comments"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertComment.');
@@ -21883,15 +26627,41 @@ export class InsertCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.comment !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentInsert.CommentInsert" : this.comment.constructor.name);
+            formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
+            this.comment.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentInsert.CommentInsert" : this.comment.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -21900,7 +26670,7 @@ export class InsertCommentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CommentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentResponse");
 	}
 }
 
@@ -21962,8 +26732,10 @@ export class InsertCommentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/comments"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertCommentOnline.');
@@ -21991,21 +26763,42 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.comment !== undefined) {
-            formParams.Comment = JSON.stringify(ObjectSerializer.serialize(this.comment, this.comment.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentInsert.CommentInsert" : this.comment.constructor.name);
+            formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
+            this.comment.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -22018,7 +26811,7 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         const result = new InsertCommentOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CommentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "CommentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -22097,7 +26890,10 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/customXmlParts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertCustomXmlPart.');
@@ -22126,15 +26922,41 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.customXmlPart !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartInsert.CustomXmlPartInsert" : this.customXmlPart.constructor.name);
+            formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
+            this.customXmlPart.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartInsert.CustomXmlPartInsert" : this.customXmlPart.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -22143,7 +26965,7 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartResponse");
 	}
 }
 
@@ -22205,8 +27027,10 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/customXmlParts"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertCustomXmlPartOnline.');
@@ -22234,21 +27058,42 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.customXmlPart !== undefined) {
-            formParams.CustomXmlPart = JSON.stringify(ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartInsert.CustomXmlPartInsert" : this.customXmlPart.constructor.name);
+            formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
+            this.customXmlPart.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -22261,7 +27106,7 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         const result = new InsertCustomXmlPartOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CustomXmlPartResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "CustomXmlPartResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -22351,8 +27196,10 @@ export class InsertDrawingObjectRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertDrawingObject.');
@@ -22392,21 +27239,42 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.drawingObject !== undefined) {
-            formParams.DrawingObject = JSON.stringify(this.drawingObject);
+            let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectInsert.DrawingObjectInsert" : this.drawingObject.constructor.name);
+            formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
+            this.drawingObject.collectFilesContent(filesContent);
         }
         if (this.imageFile !== undefined) {
-            formParams.ImageFile = this.imageFile;
+            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -22416,7 +27284,7 @@ export class InsertDrawingObjectRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectResponse");
 	}
 }
 
@@ -22489,8 +27357,10 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/drawingObjects"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertDrawingObjectOnline.');
@@ -22528,24 +27398,45 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.drawingObject !== undefined) {
-            formParams.DrawingObject = JSON.stringify(ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectInsert.DrawingObjectInsert" : this.drawingObject.constructor.name);
+            formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
+            this.drawingObject.collectFilesContent(filesContent);
         }
         if (this.imageFile !== undefined) {
-            formParams.ImageFile = this.imageFile;
+            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -22558,7 +27449,7 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         const result = new InsertDrawingObjectOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DrawingObjectResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DrawingObjectResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -22648,7 +27539,10 @@ export class InsertFieldRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertField.');
@@ -22678,15 +27572,41 @@ export class InsertFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
+        if (this.field !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : this.field.constructor.name);
+            formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
+            this.field.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : this.field.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -22695,7 +27615,7 @@ export class InsertFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FieldResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldResponse");
 	}
 }
 
@@ -22768,8 +27688,10 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/fields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertFieldOnline.');
@@ -22798,21 +27720,42 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.field !== undefined) {
-            formParams.Field = JSON.stringify(ObjectSerializer.serialize(this.field, this.field.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : this.field.constructor.name);
+            formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
+            this.field.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -22825,7 +27768,7 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         const result = new InsertFieldOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FieldResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "FieldResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -22910,7 +27853,10 @@ export class InsertFootnoteRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertFootnote.');
@@ -22939,15 +27885,41 @@ export class InsertFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.footnoteDto !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : this.footnoteDto.constructor.name);
+            formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
+            this.footnoteDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : this.footnoteDto.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -22956,7 +27928,7 @@ export class InsertFootnoteRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FootnoteResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnoteResponse");
 	}
 }
 
@@ -23024,8 +27996,10 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/footnotes"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertFootnoteOnline.');
@@ -23053,21 +28027,42 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.footnoteDto !== undefined) {
-            formParams.FootnoteDto = JSON.stringify(ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : this.footnoteDto.constructor.name);
+            formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
+            this.footnoteDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -23080,7 +28075,7 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         const result = new InsertFootnoteOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FootnoteResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "FootnoteResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -23170,7 +28165,10 @@ export class InsertFormFieldRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertFormField.');
@@ -23200,15 +28198,41 @@ export class InsertFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
+        if (this.formField !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
+            formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
+            this.formField.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -23217,7 +28241,7 @@ export class InsertFormFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FormFieldResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldResponse");
 	}
 }
 
@@ -23290,8 +28314,10 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/formfields"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertFormFieldOnline.');
@@ -23320,21 +28346,42 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.formField !== undefined) {
-            formParams.FormField = JSON.stringify(ObjectSerializer.serialize(this.formField, this.formField.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
+            formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
+            this.formField.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -23347,7 +28394,7 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         const result = new InsertFormFieldOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FormFieldResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "FormFieldResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -23432,7 +28479,10 @@ export class InsertHeaderFooterRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertHeaderFooter.');
@@ -23466,15 +28516,39 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.headerFooterType !== undefined) {
+            formParams.push(['HeaderFooterType', this.headerFooterType, 'text/plain']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.headerFooterType, this.headerFooterType.constructor.name === "Object" ? "string" : this.headerFooterType.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -23483,7 +28557,7 @@ export class InsertHeaderFooterRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "HeaderFooterResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
 }
 
@@ -23551,8 +28625,10 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{sectionPath}/headersfooters"
             .replace("/{" + "sectionPath" + "}", (this.sectionPath !== null && this.sectionPath !== undefined) ? "/" + String(this.sectionPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertHeaderFooterOnline.');
@@ -23585,21 +28661,40 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.headerFooterType !== undefined) {
-            formParams.HeaderFooterType = ObjectSerializer.serialize(this.headerFooterType, "string");
+            formParams.push(['HeaderFooterType', this.headerFooterType, 'text/plain']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -23612,7 +28707,7 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         const result = new InsertHeaderFooterOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "HeaderFooterResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "HeaderFooterResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -23691,7 +28786,10 @@ export class InsertListRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/lists"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertList.');
@@ -23720,15 +28818,41 @@ export class InsertListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.listInsert !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.listInsert, this.listInsert.constructor.name === "Object" ? "importedListInsert.ListInsert" : this.listInsert.constructor.name);
+            formParams.push(['ListInsert', JSON.stringify(_obj), 'application/json']);
+            this.listInsert.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.listInsert, this.listInsert.constructor.name === "Object" ? "importedListInsert.ListInsert" : this.listInsert.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -23737,7 +28861,7 @@ export class InsertListRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ListResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
 }
 
@@ -23799,8 +28923,10 @@ export class InsertListOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/lists"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertListOnline.');
@@ -23828,21 +28954,42 @@ export class InsertListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.listInsert !== undefined) {
-            formParams.ListInsert = JSON.stringify(ObjectSerializer.serialize(this.listInsert, this.listInsert.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.listInsert, this.listInsert.constructor.name === "Object" ? "importedListInsert.ListInsert" : this.listInsert.constructor.name);
+            formParams.push(['ListInsert', JSON.stringify(_obj), 'application/json']);
+            this.listInsert.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -23855,7 +29002,7 @@ export class InsertListOnlineRequest implements RequestInterface {
         const result = new InsertListOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ListResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -23936,7 +29083,10 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertOrUpdateParagraphTabStop.');
@@ -23973,15 +29123,41 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        if (this.tabStopInsertDto !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : this.tabStopInsertDto.constructor.name);
+            formParams.push(['TabStopInsertDto', JSON.stringify(_obj), 'application/json']);
+            this.tabStopInsertDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : this.tabStopInsertDto.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -23990,7 +29166,7 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TabStopsResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
 }
 
@@ -24054,8 +29230,10 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertOrUpdateParagraphTabStopOnline.');
@@ -24091,21 +29269,42 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.tabStopInsertDto !== undefined) {
-            formParams.TabStopInsertDto = JSON.stringify(ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : this.tabStopInsertDto.constructor.name);
+            formParams.push(['TabStopInsertDto', JSON.stringify(_obj), 'application/json']);
+            this.tabStopInsertDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -24118,7 +29317,7 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         const result = new InsertOrUpdateParagraphTabStopOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TabStopsResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TabStopsResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -24197,7 +29396,10 @@ export class InsertPageNumbersRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/PageNumbers"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertPageNumbers.');
@@ -24226,15 +29428,41 @@ export class InsertPageNumbersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.pageNumber !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.pageNumber, this.pageNumber.constructor.name === "Object" ? "importedPageNumber.PageNumber" : this.pageNumber.constructor.name);
+            formParams.push(['PageNumber', JSON.stringify(_obj), 'application/json']);
+            this.pageNumber.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.pageNumber, this.pageNumber.constructor.name === "Object" ? "importedPageNumber.PageNumber" : this.pageNumber.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -24243,7 +29471,7 @@ export class InsertPageNumbersRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -24305,8 +29533,10 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/PageNumbers"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertPageNumbersOnline.');
@@ -24334,21 +29564,42 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.pageNumber !== undefined) {
-            formParams.PageNumber = JSON.stringify(ObjectSerializer.serialize(this.pageNumber, this.pageNumber.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.pageNumber, this.pageNumber.constructor.name === "Object" ? "importedPageNumber.PageNumber" : this.pageNumber.constructor.name);
+            formParams.push(['PageNumber', JSON.stringify(_obj), 'application/json']);
+            this.pageNumber.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -24361,7 +29612,7 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         const result = new InsertPageNumbersOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -24451,7 +29702,10 @@ export class InsertParagraphRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertParagraph.');
@@ -24481,15 +29735,41 @@ export class InsertParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
+        if (this.paragraph !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : this.paragraph.constructor.name);
+            formParams.push(['Paragraph', JSON.stringify(_obj), 'application/json']);
+            this.paragraph.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : this.paragraph.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -24498,7 +29778,7 @@ export class InsertParagraphRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphResponse");
 	}
 }
 
@@ -24571,8 +29851,10 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/paragraphs"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertParagraphOnline.');
@@ -24601,21 +29883,42 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.paragraph !== undefined) {
-            formParams.Paragraph = JSON.stringify(ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : this.paragraph.constructor.name);
+            formParams.push(['Paragraph', JSON.stringify(_obj), 'application/json']);
+            this.paragraph.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -24628,7 +29931,7 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         const result = new InsertParagraphOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ParagraphResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -24718,7 +30021,10 @@ export class InsertRunRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertRun.');
@@ -24753,15 +30059,41 @@ export class InsertRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
+        if (this.run !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : this.run.constructor.name);
+            formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
+            this.run.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : this.run.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -24770,7 +30102,7 @@ export class InsertRunRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RunResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunResponse");
 	}
 }
 
@@ -24843,8 +30175,10 @@ export class InsertRunOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{paragraphPath}/runs"
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertRunOnline.');
@@ -24878,21 +30212,42 @@ export class InsertRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.run !== undefined) {
-            formParams.Run = JSON.stringify(ObjectSerializer.serialize(this.run, this.run.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : this.run.constructor.name);
+            formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
+            this.run.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -24905,7 +30260,7 @@ export class InsertRunOnlineRequest implements RequestInterface {
         const result = new InsertRunOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RunResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "RunResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -24984,7 +30339,10 @@ export class InsertStyleRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/styles/insert"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertStyle.');
@@ -25013,15 +30371,41 @@ export class InsertStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.styleInsert !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.styleInsert, this.styleInsert.constructor.name === "Object" ? "importedStyleInsert.StyleInsert" : this.styleInsert.constructor.name);
+            formParams.push(['StyleInsert', JSON.stringify(_obj), 'application/json']);
+            this.styleInsert.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.styleInsert, this.styleInsert.constructor.name === "Object" ? "importedStyleInsert.StyleInsert" : this.styleInsert.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -25030,7 +30414,7 @@ export class InsertStyleRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StyleResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
 }
 
@@ -25092,8 +30476,10 @@ export class InsertStyleOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/styles/insert"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertStyleOnline.');
@@ -25121,21 +30507,42 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.styleInsert !== undefined) {
-            formParams.StyleInsert = JSON.stringify(ObjectSerializer.serialize(this.styleInsert, this.styleInsert.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.styleInsert, this.styleInsert.constructor.name === "Object" ? "importedStyleInsert.StyleInsert" : this.styleInsert.constructor.name);
+            formParams.push(['StyleInsert', JSON.stringify(_obj), 'application/json']);
+            this.styleInsert.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -25148,7 +30555,7 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         const result = new InsertStyleOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "StyleResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -25233,7 +30640,10 @@ export class InsertTableRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertTable.');
@@ -25262,15 +30672,41 @@ export class InsertTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.table !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.table, this.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : this.table.constructor.name);
+            formParams.push(['Table', JSON.stringify(_obj), 'application/json']);
+            this.table.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.table, this.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : this.table.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -25279,7 +30715,7 @@ export class InsertTableRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableResponse");
 	}
 }
 
@@ -25358,7 +30794,10 @@ export class InsertTableCellRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertTableCell.');
@@ -25392,15 +30831,41 @@ export class InsertTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.cell !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.cell, this.cell.constructor.name === "Object" ? "importedTableCellInsert.TableCellInsert" : this.cell.constructor.name);
+            formParams.push(['Cell', JSON.stringify(_obj), 'application/json']);
+            this.cell.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.cell, this.cell.constructor.name === "Object" ? "importedTableCellInsert.TableCellInsert" : this.cell.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -25409,7 +30874,7 @@ export class InsertTableCellRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableCellResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellResponse");
 	}
 }
 
@@ -25477,8 +30942,10 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{tableRowPath}/cells"
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertTableCellOnline.');
@@ -25511,21 +30978,42 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.cell !== undefined) {
-            formParams.Cell = JSON.stringify(ObjectSerializer.serialize(this.cell, this.cell.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.cell, this.cell.constructor.name === "Object" ? "importedTableCellInsert.TableCellInsert" : this.cell.constructor.name);
+            formParams.push(['Cell', JSON.stringify(_obj), 'application/json']);
+            this.cell.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -25538,7 +31026,7 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         const result = new InsertTableCellOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableCellResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TableCellResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -25612,8 +31100,10 @@ export class InsertTableOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/tables"
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertTableOnline.');
@@ -25641,21 +31131,42 @@ export class InsertTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.table !== undefined) {
-            formParams.Table = JSON.stringify(ObjectSerializer.serialize(this.table, this.table.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.table, this.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : this.table.constructor.name);
+            formParams.push(['Table', JSON.stringify(_obj), 'application/json']);
+            this.table.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -25668,7 +31179,7 @@ export class InsertTableOnlineRequest implements RequestInterface {
         const result = new InsertTableOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TableResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -25753,7 +31264,10 @@ export class InsertTableRowRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertTableRow.');
@@ -25787,15 +31301,41 @@ export class InsertTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.row !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.row, this.row.constructor.name === "Object" ? "importedTableRowInsert.TableRowInsert" : this.row.constructor.name);
+            formParams.push(['Row', JSON.stringify(_obj), 'application/json']);
+            this.row.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.row, this.row.constructor.name === "Object" ? "importedTableRowInsert.TableRowInsert" : this.row.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -25804,7 +31344,7 @@ export class InsertTableRowRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableRowResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowResponse");
 	}
 }
 
@@ -25872,8 +31412,10 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{tablePath}/rows"
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertTableRowOnline.');
@@ -25906,21 +31448,42 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.row !== undefined) {
-            formParams.Row = JSON.stringify(ObjectSerializer.serialize(this.row, this.row.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.row, this.row.constructor.name === "Object" ? "importedTableRowInsert.TableRowInsert" : this.row.constructor.name);
+            formParams.push(['Row', JSON.stringify(_obj), 'application/json']);
+            this.row.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -25933,7 +31496,7 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         const result = new InsertTableRowOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableRowResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TableRowResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -26022,8 +31585,10 @@ export class InsertWatermarkImageRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/images"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertWatermarkImage.');
@@ -26045,18 +31610,37 @@ export class InsertWatermarkImageRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _encryptor);
         if (this.imageFile !== undefined) {
-            formParams.ImageFile = this.imageFile;
+            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -26066,7 +31650,7 @@ export class InsertWatermarkImageRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -26138,8 +31722,10 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/images"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertWatermarkImageOnline.');
@@ -26169,21 +31755,40 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.imageFile !== undefined) {
-            formParams.ImageFile = this.imageFile;
+            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -26196,7 +31801,7 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
         const result = new InsertWatermarkImageOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -26275,7 +31880,10 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/texts"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling insertWatermarkText.');
@@ -26304,15 +31912,41 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.watermarkText !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.watermarkText, this.watermarkText.constructor.name === "Object" ? "importedWatermarkText.WatermarkText" : this.watermarkText.constructor.name);
+            formParams.push(['WatermarkText', JSON.stringify(_obj), 'application/json']);
+            this.watermarkText.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.watermarkText, this.watermarkText.constructor.name === "Object" ? "importedWatermarkText.WatermarkText" : this.watermarkText.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -26321,7 +31955,7 @@ export class InsertWatermarkTextRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -26383,8 +32017,10 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/texts"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling insertWatermarkTextOnline.');
@@ -26412,21 +32048,42 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.watermarkText !== undefined) {
-            formParams.WatermarkText = JSON.stringify(ObjectSerializer.serialize(this.watermarkText, this.watermarkText.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.watermarkText, this.watermarkText.constructor.name === "Object" ? "importedWatermarkText.WatermarkText" : this.watermarkText.constructor.name);
+            formParams.push(['WatermarkText', JSON.stringify(_obj), 'application/json']);
+            this.watermarkText.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -26439,7 +32096,7 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         const result = new InsertWatermarkTextOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -26524,7 +32181,10 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling linkHeaderFootersToPrevious.');
@@ -26555,13 +32215,35 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mode", this.mode, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -26602,7 +32284,10 @@ export class LoadWebDocumentRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/loadWebDocument"
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.data' is not undefined
         if (this.data === undefined) {
             throw new Error('Required parameter "this.data" was undefined when calling loadWebDocument.');
@@ -26614,15 +32299,41 @@ export class LoadWebDocumentRequest implements RequestInterface {
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        if (this.data !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.data, this.data.constructor.name === "Object" ? "importedLoadWebDocumentData.LoadWebDocumentData" : this.data.constructor.name);
+            formParams.push(['Data', JSON.stringify(_obj), 'application/json']);
+            this.data.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.data, this.data.constructor.name === "Object" ? "importedLoadWebDocumentData.LoadWebDocumentData" : this.data.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -26631,7 +32342,7 @@ export class LoadWebDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SaveResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SaveResponse");
 	}
 }
 
@@ -26679,7 +32390,10 @@ export class MoveFileRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/move/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.destPath' is not undefined
         if (this.destPath === undefined) {
             throw new Error('Required parameter "this.destPath" was undefined when calling moveFile.');
@@ -26700,13 +32414,35 @@ export class MoveFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -26758,7 +32494,10 @@ export class MoveFolderRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/folder/move/{srcPath}"
             .replace("/{" + "srcPath" + "}", (this.srcPath !== null && this.srcPath !== undefined) ? "/" + String(this.srcPath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.destPath' is not undefined
         if (this.destPath === undefined) {
             throw new Error('Required parameter "this.destPath" was undefined when calling moveFolder.');
@@ -26778,13 +32517,35 @@ export class MoveFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -26866,7 +32627,10 @@ export class OptimizeDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/compatibility/optimize"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling optimizeDocument.');
@@ -26895,15 +32659,41 @@ export class OptimizeDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.options !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : this.options.constructor.name);
+            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            this.options.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : this.options.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -26974,8 +32764,10 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/compatibility/optimize"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling optimizeDocumentOnline.');
@@ -27003,21 +32795,42 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.options !== undefined) {
-            formParams.Options = JSON.stringify(this.options);
+            let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : this.options.constructor.name);
+            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            this.options.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -27090,7 +32903,10 @@ export class ProtectDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling protectDocument.');
@@ -27117,15 +32933,41 @@ export class ProtectDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        if (this.protectionRequest !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
+            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
+            this.protectionRequest.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -27134,7 +32976,7 @@ export class ProtectDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ProtectionDataResponse");
 	}
 }
 
@@ -27186,8 +33028,10 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/protection"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling protectDocumentOnline.');
@@ -27213,21 +33057,42 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.protectionRequest !== undefined) {
-            formParams.ProtectionRequest = JSON.stringify(ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
+            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
+            this.protectionRequest.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -27240,7 +33105,7 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         const result = new ProtectDocumentOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ProtectionDataResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ProtectionDataResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -27304,7 +33169,10 @@ export class RejectAllRevisionsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/revisions/rejectAll"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling rejectAllRevisions.');
@@ -27322,13 +33190,35 @@ export class RejectAllRevisionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -27337,7 +33227,7 @@ export class RejectAllRevisionsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RevisionsModificationResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RevisionsModificationResponse");
 	}
 }
 
@@ -27384,8 +33274,10 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/revisions/rejectAll"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling rejectAllRevisionsOnline.');
@@ -27401,18 +33293,37 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -27425,7 +33336,7 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
         const result = new RejectAllRevisionsOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RevisionsModificationResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "RevisionsModificationResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -27501,7 +33412,10 @@ export class RemoveRangeRequest implements RequestInterface {
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling removeRange.');
@@ -27529,13 +33443,35 @@ export class RemoveRangeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -27544,7 +33480,7 @@ export class RemoveRangeRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -27603,8 +33539,10 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling removeRangeOnline.');
@@ -27630,18 +33568,37 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -27654,7 +33611,7 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
         const result = new RemoveRangeOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -27740,7 +33697,10 @@ export class RenderDrawingObjectRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling renderDrawingObject.');
@@ -27780,13 +33740,35 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -27864,8 +33846,10 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling renderDrawingObjectOnline.');
@@ -27903,18 +33887,37 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -28004,7 +34007,10 @@ export class RenderMathObjectRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling renderMathObject.');
@@ -28044,13 +34050,35 @@ export class RenderMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -28128,8 +34156,10 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling renderMathObjectOnline.');
@@ -28167,18 +34197,37 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -28257,7 +34306,10 @@ export class RenderPageRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "pageIndex" + "}", (this.pageIndex !== null && this.pageIndex !== undefined) ? "/" + String(this.pageIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling renderPage.');
@@ -28296,13 +34348,35 @@ export class RenderPageRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -28369,8 +34443,10 @@ export class RenderPageOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/pages/{pageIndex}/render"
             .replace("/{" + "pageIndex" + "}", (this.pageIndex !== null && this.pageIndex !== undefined) ? "/" + String(this.pageIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling renderPageOnline.');
@@ -28407,18 +34483,37 @@ export class RenderPageOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -28508,7 +34603,10 @@ export class RenderParagraphRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling renderParagraph.');
@@ -28548,13 +34646,35 @@ export class RenderParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -28632,8 +34752,10 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling renderParagraphOnline.');
@@ -28671,18 +34793,37 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -28772,7 +34913,10 @@ export class RenderTableRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling renderTable.');
@@ -28812,13 +34956,35 @@ export class RenderTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -28896,8 +35062,10 @@ export class RenderTableOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling renderTableOnline.');
@@ -28935,18 +35103,37 @@ export class RenderTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -29029,7 +35216,10 @@ export class ReplaceTextRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/replaceText"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling replaceText.');
@@ -29058,15 +35248,41 @@ export class ReplaceTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.replaceText !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.replaceText, this.replaceText.constructor.name === "Object" ? "importedReplaceTextParameters.ReplaceTextParameters" : this.replaceText.constructor.name);
+            formParams.push(['ReplaceText', JSON.stringify(_obj), 'application/json']);
+            this.replaceText.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.replaceText, this.replaceText.constructor.name === "Object" ? "importedReplaceTextParameters.ReplaceTextParameters" : this.replaceText.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -29075,7 +35291,7 @@ export class ReplaceTextRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ReplaceTextResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ReplaceTextResponse");
 	}
 }
 
@@ -29137,8 +35353,10 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/replaceText"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling replaceTextOnline.');
@@ -29166,21 +35384,42 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.replaceText !== undefined) {
-            formParams.ReplaceText = JSON.stringify(ObjectSerializer.serialize(this.replaceText, this.replaceText.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.replaceText, this.replaceText.constructor.name === "Object" ? "importedReplaceTextParameters.ReplaceTextParameters" : this.replaceText.constructor.name);
+            formParams.push(['ReplaceText', JSON.stringify(_obj), 'application/json']);
+            this.replaceText.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -29193,7 +35432,7 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         const result = new ReplaceTextOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ReplaceTextResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ReplaceTextResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -29274,7 +35513,10 @@ export class ReplaceWithTextRequest implements RequestInterface {
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling replaceWithText.');
@@ -29311,15 +35553,41 @@ export class ReplaceWithTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        if (this.rangeText !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : this.rangeText.constructor.name);
+            formParams.push(['RangeText', JSON.stringify(_obj), 'application/json']);
+            this.rangeText.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : this.rangeText.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -29328,7 +35596,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -29392,8 +35660,10 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling replaceWithTextOnline.');
@@ -29429,21 +35699,42 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.rangeText !== undefined) {
-            formParams.RangeText = JSON.stringify(ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : this.rangeText.constructor.name);
+            formParams.push(['RangeText', JSON.stringify(_obj), 'application/json']);
+            this.rangeText.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -29456,7 +35747,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         const result = new ReplaceWithTextOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -29485,15 +35776,40 @@ export class ResetCacheRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         const localVarPath = configuration.getApiBaseUrl() + "/words/fonts/cache"
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -29565,7 +35881,10 @@ export class SaveAsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/saveAs"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling saveAs.');
@@ -29592,15 +35911,41 @@ export class SaveAsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
+        if (this.saveOptionsData !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : this.saveOptionsData.constructor.name);
+            formParams.push(['SaveOptionsData', JSON.stringify(_obj), 'application/json']);
+            this.saveOptionsData.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : this.saveOptionsData.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -29609,7 +35954,7 @@ export class SaveAsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SaveResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SaveResponse");
 	}
 }
 
@@ -29661,8 +36006,10 @@ export class SaveAsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/saveAs"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling saveAsOnline.');
@@ -29688,21 +36035,42 @@ export class SaveAsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.saveOptionsData !== undefined) {
-            formParams.SaveOptionsData = JSON.stringify(ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : this.saveOptionsData.constructor.name);
+            formParams.push(['SaveOptionsData', JSON.stringify(_obj), 'application/json']);
+            this.saveOptionsData.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -29715,7 +36083,7 @@ export class SaveAsOnlineRequest implements RequestInterface {
         const result = new SaveAsOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SaveResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "SaveResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -29791,7 +36159,10 @@ export class SaveAsRangeRequest implements RequestInterface {
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling saveAsRange.');
@@ -29827,15 +36198,41 @@ export class SaveAsRangeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        if (this.documentParameters !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : this.documentParameters.constructor.name);
+            formParams.push(['DocumentParameters', JSON.stringify(_obj), 'application/json']);
+            this.documentParameters.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "POST",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : this.documentParameters.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -29844,7 +36241,7 @@ export class SaveAsRangeRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -29903,8 +36300,10 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
             .replace("/{" + "rangeStartIdentifier" + "}", (this.rangeStartIdentifier !== null && this.rangeStartIdentifier !== undefined) ? "/" + String(this.rangeStartIdentifier) : "")
             .replace("/{" + "rangeEndIdentifier" + "}", (this.rangeEndIdentifier !== null && this.rangeEndIdentifier !== undefined) ? "/" + String(this.rangeEndIdentifier) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling saveAsRangeOnline.');
@@ -29939,21 +36338,42 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.documentParameters !== undefined) {
-            formParams.DocumentParameters = JSON.stringify(ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : this.documentParameters.constructor.name);
+            formParams.push(['DocumentParameters', JSON.stringify(_obj), 'application/json']);
+            this.documentParameters.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -29966,7 +36386,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         const result = new SaveAsRangeOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -30120,7 +36540,10 @@ export class SaveAsTiffRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/saveAs/tiff"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling saveAsTiff.');
@@ -30164,15 +36587,41 @@ export class SaveAsTiffRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "tiffBinarizationMethod", this.tiffBinarizationMethod, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
+        if (this.saveOptions !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.saveOptions, this.saveOptions.constructor.name === "Object" ? "importedTiffSaveOptionsData.TiffSaveOptionsData" : this.saveOptions.constructor.name);
+            formParams.push(['SaveOptions', JSON.stringify(_obj), 'application/json']);
+            this.saveOptions.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.saveOptions, this.saveOptions.constructor.name === "Object" ? "importedTiffSaveOptionsData.TiffSaveOptionsData" : this.saveOptions.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -30181,7 +36630,7 @@ export class SaveAsTiffRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SaveResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SaveResponse");
 	}
 }
 
@@ -30318,8 +36767,10 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/saveAs/tiff"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling saveAsTiffOnline.');
@@ -30362,21 +36813,42 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.saveOptions !== undefined) {
-            formParams.SaveOptions = JSON.stringify(ObjectSerializer.serialize(this.saveOptions, this.saveOptions.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.saveOptions, this.saveOptions.constructor.name === "Object" ? "importedTiffSaveOptionsData.TiffSaveOptionsData" : this.saveOptions.constructor.name);
+            formParams.push(['SaveOptions', JSON.stringify(_obj), 'application/json']);
+            this.saveOptions.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -30389,7 +36861,7 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         const result = new SaveAsTiffOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SaveResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "SaveResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -30453,7 +36925,10 @@ export class SearchRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/search"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling search.');
@@ -30476,13 +36951,35 @@ export class SearchRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "GET",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -30491,7 +36988,7 @@ export class SearchRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SearchResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SearchResponse");
 	}
 }
 
@@ -30538,8 +37035,10 @@ export class SearchOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/search"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling searchOnline.');
@@ -30560,18 +37059,37 @@ export class SearchOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -30581,7 +37099,7 @@ export class SearchOnlineRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SearchResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SearchResponse");
 	}
 }
 
@@ -30664,7 +37182,10 @@ export class SplitDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/split"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling splitDocument.');
@@ -30697,13 +37218,35 @@ export class SplitDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -30712,7 +37255,7 @@ export class SplitDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SplitDocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SplitDocumentResponse");
 	}
 }
 
@@ -30784,8 +37327,10 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/split"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling splitDocumentOnline.');
@@ -30816,18 +37361,37 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -30840,7 +37404,7 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         const result = new SplitDocumentOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SplitDocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "SplitDocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -30909,7 +37473,10 @@ export class UnprotectDocumentRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/protection"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling unprotectDocument.');
@@ -30936,15 +37503,41 @@ export class UnprotectDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        if (this.protectionRequest !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
+            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
+            this.protectionRequest.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "DELETE",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -30953,7 +37546,7 @@ export class UnprotectDocumentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ProtectionDataResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ProtectionDataResponse");
 	}
 }
 
@@ -31005,8 +37598,10 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/protection"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling unprotectDocumentOnline.');
@@ -31032,21 +37627,42 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.protectionRequest !== undefined) {
-            formParams.ProtectionRequest = JSON.stringify(ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
+            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
+            this.protectionRequest.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -31059,7 +37675,7 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         const result = new UnprotectDocumentOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ProtectionDataResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ProtectionDataResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -31144,7 +37760,10 @@ export class UpdateBookmarkRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateBookmark.');
@@ -31183,15 +37802,41 @@ export class UpdateBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.bookmarkData !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.bookmarkData, this.bookmarkData.constructor.name === "Object" ? "importedBookmarkData.BookmarkData" : this.bookmarkData.constructor.name);
+            formParams.push(['BookmarkData', JSON.stringify(_obj), 'application/json']);
+            this.bookmarkData.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.bookmarkData, this.bookmarkData.constructor.name === "Object" ? "importedBookmarkData.BookmarkData" : this.bookmarkData.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -31200,7 +37845,7 @@ export class UpdateBookmarkRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BookmarkResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarkResponse");
 	}
 }
 
@@ -31268,8 +37913,10 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/bookmarks/{bookmarkName}"
             .replace("/{" + "bookmarkName" + "}", (this.bookmarkName !== null && this.bookmarkName !== undefined) ? "/" + String(this.bookmarkName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateBookmarkOnline.');
@@ -31307,21 +37954,42 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.bookmarkData !== undefined) {
-            formParams.BookmarkData = JSON.stringify(ObjectSerializer.serialize(this.bookmarkData, this.bookmarkData.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.bookmarkData, this.bookmarkData.constructor.name === "Object" ? "importedBookmarkData.BookmarkData" : this.bookmarkData.constructor.name);
+            formParams.push(['BookmarkData', JSON.stringify(_obj), 'application/json']);
+            this.bookmarkData.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -31334,7 +38002,7 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         const result = new UpdateBookmarkOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BookmarkResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "BookmarkResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -31425,7 +38093,10 @@ export class UpdateBorderRequest implements RequestInterface {
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateBorder.');
@@ -31464,15 +38135,41 @@ export class UpdateBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.borderProperties !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.borderProperties, this.borderProperties.constructor.name === "Object" ? "importedBorder.Border" : this.borderProperties.constructor.name);
+            formParams.push(['BorderProperties', JSON.stringify(_obj), 'application/json']);
+            this.borderProperties.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.borderProperties, this.borderProperties.constructor.name === "Object" ? "importedBorder.Border" : this.borderProperties.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -31481,7 +38178,7 @@ export class UpdateBorderRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "BorderResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BorderResponse");
 	}
 }
 
@@ -31555,8 +38252,10 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
             .replace("/{" + "borderType" + "}", (this.borderType !== null && this.borderType !== undefined) ? "/" + String(this.borderType) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateBorderOnline.');
@@ -31594,21 +38293,42 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.borderProperties !== undefined) {
-            formParams.BorderProperties = JSON.stringify(ObjectSerializer.serialize(this.borderProperties, this.borderProperties.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.borderProperties, this.borderProperties.constructor.name === "Object" ? "importedBorder.Border" : this.borderProperties.constructor.name);
+            formParams.push(['BorderProperties', JSON.stringify(_obj), 'application/json']);
+            this.borderProperties.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -31621,7 +38341,7 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         const result = new UpdateBorderOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "BorderResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "BorderResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -31706,7 +38426,10 @@ export class UpdateCommentRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateComment.');
@@ -31745,15 +38468,41 @@ export class UpdateCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.comment !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentUpdate.CommentUpdate" : this.comment.constructor.name);
+            formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
+            this.comment.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentUpdate.CommentUpdate" : this.comment.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -31762,7 +38511,7 @@ export class UpdateCommentRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CommentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentResponse");
 	}
 }
 
@@ -31830,8 +38579,10 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/comments/{commentIndex}"
             .replace("/{" + "commentIndex" + "}", (this.commentIndex !== null && this.commentIndex !== undefined) ? "/" + String(this.commentIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateCommentOnline.');
@@ -31869,21 +38620,42 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.comment !== undefined) {
-            formParams.Comment = JSON.stringify(ObjectSerializer.serialize(this.comment, this.comment.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentUpdate.CommentUpdate" : this.comment.constructor.name);
+            formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
+            this.comment.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -31896,7 +38668,7 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         const result = new UpdateCommentOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CommentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "CommentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -31981,7 +38753,10 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateCustomXmlPart.');
@@ -32020,15 +38795,41 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.customXmlPart !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartUpdate.CustomXmlPartUpdate" : this.customXmlPart.constructor.name);
+            formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
+            this.customXmlPart.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartUpdate.CustomXmlPartUpdate" : this.customXmlPart.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -32037,7 +38838,7 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "CustomXmlPartResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartResponse");
 	}
 }
 
@@ -32105,8 +38906,10 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/customXmlParts/{customXmlPartIndex}"
             .replace("/{" + "customXmlPartIndex" + "}", (this.customXmlPartIndex !== null && this.customXmlPartIndex !== undefined) ? "/" + String(this.customXmlPartIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateCustomXmlPartOnline.');
@@ -32144,21 +38947,42 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.customXmlPart !== undefined) {
-            formParams.CustomXmlPart = JSON.stringify(ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartUpdate.CustomXmlPartUpdate" : this.customXmlPart.constructor.name);
+            formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
+            this.customXmlPart.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -32171,7 +38995,7 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         const result = new UpdateCustomXmlPartOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "CustomXmlPartResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "CustomXmlPartResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -32267,8 +39091,10 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateDrawingObject.');
@@ -32318,21 +39144,42 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.drawingObject !== undefined) {
-            formParams.DrawingObject = JSON.stringify(this.drawingObject);
+            let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectUpdate.DrawingObjectUpdate" : this.drawingObject.constructor.name);
+            formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
+            this.drawingObject.collectFilesContent(filesContent);
         }
         if (this.imageFile !== undefined) {
-            formParams.ImageFile = this.imageFile;
+            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -32342,7 +39189,7 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DrawingObjectResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectResponse");
 	}
 }
 
@@ -32421,8 +39268,10 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateDrawingObjectOnline.');
@@ -32470,24 +39319,45 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.drawingObject !== undefined) {
-            formParams.DrawingObject = JSON.stringify(ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectUpdate.DrawingObjectUpdate" : this.drawingObject.constructor.name);
+            formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
+            this.drawingObject.collectFilesContent(filesContent);
         }
         if (this.imageFile !== undefined) {
-            formParams.ImageFile = this.imageFile;
+            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -32500,7 +39370,7 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         const result = new UpdateDrawingObjectOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DrawingObjectResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DrawingObjectResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -32591,7 +39461,10 @@ export class UpdateFieldRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateField.');
@@ -32630,15 +39503,41 @@ export class UpdateFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.field !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldUpdate.FieldUpdate" : this.field.constructor.name);
+            formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
+            this.field.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldUpdate.FieldUpdate" : this.field.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -32647,7 +39546,7 @@ export class UpdateFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FieldResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldResponse");
 	}
 }
 
@@ -32721,8 +39620,10 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateFieldOnline.');
@@ -32760,21 +39661,42 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.field !== undefined) {
-            formParams.Field = JSON.stringify(ObjectSerializer.serialize(this.field, this.field.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldUpdate.FieldUpdate" : this.field.constructor.name);
+            formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
+            this.field.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -32787,7 +39709,7 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         const result = new UpdateFieldOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FieldResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "FieldResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -32851,7 +39773,10 @@ export class UpdateFieldsRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/updateFields"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateFields.');
@@ -32869,13 +39794,35 @@ export class UpdateFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
+
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -32884,7 +39831,7 @@ export class UpdateFieldsRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "DocumentResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
 }
 
@@ -32931,8 +39878,10 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/updateFields"
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateFieldsOnline.');
@@ -32948,18 +39897,37 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -32972,7 +39940,7 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
         const result = new UpdateFieldsOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "DocumentResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -33063,7 +40031,10 @@ export class UpdateFootnoteRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateFootnote.');
@@ -33102,15 +40073,41 @@ export class UpdateFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.footnoteDto !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : this.footnoteDto.constructor.name);
+            formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
+            this.footnoteDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : this.footnoteDto.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -33119,7 +40116,7 @@ export class UpdateFootnoteRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FootnoteResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnoteResponse");
 	}
 }
 
@@ -33193,8 +40190,10 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateFootnoteOnline.');
@@ -33232,21 +40231,42 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.footnoteDto !== undefined) {
-            formParams.FootnoteDto = JSON.stringify(ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : this.footnoteDto.constructor.name);
+            formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
+            this.footnoteDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -33259,7 +40279,7 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         const result = new UpdateFootnoteOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FootnoteResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "FootnoteResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -33350,7 +40370,10 @@ export class UpdateFormFieldRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateFormField.');
@@ -33389,15 +40412,41 @@ export class UpdateFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.formField !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
+            formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
+            this.formField.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -33406,7 +40455,7 @@ export class UpdateFormFieldRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FormFieldResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldResponse");
 	}
 }
 
@@ -33480,8 +40529,10 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateFormFieldOnline.');
@@ -33519,21 +40570,42 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.formField !== undefined) {
-            formParams.FormField = JSON.stringify(ObjectSerializer.serialize(this.formField, this.formField.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
+            formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
+            this.formField.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -33546,7 +40618,7 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         const result = new UpdateFormFieldOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FormFieldResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "FormFieldResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -33631,7 +40703,10 @@ export class UpdateListRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateList.');
@@ -33670,15 +40745,41 @@ export class UpdateListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.listUpdate !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListUpdate.ListUpdate" : this.listUpdate.constructor.name);
+            formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
+            this.listUpdate.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListUpdate.ListUpdate" : this.listUpdate.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -33687,7 +40788,7 @@ export class UpdateListRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ListResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
 }
 
@@ -33772,7 +40873,10 @@ export class UpdateListLevelRequest implements RequestInterface {
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("/{" + "listLevel" + "}", (this.listLevel !== null && this.listLevel !== undefined) ? "/" + String(this.listLevel) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateListLevel.');
@@ -33821,15 +40925,41 @@ export class UpdateListLevelRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.listUpdate !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListLevelUpdate.ListLevelUpdate" : this.listUpdate.constructor.name);
+            formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
+            this.listUpdate.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListLevelUpdate.ListLevelUpdate" : this.listUpdate.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -33838,7 +40968,7 @@ export class UpdateListLevelRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ListResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
 }
 
@@ -33912,8 +41042,10 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("/{" + "listLevel" + "}", (this.listLevel !== null && this.listLevel !== undefined) ? "/" + String(this.listLevel) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateListLevelOnline.');
@@ -33961,21 +41093,42 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.listUpdate !== undefined) {
-            formParams.ListUpdate = JSON.stringify(ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListLevelUpdate.ListLevelUpdate" : this.listUpdate.constructor.name);
+            formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
+            this.listUpdate.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -33988,7 +41141,7 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         const result = new UpdateListLevelOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ListResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -34062,8 +41215,10 @@ export class UpdateListOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/lists/{listId}"
             .replace("/{" + "listId" + "}", (this.listId !== null && this.listId !== undefined) ? "/" + String(this.listId) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateListOnline.');
@@ -34101,21 +41256,42 @@ export class UpdateListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.listUpdate !== undefined) {
-            formParams.ListUpdate = JSON.stringify(ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListUpdate.ListUpdate" : this.listUpdate.constructor.name);
+            formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
+            this.listUpdate.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -34128,7 +41304,7 @@ export class UpdateListOnlineRequest implements RequestInterface {
         const result = new UpdateListOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ListResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ListResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -34219,7 +41395,10 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateParagraphFormat.');
@@ -34258,15 +41437,41 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.paragraphFormatDto !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.paragraphFormatDto, this.paragraphFormatDto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : this.paragraphFormatDto.constructor.name);
+            formParams.push(['ParagraphFormatDto', JSON.stringify(_obj), 'application/json']);
+            this.paragraphFormatDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.paragraphFormatDto, this.paragraphFormatDto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : this.paragraphFormatDto.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -34275,7 +41480,7 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphFormatResponse");
 	}
 }
 
@@ -34349,8 +41554,10 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateParagraphFormatOnline.');
@@ -34388,21 +41595,42 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.paragraphFormatDto !== undefined) {
-            formParams.ParagraphFormatDto = JSON.stringify(ObjectSerializer.serialize(this.paragraphFormatDto, this.paragraphFormatDto.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.paragraphFormatDto, this.paragraphFormatDto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : this.paragraphFormatDto.constructor.name);
+            formParams.push(['ParagraphFormatDto', JSON.stringify(_obj), 'application/json']);
+            this.paragraphFormatDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -34415,7 +41643,7 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         const result = new UpdateParagraphFormatOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphFormatResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ParagraphFormatResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -34506,7 +41734,10 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateParagraphListFormat.');
@@ -34545,15 +41776,41 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.listFormatDto !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.listFormatDto, this.listFormatDto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : this.listFormatDto.constructor.name);
+            formParams.push(['ListFormatDto', JSON.stringify(_obj), 'application/json']);
+            this.listFormatDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.listFormatDto, this.listFormatDto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : this.listFormatDto.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -34562,7 +41819,7 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "ParagraphListFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphListFormatResponse");
 	}
 }
 
@@ -34636,8 +41893,10 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateParagraphListFormatOnline.');
@@ -34675,21 +41934,42 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.listFormatDto !== undefined) {
-            formParams.ListFormatDto = JSON.stringify(ObjectSerializer.serialize(this.listFormatDto, this.listFormatDto.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.listFormatDto, this.listFormatDto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : this.listFormatDto.constructor.name);
+            formParams.push(['ListFormatDto', JSON.stringify(_obj), 'application/json']);
+            this.listFormatDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -34702,7 +41982,7 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         const result = new UpdateParagraphListFormatOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "ParagraphListFormatResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "ParagraphListFormatResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -34793,7 +42073,10 @@ export class UpdateRunRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateRun.');
@@ -34837,15 +42120,41 @@ export class UpdateRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.run !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunUpdate.RunUpdate" : this.run.constructor.name);
+            formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
+            this.run.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunUpdate.RunUpdate" : this.run.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -34854,7 +42163,7 @@ export class UpdateRunRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "RunResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunResponse");
 	}
 }
 
@@ -34939,7 +42248,10 @@ export class UpdateRunFontRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateRunFont.');
@@ -34983,15 +42295,41 @@ export class UpdateRunFontRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.fontDto !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.fontDto, this.fontDto.constructor.name === "Object" ? "importedFont.Font" : this.fontDto.constructor.name);
+            formParams.push(['FontDto', JSON.stringify(_obj), 'application/json']);
+            this.fontDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.fontDto, this.fontDto.constructor.name === "Object" ? "importedFont.Font" : this.fontDto.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -35000,7 +42338,7 @@ export class UpdateRunFontRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FontResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FontResponse");
 	}
 }
 
@@ -35074,8 +42412,10 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateRunFontOnline.');
@@ -35118,21 +42458,42 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.fontDto !== undefined) {
-            formParams.FontDto = JSON.stringify(ObjectSerializer.serialize(this.fontDto, this.fontDto.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.fontDto, this.fontDto.constructor.name === "Object" ? "importedFont.Font" : this.fontDto.constructor.name);
+            formParams.push(['FontDto', JSON.stringify(_obj), 'application/json']);
+            this.fontDto.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -35145,7 +42506,7 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         const result = new UpdateRunFontOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "FontResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "FontResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -35225,8 +42586,10 @@ export class UpdateRunOnlineRequest implements RequestInterface {
             .replace("/{" + "paragraphPath" + "}", (this.paragraphPath !== null && this.paragraphPath !== undefined) ? "/" + String(this.paragraphPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateRunOnline.');
@@ -35269,21 +42632,42 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.run !== undefined) {
-            formParams.Run = JSON.stringify(ObjectSerializer.serialize(this.run, this.run.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunUpdate.RunUpdate" : this.run.constructor.name);
+            formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
+            this.run.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -35296,7 +42680,7 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         const result = new UpdateRunOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "RunResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "RunResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -35381,7 +42765,10 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateSectionPageSetup.');
@@ -35420,15 +42807,41 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.pageSetup !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.pageSetup, this.pageSetup.constructor.name === "Object" ? "importedPageSetup.PageSetup" : this.pageSetup.constructor.name);
+            formParams.push(['PageSetup', JSON.stringify(_obj), 'application/json']);
+            this.pageSetup.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.pageSetup, this.pageSetup.constructor.name === "Object" ? "importedPageSetup.PageSetup" : this.pageSetup.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -35437,7 +42850,7 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "SectionPageSetupResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionPageSetupResponse");
 	}
 }
 
@@ -35505,8 +42918,10 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/sections/{sectionIndex}/pageSetup"
             .replace("/{" + "sectionIndex" + "}", (this.sectionIndex !== null && this.sectionIndex !== undefined) ? "/" + String(this.sectionIndex) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateSectionPageSetupOnline.');
@@ -35544,21 +42959,42 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.pageSetup !== undefined) {
-            formParams.PageSetup = JSON.stringify(ObjectSerializer.serialize(this.pageSetup, this.pageSetup.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.pageSetup, this.pageSetup.constructor.name === "Object" ? "importedPageSetup.PageSetup" : this.pageSetup.constructor.name);
+            formParams.push(['PageSetup', JSON.stringify(_obj), 'application/json']);
+            this.pageSetup.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -35571,7 +43007,7 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         const result = new UpdateSectionPageSetupOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "SectionPageSetupResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "SectionPageSetupResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -35656,7 +43092,10 @@ export class UpdateStyleRequest implements RequestInterface {
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateStyle.');
@@ -35695,15 +43134,41 @@ export class UpdateStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.styleUpdate !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.styleUpdate, this.styleUpdate.constructor.name === "Object" ? "importedStyleUpdate.StyleUpdate" : this.styleUpdate.constructor.name);
+            formParams.push(['StyleUpdate', JSON.stringify(_obj), 'application/json']);
+            this.styleUpdate.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.styleUpdate, this.styleUpdate.constructor.name === "Object" ? "importedStyleUpdate.StyleUpdate" : this.styleUpdate.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -35712,7 +43177,7 @@ export class UpdateStyleRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "StyleResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
 }
 
@@ -35780,8 +43245,10 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/styles/{styleName}/update"
             .replace("/{" + "styleName" + "}", (this.styleName !== null && this.styleName !== undefined) ? "/" + String(this.styleName) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateStyleOnline.');
@@ -35819,21 +43286,42 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.styleUpdate !== undefined) {
-            formParams.StyleUpdate = JSON.stringify(ObjectSerializer.serialize(this.styleUpdate, this.styleUpdate.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.styleUpdate, this.styleUpdate.constructor.name === "Object" ? "importedStyleUpdate.StyleUpdate" : this.styleUpdate.constructor.name);
+            formParams.push(['StyleUpdate', JSON.stringify(_obj), 'application/json']);
+            this.styleUpdate.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -35846,7 +43334,7 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         const result = new UpdateStyleOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "StyleResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "StyleResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -35937,7 +43425,10 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateTableCellFormat.');
@@ -35981,15 +43472,41 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.format !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableCellFormat.TableCellFormat" : this.format.constructor.name);
+            formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
+            this.format.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableCellFormat.TableCellFormat" : this.format.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -35998,7 +43515,7 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableCellFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellFormatResponse");
 	}
 }
 
@@ -36072,8 +43589,10 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
             .replace("/{" + "tableRowPath" + "}", (this.tableRowPath !== null && this.tableRowPath !== undefined) ? "/" + String(this.tableRowPath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateTableCellFormatOnline.');
@@ -36116,21 +43635,42 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.format !== undefined) {
-            formParams.Format = JSON.stringify(ObjectSerializer.serialize(this.format, this.format.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableCellFormat.TableCellFormat" : this.format.constructor.name);
+            formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
+            this.format.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -36143,7 +43683,7 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         const result = new UpdateTableCellFormatOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableCellFormatResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TableCellFormatResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -36234,7 +43774,10 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateTableProperties.');
@@ -36273,15 +43816,41 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.properties !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.properties, this.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : this.properties.constructor.name);
+            formParams.push(['Properties', JSON.stringify(_obj), 'application/json']);
+            this.properties.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.properties, this.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : this.properties.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -36290,7 +43859,7 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TablePropertiesResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TablePropertiesResponse");
 	}
 }
 
@@ -36364,8 +43933,10 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateTablePropertiesOnline.');
@@ -36403,21 +43974,42 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.properties !== undefined) {
-            formParams.Properties = JSON.stringify(ObjectSerializer.serialize(this.properties, this.properties.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.properties, this.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : this.properties.constructor.name);
+            formParams.push(['Properties', JSON.stringify(_obj), 'application/json']);
+            this.properties.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -36430,7 +44022,7 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         const result = new UpdateTablePropertiesOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TablePropertiesResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TablePropertiesResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -36521,7 +44113,10 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.name' is not undefined
         if (this.name === undefined) {
             throw new Error('Required parameter "this.name" was undefined when calling updateTableRowFormat.');
@@ -36565,15 +44160,41 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.format !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableRowFormat.TableRowFormat" : this.format.constructor.name);
+            formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
+            this.format.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+        }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
-            body: ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableRowFormat.TableRowFormat" : this.format.constructor.name),
         };
 
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
 
         return Promise.resolve(requestOptions);
     }
@@ -36582,7 +44203,7 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "TableRowFormatResponse");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowFormatResponse");
 	}
 }
 
@@ -36656,8 +44277,10 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
             .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
             .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.document' is not undefined
         if (this.document === undefined) {
             throw new Error('Required parameter "this.document" was undefined when calling updateTableRowFormatOnline.');
@@ -36700,21 +44323,42 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.Document = this.document;
+            formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.format !== undefined) {
-            formParams.Format = JSON.stringify(ObjectSerializer.serialize(this.format, this.format.constructor.name));
+            let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableRowFormat.TableRowFormat" : this.format.constructor.name);
+            formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
+            this.format.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            encoding: null,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -36727,7 +44371,7 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         const result = new UpdateTableRowFormatOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
-        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body), "TableRowFormatResponse");
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "TableRowFormatResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -36773,8 +44417,10 @@ export class UploadFileRequest implements RequestInterface {
         let localVarPath = configuration.getApiBaseUrl() + "/words/storage/file/{path}"
             .replace("/{" + "path" + "}", (this.path !== null && this.path !== undefined) ? "/" + String(this.path) : "")
             .replace("//", "/");
-        const queryParameters: any = {};
-        const formParams: any = {};
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
         // verify required parameter 'this.fileContent' is not undefined
         if (this.fileContent === undefined) {
             throw new Error('Required parameter "this.fileContent" was undefined when calling uploadFile.');
@@ -36797,18 +44443,37 @@ export class UploadFileRequest implements RequestInterface {
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         if (this.fileContent !== undefined) {
-            formParams.FileContent = this.fileContent;
+            formParams.push(['FileContent', this.fileContent, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
             method: "PUT",
             qs: queryParameters,
+            headers: headerParams,
             uri: localVarPath,
-            json: true,
         };
 
-        if (Object.keys(formParams).length > 0) {
-            requestOptions.formData = formParams;
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
         }
 
         return Promise.resolve(requestOptions);
@@ -36818,7 +44483,7 @@ export class UploadFileRequest implements RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
-        return ObjectSerializer.deserialize(_response, "FilesUploadResult");
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FilesUploadResult");
 	}
 }
 

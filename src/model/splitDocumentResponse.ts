@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SplitDocumentResult } from './splitDocumentResult';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class SplitDocumentResponse extends WordsResponse {
     public constructor(init?: Partial< SplitDocumentResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.splitResult)
+        {
+            this.splitResult.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

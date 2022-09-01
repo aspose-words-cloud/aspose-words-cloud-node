@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapFieldBase = {
 };
@@ -33,7 +34,7 @@ export const importsMapFieldBase = {
 /**
  * Field.
  */
-export abstract class FieldBase {
+export abstract class FieldBase implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export abstract class FieldBase {
 
     public constructor(init?: Partial< FieldBase >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

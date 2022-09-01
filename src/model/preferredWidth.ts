@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapPreferredWidth = {
 };
@@ -33,7 +34,7 @@ export const importsMapPreferredWidth = {
 /**
  * DTO container with a preferred width value.
  */
-export class PreferredWidth {
+export class PreferredWidth implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class PreferredWidth {
 
     public constructor(init?: Partial< PreferredWidth >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

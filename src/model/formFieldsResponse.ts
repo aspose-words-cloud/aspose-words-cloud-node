@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FormFieldCollection } from './formFieldCollection';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class FormFieldsResponse extends WordsResponse {
     public constructor(init?: Partial< FormFieldsResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.formFields)
+        {
+            this.formFields.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

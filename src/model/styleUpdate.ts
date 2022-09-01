@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapStyleUpdate = {
 };
@@ -33,7 +34,7 @@ export const importsMapStyleUpdate = {
 /**
  * Represents a single document style properties to update.
  */
-export class StyleUpdate {
+export class StyleUpdate implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -89,6 +90,9 @@ export class StyleUpdate {
 
     public constructor(init?: Partial< StyleUpdate >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

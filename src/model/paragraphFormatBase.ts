@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { Shading } from './shading';
 
@@ -315,6 +316,23 @@ export class ParagraphFormatBase extends LinkElement {
     public constructor(init?: Partial< ParagraphFormatBase >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.shading)
+        {
+            this.shading.collectFilesContent(_resultFilesContent);
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
 

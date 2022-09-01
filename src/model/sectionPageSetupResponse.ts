@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { PageSetup } from './pageSetup';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class SectionPageSetupResponse extends WordsResponse {
     public constructor(init?: Partial< SectionPageSetupResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.pageSetup)
+        {
+            this.pageSetup.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

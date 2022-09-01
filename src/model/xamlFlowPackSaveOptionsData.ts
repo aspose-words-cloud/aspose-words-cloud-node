@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { XamlFlowSaveOptionsData } from './xamlFlowSaveOptionsData';
 
 export const importsMapXamlFlowPackSaveOptionsData = {
@@ -55,6 +56,9 @@ export class XamlFlowPackSaveOptionsData extends XamlFlowSaveOptionsData {
         this.saveFormat = 'xamlflow_pack';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

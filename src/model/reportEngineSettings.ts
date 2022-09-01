@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { CsvDataLoadOptions } from './csvDataLoadOptions';
 import { JsonDataLoadOptions } from './jsonDataLoadOptions';
 import { ReportBuildOptions } from './reportBuildOptions';
@@ -41,7 +42,7 @@ export const importsMapReportEngineSettings = {
 /**
  * Report engine settings.
  */
-export class ReportEngineSettings {
+export class ReportEngineSettings implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -117,6 +118,27 @@ export class ReportEngineSettings {
 
     public constructor(init?: Partial< ReportEngineSettings >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.csvDataLoadOptions)
+        {
+            this.csvDataLoadOptions.collectFilesContent(_resultFilesContent);
+        }
+
+
+
+        if (this.jsonDataLoadOptions)
+        {
+            this.jsonDataLoadOptions.collectFilesContent(_resultFilesContent);
+        }
+
+
+        if (this.xmlDataLoadOptions)
+        {
+            this.xmlDataLoadOptions.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

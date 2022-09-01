@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { BookmarksOutlineLevelData } from './bookmarksOutlineLevelData';
 
 export const importsMapOutlineOptionsData = {
@@ -35,7 +36,7 @@ export const importsMapOutlineOptionsData = {
 /**
  * Container class for outline options.
  */
-export class OutlineOptionsData {
+export class OutlineOptionsData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -111,6 +112,22 @@ export class OutlineOptionsData {
 
     public constructor(init?: Partial< OutlineOptionsData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.bookmarksOutlineLevels)
+        {
+            for (let element of this.bookmarksOutlineLevels)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
+
+
+
+
+
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { NodeLink } from './nodeLink';
 
 export const importsMapDocumentPosition = {
@@ -35,7 +36,7 @@ export const importsMapDocumentPosition = {
 /**
  * DTO container with a position in the document tree.
  */
-export class DocumentPosition {
+export class DocumentPosition implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -71,6 +72,15 @@ export class DocumentPosition {
 
     public constructor(init?: Partial< DocumentPosition >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.node)
+        {
+            this.node.collectFilesContent(_resultFilesContent);
+        }
+
+
     }
 }
 

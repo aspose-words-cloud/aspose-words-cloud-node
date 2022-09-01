@@ -5782,14 +5782,27 @@ export class WordsApi implements Encryptor {
         const querystring = require('querystring');
         const requestParts = [];
 
+        const readStream = async function (stream: Readable): Promise<Buffer> {
+            const chunks = [];
+            for await (const x of stream) {
+                chunks.push(x);
+            }
+            if (chunks.length > 0 && typeof(chunks[0]) === 'number') {
+                return Buffer.from(chunks);
+            }
+            else {
+                return Buffer.concat(chunks);
+            }
+        };
+
         for (const requestObj of requests) {
             const options = await requestObj.createRequestOptions(this.configuration, this);
 
             let bodyString = options.method + " " + options.uri.toString().replace(this.configuration.getApiBaseUrl() + "/words/", "") + (Object.keys(options.qs).length ? '?' + querystring.stringify(options.qs) : "") + "\r\n";
 
             if (options.formData == null) {
-                if (options.body != null) {
-                    bodyString += "Content-Type: application/json; charset=utf-8\r\n";
+                if (options.headers != null && options.headers['Content-Type'] != null) {
+                    bodyString += "Content-Type: " + options.headers['Content-Type'] + "\r\n";
                 }
 
                 bodyString += "RequestId: " + requestObj.id + "\r\n";
@@ -5799,14 +5812,23 @@ export class WordsApi implements Encryptor {
 
                 bodyString += "\r\n";
 
+                var bodyBuffer = null;
                 if (options.body != null) {
-                    bodyString += JSON.stringify(options.body);
+                    if (typeof options.body === 'string' || options.body instanceof String) {
+                        bodyBuffer = Buffer.from(options.body);
+                    }
+                    else {
+                        bodyBuffer = await readStream(options.body);
+                    }
+                }
+                else {
+                    bodyBuffer = Buffer.from('');
                 }
 
                 const textPart = {
                     'Content-Type': 'application/http; msgtype=request',
                     'Content-Disposition': 'form-data',
-                    body: bodyString,
+                    body: Buffer.concat([Buffer.from(bodyString), bodyBuffer]),
                 };
 
                 requestParts.push(textPart);
@@ -5815,20 +5837,6 @@ export class WordsApi implements Encryptor {
                 const formData = options.formData;
                 const requestForm = new FormData();
                 const appendFormValue = async function (key, value) {
-
-                    const readStream = async function (stream: Readable): Promise<Buffer> {
-                        const chunks = [];
-                        for await (const x of stream) {
-                            chunks.push(x);
-                        }
-                        if (chunks.length > 0 && typeof(chunks[0]) === 'number') {
-                            return Buffer.from(chunks);
-                        }
-                        else {
-                            return Buffer.concat(chunks);
-                        }
-                    };
-
                     if (value instanceof require("stream").Readable) {
                         try {
                             value = {
@@ -5906,23 +5914,7 @@ export class WordsApi implements Encryptor {
                         continue;
                     }
 
-                    switch (responsePart.headers["content-type"].split(';')[0]) {
-                        case "application/json": {
-                            data.push(requestMap[id].createResponse(JSON.parse(responsePart.body), responsePart.headers));
-                            break;
-                        }
-                        case "application/octet-stream": {
-                            data.push(requestMap[id].createResponse(responsePart.body, responsePart.headers));
-                            break;
-                        }
-                        case "multipart/mixed": {
-                            data.push(requestMap[id].createResponse(responsePart.body, responsePart.headers));
-                            break;
-                        }
-                        default: {
-                            throw new Error("Unknown response type: " + responsePart.headers["content-type"]);
-                        }
-                    }
+                    data.push(requestMap[id].createResponse(responsePart.body, responsePart.headers));
                 }
             }
         }

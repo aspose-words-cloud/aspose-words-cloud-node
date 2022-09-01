@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapJsonDataLoadOptions = {
 };
@@ -33,7 +34,7 @@ export const importsMapJsonDataLoadOptions = {
 /**
  * Represents options for parsing JSON data.
  */
-export class JsonDataLoadOptions {
+export class JsonDataLoadOptions implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -84,6 +85,9 @@ export class JsonDataLoadOptions {
 
     public constructor(init?: Partial< JsonDataLoadOptions >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

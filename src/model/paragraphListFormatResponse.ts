@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { ListFormat } from './listFormat';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class ParagraphListFormatResponse extends WordsResponse {
     public constructor(init?: Partial< ParagraphListFormatResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.listFormat)
+        {
+            this.listFormat.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

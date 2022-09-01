@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { CustomXmlPart } from './customXmlPart';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class CustomXmlPartResponse extends WordsResponse {
     public constructor(init?: Partial< CustomXmlPartResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.customXmlPart)
+        {
+            this.customXmlPart.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

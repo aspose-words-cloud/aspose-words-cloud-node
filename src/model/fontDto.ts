@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapFontDto = {
 };
@@ -33,7 +34,7 @@ export const importsMapFontDto = {
 /**
  * Model object.
  */
-export class FontDto {
+export class FontDto implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -50,6 +51,9 @@ export class FontDto {
 
     public constructor(init?: Partial< FontDto >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { TableRowFormat } from './tableRowFormat';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class TableRowFormatResponse extends WordsResponse {
     public constructor(init?: Partial< TableRowFormatResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.rowFormat)
+        {
+            this.rowFormat.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

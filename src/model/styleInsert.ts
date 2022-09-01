@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapStyleInsert = {
 };
@@ -33,7 +34,7 @@ export const importsMapStyleInsert = {
 /**
  * Represents a single document style to insert.
  */
-export class StyleInsert {
+export class StyleInsert implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class StyleInsert {
 
     public constructor(init?: Partial< StyleInsert >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

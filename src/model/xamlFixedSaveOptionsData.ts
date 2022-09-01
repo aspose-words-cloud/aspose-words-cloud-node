@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 
 export const importsMapXamlFixedSaveOptionsData = {
@@ -75,6 +76,9 @@ export class XamlFixedSaveOptionsData extends FixedPageSaveOptionsData {
         this.saveFormat = 'xamlfixed';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

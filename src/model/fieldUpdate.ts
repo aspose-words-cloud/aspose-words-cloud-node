@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FieldBase } from './fieldBase';
 
 export const importsMapFieldUpdate = {
@@ -53,6 +54,9 @@ export class FieldUpdate extends FieldBase {
     public constructor(init?: Partial< FieldUpdate >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

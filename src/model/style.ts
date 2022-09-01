@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Font } from './font';
 import { LinkElement } from './linkElement';
 
@@ -164,6 +165,21 @@ export class Style extends LinkElement {
     public constructor(init?: Partial< Style >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.font)
+        {
+            this.font.collectFilesContent(_resultFilesContent);
+        }
+
+
+
+
+
+
+
+
     }
 }
 

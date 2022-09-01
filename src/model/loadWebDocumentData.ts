@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SaveOptionsData } from './saveOptionsData';
 
 export const importsMapLoadWebDocumentData = {
@@ -35,7 +36,7 @@ export const importsMapLoadWebDocumentData = {
 /**
  * Contains data for load web document.
  */
-export class LoadWebDocumentData {
+export class LoadWebDocumentData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -71,6 +72,14 @@ export class LoadWebDocumentData {
 
     public constructor(init?: Partial< LoadWebDocumentData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.saveOptions)
+        {
+            this.saveOptions.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

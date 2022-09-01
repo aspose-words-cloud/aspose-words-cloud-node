@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { OfficeMathLink } from './officeMathLink';
 import { StoryChildNodes } from './storyChildNodes';
 
@@ -94,6 +95,17 @@ export class OfficeMathObject extends OfficeMathLink {
     public constructor(init?: Partial< OfficeMathObject >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.content)
+        {
+            this.content.collectFilesContent(_resultFilesContent);
+        }
+
+
+
+
     }
 }
 

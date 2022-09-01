@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Hyperlinks } from './hyperlinks';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class HyperlinksResponse extends WordsResponse {
     public constructor(init?: Partial< HyperlinksResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.hyperlinks)
+        {
+            this.hyperlinks.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

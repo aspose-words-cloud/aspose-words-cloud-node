@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FormField } from './formField';
 
 export const importsMapFormFieldCheckbox = {
@@ -82,6 +83,9 @@ export class FormFieldCheckbox extends FormField {
     public constructor(init?: Partial< FormFieldCheckbox >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

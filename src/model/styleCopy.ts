@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapStyleCopy = {
 };
@@ -33,7 +34,7 @@ export const importsMapStyleCopy = {
 /**
  * Represents a single document style to insert.
  */
-export class StyleCopy {
+export class StyleCopy implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -59,6 +60,9 @@ export class StyleCopy {
 
     public constructor(init?: Partial< StyleCopy >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { ClassificationResult } from './classificationResult';
 import { WordsResponse } from './wordsResponse';
 
@@ -84,6 +85,17 @@ export class ClassificationResponse extends WordsResponse {
     public constructor(init?: Partial< ClassificationResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.bestResults)
+        {
+            for (let element of this.bestResults)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

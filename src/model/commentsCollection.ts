@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Comment } from './comment';
 import { LinkElement } from './linkElement';
 
@@ -64,6 +65,17 @@ export class CommentsCollection extends LinkElement {
     public constructor(init?: Partial< CommentsCollection >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.commentList)
+        {
+            for (let element of this.commentList)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentProperties } from './documentProperties';
 import { Link } from './link';
 
@@ -37,7 +38,7 @@ export const importsMapDocument = {
 /**
  * Represents Words document DTO.
  */
-export class Document {
+export class Document implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -113,6 +114,26 @@ export class Document {
 
     public constructor(init?: Partial< Document >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.documentProperties)
+        {
+            this.documentProperties.collectFilesContent(_resultFilesContent);
+        }
+
+
+
+
+        if (this.links)
+        {
+            for (let element of this.links)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
+
     }
 }
 

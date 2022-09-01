@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Hyperlink } from './hyperlink';
 import { LinkElement } from './linkElement';
 
@@ -64,6 +65,17 @@ export class Hyperlinks extends LinkElement {
     public constructor(init?: Partial< Hyperlinks >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.hyperlinkList)
+        {
+            for (let element of this.hyperlinkList)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

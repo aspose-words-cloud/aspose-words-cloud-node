@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapTablePropertiesDto = {
 };
@@ -33,7 +34,7 @@ export const importsMapTablePropertiesDto = {
 /**
  * Model object.
  */
-export class TablePropertiesDto {
+export class TablePropertiesDto implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -50,6 +51,9 @@ export class TablePropertiesDto {
 
     public constructor(init?: Partial< TablePropertiesDto >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

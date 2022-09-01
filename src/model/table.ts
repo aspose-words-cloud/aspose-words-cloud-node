@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { NodeLink } from './nodeLink';
 import { TableProperties } from './tableProperties';
 import { TableRow } from './tableRow';
@@ -76,6 +77,22 @@ export class Table extends NodeLink {
     public constructor(init?: Partial< Table >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.tableProperties)
+        {
+            this.tableProperties.collectFilesContent(_resultFilesContent);
+        }
+
+        if (this.tableRowList)
+        {
+            for (let element of this.tableRowList)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

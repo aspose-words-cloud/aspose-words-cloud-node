@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { ApiError } from './apiError';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class WordsApiErrorResponse extends WordsResponse {
     public constructor(init?: Partial< WordsApiErrorResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.error)
+        {
+            this.error.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { ParagraphLink } from './paragraphLink';
 
@@ -64,6 +65,17 @@ export class ParagraphLinkCollection extends LinkElement {
     public constructor(init?: Partial< ParagraphLinkCollection >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.paragraphLinkList)
+        {
+            for (let element of this.paragraphLinkList)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

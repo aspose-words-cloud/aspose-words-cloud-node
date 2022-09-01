@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 
 export const importsMapHtmlFixedSaveOptionsData = {
@@ -198,6 +199,9 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
         this.saveFormat = 'htmlfixed';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Link } from './link';
 
 export const importsMapWordsApiLink = {
@@ -53,6 +54,9 @@ export class WordsApiLink extends Link {
     public constructor(init?: Partial< WordsApiLink >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

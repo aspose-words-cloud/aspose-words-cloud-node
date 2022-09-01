@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapLink = {
 };
@@ -34,7 +35,7 @@ export const importsMapLink = {
  * Provides information for the object link.
  * This is supposed to be an atom:link, therefore it should have all attributes specified here http://tools.ietf.org/html/rfc4287#section-4.2.7.
  */
-export class Link {
+export class Link implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -90,6 +91,9 @@ export class Link {
 
     public constructor(init?: Partial< Link >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

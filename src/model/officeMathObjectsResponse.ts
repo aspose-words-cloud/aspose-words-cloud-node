@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { OfficeMathObjectsCollection } from './officeMathObjectsCollection';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class OfficeMathObjectsResponse extends WordsResponse {
     public constructor(init?: Partial< OfficeMathObjectsResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.officeMathObjects)
+        {
+            this.officeMathObjects.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

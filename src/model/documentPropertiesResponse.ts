@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentProperties } from './documentProperties';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,14 @@ export class DocumentPropertiesResponse extends WordsResponse {
     public constructor(init?: Partial< DocumentPropertiesResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.documentProperties)
+        {
+            this.documentProperties.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

@@ -2681,6 +2681,21 @@ export class ConvertDocumentRequest implements RequestInterface {
     public storage: string;
 
     /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -2719,6 +2734,9 @@ export class ConvertDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", this.fileNameFieldValue, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.Document = this.document;

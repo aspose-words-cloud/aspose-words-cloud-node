@@ -68,11 +68,6 @@ export class CommentResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.comment)
-        {
-            this.comment.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

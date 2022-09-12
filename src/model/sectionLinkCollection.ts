@@ -68,14 +68,6 @@ export class SectionLinkCollection extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.sectionLinkList)
-        {
-            for (let element of this.sectionLinkList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

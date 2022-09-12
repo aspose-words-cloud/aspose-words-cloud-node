@@ -68,11 +68,6 @@ export class RunResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.run)
-        {
-            this.run.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

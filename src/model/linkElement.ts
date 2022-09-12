@@ -65,11 +65,6 @@ export class LinkElement implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.link)
-        {
-            this.link.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

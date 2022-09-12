@@ -27,22 +27,27 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { BaseDocumentEntryList } from './baseDocumentEntryList';
+import { BaseEntryList } from './baseEntryList';
 import { DocumentEntry } from './documentEntry';
 
 export const importsMapDocumentEntryList = {
-    BaseDocumentEntryList,
+    BaseEntryList,
     DocumentEntry,
 };
 
 /**
  * Represents a list of documents which will be appended to the original resource document.
  */
-export class DocumentEntryList extends BaseDocumentEntryList {
+export class DocumentEntryList extends BaseEntryList {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
+            baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
+            type: "boolean",
+        },
         {
             name: "documentEntries",
             baseName: "DocumentEntries",
@@ -58,6 +63,11 @@ export class DocumentEntryList extends BaseDocumentEntryList {
     }
 
     /**
+     * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.
+     */
+    public applyBaseDocumentHeadersAndFootersToAppendingDocuments: boolean;
+
+    /**
      * Gets or sets the list of documents.
      */
     public documentEntries: Array<DocumentEntry>;
@@ -68,6 +78,7 @@ export class DocumentEntryList extends BaseDocumentEntryList {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+        super.collectFilesContent(_resultFilesContent);
         if (this.documentEntries)
         {
             for (let element of this.documentEntries)

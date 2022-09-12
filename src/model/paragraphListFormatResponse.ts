@@ -68,11 +68,6 @@ export class ParagraphListFormatResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.listFormat)
-        {
-            this.listFormat.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

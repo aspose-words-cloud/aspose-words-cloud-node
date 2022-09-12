@@ -78,11 +78,6 @@ export class SearchResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.searchResults)
-        {
-            this.searchResults.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

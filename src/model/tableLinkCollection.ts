@@ -68,14 +68,6 @@ export class TableLinkCollection extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.tableLinkList)
-        {
-            for (let element of this.tableLinkList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

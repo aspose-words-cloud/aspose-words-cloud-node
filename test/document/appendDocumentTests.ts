@@ -49,8 +49,9 @@ describe("appendDocument", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                const requestDocumentListDocumentEntries0FileReference = new model.FileReference(remoteDataFolder + "/" + remoteFileName);
                 const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
-                    href: remoteDataFolder + "/" + remoteFileName,
+                    fileReference: requestDocumentListDocumentEntries0FileReference,
                     importFormatMode: "KeepSourceFormatting"
                 })
                 const requestDocumentListDocumentEntries = [
@@ -85,17 +86,17 @@ describe("appendDocument", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestDocumentListOnlineDocumentEntries0FileStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestDocumentListOnlineDocumentEntries0File = new model.FileContent(localFile, requestDocumentListOnlineDocumentEntries0FileStream);
-            const requestDocumentListOnlineDocumentEntries0 = new model.OnlineDocumentEntry({
-                file: requestDocumentListOnlineDocumentEntries0File,
+            const requestDocumentListDocumentEntries0FileReferenceStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocumentListDocumentEntries0FileReference = new model.FileReference(requestDocumentListDocumentEntries0FileReferenceStream);
+            const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
+                fileReference: requestDocumentListDocumentEntries0FileReference,
                 importFormatMode: "KeepSourceFormatting"
             })
-            const requestDocumentListOnlineDocumentEntries = [
-                requestDocumentListOnlineDocumentEntries0
+            const requestDocumentListDocumentEntries = [
+                requestDocumentListDocumentEntries0
             ]
-            const requestDocumentList = new model.OnlineDocumentEntryList({
-                onlineDocumentEntries: requestDocumentListOnlineDocumentEntries
+            const requestDocumentList = new model.DocumentEntryList({
+                documentEntries: requestDocumentListDocumentEntries
             })
             const request = new model.AppendDocumentOnlineRequest({
                 document: requestDocument,

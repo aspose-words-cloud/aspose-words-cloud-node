@@ -68,11 +68,6 @@ export class FieldNamesResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.fieldNames)
-        {
-            this.fieldNames.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

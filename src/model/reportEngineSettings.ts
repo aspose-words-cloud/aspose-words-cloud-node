@@ -121,24 +121,6 @@ export class ReportEngineSettings implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.csvDataLoadOptions)
-        {
-            this.csvDataLoadOptions.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-        if (this.jsonDataLoadOptions)
-        {
-            this.jsonDataLoadOptions.collectFilesContent(_resultFilesContent);
-        }
-
-
-        if (this.xmlDataLoadOptions)
-        {
-            this.xmlDataLoadOptions.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

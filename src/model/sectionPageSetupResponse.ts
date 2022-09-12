@@ -68,11 +68,6 @@ export class SectionPageSetupResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.pageSetup)
-        {
-            this.pageSetup.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

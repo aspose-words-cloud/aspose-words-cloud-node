@@ -115,17 +115,6 @@ export abstract class CommentBase implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.rangeEnd)
-        {
-            this.rangeEnd.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.rangeStart)
-        {
-            this.rangeStart.collectFilesContent(_resultFilesContent);
-        }
-
-
     }
 }
 

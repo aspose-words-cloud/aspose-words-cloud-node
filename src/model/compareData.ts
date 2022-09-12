@@ -105,14 +105,6 @@ export class CompareData implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.compareOptions)
-        {
-            this.compareOptions.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
     }
 }
 

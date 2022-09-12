@@ -68,14 +68,6 @@ export class CustomXmlPartsCollection extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.customXmlPartsList)
-        {
-            for (let element of this.customXmlPartsList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

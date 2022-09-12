@@ -85,12 +85,6 @@ export class TableInsert implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.position)
-        {
-            this.position.collectFilesContent(_resultFilesContent);
-        }
-
-
     }
 }
 

@@ -68,14 +68,6 @@ export class CommentsCollection extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.commentList)
-        {
-            for (let element of this.commentList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

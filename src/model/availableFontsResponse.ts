@@ -88,30 +88,6 @@ export class AvailableFontsResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.additionalFonts)
-        {
-            for (let element of this.additionalFonts)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-        if (this.customFonts)
-        {
-            for (let element of this.customFonts)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-        if (this.systemFonts)
-        {
-            for (let element of this.systemFonts)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

@@ -199,17 +199,6 @@ export class TableProperties extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.preferredWidth)
-        {
-            this.preferredWidth.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
-
-
     }
 }
 

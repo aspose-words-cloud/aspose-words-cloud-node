@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="onlineDocumentEntryList.ts">
+ * <copyright company="Aspose" file="fileReference.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,26 +27,26 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { BaseDocumentEntryList } from './baseDocumentEntryList';
-import { OnlineDocumentEntry } from './onlineDocumentEntry';
+import { v4 as uuidv4 } from 'uuid';
+import { Readable } from "stream";
 
-export const importsMapOnlineDocumentEntryList = {
-    BaseDocumentEntryList,
-    OnlineDocumentEntry,
+export const importsMapBaseEntry = {
 };
 
-/**
- * Represents a list of documents which will be appended to the original resource document.
- */
-export class OnlineDocumentEntryList extends BaseDocumentEntryList {
+export class FileReference implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "onlineDocumentEntries",
-            baseName: "OnlineDocumentEntries",
-            type: "Array<OnlineDocumentEntry>",
+            name: "source",
+            baseName: "Source",
+            type: "string",
+        },
+        {
+            name: "reference",
+            baseName: "Reference",
+            type: "string",
         }
     ];
 
@@ -54,28 +54,40 @@ export class OnlineDocumentEntryList extends BaseDocumentEntryList {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(OnlineDocumentEntryList.attributeTypeMap);
+        return FileReference.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets the list of documents.
-     */
-    public onlineDocumentEntries: Array<OnlineDocumentEntry>;
+    private source: string;
+    private reference: string;
+    private content: Readable;
 
-    public constructor(init?: Partial< OnlineDocumentEntryList >) {
-        super(init);
-        Object.assign(this, init);
+    public constructor(remoteFilePath: string) {
+        this.source = 'Storage';
+        this.reference = remoteFilePath;
+        this.content = null;
+    }
+
+    public constructor(localFileContent: Readable) {
+        this.source = 'Request';
+        this.reference = uuidv4();
+        this.content = localFileContent;
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.onlineDocumentEntries)
-        {
-            for (let element of this.onlineDocumentEntries)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
+        if (source === 'Request') {
+            _resultFilesContent.push(this);
         }
+    }
 
+    public getSource() {
+        return this.source;
+    }
+
+    public getReference() {
+        return this.reference;
+    }
+
+    public getContent() {
+        return this.content;
     }
 }
-

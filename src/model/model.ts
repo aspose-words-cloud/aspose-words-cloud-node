@@ -36,10 +36,8 @@ import { ObjectSerializer } from "../internal/objectSerializer";
 import { Encryptor } from '../api';
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
-import * as importedBaseDocumentEntry from './baseDocumentEntry';
-import * as importedBaseDocumentEntryList from './baseDocumentEntryList';
+import * as importedBaseEntry from './baseEntry';
 import * as importedBaseEntryList from './baseEntryList';
-import * as importedBaseImageEntryList from './baseImageEntryList';
 import * as importedBmpSaveOptionsData from './bmpSaveOptionsData';
 import * as importedBookmark from './bookmark';
 import * as importedBookmarkData from './bookmarkData';
@@ -115,8 +113,8 @@ import * as importedFieldOptions from './fieldOptions';
 import * as importedFieldResponse from './fieldResponse';
 import * as importedFieldsResponse from './fieldsResponse';
 import * as importedFieldUpdate from './fieldUpdate';
-import * as importedFileContent from './fileContent';
 import * as importedFileLink from './fileLink';
+import * as importedFileReference from './fileReference';
 import * as importedFilesList from './filesList';
 import * as importedFilesUploadResult from './filesUploadResult';
 import * as importedFixedPageSaveOptionsData from './fixedPageSaveOptionsData';
@@ -188,10 +186,6 @@ import * as importedOfficeMathObject from './officeMathObject';
 import * as importedOfficeMathObjectResponse from './officeMathObjectResponse';
 import * as importedOfficeMathObjectsCollection from './officeMathObjectsCollection';
 import * as importedOfficeMathObjectsResponse from './officeMathObjectsResponse';
-import * as importedOnlineDocumentEntry from './onlineDocumentEntry';
-import * as importedOnlineDocumentEntryList from './onlineDocumentEntryList';
-import * as importedOnlineImageEntry from './onlineImageEntry';
-import * as importedOnlineImageEntryList from './onlineImageEntryList';
 import * as importedOoxmlSaveOptionsData from './ooxmlSaveOptionsData';
 import * as importedOpenXpsSaveOptionsData from './openXpsSaveOptionsData';
 import * as importedOptimizationOptions from './optimizationOptions';
@@ -316,10 +310,8 @@ import * as importedXpsSaveOptionsData from './xpsSaveOptionsData';
 export { AttributeInfo } from '../internal/attributeInfo';
 export * from './apiError';
 export * from './availableFontsResponse';
-export * from './baseDocumentEntry';
-export * from './baseDocumentEntryList';
+export * from './baseEntry';
 export * from './baseEntryList';
-export * from './baseImageEntryList';
 export * from './bmpSaveOptionsData';
 export * from './bookmark';
 export * from './bookmarkData';
@@ -395,8 +387,8 @@ export * from './fieldOptions';
 export * from './fieldResponse';
 export * from './fieldsResponse';
 export * from './fieldUpdate';
-export * from './fileContent';
 export * from './fileLink';
+export * from './fileReference';
 export * from './filesList';
 export * from './filesUploadResult';
 export * from './fixedPageSaveOptionsData';
@@ -468,10 +460,6 @@ export * from './officeMathObject';
 export * from './officeMathObjectResponse';
 export * from './officeMathObjectsCollection';
 export * from './officeMathObjectsResponse';
-export * from './onlineDocumentEntry';
-export * from './onlineDocumentEntryList';
-export * from './onlineImageEntry';
-export * from './onlineImageEntryList';
 export * from './ooxmlSaveOptionsData';
 export * from './openXpsSaveOptionsData';
 export * from './optimizationOptions';
@@ -624,6 +612,7 @@ const enumsMap = {
     "DrawingObjectUpdate.WrapTypeEnum": importedDrawingObjectUpdate.DrawingObjectUpdate.WrapTypeEnum,
     "FieldOptions.FieldIndexFormatEnum": importedFieldOptions.FieldOptions.FieldIndexFormatEnum,
     "FieldOptions.FieldUpdateCultureSourceEnum": importedFieldOptions.FieldOptions.FieldUpdateCultureSourceEnum,
+    "FileReference.SourceEnum": importedFileReference.FileReference.SourceEnum,
     "FixedPageSaveOptionsData.ColorModeEnum": importedFixedPageSaveOptionsData.FixedPageSaveOptionsData.ColorModeEnum,
     "FixedPageSaveOptionsData.NumeralFormatEnum": importedFixedPageSaveOptionsData.FixedPageSaveOptionsData.NumeralFormatEnum,
     "Font.StyleIdentifierEnum": importedFont.Font.StyleIdentifierEnum,
@@ -720,10 +709,8 @@ const enumsMap = {
 const typeMap = {
     ApiError: importedApiError.ApiError,
     AvailableFontsResponse: importedAvailableFontsResponse.AvailableFontsResponse,
-    BaseDocumentEntry: importedBaseDocumentEntry.BaseDocumentEntry,
-    BaseDocumentEntryList: importedBaseDocumentEntryList.BaseDocumentEntryList,
+    BaseEntry: importedBaseEntry.BaseEntry,
     BaseEntryList: importedBaseEntryList.BaseEntryList,
-    BaseImageEntryList: importedBaseImageEntryList.BaseImageEntryList,
     BmpSaveOptionsData: importedBmpSaveOptionsData.BmpSaveOptionsData,
     Bookmark: importedBookmark.Bookmark,
     BookmarkData: importedBookmarkData.BookmarkData,
@@ -799,8 +786,8 @@ const typeMap = {
     FieldResponse: importedFieldResponse.FieldResponse,
     FieldsResponse: importedFieldsResponse.FieldsResponse,
     FieldUpdate: importedFieldUpdate.FieldUpdate,
-    FileContent: importedFileContent.FileContent,
     FileLink: importedFileLink.FileLink,
+    FileReference: importedFileReference.FileReference,
     FilesList: importedFilesList.FilesList,
     FilesUploadResult: importedFilesUploadResult.FilesUploadResult,
     FixedPageSaveOptionsData: importedFixedPageSaveOptionsData.FixedPageSaveOptionsData,
@@ -872,10 +859,6 @@ const typeMap = {
     OfficeMathObjectResponse: importedOfficeMathObjectResponse.OfficeMathObjectResponse,
     OfficeMathObjectsCollection: importedOfficeMathObjectsCollection.OfficeMathObjectsCollection,
     OfficeMathObjectsResponse: importedOfficeMathObjectsResponse.OfficeMathObjectsResponse,
-    OnlineDocumentEntry: importedOnlineDocumentEntry.OnlineDocumentEntry,
-    OnlineDocumentEntryList: importedOnlineDocumentEntryList.OnlineDocumentEntryList,
-    OnlineImageEntry: importedOnlineImageEntry.OnlineImageEntry,
-    OnlineImageEntryList: importedOnlineImageEntryList.OnlineImageEntryList,
     OoxmlSaveOptionsData: importedOoxmlSaveOptionsData.OoxmlSaveOptionsData,
     OpenXpsSaveOptionsData: importedOpenXpsSaveOptionsData.OpenXpsSaveOptionsData,
     OptimizationOptions: importedOptimizationOptions.OptimizationOptions,
@@ -1100,7 +1083,7 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -1206,7 +1189,7 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -1363,7 +1346,7 @@ export class AppendDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -1501,7 +1484,7 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -1670,11 +1653,10 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         if (this.styleApply !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleApply, this.styleApply.constructor.name === "Object" ? "importedStyleApply.StyleApply" : this.styleApply.constructor.name);
             formParams.push(['StyleApply', JSON.stringify(_obj), 'application/json']);
-            this.styleApply.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -1824,11 +1806,10 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         if (this.styleApply !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleApply, this.styleApply.constructor.name === "Object" ? "importedStyleApply.StyleApply" : this.styleApply.constructor.name);
             formParams.push(['StyleApply', JSON.stringify(_obj), 'application/json']);
-            this.styleApply.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -1987,11 +1968,10 @@ export class BuildReportRequest implements RequestInterface {
         if (this.reportEngineSettings !== undefined) {
             let _obj = ObjectSerializer.serialize(this.reportEngineSettings, this.reportEngineSettings.constructor.name === "Object" ? "importedReportEngineSettings.ReportEngineSettings" : this.reportEngineSettings.constructor.name);
             formParams.push(['ReportEngineSettings', JSON.stringify(_obj), 'application/json']);
-            this.reportEngineSettings.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -2113,11 +2093,10 @@ export class BuildReportOnlineRequest implements RequestInterface {
         if (this.reportEngineSettings !== undefined) {
             let _obj = ObjectSerializer.serialize(this.reportEngineSettings, this.reportEngineSettings.constructor.name === "Object" ? "importedReportEngineSettings.ReportEngineSettings" : this.reportEngineSettings.constructor.name);
             formParams.push(['ReportEngineSettings', JSON.stringify(_obj), 'application/json']);
-            this.reportEngineSettings.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -2205,7 +2184,7 @@ export class ClassifyRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -2327,7 +2306,7 @@ export class ClassifyDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -2439,7 +2418,7 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -2577,11 +2556,10 @@ export class CompareDocumentRequest implements RequestInterface {
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
             formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
-            this.compareData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -2714,14 +2692,13 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
             formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
-            this.compareData.collectFilesContent(filesContent);
         }
         if (this.comparingDocument !== undefined) {
             formParams.push(['ComparingDocument', this.comparingDocument, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -2862,11 +2839,10 @@ export class CompressDocumentRequest implements RequestInterface {
         if (this.compressOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name === "Object" ? "importedCompressOptions.CompressOptions" : this.compressOptions.constructor.name);
             formParams.push(['CompressOptions', JSON.stringify(_obj), 'application/json']);
-            this.compressOptions.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -2988,11 +2964,10 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         if (this.compressOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name === "Object" ? "importedCompressOptions.CompressOptions" : this.compressOptions.constructor.name);
             formParams.push(['CompressOptions', JSON.stringify(_obj), 'application/json']);
-            this.compressOptions.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -3141,7 +3116,7 @@ export class ConvertDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -3250,7 +3225,7 @@ export class CopyFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -3353,7 +3328,7 @@ export class CopyFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -3497,11 +3472,10 @@ export class CopyStyleRequest implements RequestInterface {
         if (this.styleCopy !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleCopy, this.styleCopy.constructor.name === "Object" ? "importedStyleCopy.StyleCopy" : this.styleCopy.constructor.name);
             formParams.push(['StyleCopy', JSON.stringify(_obj), 'application/json']);
-            this.styleCopy.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -3635,11 +3609,10 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         if (this.styleCopy !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleCopy, this.styleCopy.constructor.name === "Object" ? "importedStyleCopy.StyleCopy" : this.styleCopy.constructor.name);
             formParams.push(['StyleCopy', JSON.stringify(_obj), 'application/json']);
-            this.styleCopy.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -3792,7 +3765,7 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -3874,7 +3847,7 @@ export class CreateDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -3960,7 +3933,7 @@ export class CreateFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -4120,11 +4093,10 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         if (this.property !== undefined) {
             let _obj = ObjectSerializer.serialize(this.property, this.property.constructor.name === "Object" ? "importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate" : this.property.constructor.name);
             formParams.push(['Property', JSON.stringify(_obj), 'application/json']);
-            this.property.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -4274,11 +4246,10 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         if (this.property !== undefined) {
             let _obj = ObjectSerializer.serialize(this.property, this.property.constructor.name === "Object" ? "importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate" : this.property.constructor.name);
             formParams.push(['Property', JSON.stringify(_obj), 'application/json']);
-            this.property.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -4425,7 +4396,7 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -4553,7 +4524,7 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -4706,7 +4677,7 @@ export class DeleteBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -4840,7 +4811,7 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -4968,7 +4939,7 @@ export class DeleteBookmarksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -5086,7 +5057,7 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -5236,7 +5207,7 @@ export class DeleteBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -5376,7 +5347,7 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -5519,7 +5490,7 @@ export class DeleteBordersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -5643,7 +5614,7 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -5796,7 +5767,7 @@ export class DeleteCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -5930,7 +5901,7 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -6058,7 +6029,7 @@ export class DeleteCommentsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -6176,7 +6147,7 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -6320,7 +6291,7 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -6454,7 +6425,7 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -6582,7 +6553,7 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -6700,7 +6671,7 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -6844,7 +6815,7 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -6978,7 +6949,7 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -7128,7 +7099,7 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -7268,7 +7239,7 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -7418,7 +7389,7 @@ export class DeleteFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -7558,7 +7529,7 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -7692,7 +7663,7 @@ export class DeleteFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -7816,7 +7787,7 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -7908,7 +7879,7 @@ export class DeleteFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -8000,7 +7971,7 @@ export class DeleteFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "recursive", this.recursive, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -8150,7 +8121,7 @@ export class DeleteFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -8290,7 +8261,7 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -8440,7 +8411,7 @@ export class DeleteFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -8580,7 +8551,7 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -8735,7 +8706,7 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -8880,7 +8851,7 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -9025,7 +8996,7 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -9160,7 +9131,7 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -9288,7 +9259,7 @@ export class DeleteMacrosRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -9406,7 +9377,7 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -9556,7 +9527,7 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -9696,7 +9667,7 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -9846,7 +9817,7 @@ export class DeleteParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -9996,7 +9967,7 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -10136,7 +10107,7 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -10285,7 +10256,7 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -10439,7 +10410,7 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -10583,7 +10554,7 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -10747,7 +10718,7 @@ export class DeleteRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -10892,7 +10863,7 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -11036,7 +11007,7 @@ export class DeleteSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -11170,7 +11141,7 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -11320,7 +11291,7 @@ export class DeleteTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -11475,7 +11446,7 @@ export class DeleteTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -11620,7 +11591,7 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -11760,7 +11731,7 @@ export class DeleteTableOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -11915,7 +11886,7 @@ export class DeleteTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -12060,7 +12031,7 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -12188,7 +12159,7 @@ export class DeleteWatermarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -12306,7 +12277,7 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -12407,7 +12378,7 @@ export class DownloadFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -12561,11 +12532,10 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
             formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
-            this.options.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -12689,11 +12659,10 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
             formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
-            this.options.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -12763,7 +12732,7 @@ export class GetAvailableFontsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -12889,7 +12858,7 @@ export class GetBookmarkByNameRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13005,7 +12974,7 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13115,7 +13084,7 @@ export class GetBookmarksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13215,7 +13184,7 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13347,7 +13316,7 @@ export class GetBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13469,7 +13438,7 @@ export class GetBorderOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13585,7 +13554,7 @@ export class GetBordersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13691,7 +13660,7 @@ export class GetBordersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13817,7 +13786,7 @@ export class GetCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -13933,7 +13902,7 @@ export class GetCommentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14043,7 +14012,7 @@ export class GetCommentsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14143,7 +14112,7 @@ export class GetCommentsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14269,7 +14238,7 @@ export class GetCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14385,7 +14354,7 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14495,7 +14464,7 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14595,7 +14564,7 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14705,7 +14674,7 @@ export class GetDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14837,7 +14806,7 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -14959,7 +14928,7 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -15091,7 +15060,7 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -15213,7 +15182,7 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -15345,7 +15314,7 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -15467,7 +15436,7 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -15583,7 +15552,7 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -15689,7 +15658,7 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -15805,7 +15774,7 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -15911,7 +15880,7 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16037,7 +16006,7 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16153,7 +16122,7 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16263,7 +16232,7 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16363,7 +16332,7 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16473,7 +16442,7 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16573,7 +16542,7 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16699,7 +16668,7 @@ export class GetDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16815,7 +16784,7 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -16925,7 +16894,7 @@ export class GetDocumentProtectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17025,7 +16994,7 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17153,7 +17122,7 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17271,7 +17240,7 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17409,7 +17378,7 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17541,7 +17510,7 @@ export class GetFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17663,7 +17632,7 @@ export class GetFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17779,7 +17748,7 @@ export class GetFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17885,7 +17854,7 @@ export class GetFieldsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -17971,7 +17940,7 @@ export class GetFilesListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -18103,7 +18072,7 @@ export class GetFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -18225,7 +18194,7 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -18341,7 +18310,7 @@ export class GetFootnotesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -18447,7 +18416,7 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -18579,7 +18548,7 @@ export class GetFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -18701,7 +18670,7 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -18817,7 +18786,7 @@ export class GetFormFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -18923,7 +18892,7 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -19055,7 +19024,7 @@ export class GetHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -19203,7 +19172,7 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -19341,7 +19310,7 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -19463,7 +19432,7 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -19590,7 +19559,7 @@ export class GetHeaderFootersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -19707,7 +19676,7 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -19772,7 +19741,7 @@ export class GetInfoRequest implements RequestInterface {
         var filesContent: any = [];
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -19898,7 +19867,7 @@ export class GetListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20014,7 +19983,7 @@ export class GetListOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20124,7 +20093,7 @@ export class GetListsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20224,7 +20193,7 @@ export class GetListsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20356,7 +20325,7 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20478,7 +20447,7 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20594,7 +20563,7 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20700,7 +20669,7 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20832,7 +20801,7 @@ export class GetParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -20964,7 +20933,7 @@ export class GetParagraphFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -21086,7 +21055,7 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -21218,7 +21187,7 @@ export class GetParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -21340,7 +21309,7 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -21462,7 +21431,7 @@ export class GetParagraphOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -21578,7 +21547,7 @@ export class GetParagraphsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -21684,7 +21653,7 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -21816,7 +21785,7 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -21938,7 +21907,7 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -22003,7 +21972,7 @@ export class GetPublicKeyRequest implements RequestInterface {
         var filesContent: any = [];
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -22135,7 +22104,7 @@ export class GetRangeTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -22257,7 +22226,7 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -22394,7 +22363,7 @@ export class GetRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -22531,7 +22500,7 @@ export class GetRunFontRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -22658,7 +22627,7 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -22785,7 +22754,7 @@ export class GetRunOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -22906,7 +22875,7 @@ export class GetRunsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23017,7 +22986,7 @@ export class GetRunsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23143,7 +23112,7 @@ export class GetSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23259,7 +23228,7 @@ export class GetSectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23385,7 +23354,7 @@ export class GetSectionPageSetupRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23501,7 +23470,7 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23611,7 +23580,7 @@ export class GetSectionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23711,7 +23680,7 @@ export class GetSectionsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23837,7 +23806,7 @@ export class GetStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -23963,7 +23932,7 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -24079,7 +24048,7 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -24195,7 +24164,7 @@ export class GetStyleOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -24305,7 +24274,7 @@ export class GetStylesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -24405,7 +24374,7 @@ export class GetStylesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -24537,7 +24506,7 @@ export class GetTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -24674,7 +24643,7 @@ export class GetTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -24811,7 +24780,7 @@ export class GetTableCellFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -24938,7 +24907,7 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -25065,7 +25034,7 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -25187,7 +25156,7 @@ export class GetTableOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -25319,7 +25288,7 @@ export class GetTablePropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -25441,7 +25410,7 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -25578,7 +25547,7 @@ export class GetTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -25715,7 +25684,7 @@ export class GetTableRowFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -25842,7 +25811,7 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -25969,7 +25938,7 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -26085,7 +26054,7 @@ export class GetTablesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -26191,7 +26160,7 @@ export class GetTablesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -26335,11 +26304,10 @@ export class InsertBookmarkRequest implements RequestInterface {
         if (this.bookmark !== undefined) {
             let _obj = ObjectSerializer.serialize(this.bookmark, this.bookmark.constructor.name === "Object" ? "importedBookmarkInsert.BookmarkInsert" : this.bookmark.constructor.name);
             formParams.push(['Bookmark', JSON.stringify(_obj), 'application/json']);
-            this.bookmark.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -26473,11 +26441,10 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         if (this.bookmark !== undefined) {
             let _obj = ObjectSerializer.serialize(this.bookmark, this.bookmark.constructor.name === "Object" ? "importedBookmarkInsert.BookmarkInsert" : this.bookmark.constructor.name);
             formParams.push(['Bookmark', JSON.stringify(_obj), 'application/json']);
-            this.bookmark.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -26630,11 +26597,10 @@ export class InsertCommentRequest implements RequestInterface {
         if (this.comment !== undefined) {
             let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentInsert.CommentInsert" : this.comment.constructor.name);
             formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
-            this.comment.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -26768,11 +26734,10 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         if (this.comment !== undefined) {
             let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentInsert.CommentInsert" : this.comment.constructor.name);
             formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
-            this.comment.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -26925,11 +26890,10 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         if (this.customXmlPart !== undefined) {
             let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartInsert.CustomXmlPartInsert" : this.customXmlPart.constructor.name);
             formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
-            this.customXmlPart.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -27063,11 +27027,10 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPart !== undefined) {
             let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartInsert.CustomXmlPartInsert" : this.customXmlPart.constructor.name);
             formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
-            this.customXmlPart.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -27241,14 +27204,13 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         if (this.drawingObject !== undefined) {
             let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectInsert.DrawingObjectInsert" : this.drawingObject.constructor.name);
             formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
-            this.drawingObject.collectFilesContent(filesContent);
         }
         if (this.imageFile !== undefined) {
             formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -27403,14 +27365,13 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         if (this.drawingObject !== undefined) {
             let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectInsert.DrawingObjectInsert" : this.drawingObject.constructor.name);
             formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
-            this.drawingObject.collectFilesContent(filesContent);
         }
         if (this.imageFile !== undefined) {
             formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -27575,11 +27536,10 @@ export class InsertFieldRequest implements RequestInterface {
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : this.field.constructor.name);
             formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
-            this.field.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -27725,11 +27685,10 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : this.field.constructor.name);
             formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
-            this.field.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -27888,11 +27847,10 @@ export class InsertFootnoteRequest implements RequestInterface {
         if (this.footnoteDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : this.footnoteDto.constructor.name);
             formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
-            this.footnoteDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -28032,11 +27990,10 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         if (this.footnoteDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : this.footnoteDto.constructor.name);
             formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
-            this.footnoteDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -28201,11 +28158,10 @@ export class InsertFormFieldRequest implements RequestInterface {
         if (this.formField !== undefined) {
             let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
             formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
-            this.formField.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -28351,11 +28307,10 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         if (this.formField !== undefined) {
             let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
             formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
-            this.formField.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -28521,7 +28476,7 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -28668,7 +28623,7 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -28821,11 +28776,10 @@ export class InsertListRequest implements RequestInterface {
         if (this.listInsert !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listInsert, this.listInsert.constructor.name === "Object" ? "importedListInsert.ListInsert" : this.listInsert.constructor.name);
             formParams.push(['ListInsert', JSON.stringify(_obj), 'application/json']);
-            this.listInsert.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -28959,11 +28913,10 @@ export class InsertListOnlineRequest implements RequestInterface {
         if (this.listInsert !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listInsert, this.listInsert.constructor.name === "Object" ? "importedListInsert.ListInsert" : this.listInsert.constructor.name);
             formParams.push(['ListInsert', JSON.stringify(_obj), 'application/json']);
-            this.listInsert.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -29126,11 +29079,10 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         if (this.tabStopInsertDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : this.tabStopInsertDto.constructor.name);
             formParams.push(['TabStopInsertDto', JSON.stringify(_obj), 'application/json']);
-            this.tabStopInsertDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -29274,11 +29226,10 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         if (this.tabStopInsertDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : this.tabStopInsertDto.constructor.name);
             formParams.push(['TabStopInsertDto', JSON.stringify(_obj), 'application/json']);
-            this.tabStopInsertDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -29431,11 +29382,10 @@ export class InsertPageNumbersRequest implements RequestInterface {
         if (this.pageNumber !== undefined) {
             let _obj = ObjectSerializer.serialize(this.pageNumber, this.pageNumber.constructor.name === "Object" ? "importedPageNumber.PageNumber" : this.pageNumber.constructor.name);
             formParams.push(['PageNumber', JSON.stringify(_obj), 'application/json']);
-            this.pageNumber.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -29569,11 +29519,10 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         if (this.pageNumber !== undefined) {
             let _obj = ObjectSerializer.serialize(this.pageNumber, this.pageNumber.constructor.name === "Object" ? "importedPageNumber.PageNumber" : this.pageNumber.constructor.name);
             formParams.push(['PageNumber', JSON.stringify(_obj), 'application/json']);
-            this.pageNumber.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -29738,11 +29687,10 @@ export class InsertParagraphRequest implements RequestInterface {
         if (this.paragraph !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : this.paragraph.constructor.name);
             formParams.push(['Paragraph', JSON.stringify(_obj), 'application/json']);
-            this.paragraph.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -29888,11 +29836,10 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         if (this.paragraph !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : this.paragraph.constructor.name);
             formParams.push(['Paragraph', JSON.stringify(_obj), 'application/json']);
-            this.paragraph.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -30062,11 +30009,10 @@ export class InsertRunRequest implements RequestInterface {
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : this.run.constructor.name);
             formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
-            this.run.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -30217,11 +30163,10 @@ export class InsertRunOnlineRequest implements RequestInterface {
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : this.run.constructor.name);
             formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
-            this.run.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -30374,11 +30319,10 @@ export class InsertStyleRequest implements RequestInterface {
         if (this.styleInsert !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleInsert, this.styleInsert.constructor.name === "Object" ? "importedStyleInsert.StyleInsert" : this.styleInsert.constructor.name);
             formParams.push(['StyleInsert', JSON.stringify(_obj), 'application/json']);
-            this.styleInsert.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -30512,11 +30456,10 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         if (this.styleInsert !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleInsert, this.styleInsert.constructor.name === "Object" ? "importedStyleInsert.StyleInsert" : this.styleInsert.constructor.name);
             formParams.push(['StyleInsert', JSON.stringify(_obj), 'application/json']);
-            this.styleInsert.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -30675,11 +30618,10 @@ export class InsertTableRequest implements RequestInterface {
         if (this.table !== undefined) {
             let _obj = ObjectSerializer.serialize(this.table, this.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : this.table.constructor.name);
             formParams.push(['Table', JSON.stringify(_obj), 'application/json']);
-            this.table.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -30834,11 +30776,10 @@ export class InsertTableCellRequest implements RequestInterface {
         if (this.cell !== undefined) {
             let _obj = ObjectSerializer.serialize(this.cell, this.cell.constructor.name === "Object" ? "importedTableCellInsert.TableCellInsert" : this.cell.constructor.name);
             formParams.push(['Cell', JSON.stringify(_obj), 'application/json']);
-            this.cell.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -30983,11 +30924,10 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         if (this.cell !== undefined) {
             let _obj = ObjectSerializer.serialize(this.cell, this.cell.constructor.name === "Object" ? "importedTableCellInsert.TableCellInsert" : this.cell.constructor.name);
             formParams.push(['Cell', JSON.stringify(_obj), 'application/json']);
-            this.cell.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -31136,11 +31076,10 @@ export class InsertTableOnlineRequest implements RequestInterface {
         if (this.table !== undefined) {
             let _obj = ObjectSerializer.serialize(this.table, this.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : this.table.constructor.name);
             formParams.push(['Table', JSON.stringify(_obj), 'application/json']);
-            this.table.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -31304,11 +31243,10 @@ export class InsertTableRowRequest implements RequestInterface {
         if (this.row !== undefined) {
             let _obj = ObjectSerializer.serialize(this.row, this.row.constructor.name === "Object" ? "importedTableRowInsert.TableRowInsert" : this.row.constructor.name);
             formParams.push(['Row', JSON.stringify(_obj), 'application/json']);
-            this.row.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -31453,11 +31391,10 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         if (this.row !== undefined) {
             let _obj = ObjectSerializer.serialize(this.row, this.row.constructor.name === "Object" ? "importedTableRowInsert.TableRowInsert" : this.row.constructor.name);
             formParams.push(['Row', JSON.stringify(_obj), 'application/json']);
-            this.row.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -31614,7 +31551,7 @@ export class InsertWatermarkImageRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -31762,7 +31699,7 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -31915,11 +31852,10 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         if (this.watermarkText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.watermarkText, this.watermarkText.constructor.name === "Object" ? "importedWatermarkText.WatermarkText" : this.watermarkText.constructor.name);
             formParams.push(['WatermarkText', JSON.stringify(_obj), 'application/json']);
-            this.watermarkText.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -32053,11 +31989,10 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         if (this.watermarkText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.watermarkText, this.watermarkText.constructor.name === "Object" ? "importedWatermarkText.WatermarkText" : this.watermarkText.constructor.name);
             formParams.push(['WatermarkText', JSON.stringify(_obj), 'application/json']);
-            this.watermarkText.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -32216,7 +32151,7 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mode", this.mode, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -32302,11 +32237,10 @@ export class LoadWebDocumentRequest implements RequestInterface {
         if (this.data !== undefined) {
             let _obj = ObjectSerializer.serialize(this.data, this.data.constructor.name === "Object" ? "importedLoadWebDocumentData.LoadWebDocumentData" : this.data.constructor.name);
             formParams.push(['Data', JSON.stringify(_obj), 'application/json']);
-            this.data.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -32415,7 +32349,7 @@ export class MoveFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -32518,7 +32452,7 @@ export class MoveFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -32662,11 +32596,10 @@ export class OptimizeDocumentRequest implements RequestInterface {
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : this.options.constructor.name);
             formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
-            this.options.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -32800,11 +32733,10 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : this.options.constructor.name);
             formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
-            this.options.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -32936,11 +32868,10 @@ export class ProtectDocumentRequest implements RequestInterface {
         if (this.protectionRequest !== undefined) {
             let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
             formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
-            this.protectionRequest.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -33062,11 +32993,10 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         if (this.protectionRequest !== undefined) {
             let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
             formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
-            this.protectionRequest.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -33191,7 +33121,7 @@ export class RejectAllRevisionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -33297,7 +33227,7 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -33444,7 +33374,7 @@ export class RemoveRangeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -33572,7 +33502,7 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -33741,7 +33671,7 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -33891,7 +33821,7 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -34051,7 +33981,7 @@ export class RenderMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -34201,7 +34131,7 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -34349,7 +34279,7 @@ export class RenderPageRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -34487,7 +34417,7 @@ export class RenderPageOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -34647,7 +34577,7 @@ export class RenderParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -34797,7 +34727,7 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -34957,7 +34887,7 @@ export class RenderTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -35107,7 +35037,7 @@ export class RenderTableOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -35251,11 +35181,10 @@ export class ReplaceTextRequest implements RequestInterface {
         if (this.replaceText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.replaceText, this.replaceText.constructor.name === "Object" ? "importedReplaceTextParameters.ReplaceTextParameters" : this.replaceText.constructor.name);
             formParams.push(['ReplaceText', JSON.stringify(_obj), 'application/json']);
-            this.replaceText.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -35389,11 +35318,10 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         if (this.replaceText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.replaceText, this.replaceText.constructor.name === "Object" ? "importedReplaceTextParameters.ReplaceTextParameters" : this.replaceText.constructor.name);
             formParams.push(['ReplaceText', JSON.stringify(_obj), 'application/json']);
-            this.replaceText.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -35556,11 +35484,10 @@ export class ReplaceWithTextRequest implements RequestInterface {
         if (this.rangeText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : this.rangeText.constructor.name);
             formParams.push(['RangeText', JSON.stringify(_obj), 'application/json']);
-            this.rangeText.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -35704,11 +35631,10 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         if (this.rangeText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : this.rangeText.constructor.name);
             formParams.push(['RangeText', JSON.stringify(_obj), 'application/json']);
-            this.rangeText.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -35782,7 +35708,7 @@ export class ResetCacheRequest implements RequestInterface {
         var filesContent: any = [];
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -35914,11 +35840,10 @@ export class SaveAsRequest implements RequestInterface {
         if (this.saveOptionsData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : this.saveOptionsData.constructor.name);
             formParams.push(['SaveOptionsData', JSON.stringify(_obj), 'application/json']);
-            this.saveOptionsData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -36040,11 +35965,10 @@ export class SaveAsOnlineRequest implements RequestInterface {
         if (this.saveOptionsData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : this.saveOptionsData.constructor.name);
             formParams.push(['SaveOptionsData', JSON.stringify(_obj), 'application/json']);
-            this.saveOptionsData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -36201,11 +36125,10 @@ export class SaveAsRangeRequest implements RequestInterface {
         if (this.documentParameters !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : this.documentParameters.constructor.name);
             formParams.push(['DocumentParameters', JSON.stringify(_obj), 'application/json']);
-            this.documentParameters.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -36343,11 +36266,10 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         if (this.documentParameters !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : this.documentParameters.constructor.name);
             formParams.push(['DocumentParameters', JSON.stringify(_obj), 'application/json']);
-            this.documentParameters.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -36590,11 +36512,10 @@ export class SaveAsTiffRequest implements RequestInterface {
         if (this.saveOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptions, this.saveOptions.constructor.name === "Object" ? "importedTiffSaveOptionsData.TiffSaveOptionsData" : this.saveOptions.constructor.name);
             formParams.push(['SaveOptions', JSON.stringify(_obj), 'application/json']);
-            this.saveOptions.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -36818,11 +36739,10 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         if (this.saveOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptions, this.saveOptions.constructor.name === "Object" ? "importedTiffSaveOptionsData.TiffSaveOptionsData" : this.saveOptions.constructor.name);
             formParams.push(['SaveOptions', JSON.stringify(_obj), 'application/json']);
-            this.saveOptions.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -36952,7 +36872,7 @@ export class SearchRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -37063,7 +36983,7 @@ export class SearchOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -37219,7 +37139,7 @@ export class SplitDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -37365,7 +37285,7 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -37506,11 +37426,10 @@ export class UnprotectDocumentRequest implements RequestInterface {
         if (this.protectionRequest !== undefined) {
             let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
             formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
-            this.protectionRequest.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -37632,11 +37551,10 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         if (this.protectionRequest !== undefined) {
             let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
             formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
-            this.protectionRequest.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -37805,11 +37723,10 @@ export class UpdateBookmarkRequest implements RequestInterface {
         if (this.bookmarkData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.bookmarkData, this.bookmarkData.constructor.name === "Object" ? "importedBookmarkData.BookmarkData" : this.bookmarkData.constructor.name);
             formParams.push(['BookmarkData', JSON.stringify(_obj), 'application/json']);
-            this.bookmarkData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -37959,11 +37876,10 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         if (this.bookmarkData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.bookmarkData, this.bookmarkData.constructor.name === "Object" ? "importedBookmarkData.BookmarkData" : this.bookmarkData.constructor.name);
             formParams.push(['BookmarkData', JSON.stringify(_obj), 'application/json']);
-            this.bookmarkData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -38138,11 +38054,10 @@ export class UpdateBorderRequest implements RequestInterface {
         if (this.borderProperties !== undefined) {
             let _obj = ObjectSerializer.serialize(this.borderProperties, this.borderProperties.constructor.name === "Object" ? "importedBorder.Border" : this.borderProperties.constructor.name);
             formParams.push(['BorderProperties', JSON.stringify(_obj), 'application/json']);
-            this.borderProperties.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -38298,11 +38213,10 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         if (this.borderProperties !== undefined) {
             let _obj = ObjectSerializer.serialize(this.borderProperties, this.borderProperties.constructor.name === "Object" ? "importedBorder.Border" : this.borderProperties.constructor.name);
             formParams.push(['BorderProperties', JSON.stringify(_obj), 'application/json']);
-            this.borderProperties.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -38471,11 +38385,10 @@ export class UpdateCommentRequest implements RequestInterface {
         if (this.comment !== undefined) {
             let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentUpdate.CommentUpdate" : this.comment.constructor.name);
             formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
-            this.comment.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -38625,11 +38538,10 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         if (this.comment !== undefined) {
             let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentUpdate.CommentUpdate" : this.comment.constructor.name);
             formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
-            this.comment.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -38798,11 +38710,10 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         if (this.customXmlPart !== undefined) {
             let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartUpdate.CustomXmlPartUpdate" : this.customXmlPart.constructor.name);
             formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
-            this.customXmlPart.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -38952,11 +38863,10 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPart !== undefined) {
             let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartUpdate.CustomXmlPartUpdate" : this.customXmlPart.constructor.name);
             formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
-            this.customXmlPart.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -39146,14 +39056,13 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         if (this.drawingObject !== undefined) {
             let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectUpdate.DrawingObjectUpdate" : this.drawingObject.constructor.name);
             formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
-            this.drawingObject.collectFilesContent(filesContent);
         }
         if (this.imageFile !== undefined) {
             formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -39324,14 +39233,13 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         if (this.drawingObject !== undefined) {
             let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectUpdate.DrawingObjectUpdate" : this.drawingObject.constructor.name);
             formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
-            this.drawingObject.collectFilesContent(filesContent);
         }
         if (this.imageFile !== undefined) {
             formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -39506,11 +39414,10 @@ export class UpdateFieldRequest implements RequestInterface {
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldUpdate.FieldUpdate" : this.field.constructor.name);
             formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
-            this.field.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -39666,11 +39573,10 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldUpdate.FieldUpdate" : this.field.constructor.name);
             formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
-            this.field.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -39795,7 +39701,7 @@ export class UpdateFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -39901,7 +39807,7 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -40076,11 +39982,10 @@ export class UpdateFootnoteRequest implements RequestInterface {
         if (this.footnoteDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : this.footnoteDto.constructor.name);
             formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
-            this.footnoteDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -40236,11 +40141,10 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         if (this.footnoteDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : this.footnoteDto.constructor.name);
             formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
-            this.footnoteDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -40415,11 +40319,10 @@ export class UpdateFormFieldRequest implements RequestInterface {
         if (this.formField !== undefined) {
             let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
             formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
-            this.formField.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -40575,11 +40478,10 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         if (this.formField !== undefined) {
             let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
             formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
-            this.formField.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -40748,11 +40650,10 @@ export class UpdateListRequest implements RequestInterface {
         if (this.listUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListUpdate.ListUpdate" : this.listUpdate.constructor.name);
             formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
-            this.listUpdate.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -40928,11 +40829,10 @@ export class UpdateListLevelRequest implements RequestInterface {
         if (this.listUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListLevelUpdate.ListLevelUpdate" : this.listUpdate.constructor.name);
             formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
-            this.listUpdate.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -41098,11 +40998,10 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         if (this.listUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListLevelUpdate.ListLevelUpdate" : this.listUpdate.constructor.name);
             formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
-            this.listUpdate.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -41261,11 +41160,10 @@ export class UpdateListOnlineRequest implements RequestInterface {
         if (this.listUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListUpdate.ListUpdate" : this.listUpdate.constructor.name);
             formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
-            this.listUpdate.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -41440,11 +41338,10 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         if (this.paragraphFormatDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraphFormatDto, this.paragraphFormatDto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : this.paragraphFormatDto.constructor.name);
             formParams.push(['ParagraphFormatDto', JSON.stringify(_obj), 'application/json']);
-            this.paragraphFormatDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -41600,11 +41497,10 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         if (this.paragraphFormatDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraphFormatDto, this.paragraphFormatDto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : this.paragraphFormatDto.constructor.name);
             formParams.push(['ParagraphFormatDto', JSON.stringify(_obj), 'application/json']);
-            this.paragraphFormatDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -41779,11 +41675,10 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         if (this.listFormatDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listFormatDto, this.listFormatDto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : this.listFormatDto.constructor.name);
             formParams.push(['ListFormatDto', JSON.stringify(_obj), 'application/json']);
-            this.listFormatDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -41939,11 +41834,10 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         if (this.listFormatDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listFormatDto, this.listFormatDto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : this.listFormatDto.constructor.name);
             formParams.push(['ListFormatDto', JSON.stringify(_obj), 'application/json']);
-            this.listFormatDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -42123,11 +42017,10 @@ export class UpdateRunRequest implements RequestInterface {
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunUpdate.RunUpdate" : this.run.constructor.name);
             formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
-            this.run.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -42298,11 +42191,10 @@ export class UpdateRunFontRequest implements RequestInterface {
         if (this.fontDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.fontDto, this.fontDto.constructor.name === "Object" ? "importedFont.Font" : this.fontDto.constructor.name);
             formParams.push(['FontDto', JSON.stringify(_obj), 'application/json']);
-            this.fontDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -42463,11 +42355,10 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         if (this.fontDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.fontDto, this.fontDto.constructor.name === "Object" ? "importedFont.Font" : this.fontDto.constructor.name);
             formParams.push(['FontDto', JSON.stringify(_obj), 'application/json']);
-            this.fontDto.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -42637,11 +42528,10 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunUpdate.RunUpdate" : this.run.constructor.name);
             formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
-            this.run.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -42810,11 +42700,10 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         if (this.pageSetup !== undefined) {
             let _obj = ObjectSerializer.serialize(this.pageSetup, this.pageSetup.constructor.name === "Object" ? "importedPageSetup.PageSetup" : this.pageSetup.constructor.name);
             formParams.push(['PageSetup', JSON.stringify(_obj), 'application/json']);
-            this.pageSetup.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -42964,11 +42853,10 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         if (this.pageSetup !== undefined) {
             let _obj = ObjectSerializer.serialize(this.pageSetup, this.pageSetup.constructor.name === "Object" ? "importedPageSetup.PageSetup" : this.pageSetup.constructor.name);
             formParams.push(['PageSetup', JSON.stringify(_obj), 'application/json']);
-            this.pageSetup.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -43137,11 +43025,10 @@ export class UpdateStyleRequest implements RequestInterface {
         if (this.styleUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleUpdate, this.styleUpdate.constructor.name === "Object" ? "importedStyleUpdate.StyleUpdate" : this.styleUpdate.constructor.name);
             formParams.push(['StyleUpdate', JSON.stringify(_obj), 'application/json']);
-            this.styleUpdate.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -43291,11 +43178,10 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         if (this.styleUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleUpdate, this.styleUpdate.constructor.name === "Object" ? "importedStyleUpdate.StyleUpdate" : this.styleUpdate.constructor.name);
             formParams.push(['StyleUpdate', JSON.stringify(_obj), 'application/json']);
-            this.styleUpdate.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -43475,11 +43361,10 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         if (this.format !== undefined) {
             let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableCellFormat.TableCellFormat" : this.format.constructor.name);
             formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
-            this.format.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -43640,11 +43525,10 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         if (this.format !== undefined) {
             let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableCellFormat.TableCellFormat" : this.format.constructor.name);
             formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
-            this.format.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -43819,11 +43703,10 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         if (this.properties !== undefined) {
             let _obj = ObjectSerializer.serialize(this.properties, this.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : this.properties.constructor.name);
             formParams.push(['Properties', JSON.stringify(_obj), 'application/json']);
-            this.properties.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -43979,11 +43862,10 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         if (this.properties !== undefined) {
             let _obj = ObjectSerializer.serialize(this.properties, this.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : this.properties.constructor.name);
             formParams.push(['Properties', JSON.stringify(_obj), 'application/json']);
-            this.properties.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -44163,11 +44045,10 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         if (this.format !== undefined) {
             let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableRowFormat.TableRowFormat" : this.format.constructor.name);
             formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
-            this.format.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -44328,11 +44209,10 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         if (this.format !== undefined) {
             let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableRowFormat.TableRowFormat" : this.format.constructor.name);
             formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
-            this.format.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {
@@ -44447,7 +44327,7 @@ export class UploadFileRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.id, fileContent.content, 'application/octet-stream']);
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
         }
 
         const requestOptions: request.Options = {

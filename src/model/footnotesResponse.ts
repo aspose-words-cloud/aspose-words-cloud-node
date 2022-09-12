@@ -68,11 +68,6 @@ export class FootnotesResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.footnotes)
-        {
-            this.footnotes.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

@@ -68,14 +68,6 @@ export class SearchResultsCollection extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.resultsList)
-        {
-            for (let element of this.resultsList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

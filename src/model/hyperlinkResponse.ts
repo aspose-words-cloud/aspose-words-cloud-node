@@ -68,11 +68,6 @@ export class HyperlinkResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.hyperlink)
-        {
-            this.hyperlink.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

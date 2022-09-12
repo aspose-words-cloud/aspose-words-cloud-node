@@ -68,11 +68,6 @@ export class TableResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.table)
-        {
-            this.table.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

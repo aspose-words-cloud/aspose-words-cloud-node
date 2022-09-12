@@ -68,14 +68,6 @@ export class ListLevels extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.listLevel)
-        {
-            for (let element of this.listLevel)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

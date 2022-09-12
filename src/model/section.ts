@@ -108,34 +108,6 @@ export class Section extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.childNodes)
-        {
-            for (let element of this.childNodes)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-        if (this.headerFooters)
-        {
-            this.headerFooters.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.pageSetup)
-        {
-            this.pageSetup.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.paragraphs)
-        {
-            this.paragraphs.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.tables)
-        {
-            this.tables.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

@@ -115,19 +115,6 @@ export class OutlineOptionsData implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.bookmarksOutlineLevels)
-        {
-            for (let element of this.bookmarksOutlineLevels)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-
-
-
-
-
     }
 }
 

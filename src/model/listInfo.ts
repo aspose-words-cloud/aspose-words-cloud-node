@@ -130,16 +130,6 @@ export class ListInfo extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.listLevels)
-        {
-            this.listLevels.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.style)
-        {
-            this.style.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

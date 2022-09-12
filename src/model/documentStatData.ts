@@ -107,22 +107,6 @@ export class DocumentStatData implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.footnotesStatData)
-        {
-            this.footnotesStatData.collectFilesContent(_resultFilesContent);
-        }
-
-
-        if (this.pageStatData)
-        {
-            for (let element of this.pageStatData)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-
-
     }
 }
 

@@ -27,22 +27,27 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { BaseImageEntryList } from './baseImageEntryList';
+import { BaseEntryList } from './baseEntryList';
 import { ImageEntry } from './imageEntry';
 
 export const importsMapImageEntryList = {
-    BaseImageEntryList,
+    BaseEntryList,
     ImageEntry,
 };
 
 /**
  * Represents a list of images which will be appended to the original resource document or image.
  */
-export class ImageEntryList extends BaseImageEntryList {
+export class ImageEntryList extends BaseEntryList {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "appendEachImageOnNewPage",
+            baseName: "AppendEachImageOnNewPage",
+            type: "boolean",
+        },
         {
             name: "imageEntries",
             baseName: "ImageEntries",
@@ -58,6 +63,11 @@ export class ImageEntryList extends BaseImageEntryList {
     }
 
     /**
+     * Gets or sets a value indicating whether each image should be added to a new page in the document.
+     */
+    public appendEachImageOnNewPage: boolean;
+
+    /**
      * Gets or sets the list of images.
      */
     public imageEntries: Array<ImageEntry>;
@@ -68,6 +78,7 @@ export class ImageEntryList extends BaseImageEntryList {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+        super.collectFilesContent(_resultFilesContent);
         if (this.imageEntries)
         {
             for (let element of this.imageEntries)

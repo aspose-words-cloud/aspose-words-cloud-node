@@ -66,14 +66,6 @@ export class TableCell extends NodeLink {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.childNodes)
-        {
-            for (let element of this.childNodes)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

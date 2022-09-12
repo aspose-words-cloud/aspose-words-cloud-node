@@ -68,14 +68,6 @@ export class TabStopsResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.tabStops)
-        {
-            for (let element of this.tabStops)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

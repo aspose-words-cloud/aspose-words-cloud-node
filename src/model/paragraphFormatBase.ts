@@ -319,20 +319,6 @@ export class ParagraphFormatBase extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.shading)
-        {
-            this.shading.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
-
-
-
-
-
     }
 }
 

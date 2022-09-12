@@ -80,16 +80,6 @@ export class ProtectionDataResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.documentLink)
-        {
-            this.documentLink.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.protectionData)
-        {
-            this.protectionData.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

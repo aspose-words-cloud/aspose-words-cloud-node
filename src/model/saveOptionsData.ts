@@ -209,24 +209,6 @@ export abstract class SaveOptionsData implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.customTimeZoneInfoData)
-        {
-            this.customTimeZoneInfoData.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
 

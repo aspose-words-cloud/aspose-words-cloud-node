@@ -68,11 +68,6 @@ export class BordersResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.borders)
-        {
-            this.borders.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

@@ -95,14 +95,6 @@ export class PageStatData implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.footnotesStatData)
-        {
-            this.footnotesStatData.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
     }
 }
 

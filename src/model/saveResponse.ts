@@ -68,11 +68,6 @@ export class SaveResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.saveResult)
-        {
-            this.saveResult.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

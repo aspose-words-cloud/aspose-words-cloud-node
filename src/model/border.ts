@@ -118,15 +118,6 @@ export class Border extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.color)
-        {
-            this.color.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
     }
 }
 

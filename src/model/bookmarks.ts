@@ -68,14 +68,6 @@ export class Bookmarks extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.bookmarkList)
-        {
-            for (let element of this.bookmarkList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

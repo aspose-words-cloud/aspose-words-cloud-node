@@ -131,15 +131,6 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.metafileRenderingOptions)
-        {
-            this.metafileRenderingOptions.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
     }
 }
 

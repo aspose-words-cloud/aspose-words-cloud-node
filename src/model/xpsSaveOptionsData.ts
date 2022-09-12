@@ -100,13 +100,6 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.outlineOptions)
-        {
-            this.outlineOptions.collectFilesContent(_resultFilesContent);
-        }
-
-
-
     }
 }
 

@@ -68,14 +68,6 @@ export class Lists extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.listInfo)
-        {
-            for (let element of this.listInfo)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

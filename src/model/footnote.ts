@@ -111,19 +111,6 @@ export class Footnote extends FootnoteLink {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.content)
-        {
-            this.content.collectFilesContent(_resultFilesContent);
-        }
-
-
-        if (this.position)
-        {
-            this.position.collectFilesContent(_resultFilesContent);
-        }
-
-
-
     }
 }
 

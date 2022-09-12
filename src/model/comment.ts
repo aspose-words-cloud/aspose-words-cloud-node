@@ -130,24 +130,6 @@ export class Comment extends CommentLink {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.content)
-        {
-            this.content.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-        if (this.rangeEnd)
-        {
-            this.rangeEnd.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.rangeStart)
-        {
-            this.rangeStart.collectFilesContent(_resultFilesContent);
-        }
-
-
     }
 }
 

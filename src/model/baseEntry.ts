@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="baseDocumentEntry.ts">
+ * <copyright company="Aspose" file="baseEntry.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,27 +27,24 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { FileReference } from './fileReference';
 
-export const importsMapBaseDocumentEntry = {
+export const importsMapBaseEntry = {
+    FileReference,
 };
 
 /**
- * Represents a base document entry.
+ * Represents a base class for document which will be appended to the original resource document.
  */
-export abstract class BaseDocumentEntry implements ModelInterface {
+export abstract class BaseEntry implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "encryptedPassword",
-            baseName: "EncryptedPassword",
-            type: "string",
-        },
-        {
-            name: "importFormatMode",
-            baseName: "ImportFormatMode",
-            type: "string",
+            name: "fileReference",
+            baseName: "FileReference",
+            type: "FileReference",
         }
     ];
 
@@ -55,24 +52,24 @@ export abstract class BaseDocumentEntry implements ModelInterface {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return BaseDocumentEntry.attributeTypeMap;
+        return BaseEntry.attributeTypeMap;
     }
 
     /**
-     * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
+     * Gets or sets the file reference.
      */
-    public encryptedPassword: string;
+    public fileReference: FileReference;
 
-    /**
-     * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
-     */
-    public importFormatMode: string;
-
-    public constructor(init?: Partial< BaseDocumentEntry >) {
+    public constructor(init?: Partial< BaseEntry >) {
         Object.assign(this, init);
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.fileReference)
+        {
+            this.fileReference.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

@@ -75,12 +75,6 @@ export class DocumentPosition implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.node)
-        {
-            this.node.collectFilesContent(_resultFilesContent);
-        }
-
-
     }
 }
 

@@ -75,11 +75,6 @@ export class LoadWebDocumentData implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.saveOptions)
-        {
-            this.saveOptions.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

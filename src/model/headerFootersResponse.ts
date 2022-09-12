@@ -68,11 +68,6 @@ export class HeaderFootersResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.headerFooters)
-        {
-            this.headerFooters.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

@@ -68,14 +68,6 @@ export class Hyperlinks extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.hyperlinkList)
-        {
-            for (let element of this.hyperlinkList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

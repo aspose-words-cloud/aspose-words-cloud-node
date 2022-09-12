@@ -88,16 +88,6 @@ export class InfoResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.additionalInfo)
-        {
-            for (let element of this.additionalInfo)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-
-
     }
 }
 

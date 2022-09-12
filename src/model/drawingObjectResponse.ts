@@ -68,11 +68,6 @@ export class DrawingObjectResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.drawingObject)
-        {
-            this.drawingObject.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

@@ -88,14 +88,6 @@ export class ClassificationResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.bestResults)
-        {
-            for (let element of this.bestResults)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

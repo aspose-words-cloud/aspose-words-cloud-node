@@ -117,23 +117,6 @@ export class Document implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.documentProperties)
-        {
-            this.documentProperties.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-        if (this.links)
-        {
-            for (let element of this.links)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-
     }
 }
 

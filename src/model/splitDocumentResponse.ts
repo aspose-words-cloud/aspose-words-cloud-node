@@ -68,11 +68,6 @@ export class SplitDocumentResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.splitResult)
-        {
-            this.splitResult.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

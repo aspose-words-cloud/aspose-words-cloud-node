@@ -75,15 +75,6 @@ export class FilesUploadResult implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.errors)
-        {
-            for (let element of this.errors)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-
     }
 }
 

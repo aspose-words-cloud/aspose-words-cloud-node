@@ -80,19 +80,6 @@ export class TableRow extends NodeLink {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.rowFormat)
-        {
-            this.rowFormat.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.tableCellList)
-        {
-            for (let element of this.tableCellList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

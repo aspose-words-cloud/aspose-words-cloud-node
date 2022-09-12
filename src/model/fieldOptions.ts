@@ -187,22 +187,6 @@ export class FieldOptions implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.currentUser)
-        {
-            this.currentUser.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
 

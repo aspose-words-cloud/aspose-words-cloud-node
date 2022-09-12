@@ -68,11 +68,6 @@ export class WordsApiErrorResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.error)
-        {
-            this.error.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

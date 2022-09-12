@@ -68,11 +68,6 @@ export class TableRowFormatResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.rowFormat)
-        {
-            this.rowFormat.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

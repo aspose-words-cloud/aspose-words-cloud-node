@@ -85,24 +85,6 @@ export class SplitDocumentResult implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.pages)
-        {
-            for (let element of this.pages)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-        if (this.sourceDocument)
-        {
-            this.sourceDocument.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.zippedPages)
-        {
-            this.zippedPages.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

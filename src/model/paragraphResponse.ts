@@ -68,11 +68,6 @@ export class ParagraphResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.paragraph)
-        {
-            this.paragraph.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

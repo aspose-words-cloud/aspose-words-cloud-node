@@ -75,16 +75,6 @@ export class ModificationOperationResult implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.dest)
-        {
-            this.dest.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.source)
-        {
-            this.source.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

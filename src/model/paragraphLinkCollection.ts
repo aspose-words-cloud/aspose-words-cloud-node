@@ -68,14 +68,6 @@ export class ParagraphLinkCollection extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.paragraphLinkList)
-        {
-            for (let element of this.paragraphLinkList)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
     }
 }
 

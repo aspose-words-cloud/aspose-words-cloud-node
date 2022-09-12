@@ -27,23 +27,28 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { BaseDocumentEntry } from './baseDocumentEntry';
+import { BaseEntry } from './baseEntry';
 
 export const importsMapDocumentEntry = {
-    BaseDocumentEntry,
+    BaseEntry,
 };
 
 /**
  * Represents a document which will be appended to the original resource document.
  */
-export class DocumentEntry extends BaseDocumentEntry {
+export class DocumentEntry extends BaseEntry {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "href",
-            baseName: "Href",
+            name: "encryptedPassword",
+            baseName: "EncryptedPassword",
+            type: "string",
+        },
+        {
+            name: "importFormatMode",
+            baseName: "ImportFormatMode",
             type: "string",
         }
     ];
@@ -56,9 +61,14 @@ export class DocumentEntry extends BaseDocumentEntry {
     }
 
     /**
-     * Gets or sets the path to document to append at the server.
+     * Gets or sets document password encrypted on API public key. The default value is null (the document has no password).
      */
-    public href: string;
+    public encryptedPassword: string;
+
+    /**
+     * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
+     */
+    public importFormatMode: string;
 
     public constructor(init?: Partial< DocumentEntry >) {
         super(init);
@@ -66,6 +76,7 @@ export class DocumentEntry extends BaseDocumentEntry {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+        super.collectFilesContent(_resultFilesContent);
     }
 }
 

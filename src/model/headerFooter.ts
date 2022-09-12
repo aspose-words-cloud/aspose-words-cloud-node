@@ -90,24 +90,6 @@ export class HeaderFooter extends HeaderFooterLink {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.childNodes)
-        {
-            for (let element of this.childNodes)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-        if (this.drawingObjects)
-        {
-            this.drawingObjects.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.paragraphs)
-        {
-            this.paragraphs.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

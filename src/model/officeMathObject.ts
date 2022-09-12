@@ -98,14 +98,6 @@ export class OfficeMathObject extends OfficeMathLink {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.content)
-        {
-            this.content.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
     }
 }
 

@@ -68,11 +68,6 @@ export class BookmarksResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.bookmarks)
-        {
-            this.bookmarks.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

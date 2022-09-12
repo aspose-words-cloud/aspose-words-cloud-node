@@ -78,16 +78,6 @@ export class BookmarkInsert extends BookmarkData {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.endRange)
-        {
-            this.endRange.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.startRange)
-        {
-            this.startRange.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

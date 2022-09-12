@@ -68,11 +68,6 @@ export class OfficeMathObjectResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.officeMathObject)
-        {
-            this.officeMathObject.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

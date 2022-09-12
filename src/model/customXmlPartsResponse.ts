@@ -68,11 +68,6 @@ export class CustomXmlPartsResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.customXmlParts)
-        {
-            this.customXmlParts.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

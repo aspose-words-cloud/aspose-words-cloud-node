@@ -78,12 +78,6 @@ export class ReplaceTextResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.documentLink)
-        {
-            this.documentLink.collectFilesContent(_resultFilesContent);
-        }
-
-
     }
 }
 

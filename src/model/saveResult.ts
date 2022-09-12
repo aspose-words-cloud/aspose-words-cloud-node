@@ -85,24 +85,6 @@ export class SaveResult implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.additionalItems)
-        {
-            for (let element of this.additionalItems)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-        if (this.destDocument)
-        {
-            this.destDocument.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.sourceDocument)
-        {
-            this.sourceDocument.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

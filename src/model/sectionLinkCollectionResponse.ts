@@ -68,11 +68,6 @@ export class SectionLinkCollectionResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.sections)
-        {
-            this.sections.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

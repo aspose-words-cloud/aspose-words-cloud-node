@@ -158,30 +158,6 @@ export class DrawingObject extends DrawingObjectLink {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.imageDataLink)
-        {
-            this.imageDataLink.collectFilesContent(_resultFilesContent);
-        }
-
-
-        if (this.oleDataLink)
-        {
-            this.oleDataLink.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-        if (this.renderLinks)
-        {
-            for (let element of this.renderLinks)
-            {
-                element.collectFilesContent(_resultFilesContent);
-            }
-        }
-
-
-
-
     }
 }
 

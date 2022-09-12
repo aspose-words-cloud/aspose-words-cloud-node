@@ -95,12 +95,6 @@ export class Error implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.innerError)
-        {
-            this.innerError.collectFilesContent(_resultFilesContent);
-        }
-
-
     }
 }
 

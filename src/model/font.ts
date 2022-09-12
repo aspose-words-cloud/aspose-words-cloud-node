@@ -461,58 +461,6 @@ export class Font extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.border)
-        {
-            this.border.collectFilesContent(_resultFilesContent);
-        }
-
-        if (this.color)
-        {
-            this.color.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
-
-        if (this.highlightColor)
-        {
-            this.highlightColor.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if (this.underlineColor)
-        {
-            this.underlineColor.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

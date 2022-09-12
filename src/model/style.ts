@@ -168,18 +168,6 @@ export class Style extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.font)
-        {
-            this.font.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
-
-
-
     }
 }
 

@@ -180,25 +180,6 @@ export class ListLevel extends LinkElement {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.font)
-        {
-            this.font.collectFilesContent(_resultFilesContent);
-        }
-
-
-        if (this.linkedStyle)
-        {
-            this.linkedStyle.collectFilesContent(_resultFilesContent);
-        }
-
-
-
-
-
-
-
-
-
     }
 }
 

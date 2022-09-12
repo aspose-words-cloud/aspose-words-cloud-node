@@ -68,11 +68,6 @@ export class DocumentPropertyResponse extends WordsResponse {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.documentProperty)
-        {
-            this.documentProperty.collectFilesContent(_resultFilesContent);
-        }
-
     }
 }
 

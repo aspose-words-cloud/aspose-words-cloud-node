@@ -30,7 +30,7 @@ import { ModelInterface } from './modelInterface';
 import { v4 as uuidv4 } from 'uuid';
 import { Readable } from "stream";
 
-export const importsMapBaseEntry = {
+export const importsMapFileReference = {
 };
 
 export class FileReference implements ModelInterface {

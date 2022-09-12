@@ -61,16 +61,10 @@ export class FileReference implements ModelInterface {
     private reference: string;
     private content: Readable;
 
-    public constructor(remoteFilePath: string) {
-        this.source = 'Storage';
-        this.reference = remoteFilePath;
-        this.content = null;
-    }
-
-    public constructor(localFileContent: Readable) {
-        this.source = 'Request';
-        this.reference = uuidv4();
-        this.content = localFileContent;
+    private constructor(source: string, reference: string, content: Readable) {
+        this.source = source;
+        this.reference = reference;
+        this.content = content;
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
@@ -89,5 +83,13 @@ export class FileReference implements ModelInterface {
 
     public getContent() {
         return this.content;
+    }
+
+    static fromRemoteFilePath(remoteFilePath: string): FileReference {
+        return new FileReference('Storage', remoteFilePath, null);
+    }
+
+    static fromLocalFileContent(localFileContent: Readable): FileReference {
+        return new FileReference('Request', uuidv4(), localFileContent);
     }
 }

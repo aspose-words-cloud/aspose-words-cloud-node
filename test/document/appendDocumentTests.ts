@@ -49,7 +49,7 @@ describe("appendDocument", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestDocumentListDocumentEntries0FileReference = new model.FileReference(remoteDataFolder + "/" + remoteFileName);
+                const requestDocumentListDocumentEntries0FileReference = model.FileReference.fromRemoteFilePath(remoteDataFolder + "/" + remoteFileName);
                 const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
                     fileReference: requestDocumentListDocumentEntries0FileReference,
                     importFormatMode: "KeepSourceFormatting"
@@ -87,7 +87,7 @@ describe("appendDocument", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const requestDocumentListDocumentEntries0FileReferenceStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestDocumentListDocumentEntries0FileReference = new model.FileReference(requestDocumentListDocumentEntries0FileReferenceStream);
+            const requestDocumentListDocumentEntries0FileReference = model.FileReference.fromLocalFileContent(requestDocumentListDocumentEntries0FileReferenceStream);
             const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
                 fileReference: requestDocumentListDocumentEntries0FileReference,
                 importFormatMode: "KeepSourceFormatting"

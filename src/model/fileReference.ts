@@ -41,7 +41,7 @@ export class FileReference implements ModelInterface {
         {
             name: "source",
             baseName: "Source",
-            type: "string",
+            type: "FileReference.SourceEnum",
         },
         {
             name: "reference",
@@ -57,18 +57,18 @@ export class FileReference implements ModelInterface {
         return FileReference.attributeTypeMap;
     }
 
-    private source: string;
+    private source: FileReference.SourceEnum;
     private reference: string;
     private content: Readable;
 
-    private constructor(source: string, reference: string, content: Readable) {
+    private constructor(source: FileReference.SourceEnum, reference: string, content: Readable) {
         this.source = source;
         this.reference = reference;
         this.content = content;
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (source === 'Request') {
+        if (this.source == FileReference.SourceEnum.Request) {
             _resultFilesContent.push(this);
         }
     }
@@ -86,10 +86,17 @@ export class FileReference implements ModelInterface {
     }
 
     static fromRemoteFilePath(remoteFilePath: string): FileReference {
-        return new FileReference('Storage', remoteFilePath, null);
+        return new FileReference(FileReference.SourceEnum.Storage, remoteFilePath, null);
     }
 
     static fromLocalFileContent(localFileContent: Readable): FileReference {
-        return new FileReference('Request', uuidv4(), localFileContent);
+        return new FileReference(FileReference.SourceEnum.Request, uuidv4(), localFileContent);
+    }
+}
+
+export namespace FileReference {
+    export enum SourceEnum {
+        Storage = 'Storage' as any,
+        Request = 'Request' as any
     }
 }

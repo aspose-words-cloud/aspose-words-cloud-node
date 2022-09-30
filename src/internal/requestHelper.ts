@@ -150,6 +150,9 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
                 reject(error);
             } else {
                 if (response.statusCode >= 200 && response.statusCode <= 299) {
+                    if (response.body != null && (typeof response.body === 'string' || response.body instanceof String)) {
+                        response.body = Buffer.from(response.body);
+                    }
                     resolve(response);
                 } else if (response.statusCode === 401 && !notApplyAuthToRequest) {
                     try {

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SaveOptionsData } from './saveOptionsData';
 
 export const importsMapTxtSaveOptionsBaseData = {
@@ -94,6 +95,9 @@ export abstract class TxtSaveOptionsBaseData extends SaveOptionsData {
     public constructor(init?: Partial< TxtSaveOptionsBaseData >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

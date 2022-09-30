@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { MetafileRenderingOptionsData } from './metafileRenderingOptionsData';
 import { SaveOptionsData } from './saveOptionsData';
 
@@ -127,6 +128,9 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
     public constructor(init?: Partial< FixedPageSaveOptionsData >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

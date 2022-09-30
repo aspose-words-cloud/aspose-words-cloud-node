@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapStorageFile = {
 };
@@ -33,7 +34,7 @@ export const importsMapStorageFile = {
 /**
  * File or folder information.
  */
-export class StorageFile {
+export class StorageFile implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -99,6 +100,9 @@ export class StorageFile {
 
     public constructor(init?: Partial< StorageFile >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

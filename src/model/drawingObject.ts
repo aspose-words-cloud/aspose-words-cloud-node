@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DrawingObjectLink } from './drawingObjectLink';
 import { WordsApiLink } from './wordsApiLink';
 
@@ -154,6 +155,9 @@ export class DrawingObject extends DrawingObjectLink {
     public constructor(init?: Partial< DrawingObject >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { NodeLink } from './nodeLink';
 
 export const importsMapFootnoteLink = {
@@ -53,6 +54,9 @@ export class FootnoteLink extends NodeLink {
     public constructor(init?: Partial< FootnoteLink >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

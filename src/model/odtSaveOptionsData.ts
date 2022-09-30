@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SaveOptionsData } from './saveOptionsData';
 
 export const importsMapOdtSaveOptionsData = {
@@ -95,6 +96,9 @@ export class OdtSaveOptionsData extends SaveOptionsData {
         this.saveFormat = 'odt';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

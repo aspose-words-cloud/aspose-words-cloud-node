@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentPosition } from './documentPosition';
 
 export const importsMapCommentBase = {
@@ -35,7 +36,7 @@ export const importsMapCommentBase = {
 /**
  * Comment.
  */
-export abstract class CommentBase {
+export abstract class CommentBase implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -111,6 +112,9 @@ export abstract class CommentBase {
 
     public constructor(init?: Partial< CommentBase >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

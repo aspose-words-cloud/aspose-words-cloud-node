@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentPosition } from './documentPosition';
 
 export const importsMapDrawingObjectInsert = {
@@ -35,7 +36,7 @@ export const importsMapDrawingObjectInsert = {
 /**
  * Drawing object element for insert.
  */
-export class DrawingObjectInsert {
+export class DrawingObjectInsert implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -131,6 +132,9 @@ export class DrawingObjectInsert {
 
     public constructor(init?: Partial< DrawingObjectInsert >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapBookmarkData = {
 };
@@ -33,7 +34,7 @@ export const importsMapBookmarkData = {
 /**
  * DTO for bookmark updating.
  */
-export class BookmarkData {
+export class BookmarkData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class BookmarkData {
 
     public constructor(init?: Partial< BookmarkData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

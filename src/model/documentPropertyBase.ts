@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapDocumentPropertyBase = {
 };
@@ -33,7 +34,7 @@ export const importsMapDocumentPropertyBase = {
 /**
  * Words document property DTO base class.
  */
-export abstract class DocumentPropertyBase {
+export abstract class DocumentPropertyBase implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -59,6 +60,9 @@ export abstract class DocumentPropertyBase {
 
     public constructor(init?: Partial< DocumentPropertyBase >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

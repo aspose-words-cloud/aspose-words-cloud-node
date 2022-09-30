@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { ErrorDetails } from './errorDetails';
 
 export const importsMapError = {
@@ -35,7 +36,7 @@ export const importsMapError = {
 /**
  * Error.
  */
-export class Error {
+export class Error implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -91,6 +92,9 @@ export class Error {
 
     public constructor(init?: Partial< Error >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

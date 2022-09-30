@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FootnoteCollection } from './footnoteCollection';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,9 @@ export class FootnotesResponse extends WordsResponse {
     public constructor(init?: Partial< FootnotesResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

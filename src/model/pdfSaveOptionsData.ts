@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DownsampleOptionsData } from './downsampleOptionsData';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 import { OutlineOptionsData } from './outlineOptionsData';
@@ -316,6 +317,9 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         this.saveFormat = 'pdf';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

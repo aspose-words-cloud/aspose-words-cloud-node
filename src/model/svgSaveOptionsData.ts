@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 
 export const importsMapSvgSaveOptionsData = {
@@ -114,6 +115,9 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
         this.saveFormat = 'svg';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

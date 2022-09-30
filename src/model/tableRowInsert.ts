@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapTableRowInsert = {
 };
@@ -33,7 +34,7 @@ export const importsMapTableRowInsert = {
 /**
  * DTO container with a table row element.
  */
-export class TableRowInsert {
+export class TableRowInsert implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class TableRowInsert {
 
     public constructor(init?: Partial< TableRowInsert >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

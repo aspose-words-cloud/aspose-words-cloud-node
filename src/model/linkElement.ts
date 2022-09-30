@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { WordsApiLink } from './wordsApiLink';
 
 export const importsMapLinkElement = {
@@ -35,7 +36,7 @@ export const importsMapLinkElement = {
 /**
  * Reference to a document.
  */
-export class LinkElement {
+export class LinkElement implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -61,6 +62,9 @@ export class LinkElement {
 
     public constructor(init?: Partial< LinkElement >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

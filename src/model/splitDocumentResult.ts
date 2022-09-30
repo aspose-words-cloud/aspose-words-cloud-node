@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FileLink } from './fileLink';
 
 export const importsMapSplitDocumentResult = {
@@ -35,7 +36,7 @@ export const importsMapSplitDocumentResult = {
 /**
  * Result of splitting document.
  */
-export class SplitDocumentResult {
+export class SplitDocumentResult implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -81,6 +82,9 @@ export class SplitDocumentResult {
 
     public constructor(init?: Partial< SplitDocumentResult >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

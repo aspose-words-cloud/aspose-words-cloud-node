@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapBookmarksOutlineLevelData = {
 };
@@ -33,7 +34,7 @@ export const importsMapBookmarksOutlineLevelData = {
 /**
  * Container class for individual bookmarks outline level.
  */
-export class BookmarksOutlineLevelData {
+export class BookmarksOutlineLevelData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class BookmarksOutlineLevelData {
 
     public constructor(init?: Partial< BookmarksOutlineLevelData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

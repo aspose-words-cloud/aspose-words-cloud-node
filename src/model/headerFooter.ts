@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { HeaderFooterLink } from './headerFooterLink';
 import { LinkElement } from './linkElement';
 import { NodeLink } from './nodeLink';
@@ -86,6 +87,9 @@ export class HeaderFooter extends HeaderFooterLink {
     public constructor(init?: Partial< HeaderFooter >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

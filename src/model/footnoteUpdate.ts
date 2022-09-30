@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FootnoteBase } from './footnoteBase';
 
 export const importsMapFootnoteUpdate = {
@@ -53,6 +54,9 @@ export class FootnoteUpdate extends FootnoteBase {
     public constructor(init?: Partial< FootnoteUpdate >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

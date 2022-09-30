@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Run } from './run';
 import { WordsResponse } from './wordsResponse';
 
@@ -64,6 +65,9 @@ export class RunResponse extends WordsResponse {
     public constructor(init?: Partial< RunResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

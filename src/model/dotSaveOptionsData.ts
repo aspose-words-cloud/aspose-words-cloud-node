@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocSaveOptionsData } from './docSaveOptionsData';
 
 export const importsMapDotSaveOptionsData = {
@@ -55,6 +56,9 @@ export class DotSaveOptionsData extends DocSaveOptionsData {
         this.saveFormat = 'dot';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

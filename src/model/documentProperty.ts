@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 
 export const importsMapDocumentProperty = {
@@ -83,6 +84,9 @@ export class DocumentProperty extends LinkElement {
     public constructor(init?: Partial< DocumentProperty >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

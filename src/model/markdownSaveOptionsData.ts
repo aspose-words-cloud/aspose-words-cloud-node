@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { TxtSaveOptionsBaseData } from './txtSaveOptionsBaseData';
 
 export const importsMapMarkdownSaveOptionsData = {
@@ -65,6 +66,9 @@ export class MarkdownSaveOptionsData extends TxtSaveOptionsBaseData {
         this.saveFormat = 'md';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

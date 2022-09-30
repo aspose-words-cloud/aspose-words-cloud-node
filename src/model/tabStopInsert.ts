@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { TabStopBase } from './tabStopBase';
 
 export const importsMapTabStopInsert = {
@@ -53,6 +54,9 @@ export class TabStopInsert extends TabStopBase {
     public constructor(init?: Partial< TabStopInsert >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

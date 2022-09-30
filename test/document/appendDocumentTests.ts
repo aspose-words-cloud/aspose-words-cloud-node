@@ -49,8 +49,9 @@ describe("appendDocument", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
+                const requestDocumentListDocumentEntries0FileReference = model.FileReference.fromRemoteFilePath(remoteDataFolder + "/" + remoteFileName);
                 const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
-                    href: remoteDataFolder + "/" + remoteFileName,
+                    fileReference: requestDocumentListDocumentEntries0FileReference,
                     importFormatMode: "KeepSourceFormatting"
                 })
                 const requestDocumentListDocumentEntries = [
@@ -84,36 +85,29 @@ describe("appendDocument", () => {
     describe("appendDocumentOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestAppendDocument.docx";
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocumentListDocumentEntries0FileReferenceStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocumentListDocumentEntries0FileReference = model.FileReference.fromLocalFileContent(requestDocumentListDocumentEntries0FileReferenceStream);
+            const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
+                fileReference: requestDocumentListDocumentEntries0FileReference,
+                importFormatMode: "KeepSourceFormatting"
+            })
+            const requestDocumentListDocumentEntries = [
+                requestDocumentListDocumentEntries0
+            ]
+            const requestDocumentList = new model.DocumentEntryList({
+                documentEntries: requestDocumentListDocumentEntries
+            })
+            const request = new model.AppendDocumentOnlineRequest({
+                document: requestDocument,
+                documentList: requestDocumentList
+            });
 
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-                const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
-                    href: remoteDataFolder + "/" + remoteFileName,
-                    importFormatMode: "KeepSourceFormatting"
-                })
-                const requestDocumentListDocumentEntries = [
-                    requestDocumentListDocumentEntries0
-                ]
-                const requestDocumentList = new model.DocumentEntryList({
-                    documentEntries: requestDocumentListDocumentEntries
-                })
-                const request = new model.AppendDocumentOnlineRequest({
-                    document: requestDocument,
-                    documentList: requestDocumentList
-                });
-
-                // Act
-                return wordsApi.appendDocumentOnline(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                });
-
+            // Act
+            return wordsApi.appendDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
             });
 
        });

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapPdfDigitalSignatureDetailsData = {
 };
@@ -33,7 +34,7 @@ export const importsMapPdfDigitalSignatureDetailsData = {
 /**
  * Container class for details of digital signature.
  */
-export class PdfDigitalSignatureDetailsData {
+export class PdfDigitalSignatureDetailsData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -99,6 +100,9 @@ export class PdfDigitalSignatureDetailsData {
 
     public constructor(init?: Partial< PdfDigitalSignatureDetailsData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

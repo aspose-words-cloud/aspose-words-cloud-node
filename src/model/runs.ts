@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { Run } from './run';
 
@@ -64,6 +65,9 @@ export class Runs extends LinkElement {
     public constructor(init?: Partial< Runs >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

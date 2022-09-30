@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapListLevelUpdate = {
 };
@@ -33,7 +34,7 @@ export const importsMapListLevelUpdate = {
 /**
  * Represents a document list levels.
  */
-export class ListLevelUpdate {
+export class ListLevelUpdate implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -149,6 +150,9 @@ export class ListLevelUpdate {
 
     public constructor(init?: Partial< ListLevelUpdate >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

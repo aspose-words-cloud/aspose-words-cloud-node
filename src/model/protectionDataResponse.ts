@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FileLink } from './fileLink';
 import { ProtectionData } from './protectionData';
 import { WordsResponse } from './wordsResponse';
@@ -76,6 +77,9 @@ export class ProtectionDataResponse extends WordsResponse {
     public constructor(init?: Partial< ProtectionDataResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

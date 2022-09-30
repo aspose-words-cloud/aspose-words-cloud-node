@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapDownsampleOptionsData = {
 };
@@ -33,7 +34,7 @@ export const importsMapDownsampleOptionsData = {
 /**
  * Container class for Downsample options.
  */
-export class DownsampleOptionsData {
+export class DownsampleOptionsData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -79,6 +80,9 @@ export class DownsampleOptionsData {
 
     public constructor(init?: Partial< DownsampleOptionsData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

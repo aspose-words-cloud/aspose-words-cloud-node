@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { NodeLink } from './nodeLink';
 
@@ -104,6 +105,9 @@ export class Section extends LinkElement {
     public constructor(init?: Partial< Section >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

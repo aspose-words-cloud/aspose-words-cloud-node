@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentPosition } from './documentPosition';
 import { FootnoteLink } from './footnoteLink';
 import { StoryChildNodes } from './storyChildNodes';
@@ -107,6 +108,9 @@ export class Footnote extends FootnoteLink {
     public constructor(init?: Partial< Footnote >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

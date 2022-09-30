@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { ImageSaveOptionsData } from './imageSaveOptionsData';
 
 export const importsMapEmfSaveOptionsData = {
@@ -55,6 +56,9 @@ export class EmfSaveOptionsData extends ImageSaveOptionsData {
         this.saveFormat = 'emf';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

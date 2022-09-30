@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { RunLink } from './runLink';
 
 export const importsMapRun = {
@@ -53,6 +54,9 @@ export class Run extends RunLink {
     public constructor(init?: Partial< Run >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

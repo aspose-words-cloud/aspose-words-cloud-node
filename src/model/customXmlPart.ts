@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { CustomXmlPartLink } from './customXmlPartLink';
 
 export const importsMapCustomXmlPart = {
@@ -72,6 +73,9 @@ export class CustomXmlPart extends CustomXmlPartLink {
     public constructor(init?: Partial< CustomXmlPart >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

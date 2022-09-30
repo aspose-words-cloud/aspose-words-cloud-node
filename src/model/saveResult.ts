@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FileLink } from './fileLink';
 
 export const importsMapSaveResult = {
@@ -35,7 +36,7 @@ export const importsMapSaveResult = {
 /**
  * Result of saving.
  */
-export class SaveResult {
+export class SaveResult implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -81,6 +82,9 @@ export class SaveResult {
 
     public constructor(init?: Partial< SaveResult >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

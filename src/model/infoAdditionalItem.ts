@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapInfoAdditionalItem = {
 };
@@ -33,7 +34,7 @@ export const importsMapInfoAdditionalItem = {
 /**
  * Info additional item.
  */
-export class InfoAdditionalItem {
+export class InfoAdditionalItem implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class InfoAdditionalItem {
 
     public constructor(init?: Partial< InfoAdditionalItem >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

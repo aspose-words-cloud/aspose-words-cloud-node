@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { NodeLink } from './nodeLink';
 
 export const importsMapStoryChildNodes = {
@@ -35,7 +36,7 @@ export const importsMapStoryChildNodes = {
 /**
  * Child nodes of Story or InlineStory.
  */
-export class StoryChildNodes {
+export class StoryChildNodes implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -61,6 +62,9 @@ export class StoryChildNodes {
 
     public constructor(init?: Partial< StoryChildNodes >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

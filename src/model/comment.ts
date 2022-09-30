@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { CommentLink } from './commentLink';
 import { DocumentPosition } from './documentPosition';
 import { StoryChildNodes } from './storyChildNodes';
@@ -126,6 +127,9 @@ export class Comment extends CommentLink {
     public constructor(init?: Partial< Comment >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

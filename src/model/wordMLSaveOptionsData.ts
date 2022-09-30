@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SaveOptionsData } from './saveOptionsData';
 
 export const importsMapWordMLSaveOptionsData = {
@@ -64,6 +65,9 @@ export class WordMLSaveOptionsData extends SaveOptionsData {
         this.saveFormat = 'wml';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapPageNumber = {
 };
@@ -33,7 +34,7 @@ export const importsMapPageNumber = {
 /**
  * Class is used for insert page number request building.
  */
-export class PageNumber {
+export class PageNumber implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -52,6 +53,11 @@ export class PageNumber {
             name: "isTop",
             baseName: "IsTop",
             type: "boolean",
+        },
+        {
+            name: "pageStartingNumber",
+            baseName: "PageStartingNumber",
+            type: "number",
         },
         {
             name: "setPageNumberOnFirstPage",
@@ -83,12 +89,20 @@ export class PageNumber {
     public isTop: boolean;
 
     /**
+     * Gets or sets the starting page number of the document.
+     */
+    public pageStartingNumber: number;
+
+    /**
      * Gets or sets a value indicating whether if true the page number is added on first page too.
      */
     public setPageNumberOnFirstPage: boolean;
 
     public constructor(init?: Partial< PageNumber >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

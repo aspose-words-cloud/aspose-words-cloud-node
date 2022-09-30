@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapParagraphInsert = {
 };
@@ -33,7 +34,7 @@ export const importsMapParagraphInsert = {
 /**
  * DTO container with a paragraph's text.
  */
-export class ParagraphInsert {
+export class ParagraphInsert implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -59,6 +60,9 @@ export class ParagraphInsert {
 
     public constructor(init?: Partial< ParagraphInsert >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

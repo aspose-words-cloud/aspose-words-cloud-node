@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapMetafileRenderingOptionsData = {
 };
@@ -33,7 +34,7 @@ export const importsMapMetafileRenderingOptionsData = {
 /**
  * Container class for options of metafile rendering.
  */
-export class MetafileRenderingOptionsData {
+export class MetafileRenderingOptionsData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -100,6 +101,9 @@ export class MetafileRenderingOptionsData {
 
     public constructor(init?: Partial< MetafileRenderingOptionsData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

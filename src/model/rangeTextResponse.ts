@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { WordsResponse } from './wordsResponse';
 
 export const importsMapRangeTextResponse = {
@@ -62,6 +63,9 @@ export class RangeTextResponse extends WordsResponse {
     public constructor(init?: Partial< RangeTextResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

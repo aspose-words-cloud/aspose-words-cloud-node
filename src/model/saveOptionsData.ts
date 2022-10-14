@@ -72,11 +72,6 @@ export abstract class SaveOptionsData implements ModelInterface {
             type: "string",
         },
         {
-            name: "flatOpcXmlMappingOnly",
-            baseName: "FlatOpcXmlMappingOnly",
-            type: "boolean",
-        },
-        {
             name: "imlRenderingMode",
             baseName: "ImlRenderingMode",
             type: "SaveOptionsData.ImlRenderingModeEnum",
@@ -155,12 +150,6 @@ export abstract class SaveOptionsData implements ModelInterface {
      * Gets or sets the name of destination file.
      */
     public fileName: string;
-
-    /**
-     * Gets or sets value determining which document formats are allowed to be mapped by Aspose.Words.Markup.StructuredDocumentTag.XmlMapping.
-     * By default only Aspose.Words.LoadFormat.FlatOpc document format is allowed to be mapped.
-     */
-    public flatOpcXmlMappingOnly: boolean;
 
     /**
      * Gets or sets the value determining how ink (InkML) objects are rendered.

@@ -50,6 +50,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "cacheHeaderFooterShapes",
+            baseName: "CacheHeaderFooterShapes",
+            type: "boolean",
+        },
+        {
             name: "compliance",
             baseName: "Compliance",
             type: "PdfSaveOptionsData.ComplianceEnum",
@@ -182,6 +187,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PdfSaveOptionsData.attributeTypeMap);
     }
+
+    /**
+     * Gets or sets a value indicating whether or not to cache shapes placed in header and footer of document.
+     */
+    public cacheHeaderFooterShapes: boolean;
 
     /**
      * Gets or sets the PDF standards compliance level for output documents.

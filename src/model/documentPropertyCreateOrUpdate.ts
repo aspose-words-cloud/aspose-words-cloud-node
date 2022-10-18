@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentPropertyBase } from './documentPropertyBase';
 
 export const importsMapDocumentPropertyCreateOrUpdate = {
@@ -53,6 +54,9 @@ export class DocumentPropertyCreateOrUpdate extends DocumentPropertyBase {
     public constructor(init?: Partial< DocumentPropertyCreateOrUpdate >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,22 +26,25 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
+import { FileReference } from './fileReference';
 
 export const importsMapBaseEntry = {
+    FileReference,
 };
 
 /**
- * Represents a entry which will be appended to the original resource document.
+ * Represents a base class for document which will be appended to the original resource document.
  */
-export class BaseEntry {
+export abstract class BaseEntry implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "href",
-            baseName: "Href",
-            type: "string",
+            name: "fileReference",
+            baseName: "FileReference",
+            type: "FileReference",
         }
     ];
 
@@ -53,12 +56,20 @@ export class BaseEntry {
     }
 
     /**
-     * Gets or sets the path to entry to append at the server.
+     * Gets or sets the file reference.
      */
-    public href: string;
+    public fileReference: FileReference;
 
     public constructor(init?: Partial< BaseEntry >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.fileReference)
+        {
+            this.fileReference.collectFilesContent(_resultFilesContent);
+        }
+
     }
 }
 

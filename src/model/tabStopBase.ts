@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapTabStopBase = {
 };
@@ -33,7 +34,7 @@ export const importsMapTabStopBase = {
 /**
  * Base class for paragraph format tab stop DTO.
  */
-export class TabStopBase {
+export class TabStopBase implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -79,6 +80,9 @@ export class TabStopBase {
 
     public constructor(init?: Partial< TabStopBase >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

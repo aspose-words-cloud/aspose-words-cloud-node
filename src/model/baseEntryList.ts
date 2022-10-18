@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapBaseEntryList = {
 };
@@ -33,7 +34,7 @@ export const importsMapBaseEntryList = {
 /**
  * Represents a list of entries which will be appended to the original resource entry.
  */
-export abstract class BaseEntryList {
+export abstract class BaseEntryList implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -50,6 +51,9 @@ export abstract class BaseEntryList {
 
     public constructor(init?: Partial< BaseEntryList >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

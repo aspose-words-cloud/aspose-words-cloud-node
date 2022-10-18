@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { ImageSaveOptionsData } from './imageSaveOptionsData';
 
 export const importsMapTiffSaveOptionsData = {
@@ -85,6 +86,9 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
         this.saveFormat = 'tiff';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

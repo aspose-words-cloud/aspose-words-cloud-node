@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { CommentBase } from './commentBase';
 
 export const importsMapCommentUpdate = {
@@ -53,6 +54,9 @@ export class CommentUpdate extends CommentBase {
     public constructor(init?: Partial< CommentUpdate >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

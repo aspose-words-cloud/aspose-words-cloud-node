@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { BaseEntryList } from './baseEntryList';
 import { ImageEntry } from './imageEntry';
 
@@ -74,6 +75,18 @@ export class ImageEntryList extends BaseEntryList {
     public constructor(init?: Partial< ImageEntryList >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        super.collectFilesContent(_resultFilesContent);
+        if (this.imageEntries)
+        {
+            for (let element of this.imageEntries)
+            {
+                element.collectFilesContent(_resultFilesContent);
+            }
+        }
+
     }
 }
 

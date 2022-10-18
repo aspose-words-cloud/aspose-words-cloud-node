@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapCompressOptions = {
 };
@@ -33,7 +34,7 @@ export const importsMapCompressOptions = {
 /**
  * Options of document compress.
  */
-export class CompressOptions {
+export class CompressOptions implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -71,6 +72,9 @@ export class CompressOptions {
 
     public constructor(init?: Partial< CompressOptions >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

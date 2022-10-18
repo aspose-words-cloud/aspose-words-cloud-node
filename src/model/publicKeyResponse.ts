@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { WordsResponse } from './wordsResponse';
 
 export const importsMapPublicKeyResponse = {
@@ -72,6 +73,9 @@ export class PublicKeyResponse extends WordsResponse {
     public constructor(init?: Partial< PublicKeyResponse >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

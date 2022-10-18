@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { NodeLink } from './nodeLink';
 
 export const importsMapParagraphLink = {
@@ -62,6 +63,9 @@ export class ParagraphLink extends NodeLink {
     public constructor(init?: Partial< ParagraphLink >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

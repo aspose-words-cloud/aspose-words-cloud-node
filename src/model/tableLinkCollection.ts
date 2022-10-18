@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { TableLink } from './tableLink';
 
@@ -64,6 +65,9 @@ export class TableLinkCollection extends LinkElement {
     public constructor(init?: Partial< TableLinkCollection >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

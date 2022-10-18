@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { CustomXmlPart } from './customXmlPart';
 
 export const importsMapCustomXmlPartUpdate = {
@@ -53,6 +54,9 @@ export class CustomXmlPartUpdate extends CustomXmlPart {
     public constructor(init?: Partial< CustomXmlPartUpdate >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

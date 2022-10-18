@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FormField } from './formField';
 import { LinkElement } from './linkElement';
 
@@ -64,6 +65,9 @@ export class FormFieldCollection extends LinkElement {
     public constructor(init?: Partial< FormFieldCollection >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 
 export const importsMapPclSaveOptionsData = {
@@ -74,6 +75,9 @@ export class PclSaveOptionsData extends FixedPageSaveOptionsData {
         this.saveFormat = 'pcl';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { BaseEntry } from './baseEntry';
 
 export const importsMapImageEntry = {
@@ -53,6 +54,10 @@ export class ImageEntry extends BaseEntry {
     public constructor(init?: Partial< ImageEntry >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
+        super.collectFilesContent(_resultFilesContent);
     }
 }
 

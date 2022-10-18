@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapProtectionData = {
 };
@@ -33,7 +34,7 @@ export const importsMapProtectionData = {
 /**
  * Container for the data about protection of the document.
  */
-export class ProtectionData {
+export class ProtectionData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -59,6 +60,9 @@ export class ProtectionData {
 
     public constructor(init?: Partial< ProtectionData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

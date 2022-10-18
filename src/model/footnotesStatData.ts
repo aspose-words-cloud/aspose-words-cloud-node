@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapFootnotesStatData = {
 };
@@ -33,7 +34,7 @@ export const importsMapFootnotesStatData = {
 /**
  * Container for the footnotes statistical data.
  */
-export class FootnotesStatData {
+export class FootnotesStatData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class FootnotesStatData {
 
     public constructor(init?: Partial< FootnotesStatData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

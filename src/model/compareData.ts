@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { CompareOptions } from './compareOptions';
 
 export const importsMapCompareData = {
@@ -35,7 +36,7 @@ export const importsMapCompareData = {
 /**
  * Container class for compare documents.
  */
-export class CompareData {
+export class CompareData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -101,6 +102,9 @@ export class CompareData {
 
     public constructor(init?: Partial< CompareData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

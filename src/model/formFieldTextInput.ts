@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FormField } from './formField';
 
 export const importsMapFormFieldTextInput = {
@@ -92,6 +93,9 @@ export class FormFieldTextInput extends FormField {
     public constructor(init?: Partial< FormFieldTextInput >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

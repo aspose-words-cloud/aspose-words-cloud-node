@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { HtmlSaveOptionsData } from './htmlSaveOptionsData';
 
 export const importsMapMhtmlSaveOptionsData = {
@@ -64,6 +65,9 @@ export class MhtmlSaveOptionsData extends HtmlSaveOptionsData {
         this.saveFormat = 'mht';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

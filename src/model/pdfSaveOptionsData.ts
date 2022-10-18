@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DownsampleOptionsData } from './downsampleOptionsData';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 import { OutlineOptionsData } from './outlineOptionsData';
@@ -48,6 +49,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "cacheHeaderFooterShapes",
+            baseName: "CacheHeaderFooterShapes",
+            type: "boolean",
+        },
         {
             name: "compliance",
             baseName: "Compliance",
@@ -183,6 +189,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     }
 
     /**
+     * Gets or sets a value indicating whether or not to cache shapes placed in header and footer of document.
+     */
+    public cacheHeaderFooterShapes: boolean;
+
+    /**
      * Gets or sets the PDF standards compliance level for output documents.
      */
     public compliance: PdfSaveOptionsData.ComplianceEnum;
@@ -316,6 +327,9 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
         this.saveFormat = 'pdf';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

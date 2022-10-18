@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { TimeZoneInfoData } from './timeZoneInfoData';
 
 export const importsMapSaveOptionsData = {
@@ -35,7 +36,7 @@ export const importsMapSaveOptionsData = {
 /**
  * base container class for save options data.
  */
-export abstract class SaveOptionsData {
+export abstract class SaveOptionsData implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,11 +70,6 @@ export abstract class SaveOptionsData {
             name: "fileName",
             baseName: "FileName",
             type: "string",
-        },
-        {
-            name: "flatOpcXmlMappingOnly",
-            baseName: "FlatOpcXmlMappingOnly",
-            type: "boolean",
         },
         {
             name: "imlRenderingMode",
@@ -156,12 +152,6 @@ export abstract class SaveOptionsData {
     public fileName: string;
 
     /**
-     * Gets or sets value determining which document formats are allowed to be mapped by Aspose.Words.Markup.StructuredDocumentTag.XmlMapping.
-     * By default only Aspose.Words.LoadFormat.FlatOpc document format is allowed to be mapped.
-     */
-    public flatOpcXmlMappingOnly: boolean;
-
-    /**
      * Gets or sets the value determining how ink (InkML) objects are rendered.
      */
     public imlRenderingMode: SaveOptionsData.ImlRenderingModeEnum;
@@ -205,6 +195,9 @@ export abstract class SaveOptionsData {
 
     public constructor(init?: Partial< SaveOptionsData >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

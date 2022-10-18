@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { PreferredWidth } from './preferredWidth';
 
@@ -174,6 +175,9 @@ export class TableCellFormat extends LinkElement {
     public constructor(init?: Partial< TableCellFormat >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

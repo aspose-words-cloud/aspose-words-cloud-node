@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { NodeLink } from './nodeLink';
 
 export const importsMapTableLink = {
@@ -53,6 +54,9 @@ export class TableLink extends NodeLink {
     public constructor(init?: Partial< TableLink >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

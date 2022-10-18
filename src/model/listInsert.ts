@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapListInsert = {
 };
@@ -33,7 +34,7 @@ export const importsMapListInsert = {
 /**
  * Insert document to document list.
  */
-export class ListInsert {
+export class ListInsert implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -59,6 +60,9 @@ export class ListInsert {
 
     public constructor(init?: Partial< ListInsert >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

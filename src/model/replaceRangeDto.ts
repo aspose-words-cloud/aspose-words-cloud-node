@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapReplaceRangeDto = {
 };
@@ -33,7 +34,7 @@ export const importsMapReplaceRangeDto = {
 /**
  * DTO container with a range element.
  */
-export class ReplaceRangeDto {
+export class ReplaceRangeDto implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class ReplaceRangeDto {
 
     public constructor(init?: Partial< ReplaceRangeDto >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

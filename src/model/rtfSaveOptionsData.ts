@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { SaveOptionsData } from './saveOptionsData';
 
 export const importsMapRtfSaveOptionsData = {
@@ -94,6 +95,9 @@ export class RtfSaveOptionsData extends SaveOptionsData {
         this.saveFormat = 'rtf';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

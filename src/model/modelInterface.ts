@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="gifSaveOptionsData.ts">
+ * <copyright company="Aspose" file="modelInterface.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -25,40 +25,9 @@
  * --------------------------------------------------------------------------------
  */
 
-import { AttributeInfo } from '../internal/attributeInfo';
-import { ModelInterface } from './modelInterface';
-import { ImageSaveOptionsData } from './imageSaveOptionsData';
-
-export const importsMapGifSaveOptionsData = {
-    ImageSaveOptionsData,
-};
-
 /**
- * Container class for gif save options.
+ * Model interface.
  */
-export class GifSaveOptionsData extends ImageSaveOptionsData {
-    /**
-     * Attribute type map
-     */
-    public static attributeTypeMap: Array<AttributeInfo> = [
-    ];
-
-    /**
-     * Returns attribute type map
-     */
-    public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(GifSaveOptionsData.attributeTypeMap);
-    }
-
-
-    public constructor(init?: Partial< GifSaveOptionsData >) {
-        super(init);
-        this.saveFormat = 'gif';
-
-        Object.assign(this, init);
-    }
-
-    public collectFilesContent(_resultFilesContent: Array<any>) {
-    }
+export interface ModelInterface {
+    collectFilesContent(_resultFilesContent: Array<any>);
 }
-

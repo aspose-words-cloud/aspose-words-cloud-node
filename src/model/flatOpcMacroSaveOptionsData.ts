@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { OoxmlSaveOptionsData } from './ooxmlSaveOptionsData';
 
 export const importsMapFlatOpcMacroSaveOptionsData = {
@@ -55,6 +56,9 @@ export class FlatOpcMacroSaveOptionsData extends OoxmlSaveOptionsData {
         this.saveFormat = 'fopc_macro';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

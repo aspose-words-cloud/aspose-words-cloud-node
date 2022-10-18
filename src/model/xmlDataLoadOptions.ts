@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapXmlDataLoadOptions = {
 };
@@ -33,7 +34,7 @@ export const importsMapXmlDataLoadOptions = {
 /**
  * Represents options for XML data loading.
  */
-export class XmlDataLoadOptions {
+export class XmlDataLoadOptions implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -61,6 +62,9 @@ export class XmlDataLoadOptions {
 
     public constructor(init?: Partial< XmlDataLoadOptions >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapRangeDocument = {
 };
@@ -33,7 +34,7 @@ export const importsMapRangeDocument = {
 /**
  * DTO container with a Range element.
  */
-export class RangeDocument {
+export class RangeDocument implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -59,6 +60,9 @@ export class RangeDocument {
 
     public constructor(init?: Partial< RangeDocument >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

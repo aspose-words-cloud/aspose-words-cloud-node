@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapClassificationResult = {
 };
@@ -33,7 +34,7 @@ export const importsMapClassificationResult = {
 /**
  * Represents a single classification result.
  */
-export class ClassificationResult {
+export class ClassificationResult implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class ClassificationResult {
 
     public constructor(init?: Partial< ClassificationResult >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

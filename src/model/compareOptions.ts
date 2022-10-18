@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapCompareOptions = {
 };
@@ -33,7 +34,7 @@ export const importsMapCompareOptions = {
 /**
  * DTO container with compare documents options.
  */
-export class CompareOptions {
+export class CompareOptions implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -149,6 +150,9 @@ export class CompareOptions {
 
     public constructor(init?: Partial< CompareOptions >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

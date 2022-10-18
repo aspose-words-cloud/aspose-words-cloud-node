@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="gifSaveOptionsData.ts">
+ * <copyright company="Aspose" file="fileReference.ts">
  *   Copyright (c) 2022 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,38 +27,76 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { ImageSaveOptionsData } from './imageSaveOptionsData';
+import { v4 as uuidv4 } from 'uuid';
+import { Readable } from "stream";
 
-export const importsMapGifSaveOptionsData = {
-    ImageSaveOptionsData,
+export const importsMapFileReference = {
 };
 
-/**
- * Container class for gif save options.
- */
-export class GifSaveOptionsData extends ImageSaveOptionsData {
+export class FileReference implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "source",
+            baseName: "Source",
+            type: "FileReference.SourceEnum",
+        },
+        {
+            name: "reference",
+            baseName: "Reference",
+            type: "string",
+        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(GifSaveOptionsData.attributeTypeMap);
+        return FileReference.attributeTypeMap;
     }
 
+    private source: FileReference.SourceEnum;
+    private reference: string;
+    private content: Readable;
 
-    public constructor(init?: Partial< GifSaveOptionsData >) {
-        super(init);
-        this.saveFormat = 'gif';
-
-        Object.assign(this, init);
+    private constructor(source: FileReference.SourceEnum, reference: string, content: Readable) {
+        this.source = source;
+        this.reference = reference;
+        this.content = content;
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.source == FileReference.SourceEnum.Request) {
+            _resultFilesContent.push(this);
+        }
+    }
+
+    public getSource() {
+        return this.source;
+    }
+
+    public getReference() {
+        return this.reference;
+    }
+
+    public getContent() {
+        return this.content;
+    }
+
+    static fromRemoteFilePath(remoteFilePath: string): FileReference {
+        return new FileReference(FileReference.SourceEnum.Storage, remoteFilePath, null);
+    }
+
+    static fromLocalFileContent(localFileContent: Readable): FileReference {
+        return new FileReference(FileReference.SourceEnum.Request, uuidv4(), localFileContent);
     }
 }
 
+export namespace FileReference {
+    export enum SourceEnum {
+        Storage = 'Storage' as any,
+        Request = 'Request' as any
+    }
+}

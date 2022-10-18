@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { UserInformation } from './userInformation';
 
 export const importsMapFieldOptions = {
@@ -35,7 +36,7 @@ export const importsMapFieldOptions = {
 /**
  * DTO for field options.
  */
-export class FieldOptions {
+export class FieldOptions implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -183,6 +184,9 @@ export class FieldOptions {
 
     public constructor(init?: Partial< FieldOptions >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

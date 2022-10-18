@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapListFormatUpdate = {
 };
@@ -33,7 +34,7 @@ export const importsMapListFormatUpdate = {
 /**
  * Paragraph list format element for update.
  */
-export class ListFormatUpdate {
+export class ListFormatUpdate implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class ListFormatUpdate {
 
     public constructor(init?: Partial< ListFormatUpdate >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { NodeLink } from './nodeLink';
 import { TableCell } from './tableCell';
 import { TableRowFormat } from './tableRowFormat';
@@ -76,6 +77,9 @@ export class TableRow extends NodeLink {
     public constructor(init?: Partial< TableRow >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

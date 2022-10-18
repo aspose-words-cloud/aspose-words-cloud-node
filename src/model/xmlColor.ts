@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapXmlColor = {
 };
@@ -33,7 +34,7 @@ export const importsMapXmlColor = {
 /**
  * Utility class for Color serialization.
  */
-export class XmlColor {
+export class XmlColor implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -69,6 +70,9 @@ export class XmlColor {
 
     public constructor(init?: Partial< XmlColor >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

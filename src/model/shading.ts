@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { XmlColor } from './xmlColor';
 
 export const importsMapShading = {
@@ -35,7 +36,7 @@ export const importsMapShading = {
 /**
  * DTO container with a paragraph format shading element.
  */
-export class Shading {
+export class Shading implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -81,6 +82,9 @@ export class Shading {
 
     public constructor(init?: Partial< Shading >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

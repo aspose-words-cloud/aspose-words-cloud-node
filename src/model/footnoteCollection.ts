@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Footnote } from './footnote';
 import { LinkElement } from './linkElement';
 
@@ -64,6 +65,9 @@ export class FootnoteCollection extends LinkElement {
     public constructor(init?: Partial< FootnoteCollection >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

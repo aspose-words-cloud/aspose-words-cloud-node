@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { OoxmlSaveOptionsData } from './ooxmlSaveOptionsData';
 
 export const importsMapDotxSaveOptionsData = {
@@ -55,6 +56,9 @@ export class DotxSaveOptionsData extends OoxmlSaveOptionsData {
         this.saveFormat = 'dotx';
 
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

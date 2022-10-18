@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { RunBase } from './runBase';
 
 export const importsMapRunInsert = {
@@ -53,6 +54,9 @@ export class RunInsert extends RunBase {
     public constructor(init?: Partial< RunInsert >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

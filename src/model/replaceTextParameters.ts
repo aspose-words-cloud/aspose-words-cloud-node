@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapReplaceTextParameters = {
 };
@@ -33,7 +34,7 @@ export const importsMapReplaceTextParameters = {
 /**
  * Class for document replace text request building.
  */
-export class ReplaceTextParameters {
+export class ReplaceTextParameters implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -99,6 +100,9 @@ export class ReplaceTextParameters {
 
     public constructor(init?: Partial< ReplaceTextParameters >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

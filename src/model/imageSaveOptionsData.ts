@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 
 export const importsMapImageSaveOptionsData = {
@@ -178,6 +179,9 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     public constructor(init?: Partial< ImageSaveOptionsData >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

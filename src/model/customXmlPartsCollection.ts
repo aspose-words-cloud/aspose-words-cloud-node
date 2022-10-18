@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { CustomXmlPart } from './customXmlPart';
 import { LinkElement } from './linkElement';
 
@@ -64,6 +65,9 @@ export class CustomXmlPartsCollection extends LinkElement {
     public constructor(init?: Partial< CustomXmlPartsCollection >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

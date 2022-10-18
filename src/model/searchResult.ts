@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentPosition } from './documentPosition';
 
 export const importsMapSearchResult = {
@@ -35,7 +36,7 @@ export const importsMapSearchResult = {
 /**
  * Result of search operation.
  */
-export class SearchResult {
+export class SearchResult implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -71,6 +72,9 @@ export class SearchResult {
 
     public constructor(init?: Partial< SearchResult >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

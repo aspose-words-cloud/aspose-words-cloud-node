@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { DocumentPosition } from './documentPosition';
 
 export const importsMapFootnoteBase = {
@@ -35,7 +36,7 @@ export const importsMapFootnoteBase = {
 /**
  * Footnote base class.
  */
-export abstract class FootnoteBase {
+export abstract class FootnoteBase implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -92,6 +93,9 @@ export abstract class FootnoteBase {
 
     public constructor(init?: Partial< FootnoteBase >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { LinkElement } from './linkElement';
 import { ListLevel } from './listLevel';
 
@@ -64,6 +65,9 @@ export class ListLevels extends LinkElement {
     public constructor(init?: Partial< ListLevels >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

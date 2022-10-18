@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 
 export const importsMapProtectionRequest = {
 };
@@ -33,7 +34,7 @@ export const importsMapProtectionRequest = {
 /**
  * Request on changing of protection.
  */
-export class ProtectionRequest {
+export class ProtectionRequest implements ModelInterface {
     /**
      * Attribute type map
      */
@@ -79,6 +80,9 @@ export class ProtectionRequest {
 
     public constructor(init?: Partial< ProtectionRequest >) {
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

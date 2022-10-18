@@ -26,6 +26,7 @@
  */
 
 import { AttributeInfo } from '../internal/attributeInfo';
+import { ModelInterface } from './modelInterface';
 import { Bookmark } from './bookmark';
 import { LinkElement } from './linkElement';
 
@@ -64,6 +65,9 @@ export class Bookmarks extends LinkElement {
     public constructor(init?: Partial< Bookmarks >) {
         super(init);
         Object.assign(this, init);
+    }
+
+    public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
 

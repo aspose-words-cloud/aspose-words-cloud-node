@@ -1,10 +1,6 @@
 {
   "name": "asposewordscloud",
-<<<<<<< HEAD
-  "version": "22.9.0",
-=======
   "version": "22.10.0",
->>>>>>> master
   "description": "Aspose.Words Cloud SDK for Node.js",
   "homepage": "https://products.aspose.cloud/words/cloud",
   "author": {

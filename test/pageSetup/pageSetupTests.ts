@@ -171,7 +171,7 @@ describe("pageSetup", () => {
                 const request = new model.RenderPageRequest({
                     name: remoteFileName,
                     pageIndex: 1,
-                    format: "bmp",
+                    format: "jpg",
                     folder: remoteDataFolder
                 });
 
@@ -195,7 +195,7 @@ describe("pageSetup", () => {
             const request = new model.RenderPageOnlineRequest({
                 document: requestDocument,
                 pageIndex: 1,
-                format: "bmp"
+                format: "jpg"
             });
 
             // Act

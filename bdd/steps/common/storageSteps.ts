@@ -46,8 +46,7 @@ Given(/^There is no file (.*) on storage in (.*) folder$/, {timeout: 60000}, asy
     const request = new DeleteFileRequest();
     request.path = remotePath;
 
-    const result = await this.wordsApi.deleteFile(request);
-    expect(result.statusMessage).to.equal("OK");
+    await this.wordsApi.deleteFile(request);
 });
 
 Then(/^document (.*) is existed on storage in (.*) folder$/, {timeout: 60000}, async function (documentName, folder) {

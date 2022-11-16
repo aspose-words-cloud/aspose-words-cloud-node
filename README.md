@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 22.11
+
+- Added 'EmbedAttachments' property for PdfSaveOptionsData class.
+
+
 ## Enhancements in Version 22.10
 
 - Added 'CacheHeaderFooterShapes' property for PdfSaveOptionsData class.

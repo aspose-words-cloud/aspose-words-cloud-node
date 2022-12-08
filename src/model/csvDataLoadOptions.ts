@@ -33,6 +33,7 @@ export const importsMapCsvDataLoadOptions = {
 
 /**
  * Represents options for parsing CSV data.
+ * To learn more, visit the LINQ Reporting Engine documentation article.
  */
 export class CsvDataLoadOptions implements ModelInterface {
     /**

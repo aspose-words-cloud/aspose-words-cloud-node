@@ -50,8 +50,8 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "cacheHeaderFooterShapes",
-            baseName: "CacheHeaderFooterShapes",
+            name: "cacheBackgroundGraphics",
+            baseName: "CacheBackgroundGraphics",
             type: "boolean",
         },
         {
@@ -83,6 +83,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             name: "downsampleOptions",
             baseName: "DownsampleOptions",
             type: "DownsampleOptionsData",
+        },
+        {
+            name: "embedAttachments",
+            baseName: "EmbedAttachments",
+            type: "boolean",
         },
         {
             name: "embedFullFonts",
@@ -189,9 +194,9 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     }
 
     /**
-     * Gets or sets a value indicating whether or not to cache shapes placed in header and footer of document.
+     * Gets or sets a value determining whether or not to cache graphics placed in document's background.
      */
-    public cacheHeaderFooterShapes: boolean;
+    public cacheBackgroundGraphics: boolean;
 
     /**
      * Gets or sets the PDF standards compliance level for output documents.
@@ -225,6 +230,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the downsample options.
      */
     public downsampleOptions: DownsampleOptionsData;
+
+    /**
+     * Gets or sets a value determining whether or not to embed attachments to the PDF document.
+     */
+    public embedAttachments: boolean;
 
     /**
      * Gets or sets a value indicating whether fonts are embedded into the resulting PDF documents.

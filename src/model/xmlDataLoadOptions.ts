@@ -33,6 +33,7 @@ export const importsMapXmlDataLoadOptions = {
 
 /**
  * Represents options for XML data loading.
+ * To learn more, visit the LINQ Reporting Engine documentation article.
  */
 export class XmlDataLoadOptions implements ModelInterface {
     /**

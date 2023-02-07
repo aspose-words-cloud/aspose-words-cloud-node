@@ -254,6 +254,13 @@ import * as importedSplitDocumentResult from './splitDocumentResult';
 import * as importedStatDataResponse from './statDataResponse';
 import * as importedStorageFile from './storageFile';
 import * as importedStoryChildNodes from './storyChildNodes';
+import * as importedStructuredDocumentTag from './structuredDocumentTag';
+import * as importedStructuredDocumentTagCollection from './structuredDocumentTagCollection';
+import * as importedStructuredDocumentTagInsert from './structuredDocumentTagInsert';
+import * as importedStructuredDocumentTagListItem from './structuredDocumentTagListItem';
+import * as importedStructuredDocumentTagResponse from './structuredDocumentTagResponse';
+import * as importedStructuredDocumentTagsResponse from './structuredDocumentTagsResponse';
+import * as importedStructuredDocumentTagUpdate from './structuredDocumentTagUpdate';
 import * as importedStyle from './style';
 import * as importedStyleApply from './styleApply';
 import * as importedStyleCopy from './styleCopy';
@@ -528,6 +535,13 @@ export * from './splitDocumentResult';
 export * from './statDataResponse';
 export * from './storageFile';
 export * from './storyChildNodes';
+export * from './structuredDocumentTag';
+export * from './structuredDocumentTagCollection';
+export * from './structuredDocumentTagInsert';
+export * from './structuredDocumentTagListItem';
+export * from './structuredDocumentTagResponse';
+export * from './structuredDocumentTagsResponse';
+export * from './structuredDocumentTagUpdate';
 export * from './style';
 export * from './styleApply';
 export * from './styleCopy';
@@ -685,6 +699,11 @@ const enumsMap = {
     "SaveOptionsData.DmlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.DmlRenderingModeEnum,
     "SaveOptionsData.ImlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.ImlRenderingModeEnum,
     "Shading.TextureEnum": importedShading.Shading.TextureEnum,
+    "StructuredDocumentTag.AppearanceEnum": importedStructuredDocumentTag.StructuredDocumentTag.AppearanceEnum,
+    "StructuredDocumentTag.CalendarTypeEnum": importedStructuredDocumentTag.StructuredDocumentTag.CalendarTypeEnum,
+    "StructuredDocumentTag.DateStorageFormatEnum": importedStructuredDocumentTag.StructuredDocumentTag.DateStorageFormatEnum,
+    "StructuredDocumentTag.LevelEnum": importedStructuredDocumentTag.StructuredDocumentTag.LevelEnum,
+    "StructuredDocumentTag.SdtTypeEnum": importedStructuredDocumentTag.StructuredDocumentTag.SdtTypeEnum,
     "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
     "Style.TypeEnum": importedStyle.Style.TypeEnum,
     "StyleInsert.StyleTypeEnum": importedStyleInsert.StyleInsert.StyleTypeEnum,
@@ -927,6 +946,13 @@ const typeMap = {
     StatDataResponse: importedStatDataResponse.StatDataResponse,
     StorageFile: importedStorageFile.StorageFile,
     StoryChildNodes: importedStoryChildNodes.StoryChildNodes,
+    StructuredDocumentTag: importedStructuredDocumentTag.StructuredDocumentTag,
+    StructuredDocumentTagCollection: importedStructuredDocumentTagCollection.StructuredDocumentTagCollection,
+    StructuredDocumentTagInsert: importedStructuredDocumentTagInsert.StructuredDocumentTagInsert,
+    StructuredDocumentTagListItem: importedStructuredDocumentTagListItem.StructuredDocumentTagListItem,
+    StructuredDocumentTagResponse: importedStructuredDocumentTagResponse.StructuredDocumentTagResponse,
+    StructuredDocumentTagsResponse: importedStructuredDocumentTagsResponse.StructuredDocumentTagsResponse,
+    StructuredDocumentTagUpdate: importedStructuredDocumentTagUpdate.StructuredDocumentTagUpdate,
     Style: importedStyle.Style,
     StyleApply: importedStyleApply.StyleApply,
     StyleCopy: importedStyleCopy.StyleCopy,
@@ -11128,6 +11154,296 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         // verify required parameter 'this.sectionIndex' is not null
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling deleteSectionOnline.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
+	}
+}
+
+/**
+ * Request model for DeleteStructuredDocumentTag operation.
+ * Removes a StructuredDocumentTag (SDT) from the document node.
+ */
+export class DeleteStructuredDocumentTagRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteStructuredDocumentTagRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/sdt/{index}"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling deleteStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling deleteStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.index' is not undefined
+        if (this.index === undefined) {
+            throw new Error('Required parameter "this.index" was undefined when calling deleteStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.index' is not null
+        if (this.index === null) {
+            throw new Error('Required parameter "this.index" was null when calling deleteStructuredDocumentTag.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return null;
+	}
+}
+
+/**
+ * Request model for DeleteStructuredDocumentTagOnline operation.
+ * Removes a StructuredDocumentTag (SDT) from the document node.
+ */
+export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteStructuredDocumentTagOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/{nodePath}/sdt/{index}"
+            .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling deleteStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling deleteStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.index' is not undefined
+        if (this.index === undefined) {
+            throw new Error('Required parameter "this.index" was undefined when calling deleteStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.index' is not null
+        if (this.index === null) {
+            throw new Error('Required parameter "this.index" was null when calling deleteStructuredDocumentTagOnline.');
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -23721,6 +24037,482 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 }
 
 /**
+ * Request model for GetStructuredDocumentTag operation.
+ * Reads a StructuredDocumentTag (SDT) from the document node.
+ */
+export class GetStructuredDocumentTagRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetStructuredDocumentTagRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/sdt/{index}"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling getStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling getStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.index' is not undefined
+        if (this.index === undefined) {
+            throw new Error('Required parameter "this.index" was undefined when calling getStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.index' is not null
+        if (this.index === null) {
+            throw new Error('Required parameter "this.index" was null when calling getStructuredDocumentTag.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagResponse");
+	}
+}
+
+/**
+ * Request model for GetStructuredDocumentTagOnline operation.
+ * Reads a StructuredDocumentTag (SDT) from the document node.
+ */
+export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetStructuredDocumentTagOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/sdt/{index}"
+            .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling getStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling getStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.index' is not undefined
+        if (this.index === undefined) {
+            throw new Error('Required parameter "this.index" was undefined when calling getStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.index' is not null
+        if (this.index === null) {
+            throw new Error('Required parameter "this.index" was null when calling getStructuredDocumentTagOnline.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagResponse");
+	}
+}
+
+/**
+ * Request model for GetStructuredDocumentTags operation.
+ * Reads StructuredDocumentTags (SDT) from the document node.
+ */
+export class GetStructuredDocumentTagsRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetStructuredDocumentTagsRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/sdt"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling getStructuredDocumentTags.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling getStructuredDocumentTags.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagsResponse");
+	}
+}
+
+/**
+ * Request model for GetStructuredDocumentTagsOnline operation.
+ * Reads StructuredDocumentTags (SDT) from the document node.
+ */
+export class GetStructuredDocumentTagsOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetStructuredDocumentTagsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/{nodePath}/sdt"
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling getStructuredDocumentTagsOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling getStructuredDocumentTagsOnline.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagsResponse");
+	}
+}
+
+/**
  * Request model for GetStyle operation.
  * Reads a style from the document.
  */
@@ -30206,6 +30998,311 @@ export class InsertRunOnlineRequest implements RequestInterface {
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
         result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "RunResponse");
+
+
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
+
+        return result;
+	}
+}
+
+/**
+ * Request model for InsertStructuredDocumentTag operation.
+ * Inserts a new StructuredDocumentTag (SDT) to the document node.
+ */
+export class InsertStructuredDocumentTagRequest implements RequestInterface {
+
+    public constructor(init?: Partial< InsertStructuredDocumentTagRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Structured document tag parameters.
+     */
+    public structuredDocumentTag: importedStructuredDocumentTagInsert.StructuredDocumentTagInsert;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/sdt"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling insertStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling insertStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.structuredDocumentTag' is not undefined
+        if (this.structuredDocumentTag === undefined) {
+            throw new Error('Required parameter "this.structuredDocumentTag" was undefined when calling insertStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.structuredDocumentTag' is not null
+        if (this.structuredDocumentTag === null) {
+            throw new Error('Required parameter "this.structuredDocumentTag" was null when calling insertStructuredDocumentTag.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.structuredDocumentTag !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.structuredDocumentTag, this.structuredDocumentTag.constructor.name === "Object" ? "importedStructuredDocumentTagInsert.StructuredDocumentTagInsert" : this.structuredDocumentTag.constructor.name);
+            formParams.push(['StructuredDocumentTag', JSON.stringify(_obj), 'application/json']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagResponse");
+	}
+}
+
+/**
+ * Request model for InsertStructuredDocumentTagOnline operation.
+ * Inserts a new StructuredDocumentTag (SDT) to the document node.
+ */
+export class InsertStructuredDocumentTagOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< InsertStructuredDocumentTagOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Structured document tag parameters.
+     */
+    public structuredDocumentTag: importedStructuredDocumentTagInsert.StructuredDocumentTagInsert;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/sdt"
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling insertStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling insertStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.structuredDocumentTag' is not undefined
+        if (this.structuredDocumentTag === undefined) {
+            throw new Error('Required parameter "this.structuredDocumentTag" was undefined when calling insertStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.structuredDocumentTag' is not null
+        if (this.structuredDocumentTag === null) {
+            throw new Error('Required parameter "this.structuredDocumentTag" was null when calling insertStructuredDocumentTagOnline.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+        if (this.structuredDocumentTag !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.structuredDocumentTag, this.structuredDocumentTag.constructor.name === "Object" ? "importedStructuredDocumentTagInsert.StructuredDocumentTagInsert" : this.structuredDocumentTag.constructor.name);
+            formParams.push(['StructuredDocumentTag', JSON.stringify(_obj), 'application/json']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertStructuredDocumentTagOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "StructuredDocumentTagResponse");
 
 
         const partDocument = findMultipartElement(parts, "Document");
@@ -42906,6 +44003,343 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
 }
 
 /**
+ * Request model for UpdateStructuredDocumentTag operation.
+ * Updates a StructuredDocumentTag (SDT) in the document node.
+ */
+export class UpdateStructuredDocumentTagRequest implements RequestInterface {
+
+    public constructor(init?: Partial< UpdateStructuredDocumentTagRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * Structured document tag parameters.
+     */
+    public structuredDocumentTag: importedStructuredDocumentTagUpdate.StructuredDocumentTagUpdate;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/sdt/{index}"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling updateStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling updateStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.index' is not undefined
+        if (this.index === undefined) {
+            throw new Error('Required parameter "this.index" was undefined when calling updateStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.index' is not null
+        if (this.index === null) {
+            throw new Error('Required parameter "this.index" was null when calling updateStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.structuredDocumentTag' is not undefined
+        if (this.structuredDocumentTag === undefined) {
+            throw new Error('Required parameter "this.structuredDocumentTag" was undefined when calling updateStructuredDocumentTag.');
+        }
+
+        // verify required parameter 'this.structuredDocumentTag' is not null
+        if (this.structuredDocumentTag === null) {
+            throw new Error('Required parameter "this.structuredDocumentTag" was null when calling updateStructuredDocumentTag.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.structuredDocumentTag !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.structuredDocumentTag, this.structuredDocumentTag.constructor.name === "Object" ? "importedStructuredDocumentTagUpdate.StructuredDocumentTagUpdate" : this.structuredDocumentTag.constructor.name);
+            formParams.push(['StructuredDocumentTag', JSON.stringify(_obj), 'application/json']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagResponse");
+	}
+}
+
+/**
+ * Request model for UpdateStructuredDocumentTagOnline operation.
+ * Updates a StructuredDocumentTag (SDT) in the document node.
+ */
+export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< UpdateStructuredDocumentTagOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Structured document tag parameters.
+     */
+    public structuredDocumentTag: importedStructuredDocumentTagUpdate.StructuredDocumentTagUpdate;
+
+    /**
+     * Object index.
+     */
+    public index: number;
+
+    /**
+     * The path to the node in the document tree.
+     */
+    public nodePath: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/put/{nodePath}/sdt/{index}"
+            .replace("/{" + "index" + "}", (this.index !== null && this.index !== undefined) ? "/" + String(this.index) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling updateStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling updateStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.structuredDocumentTag' is not undefined
+        if (this.structuredDocumentTag === undefined) {
+            throw new Error('Required parameter "this.structuredDocumentTag" was undefined when calling updateStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.structuredDocumentTag' is not null
+        if (this.structuredDocumentTag === null) {
+            throw new Error('Required parameter "this.structuredDocumentTag" was null when calling updateStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.index' is not undefined
+        if (this.index === undefined) {
+            throw new Error('Required parameter "this.index" was undefined when calling updateStructuredDocumentTagOnline.');
+        }
+
+        // verify required parameter 'this.index' is not null
+        if (this.index === null) {
+            throw new Error('Required parameter "this.index" was null when calling updateStructuredDocumentTagOnline.');
+        }
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+        if (this.structuredDocumentTag !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.structuredDocumentTag, this.structuredDocumentTag.constructor.name === "Object" ? "importedStructuredDocumentTagUpdate.StructuredDocumentTagUpdate" : this.structuredDocumentTag.constructor.name);
+            formParams.push(['StructuredDocumentTag', JSON.stringify(_obj), 'application/json']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new UpdateStructuredDocumentTagOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "StructuredDocumentTagResponse");
+
+
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
+
+        return result;
+	}
+}
+
+/**
  * Request model for UpdateStyle operation.
  * Updates a style in the document.
  */
@@ -44784,6 +46218,22 @@ export class InsertRunOnlineResponse {
 }
 
 /**
+ * Response model for InsertStructuredDocumentTagOnline operation.
+ * Inserts a new StructuredDocumentTag (SDT) to the document node.
+ */
+export class InsertStructuredDocumentTagOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedStructuredDocumentTagResponse.StructuredDocumentTagResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Map<string, Buffer>;
+}
+
+/**
  * Response model for InsertStyleOnline operation.
  * Inserts a new style to the document.
  */
@@ -45288,6 +46738,22 @@ export class UpdateSectionPageSetupOnlineResponse {
      * The response model.
      */
     public model: importedSectionPageSetupResponse.SectionPageSetupResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Map<string, Buffer>;
+}
+
+/**
+ * Response model for UpdateStructuredDocumentTagOnline operation.
+ * Updates a StructuredDocumentTag (SDT) in the document node.
+ */
+export class UpdateStructuredDocumentTagOnlineResponse {
+    /**
+     * The response model.
+     */
+    public model: importedStructuredDocumentTagResponse.StructuredDocumentTagResponse;
 
     /**
      * The document after modification.

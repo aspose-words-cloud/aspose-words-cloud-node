@@ -1384,6 +1384,39 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Removes a StructuredDocumentTag (SDT) from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteStructuredDocumentTag(requestObj: model.DeleteStructuredDocumentTagRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteStructuredDocumentTag.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes a StructuredDocumentTag (SDT) from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async deleteStructuredDocumentTagOnline(requestObj: model.DeleteStructuredDocumentTagOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteStructuredDocumentTagOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a table from the document node.
      * @param requestObj contains request parameters
      */
@@ -3265,6 +3298,78 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Reads a StructuredDocumentTag (SDT) from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getStructuredDocumentTag(requestObj: model.GetStructuredDocumentTagRequest): Promise< model.WordsIncomingMessage< model.StructuredDocumentTagResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getStructuredDocumentTag.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.StructuredDocumentTagResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads a StructuredDocumentTag (SDT) from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getStructuredDocumentTagOnline(requestObj: model.GetStructuredDocumentTagOnlineRequest): Promise< model.WordsIncomingMessage< model.StructuredDocumentTagResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getStructuredDocumentTagOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.StructuredDocumentTagResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads StructuredDocumentTags (SDT) from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getStructuredDocumentTags(requestObj: model.GetStructuredDocumentTagsRequest): Promise< model.WordsIncomingMessage< model.StructuredDocumentTagsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getStructuredDocumentTags.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.StructuredDocumentTagsResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Reads StructuredDocumentTags (SDT) from the document node.
+     * @param requestObj contains request parameters
+     */
+    public async getStructuredDocumentTagsOnline(requestObj: model.GetStructuredDocumentTagsOnlineRequest): Promise< model.WordsIncomingMessage< model.StructuredDocumentTagsResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getStructuredDocumentTagsOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.StructuredDocumentTagsResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads a style from the document.
      * @param requestObj contains request parameters
      */
@@ -4087,6 +4192,42 @@ export class WordsApi implements Encryptor {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.InsertRunOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new StructuredDocumentTag (SDT) to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertStructuredDocumentTag(requestObj: model.InsertStructuredDocumentTagRequest): Promise< model.WordsIncomingMessage< model.StructuredDocumentTagResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertStructuredDocumentTag.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.StructuredDocumentTagResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Inserts a new StructuredDocumentTag (SDT) to the document node.
+     * @param requestObj contains request parameters
+     */
+    public async insertStructuredDocumentTagOnline(requestObj: model.InsertStructuredDocumentTagOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertStructuredDocumentTagOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertStructuredDocumentTagOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.InsertStructuredDocumentTagOnlineResponse >();
         result.response = response;
         result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
@@ -5566,6 +5707,42 @@ export class WordsApi implements Encryptor {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.UpdateSectionPageSetupOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a StructuredDocumentTag (SDT) in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateStructuredDocumentTag(requestObj: model.UpdateStructuredDocumentTagRequest): Promise< model.WordsIncomingMessage< model.StructuredDocumentTagResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling updateStructuredDocumentTag.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.StructuredDocumentTagResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Updates a StructuredDocumentTag (SDT) in the document node.
+     * @param requestObj contains request parameters
+     */
+    public async updateStructuredDocumentTagOnline(requestObj: model.UpdateStructuredDocumentTagOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateStructuredDocumentTagOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling updateStructuredDocumentTagOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.UpdateStructuredDocumentTagOnlineResponse >();
         result.response = response;
         result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);

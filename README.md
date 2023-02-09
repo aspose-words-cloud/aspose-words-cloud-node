@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 23.2
+
+- Added operations to manipulate with Structure Document Tags (SDT) in documents.
+
+
 ## Enhancements in Version 23.1
 
 - Various changes related to stability and performance

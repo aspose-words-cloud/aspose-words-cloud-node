@@ -22344,12 +22344,12 @@ export class GetRangeTextRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -22476,12 +22476,12 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -34389,12 +34389,12 @@ export class RemoveRangeRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -34527,12 +34527,12 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -36483,7 +36483,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
@@ -36493,7 +36493,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
     public rangeText: importedReplaceRange.ReplaceRange;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -36640,7 +36640,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
@@ -36650,7 +36650,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
     public rangeText: importedReplaceRange.ReplaceRange;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -37130,7 +37130,7 @@ export class SaveAsRangeRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
@@ -37140,7 +37140,7 @@ export class SaveAsRangeRequest implements RequestInterface {
     public documentParameters: importedRangeDocument.RangeDocument;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -37281,7 +37281,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
@@ -37291,7 +37291,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
     public documentParameters: importedRangeDocument.RangeDocument;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 

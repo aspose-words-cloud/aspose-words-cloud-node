@@ -179,6 +179,7 @@ import * as importedMarkdownSaveOptionsData from './markdownSaveOptionsData';
 import * as importedMetafileRenderingOptionsData from './metafileRenderingOptionsData';
 import * as importedMhtmlSaveOptionsData from './mhtmlSaveOptionsData';
 import * as importedModificationOperationResult from './modificationOperationResult';
+import * as importedNewDocumentPosition from './newDocumentPosition';
 import * as importedNodeLink from './nodeLink';
 import * as importedOdtSaveOptionsData from './odtSaveOptionsData';
 import * as importedOfficeMathLink from './officeMathLink';
@@ -460,6 +461,7 @@ export * from './markdownSaveOptionsData';
 export * from './metafileRenderingOptionsData';
 export * from './mhtmlSaveOptionsData';
 export * from './modificationOperationResult';
+export * from './newDocumentPosition';
 export * from './nodeLink';
 export * from './odtSaveOptionsData';
 export * from './officeMathLink';
@@ -871,6 +873,7 @@ const typeMap = {
     MetafileRenderingOptionsData: importedMetafileRenderingOptionsData.MetafileRenderingOptionsData,
     MhtmlSaveOptionsData: importedMhtmlSaveOptionsData.MhtmlSaveOptionsData,
     ModificationOperationResult: importedModificationOperationResult.ModificationOperationResult,
+    NewDocumentPosition: importedNewDocumentPosition.NewDocumentPosition,
     NodeLink: importedNodeLink.NodeLink,
     OdtSaveOptionsData: importedOdtSaveOptionsData.OdtSaveOptionsData,
     OfficeMathLink: importedOfficeMathLink.OfficeMathLink,

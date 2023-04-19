@@ -28,11 +28,11 @@
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
 import { BookmarkData } from './bookmarkData';
-import { DocumentPosition } from './documentPosition';
+import { NewDocumentPosition } from './newDocumentPosition';
 
 export const importsMapBookmarkInsert = {
     BookmarkData,
-    DocumentPosition,
+    NewDocumentPosition,
 };
 
 /**
@@ -46,12 +46,12 @@ export class BookmarkInsert extends BookmarkData {
         {
             name: "endRange",
             baseName: "EndRange",
-            type: "DocumentPosition",
+            type: "NewDocumentPosition",
         },
         {
             name: "startRange",
             baseName: "StartRange",
-            type: "DocumentPosition",
+            type: "NewDocumentPosition",
         }
     ];
 
@@ -65,12 +65,12 @@ export class BookmarkInsert extends BookmarkData {
     /**
      * Gets or sets the link to end bookmark node.
      */
-    public endRange: DocumentPosition;
+    public endRange: NewDocumentPosition;
 
     /**
      * Gets or sets the link to start bookmark node.
      */
-    public startRange: DocumentPosition;
+    public startRange: NewDocumentPosition;
 
     public constructor(init?: Partial< BookmarkInsert >) {
         super(init);

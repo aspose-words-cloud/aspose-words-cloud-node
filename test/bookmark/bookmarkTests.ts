@@ -306,17 +306,13 @@ describe("bookmark", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestBookmarkStartRangeNode = new model.NodeLink({
-                    nodeId: "0.0.0.0"
+                const requestBookmarkStartRange = new model.NewDocumentPosition({
+                    nodeId: "0.0.0.0",
+                    offset: 0
                 })
-                const requestBookmarkStartRange = new model.DocumentPosition({
-                    node: requestBookmarkStartRangeNode
-                })
-                const requestBookmarkEndRangeNode = new model.NodeLink({
-                    nodeId: "0.0.0.0"
-                })
-                const requestBookmarkEndRange = new model.DocumentPosition({
-                    node: requestBookmarkEndRangeNode
+                const requestBookmarkEndRange = new model.NewDocumentPosition({
+                    nodeId: "0.0.0.0",
+                    offset: 0
                 })
                 const requestBookmark = new model.BookmarkInsert({
                     startRange: requestBookmarkStartRange,
@@ -347,17 +343,13 @@ describe("bookmark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestBookmarkStartRangeNode = new model.NodeLink({
-                nodeId: "0.0.0.0"
+            const requestBookmarkStartRange = new model.NewDocumentPosition({
+                nodeId: "0.0.0.0",
+                offset: 0
             })
-            const requestBookmarkStartRange = new model.DocumentPosition({
-                node: requestBookmarkStartRangeNode
-            })
-            const requestBookmarkEndRangeNode = new model.NodeLink({
-                nodeId: "0.0.0.0"
-            })
-            const requestBookmarkEndRange = new model.DocumentPosition({
-                node: requestBookmarkEndRangeNode
+            const requestBookmarkEndRange = new model.NewDocumentPosition({
+                nodeId: "0.0.0.0",
+                offset: 0
             })
             const requestBookmark = new model.BookmarkInsert({
                 startRange: requestBookmarkStartRange,

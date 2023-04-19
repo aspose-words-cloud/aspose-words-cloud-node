@@ -27,10 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { DocumentPosition } from './documentPosition';
+import { NewDocumentPosition } from './newDocumentPosition';
 
 export const importsMapDrawingObjectInsert = {
-    DocumentPosition,
+    NewDocumentPosition,
 };
 
 /**
@@ -54,7 +54,7 @@ export class DrawingObjectInsert implements ModelInterface {
         {
             name: "position",
             baseName: "Position",
-            type: "DocumentPosition",
+            type: "NewDocumentPosition",
         },
         {
             name: "relativeHorizontalPosition",
@@ -103,7 +103,7 @@ export class DrawingObjectInsert implements ModelInterface {
     /**
      * Gets or sets the position, before which the DrawingObject will be inserted.
      */
-    public position: DocumentPosition;
+    public position: NewDocumentPosition;
 
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.

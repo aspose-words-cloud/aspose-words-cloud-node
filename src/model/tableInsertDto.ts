@@ -27,10 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { DocumentPosition } from './documentPosition';
+import { NewDocumentPosition } from './newDocumentPosition';
 
 export const importsMapTableInsertDto = {
-    DocumentPosition,
+    NewDocumentPosition,
 };
 
 /**
@@ -49,7 +49,7 @@ export class TableInsertDto implements ModelInterface {
         {
             name: "position",
             baseName: "Position",
-            type: "DocumentPosition",
+            type: "NewDocumentPosition",
         },
         {
             name: "rowsCount",
@@ -73,7 +73,7 @@ export class TableInsertDto implements ModelInterface {
     /**
      * Gets or sets the position to insert the table. The table will be inserted before the specified position.
      */
-    public position: DocumentPosition;
+    public position: NewDocumentPosition;
 
     /**
      * Gets or sets the number of rows. The default value is 2.

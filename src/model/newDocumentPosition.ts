@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="footnoteBase.ts">
+ * <copyright company="Aspose" file="newDocumentPosition.ts">
  *   Copyright (c) 2023 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,39 +27,27 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { NewDocumentPosition } from './newDocumentPosition';
 
-export const importsMapFootnoteBase = {
-    NewDocumentPosition,
+export const importsMapNewDocumentPosition = {
 };
 
 /**
- * Footnote base class.
+ * DTO container with a new position in the document tree.
  */
-export abstract class FootnoteBase implements ModelInterface {
+export class NewDocumentPosition implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "footnoteType",
-            baseName: "FootnoteType",
-            type: "FootnoteBase.FootnoteTypeEnum",
-        },
-        {
-            name: "position",
-            baseName: "Position",
-            type: "NewDocumentPosition",
-        },
-        {
-            name: "referenceMark",
-            baseName: "ReferenceMark",
+            name: "nodeId",
+            baseName: "NodeId",
             type: "string",
         },
         {
-            name: "text",
-            baseName: "Text",
-            type: "string",
+            name: "offset",
+            baseName: "Offset",
+            type: "number",
         }
     ];
 
@@ -67,48 +55,24 @@ export abstract class FootnoteBase implements ModelInterface {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return FootnoteBase.attributeTypeMap;
+        return NewDocumentPosition.attributeTypeMap;
     }
 
     /**
-     * Gets or sets the option, that specifies whether this is a footnote or endnote.
+     * Gets or sets the node id.
      */
-    public footnoteType: FootnoteBase.FootnoteTypeEnum;
+    public nodeId: string;
 
     /**
-     * Gets or sets the link to comment range start node.
+     * Gets or sets the offset in the node.
      */
-    public position: NewDocumentPosition;
+    public offset: number;
 
-    /**
-     * Gets or sets the custom reference mark to be used for this footnote.
-     * Default value is Empty, meaning auto-numbered footnotes are used.
-     */
-    public referenceMark: string;
-
-    /**
-     * Gets or sets text of the footnote.
-     */
-    public text: string;
-
-    public constructor(init?: Partial< FootnoteBase >) {
+    public constructor(init?: Partial< NewDocumentPosition >) {
         Object.assign(this, init);
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
 }
-
-/**
- * Enums for FootnoteBase
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace FootnoteBase {
-    export enum FootnoteTypeEnum {
-        Footnote = 'Footnote' as any,
-        Endnote = 'Endnote' as any
-    }
-}
-// tslint:enable:quotemark
 

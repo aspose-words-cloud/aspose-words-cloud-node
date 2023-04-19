@@ -179,6 +179,7 @@ import * as importedMarkdownSaveOptionsData from './markdownSaveOptionsData';
 import * as importedMetafileRenderingOptionsData from './metafileRenderingOptionsData';
 import * as importedMhtmlSaveOptionsData from './mhtmlSaveOptionsData';
 import * as importedModificationOperationResult from './modificationOperationResult';
+import * as importedNewDocumentPosition from './newDocumentPosition';
 import * as importedNodeLink from './nodeLink';
 import * as importedOdtSaveOptionsData from './odtSaveOptionsData';
 import * as importedOfficeMathLink from './officeMathLink';
@@ -460,6 +461,7 @@ export * from './markdownSaveOptionsData';
 export * from './metafileRenderingOptionsData';
 export * from './mhtmlSaveOptionsData';
 export * from './modificationOperationResult';
+export * from './newDocumentPosition';
 export * from './nodeLink';
 export * from './odtSaveOptionsData';
 export * from './officeMathLink';
@@ -871,6 +873,7 @@ const typeMap = {
     MetafileRenderingOptionsData: importedMetafileRenderingOptionsData.MetafileRenderingOptionsData,
     MhtmlSaveOptionsData: importedMhtmlSaveOptionsData.MhtmlSaveOptionsData,
     ModificationOperationResult: importedModificationOperationResult.ModificationOperationResult,
+    NewDocumentPosition: importedNewDocumentPosition.NewDocumentPosition,
     NodeLink: importedNodeLink.NodeLink,
     OdtSaveOptionsData: importedOdtSaveOptionsData.OdtSaveOptionsData,
     OfficeMathLink: importedOfficeMathLink.OfficeMathLink,
@@ -22344,12 +22347,12 @@ export class GetRangeTextRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -22476,12 +22479,12 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -34389,12 +34392,12 @@ export class RemoveRangeRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -34527,12 +34530,12 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -36483,7 +36486,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
@@ -36493,7 +36496,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
     public rangeText: importedReplaceRange.ReplaceRange;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -36640,7 +36643,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
@@ -36650,7 +36653,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
     public rangeText: importedReplaceRange.ReplaceRange;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -37130,7 +37133,7 @@ export class SaveAsRangeRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
@@ -37140,7 +37143,7 @@ export class SaveAsRangeRequest implements RequestInterface {
     public documentParameters: importedRangeDocument.RangeDocument;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 
@@ -37281,7 +37284,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The range start identifier.
+     * The range start identifier. Identifier examples: id0.0.0, page0.
      */
     public rangeStartIdentifier: string;
 
@@ -37291,7 +37294,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
     public documentParameters: importedRangeDocument.RangeDocument;
 
     /**
-     * The range end identifier.
+     * The range end identifier. Identifier examples: id1.0.0, id0.0.0:end, page1, page1:end, document:end.
      */
     public rangeEndIdentifier: string;
 

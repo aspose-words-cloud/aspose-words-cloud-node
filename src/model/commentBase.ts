@@ -27,10 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { DocumentPosition } from './documentPosition';
+import { NewDocumentPosition } from './newDocumentPosition';
 
 export const importsMapCommentBase = {
-    DocumentPosition,
+    NewDocumentPosition,
 };
 
 /**
@@ -59,12 +59,12 @@ export abstract class CommentBase implements ModelInterface {
         {
             name: "rangeEnd",
             baseName: "RangeEnd",
-            type: "DocumentPosition",
+            type: "NewDocumentPosition",
         },
         {
             name: "rangeStart",
             baseName: "RangeStart",
-            type: "DocumentPosition",
+            type: "NewDocumentPosition",
         },
         {
             name: "text",
@@ -98,12 +98,12 @@ export abstract class CommentBase implements ModelInterface {
     /**
      * Gets or sets the link to comment range end node.
      */
-    public rangeEnd: DocumentPosition;
+    public rangeEnd: NewDocumentPosition;
 
     /**
      * Gets or sets the link to comment range start node.
      */
-    public rangeStart: DocumentPosition;
+    public rangeStart: NewDocumentPosition;
 
     /**
      * Gets or sets text of the comment.

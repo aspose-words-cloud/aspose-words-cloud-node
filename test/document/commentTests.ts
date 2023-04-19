@@ -151,18 +151,12 @@ describe("comment", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestCommentRangeStartNode = new model.NodeLink({
-                    nodeId: "0.3.0.3"
-                })
-                const requestCommentRangeStart = new model.DocumentPosition({
-                    node: requestCommentRangeStartNode,
+                const requestCommentRangeStart = new model.NewDocumentPosition({
+                    nodeId: "0.3.0.3",
                     offset: 0
                 })
-                const requestCommentRangeEndNode = new model.NodeLink({
-                    nodeId: "0.3.0.3"
-                })
-                const requestCommentRangeEnd = new model.DocumentPosition({
-                    node: requestCommentRangeEndNode,
+                const requestCommentRangeEnd = new model.NewDocumentPosition({
+                    nodeId: "0.3.0.3",
                     offset: 0
                 })
                 const requestComment = new model.CommentInsert({
@@ -200,18 +194,12 @@ describe("comment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestCommentRangeStartNode = new model.NodeLink({
-                nodeId: "0.3.0.3"
-            })
-            const requestCommentRangeStart = new model.DocumentPosition({
-                node: requestCommentRangeStartNode,
+            const requestCommentRangeStart = new model.NewDocumentPosition({
+                nodeId: "0.3.0.3",
                 offset: 0
             })
-            const requestCommentRangeEndNode = new model.NodeLink({
-                nodeId: "0.3.0.3"
-            })
-            const requestCommentRangeEnd = new model.DocumentPosition({
-                node: requestCommentRangeEndNode,
+            const requestCommentRangeEnd = new model.NewDocumentPosition({
+                nodeId: "0.3.0.3",
                 offset: 0
             })
             const requestComment = new model.CommentInsert({
@@ -247,18 +235,12 @@ describe("comment", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestCommentRangeStartNode = new model.NodeLink({
-                    nodeId: "0.3.0"
-                })
-                const requestCommentRangeStart = new model.DocumentPosition({
-                    node: requestCommentRangeStartNode,
+                const requestCommentRangeStart = new model.NewDocumentPosition({
+                    nodeId: "0.3.0",
                     offset: 0
                 })
-                const requestCommentRangeEndNode = new model.NodeLink({
-                    nodeId: "0.3.0"
-                })
-                const requestCommentRangeEnd = new model.DocumentPosition({
-                    node: requestCommentRangeEndNode,
+                const requestCommentRangeEnd = new model.NewDocumentPosition({
+                    nodeId: "0.3.0",
                     offset: 0
                 })
                 const requestComment = new model.CommentUpdate({
@@ -297,18 +279,12 @@ describe("comment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestCommentRangeStartNode = new model.NodeLink({
-                nodeId: "0.3.0"
-            })
-            const requestCommentRangeStart = new model.DocumentPosition({
-                node: requestCommentRangeStartNode,
+            const requestCommentRangeStart = new model.NewDocumentPosition({
+                nodeId: "0.3.0",
                 offset: 0
             })
-            const requestCommentRangeEndNode = new model.NodeLink({
-                nodeId: "0.3.0"
-            })
-            const requestCommentRangeEnd = new model.DocumentPosition({
-                node: requestCommentRangeEndNode,
+            const requestCommentRangeEnd = new model.NewDocumentPosition({
+                nodeId: "0.3.0",
                 offset: 0
             })
             const requestComment = new model.CommentUpdate({

@@ -31262,7 +31262,7 @@ export class InsertSectionOnlineRequest implements RequestInterface {
         }
 
         const requestOptions: request.Options = {
-            method: "POST",
+            method: "PUT",
             qs: queryParameters,
             headers: headerParams,
             uri: localVarPath,

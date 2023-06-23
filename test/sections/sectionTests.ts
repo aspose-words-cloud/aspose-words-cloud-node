@@ -191,6 +191,55 @@ describe("section", () => {
        });
     });
 
+    // Test for insertion a section.
+    describe("insertSection test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestInsertSection.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.InsertSectionRequest({
+                    name: remoteFileName,
+                    sectionIndex: 0,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.insertSection(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // Test for insertion a section online.
+    describe("insertSectionOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.InsertSectionOnlineRequest({
+                document: requestDocument,
+                sectionIndex: 0
+            });
+
+            // Act
+            return wordsApi.insertSectionOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for linking headers and footers to previous section.
     describe("linkHeaderFootersToPrevious test", () => {
         it("should return response with code 200", () => {

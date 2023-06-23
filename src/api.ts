@@ -4198,6 +4198,39 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Inserts a section to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertSection(requestObj: model.InsertSectionRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertSection.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Inserts a section to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertSectionOnline(requestObj: model.InsertSectionOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertSectionOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new StructuredDocumentTag (SDT) to the document node.
      * @param requestObj contains request parameters
      */

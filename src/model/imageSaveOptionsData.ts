@@ -87,11 +87,6 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         },
         {
-            name: "useGdiEmfRenderer",
-            baseName: "UseGdiEmfRenderer",
-            type: "boolean",
-        },
-        {
             name: "useHighQualityRendering",
             baseName: "UseHighQualityRendering",
             type: "boolean",
@@ -100,6 +95,11 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
             name: "verticalResolution",
             baseName: "VerticalResolution",
             type: "number",
+        },
+        {
+            name: "useGdiEmfRenderer",
+            baseName: "UseGdiEmfRenderer",
+            type: "boolean",
         }
     ];
 
@@ -160,11 +160,6 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
     public useAntiAliasing: boolean;
 
     /**
-     * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
-     */
-    public useGdiEmfRenderer: boolean;
-
-    /**
      * Gets or sets a value indicating whether to use high quality (i.e. slow) rendering algorithms.
      */
     public useHighQualityRendering: boolean;
@@ -175,6 +170,11 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      * The default value is 96.
      */
     public verticalResolution: number;
+
+    /**
+     * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.
+     */
+    public useGdiEmfRenderer: boolean;
 
     public constructor(init?: Partial< ImageSaveOptionsData >) {
         super(init);

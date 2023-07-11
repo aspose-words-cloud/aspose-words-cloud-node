@@ -44,6 +44,11 @@ export class Document implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "links",
+            baseName: "Links",
+            type: "Array<Link>",
+        },
+        {
             name: "documentProperties",
             baseName: "DocumentProperties",
             type: "DocumentProperties",
@@ -64,11 +69,6 @@ export class Document implements ModelInterface {
             type: "boolean",
         },
         {
-            name: "links",
-            baseName: "Links",
-            type: "Array<Link>",
-        },
-        {
             name: "sourceFormat",
             baseName: "SourceFormat",
             type: "Document.SourceFormatEnum",
@@ -81,6 +81,11 @@ export class Document implements ModelInterface {
     public static getAttributeTypeMap() {
         return Document.attributeTypeMap;
     }
+
+    /**
+     * Gets or sets the list of links that originate from this document.
+     */
+    public links: Array<Link>;
 
     /**
      * Gets or sets the document properties.
@@ -101,11 +106,6 @@ export class Document implements ModelInterface {
      * Gets or sets a value indicating whether the document contains a digital signature. This property merely informs that a digital signature is present on a document, but it does not specify whether the signature is valid or not.
      */
     public isSigned: boolean;
-
-    /**
-     * Gets or sets the list of links that originate from this document.
-     */
-    public links: Array<Link>;
 
     /**
      * Gets or sets the original format of the document.

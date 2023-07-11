@@ -42,11 +42,6 @@ export class SaveResult implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "additionalItems",
-            baseName: "AdditionalItems",
-            type: "Array<FileLink>",
-        },
-        {
             name: "destDocument",
             baseName: "DestDocument",
             type: "FileLink",
@@ -55,6 +50,11 @@ export class SaveResult implements ModelInterface {
             name: "sourceDocument",
             baseName: "SourceDocument",
             type: "FileLink",
+        },
+        {
+            name: "additionalItems",
+            baseName: "AdditionalItems",
+            type: "Array<FileLink>",
         }
     ];
 
@@ -66,11 +66,6 @@ export class SaveResult implements ModelInterface {
     }
 
     /**
-     * Gets or sets the list of links to additional items (css, images etc).
-     */
-    public additionalItems: Array<FileLink>;
-
-    /**
      * Gets or sets the link to destination document.
      */
     public destDocument: FileLink;
@@ -79,6 +74,11 @@ export class SaveResult implements ModelInterface {
      * Gets or sets the link to source document.
      */
     public sourceDocument: FileLink;
+
+    /**
+     * Gets or sets the list of links to additional items (css, images etc).
+     */
+    public additionalItems: Array<FileLink>;
 
     public constructor(init?: Partial< SaveResult >) {
         Object.assign(this, init);

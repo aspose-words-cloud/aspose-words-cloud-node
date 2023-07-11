@@ -42,14 +42,14 @@ export class LoadWebDocumentData implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "loadingDocumentUrl",
-            baseName: "LoadingDocumentUrl",
-            type: "string",
-        },
-        {
             name: "saveOptions",
             baseName: "SaveOptions",
             type: "SaveOptionsData",
+        },
+        {
+            name: "loadingDocumentUrl",
+            baseName: "LoadingDocumentUrl",
+            type: "string",
         }
     ];
 
@@ -61,14 +61,14 @@ export class LoadWebDocumentData implements ModelInterface {
     }
 
     /**
-     * Gets or sets the web document URL.
-     */
-    public loadingDocumentUrl: string;
-
-    /**
      * Gets or sets the save options.
      */
     public saveOptions: SaveOptionsData;
+
+    /**
+     * Gets or sets the web document URL.
+     */
+    public loadingDocumentUrl: string;
 
     public constructor(init?: Partial< LoadWebDocumentData >) {
         Object.assign(this, init);

@@ -42,16 +42,6 @@ export class FormFieldTextInput extends FormField {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "maxLength",
-            baseName: "MaxLength",
-            type: "number",
-        },
-        {
-            name: "textInputDefault",
-            baseName: "TextInputDefault",
-            type: "string",
-        },
-        {
             name: "textInputFormat",
             baseName: "TextInputFormat",
             type: "string",
@@ -60,6 +50,16 @@ export class FormFieldTextInput extends FormField {
             name: "textInputType",
             baseName: "TextInputType",
             type: "FormFieldTextInput.TextInputTypeEnum",
+        },
+        {
+            name: "textInputDefault",
+            baseName: "TextInputDefault",
+            type: "string",
+        },
+        {
+            name: "maxLength",
+            baseName: "MaxLength",
+            type: "number",
         }
     ];
 
@@ -71,16 +71,6 @@ export class FormFieldTextInput extends FormField {
     }
 
     /**
-     * Gets or sets the maximum length for the text field. Zero when the length is not limited.
-     */
-    public maxLength: number;
-
-    /**
-     * Gets or sets the default string or a calculation expression of the text form field.
-     */
-    public textInputDefault: string;
-
-    /**
      * Gets or sets text formatting for the text form field.
      */
     public textInputFormat: string;
@@ -89,6 +79,16 @@ export class FormFieldTextInput extends FormField {
      * Gets or sets the type of the text form field.
      */
     public textInputType: FormFieldTextInput.TextInputTypeEnum;
+
+    /**
+     * Gets or sets the default string or a calculation expression of the text form field.
+     */
+    public textInputDefault: string;
+
+    /**
+     * Gets or sets the maximum length for the text field. Zero when the length is not limited.
+     */
+    public maxLength: number;
 
     public constructor(init?: Partial< FormFieldTextInput >) {
         super(init);

@@ -42,6 +42,11 @@ export class FormFieldCheckbox extends FormField {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "isCheckBoxExactSize",
+            baseName: "IsCheckBoxExactSize",
+            type: "boolean",
+        },
+        {
             name: "checkBoxSize",
             baseName: "CheckBoxSize",
             type: "number",
@@ -49,11 +54,6 @@ export class FormFieldCheckbox extends FormField {
         {
             name: "checked",
             baseName: "Checked",
-            type: "boolean",
-        },
-        {
-            name: "isCheckBoxExactSize",
-            baseName: "IsCheckBoxExactSize",
             type: "boolean",
         }
     ];
@@ -66,6 +66,11 @@ export class FormFieldCheckbox extends FormField {
     }
 
     /**
+     * Gets or sets a value indicating whether the size of the textbox is automatic or specified explicitly.
+     */
+    public isCheckBoxExactSize: boolean;
+
+    /**
      * Gets or sets the size of the checkbox in points. Has effect only when IsCheckBoxExactSize is true.
      */
     public checkBoxSize: number;
@@ -74,11 +79,6 @@ export class FormFieldCheckbox extends FormField {
      * Gets or sets the checked status of the check box form field.
      */
     public checked: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the size of the textbox is automatic or specified explicitly.
-     */
-    public isCheckBoxExactSize: boolean;
 
     public constructor(init?: Partial< FormFieldCheckbox >) {
         super(init);

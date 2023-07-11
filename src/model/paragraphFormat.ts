@@ -42,13 +42,13 @@ export class ParagraphFormat extends ParagraphFormatBase {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "isHeading",
-            baseName: "IsHeading",
+            name: "isListItem",
+            baseName: "IsListItem",
             type: "boolean",
         },
         {
-            name: "isListItem",
-            baseName: "IsListItem",
+            name: "isHeading",
+            baseName: "IsHeading",
             type: "boolean",
         }
     ];
@@ -61,14 +61,14 @@ export class ParagraphFormat extends ParagraphFormatBase {
     }
 
     /**
-     * Gets or sets a value indicating whether the paragraph style is one of the built-in Heading styles.
-     */
-    public isHeading: boolean;
-
-    /**
      * Gets or sets a value indicating whether the paragraph is an item in a bulleted or numbered list.
      */
     public isListItem: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the paragraph style is one of the built-in Heading styles.
+     */
+    public isHeading: boolean;
 
     public constructor(init?: Partial< ParagraphFormat >) {
         super(init);

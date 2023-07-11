@@ -54,11 +54,6 @@ export class DocumentStatData implements ModelInterface {
             type: "number",
         },
         {
-            name: "pageStatData",
-            baseName: "PageStatData",
-            type: "Array<PageStatData>",
-        },
-        {
             name: "paragraphCount",
             baseName: "ParagraphCount",
             type: "number",
@@ -67,6 +62,11 @@ export class DocumentStatData implements ModelInterface {
             name: "wordCount",
             baseName: "WordCount",
             type: "number",
+        },
+        {
+            name: "pageStatData",
+            baseName: "PageStatData",
+            type: "Array<PageStatData>",
         }
     ];
 
@@ -88,11 +88,6 @@ export class DocumentStatData implements ModelInterface {
     public pageCount: number;
 
     /**
-     * Gets or sets the detailed statistics on all pages.
-     */
-    public pageStatData: Array<PageStatData>;
-
-    /**
      * Gets or sets the total count of paragraphs in the document.
      */
     public paragraphCount: number;
@@ -101,6 +96,11 @@ export class DocumentStatData implements ModelInterface {
      * Gets or sets the total count of words in the document.
      */
     public wordCount: number;
+
+    /**
+     * Gets or sets the detailed statistics on all pages.
+     */
+    public pageStatData: Array<PageStatData>;
 
     public constructor(init?: Partial< DocumentStatData >) {
         Object.assign(this, init);

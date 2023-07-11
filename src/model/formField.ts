@@ -42,13 +42,38 @@ export class FormField extends NodeLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "calculateOnExit",
-            baseName: "CalculateOnExit",
-            type: "boolean",
+            name: "name",
+            baseName: "Name",
+            type: "string",
         },
         {
             name: "enabled",
             baseName: "Enabled",
+            type: "boolean",
+        },
+        {
+            name: "statusText",
+            baseName: "StatusText",
+            type: "string",
+        },
+        {
+            name: "ownStatus",
+            baseName: "OwnStatus",
+            type: "boolean",
+        },
+        {
+            name: "helpText",
+            baseName: "HelpText",
+            type: "string",
+        },
+        {
+            name: "ownHelp",
+            baseName: "OwnHelp",
+            type: "boolean",
+        },
+        {
+            name: "calculateOnExit",
+            baseName: "CalculateOnExit",
             type: "boolean",
         },
         {
@@ -59,31 +84,6 @@ export class FormField extends NodeLink {
         {
             name: "exitMacro",
             baseName: "ExitMacro",
-            type: "string",
-        },
-        {
-            name: "helpText",
-            baseName: "HelpText",
-            type: "string",
-        },
-        {
-            name: "name",
-            baseName: "Name",
-            type: "string",
-        },
-        {
-            name: "ownHelp",
-            baseName: "OwnHelp",
-            type: "boolean",
-        },
-        {
-            name: "ownStatus",
-            baseName: "OwnStatus",
-            type: "boolean",
-        },
-        {
-            name: "statusText",
-            baseName: "StatusText",
             type: "string",
         }
     ];
@@ -96,14 +96,39 @@ export class FormField extends NodeLink {
     }
 
     /**
-     * Gets or sets a value indicating whether references to the specified form field are automatically updated whenever the field is exited.
+     * Gets or sets the form field name.
      */
-    public calculateOnExit: boolean;
+    public name: string;
 
     /**
      * Gets or sets a value indicating whether a form field is enabled.
      */
     public enabled: boolean;
+
+    /**
+     * Gets or sets text, displayed in the status bar when a form field has the focus.
+     */
+    public statusText: string;
+
+    /**
+     * Gets or sets a value indicating whether the source of the text that's displayed in the status bar when a form field has the focus.
+     */
+    public ownStatus: boolean;
+
+    /**
+     * Gets or sets text, displayed in a message box when the form field has the focus and the user presses F1.
+     */
+    public helpText: string;
+
+    /**
+     * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
+     */
+    public ownHelp: boolean;
+
+    /**
+     * Gets or sets a value indicating whether references to the specified form field are automatically updated whenever the field is exited.
+     */
+    public calculateOnExit: boolean;
 
     /**
      * Gets or sets the entry macro name for the form field.
@@ -114,31 +139,6 @@ export class FormField extends NodeLink {
      * Gets or sets the exit macro name for the form field.
      */
     public exitMacro: string;
-
-    /**
-     * Gets or sets text, displayed in a message box when the form field has the focus and the user presses F1.
-     */
-    public helpText: string;
-
-    /**
-     * Gets or sets the form field name.
-     */
-    public name: string;
-
-    /**
-     * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
-     */
-    public ownHelp: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the source of the text that's displayed in the status bar when a form field has the focus.
-     */
-    public ownStatus: boolean;
-
-    /**
-     * Gets or sets text, displayed in the status bar when a form field has the focus.
-     */
-    public statusText: string;
 
     public constructor(init?: Partial< FormField >) {
         super(init);

@@ -42,13 +42,13 @@ export class CustomXmlPart extends CustomXmlPartLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "data",
-            baseName: "Data",
+            name: "id",
+            baseName: "Id",
             type: "string",
         },
         {
-            name: "id",
-            baseName: "Id",
+            name: "data",
+            baseName: "Data",
             type: "string",
         }
     ];
@@ -61,14 +61,14 @@ export class CustomXmlPart extends CustomXmlPartLink {
     }
 
     /**
-     * Gets or sets the custom xml part data.
-     */
-    public data: string;
-
-    /**
      * Gets or sets the custom xml part id.
      */
     public id: string;
+
+    /**
+     * Gets or sets the custom xml part data.
+     */
+    public data: string;
 
     public constructor(init?: Partial< CustomXmlPart >) {
         super(init);

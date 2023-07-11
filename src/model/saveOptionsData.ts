@@ -77,11 +77,6 @@ export abstract class SaveOptionsData implements ModelInterface {
             type: "SaveOptionsData.ImlRenderingModeEnum",
         },
         {
-            name: "saveFormat",
-            baseName: "SaveFormat",
-            type: "string",
-        },
-        {
             name: "updateCreatedTimeProperty",
             baseName: "UpdateCreatedTimeProperty",
             type: "boolean",
@@ -110,6 +105,11 @@ export abstract class SaveOptionsData implements ModelInterface {
             name: "zipOutput",
             baseName: "ZipOutput",
             type: "boolean",
+        },
+        {
+            name: "saveFormat",
+            baseName: "SaveFormat",
+            type: "string",
         }
     ];
 
@@ -157,11 +157,6 @@ export abstract class SaveOptionsData implements ModelInterface {
     public imlRenderingMode: SaveOptionsData.ImlRenderingModeEnum;
 
     /**
-     * Gets the format of save.
-     */
-    public saveFormat: string;
-
-    /**
      * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
      * Default value is false.
      */
@@ -192,6 +187,11 @@ export abstract class SaveOptionsData implements ModelInterface {
      * The default value is false.
      */
     public zipOutput: boolean;
+
+    /**
+     * Gets the format of save.
+     */
+    public saveFormat: string;
 
     public constructor(init?: Partial< SaveOptionsData >) {
         Object.assign(this, init);

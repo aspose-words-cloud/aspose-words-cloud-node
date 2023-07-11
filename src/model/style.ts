@@ -44,14 +44,9 @@ export class Style extends LinkElement {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "aliases",
-            baseName: "Aliases",
-            type: "Array<string>",
-        },
-        {
-            name: "baseStyleName",
-            baseName: "BaseStyleName",
-            type: "string",
+            name: "font",
+            baseName: "Font",
+            type: "Font",
         },
         {
             name: "builtIn",
@@ -59,14 +54,14 @@ export class Style extends LinkElement {
             type: "boolean",
         },
         {
-            name: "font",
-            baseName: "Font",
-            type: "Font",
+            name: "nextParagraphStyleName",
+            baseName: "NextParagraphStyleName",
+            type: "string",
         },
         {
-            name: "isHeading",
-            baseName: "IsHeading",
-            type: "boolean",
+            name: "baseStyleName",
+            baseName: "BaseStyleName",
+            type: "string",
         },
         {
             name: "isQuickStyle",
@@ -79,14 +74,19 @@ export class Style extends LinkElement {
             type: "string",
         },
         {
-            name: "name",
-            baseName: "Name",
-            type: "string",
+            name: "type",
+            baseName: "Type",
+            type: "Style.TypeEnum",
         },
         {
-            name: "nextParagraphStyleName",
-            baseName: "NextParagraphStyleName",
-            type: "string",
+            name: "isHeading",
+            baseName: "IsHeading",
+            type: "boolean",
+        },
+        {
+            name: "aliases",
+            baseName: "Aliases",
+            type: "Array<string>",
         },
         {
             name: "styleIdentifier",
@@ -94,9 +94,9 @@ export class Style extends LinkElement {
             type: "Style.StyleIdentifierEnum",
         },
         {
-            name: "type",
-            baseName: "Type",
-            type: "Style.TypeEnum",
+            name: "name",
+            baseName: "Name",
+            type: "string",
         }
     ];
 
@@ -108,14 +108,9 @@ export class Style extends LinkElement {
     }
 
     /**
-     * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
+     * Gets or sets the character formatting of the style.
      */
-    public aliases: Array<string>;
-
-    /**
-     * Gets or sets the name of the style this style is based on.
-     */
-    public baseStyleName: string;
+    public font: Font;
 
     /**
      * Gets or sets a value indicating whether this style is one of the built-in styles in MS Word.
@@ -123,14 +118,14 @@ export class Style extends LinkElement {
     public builtIn: boolean;
 
     /**
-     * Gets or sets the character formatting of the style.
+     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
      */
-    public font: Font;
+    public nextParagraphStyleName: string;
 
     /**
-     * Gets or sets a value indicating whether the style is one of the built-in Heading styles.
+     * Gets or sets the name of the style this style is based on.
      */
-    public isHeading: boolean;
+    public baseStyleName: string;
 
     /**
      * Gets or sets a value indicating whether this style is shown in the Quick Style gallery inside MS Word UI.
@@ -143,14 +138,19 @@ export class Style extends LinkElement {
     public linkedStyleName: string;
 
     /**
-     * Gets or sets the name of the style.
+     * Gets or sets the style type (paragraph or character).
      */
-    public name: string;
+    public type: Style.TypeEnum;
 
     /**
-     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
+     * Gets or sets a value indicating whether the style is one of the built-in Heading styles.
      */
-    public nextParagraphStyleName: string;
+    public isHeading: boolean;
+
+    /**
+     * Gets or sets all aliases of this style. If style has no aliases then empty array of string is returned.
+     */
+    public aliases: Array<string>;
 
     /**
      * Gets or sets the locale independent style identifier for a built-in style.
@@ -158,9 +158,9 @@ export class Style extends LinkElement {
     public styleIdentifier: Style.StyleIdentifierEnum;
 
     /**
-     * Gets or sets the style type (paragraph or character).
+     * Gets or sets the name of the style.
      */
-    public type: Style.TypeEnum;
+    public name: string;
 
     public constructor(init?: Partial< Style >) {
         super(init);
@@ -177,6 +177,13 @@ export class Style extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace Style {
+    export enum TypeEnum {
+        Paragraph = 'Paragraph' as any,
+        Character = 'Character' as any,
+        Table = 'Table' as any,
+        List = 'List' as any
+    }
+
     export enum StyleIdentifierEnum {
         Normal = 'Normal' as any,
         Heading1 = 'Heading1' as any,
@@ -556,13 +563,6 @@ export namespace Style {
         UnresolvedMention = 'UnresolvedMention' as any,
         User = 'User' as any,
         Nil = 'Nil' as any
-    }
-
-    export enum TypeEnum {
-        Paragraph = 'Paragraph' as any,
-        Character = 'Character' as any,
-        Table = 'Table' as any,
-        List = 'List' as any
     }
 }
 // tslint:enable:quotemark

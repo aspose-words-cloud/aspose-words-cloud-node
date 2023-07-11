@@ -46,24 +46,9 @@ export class Comment extends CommentLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "author",
-            baseName: "Author",
-            type: "string",
-        },
-        {
-            name: "content",
-            baseName: "Content",
-            type: "StoryChildNodes",
-        },
-        {
-            name: "dateTime",
-            baseName: "DateTime",
-            type: "Date",
-        },
-        {
-            name: "initial",
-            baseName: "Initial",
-            type: "string",
+            name: "rangeStart",
+            baseName: "RangeStart",
+            type: "DocumentPosition",
         },
         {
             name: "rangeEnd",
@@ -71,14 +56,29 @@ export class Comment extends CommentLink {
             type: "DocumentPosition",
         },
         {
-            name: "rangeStart",
-            baseName: "RangeStart",
-            type: "DocumentPosition",
+            name: "author",
+            baseName: "Author",
+            type: "string",
+        },
+        {
+            name: "initial",
+            baseName: "Initial",
+            type: "string",
+        },
+        {
+            name: "dateTime",
+            baseName: "DateTime",
+            type: "Date",
         },
         {
             name: "text",
             baseName: "Text",
             type: "string",
+        },
+        {
+            name: "content",
+            baseName: "Content",
+            type: "StoryChildNodes",
         }
     ];
 
@@ -90,24 +90,9 @@ export class Comment extends CommentLink {
     }
 
     /**
-     * Gets or sets the author name for a comment.
+     * Gets or sets the link to comment range start node.
      */
-    public author: string;
-
-    /**
-     * Gets or sets the content of the comment.
-     */
-    public content: StoryChildNodes;
-
-    /**
-     * Gets or sets the date and time that the comment was made.
-     */
-    public dateTime: Date;
-
-    /**
-     * Gets or sets the initials of the user associated with a specific comment.
-     */
-    public initial: string;
+    public rangeStart: DocumentPosition;
 
     /**
      * Gets or sets the link to comment range end node.
@@ -115,14 +100,29 @@ export class Comment extends CommentLink {
     public rangeEnd: DocumentPosition;
 
     /**
-     * Gets or sets the link to comment range start node.
+     * Gets or sets the author name for a comment.
      */
-    public rangeStart: DocumentPosition;
+    public author: string;
+
+    /**
+     * Gets or sets the initials of the user associated with a specific comment.
+     */
+    public initial: string;
+
+    /**
+     * Gets or sets the date and time that the comment was made.
+     */
+    public dateTime: Date;
 
     /**
      * Gets or sets text of the comment.
      */
     public text: string;
+
+    /**
+     * Gets or sets the content of the comment.
+     */
+    public content: StoryChildNodes;
 
     public constructor(init?: Partial< Comment >) {
         super(init);

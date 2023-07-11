@@ -44,18 +44,18 @@ export class DrawingObject extends DrawingObjectLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "height",
-            baseName: "Height",
+            name: "renderLinks",
+            baseName: "RenderLinks",
+            type: "Array<WordsApiLink>",
+        },
+        {
+            name: "width",
+            baseName: "Width",
             type: "number",
         },
         {
-            name: "imageDataLink",
-            baseName: "ImageDataLink",
-            type: "WordsApiLink",
-        },
-        {
-            name: "left",
-            baseName: "Left",
+            name: "height",
+            baseName: "Height",
             type: "number",
         },
         {
@@ -64,9 +64,19 @@ export class DrawingObject extends DrawingObjectLink {
             type: "WordsApiLink",
         },
         {
+            name: "imageDataLink",
+            baseName: "ImageDataLink",
+            type: "WordsApiLink",
+        },
+        {
             name: "relativeHorizontalPosition",
             baseName: "RelativeHorizontalPosition",
             type: "DrawingObject.RelativeHorizontalPositionEnum",
+        },
+        {
+            name: "left",
+            baseName: "Left",
+            type: "number",
         },
         {
             name: "relativeVerticalPosition",
@@ -74,18 +84,8 @@ export class DrawingObject extends DrawingObjectLink {
             type: "DrawingObject.RelativeVerticalPositionEnum",
         },
         {
-            name: "renderLinks",
-            baseName: "RenderLinks",
-            type: "Array<WordsApiLink>",
-        },
-        {
             name: "top",
             baseName: "Top",
-            type: "number",
-        },
-        {
-            name: "width",
-            baseName: "Width",
             type: "number",
         },
         {
@@ -103,19 +103,19 @@ export class DrawingObject extends DrawingObjectLink {
     }
 
     /**
+     * Gets or sets the list of links that originate from this DrawingObjectDto.
+     */
+    public renderLinks: Array<WordsApiLink>;
+
+    /**
+     * Gets or sets the width of the DrawingObjects in points.
+     */
+    public width: number;
+
+    /**
      * Gets or sets the height of the DrawingObject in points.
      */
     public height: number;
-
-    /**
-     * Gets or sets the link to image data. Can be null if shape does not have an image.
-     */
-    public imageDataLink: WordsApiLink;
-
-    /**
-     * Gets or sets the distance in points from the origin to the left side of the image.
-     */
-    public left: number;
 
     /**
      * Gets or sets the link to OLE object. Can be null if shape does not have OLE data.
@@ -123,9 +123,19 @@ export class DrawingObject extends DrawingObjectLink {
     public oleDataLink: WordsApiLink;
 
     /**
+     * Gets or sets the link to image data. Can be null if shape does not have an image.
+     */
+    public imageDataLink: WordsApiLink;
+
+    /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
     public relativeHorizontalPosition: DrawingObject.RelativeHorizontalPositionEnum;
+
+    /**
+     * Gets or sets the distance in points from the origin to the left side of the image.
+     */
+    public left: number;
 
     /**
      * Gets or sets the relative vertical position, from which the distance to the image is measured.
@@ -133,19 +143,9 @@ export class DrawingObject extends DrawingObjectLink {
     public relativeVerticalPosition: DrawingObject.RelativeVerticalPositionEnum;
 
     /**
-     * Gets or sets the list of links that originate from this DrawingObjectDto.
-     */
-    public renderLinks: Array<WordsApiLink>;
-
-    /**
      * Gets or sets the distance in points from the origin to the top side of the image.
      */
     public top: number;
-
-    /**
-     * Gets or sets the width of the DrawingObjects in points.
-     */
-    public width: number;
 
     /**
      * Gets or sets the option that controls how to wrap text around the image.

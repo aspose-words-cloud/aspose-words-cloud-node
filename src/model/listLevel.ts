@@ -46,33 +46,8 @@ export class ListLevel extends LinkElement {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "alignment",
-            baseName: "Alignment",
-            type: "ListLevel.AlignmentEnum",
-        },
-        {
-            name: "font",
-            baseName: "Font",
-            type: "Font",
-        },
-        {
-            name: "isLegal",
-            baseName: "IsLegal",
-            type: "boolean",
-        },
-        {
-            name: "linkedStyle",
-            baseName: "LinkedStyle",
-            type: "Style",
-        },
-        {
-            name: "numberFormat",
-            baseName: "NumberFormat",
-            type: "string",
-        },
-        {
-            name: "numberPosition",
-            baseName: "NumberPosition",
+            name: "startAt",
+            baseName: "StartAt",
             type: "number",
         },
         {
@@ -81,18 +56,43 @@ export class ListLevel extends LinkElement {
             type: "ListLevel.NumberStyleEnum",
         },
         {
+            name: "numberFormat",
+            baseName: "NumberFormat",
+            type: "string",
+        },
+        {
+            name: "alignment",
+            baseName: "Alignment",
+            type: "ListLevel.AlignmentEnum",
+        },
+        {
+            name: "isLegal",
+            baseName: "IsLegal",
+            type: "boolean",
+        },
+        {
             name: "restartAfterLevel",
             baseName: "RestartAfterLevel",
             type: "number",
         },
         {
-            name: "startAt",
-            baseName: "StartAt",
-            type: "number",
+            name: "trailingCharacter",
+            baseName: "TrailingCharacter",
+            type: "ListLevel.TrailingCharacterEnum",
+        },
+        {
+            name: "font",
+            baseName: "Font",
+            type: "Font",
         },
         {
             name: "tabPosition",
             baseName: "TabPosition",
+            type: "number",
+        },
+        {
+            name: "numberPosition",
+            baseName: "NumberPosition",
             type: "number",
         },
         {
@@ -101,9 +101,9 @@ export class ListLevel extends LinkElement {
             type: "number",
         },
         {
-            name: "trailingCharacter",
-            baseName: "TrailingCharacter",
-            type: "ListLevel.TrailingCharacterEnum",
+            name: "linkedStyle",
+            baseName: "LinkedStyle",
+            type: "Style",
         }
     ];
 
@@ -115,34 +115,9 @@ export class ListLevel extends LinkElement {
     }
 
     /**
-     * Gets or sets the justification of the actual number of the list item.
+     * Gets or sets the starting number for this list level.
      */
-    public alignment: ListLevel.AlignmentEnum;
-
-    /**
-     * Gets or sets character formatting used for the list label.
-     */
-    public font: Font;
-
-    /**
-     * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
-     */
-    public isLegal: boolean;
-
-    /**
-     * Gets or sets the paragraph style that is linked to this list level.
-     */
-    public linkedStyle: Style;
-
-    /**
-     * Gets or sets the number format for the list level.
-     */
-    public numberFormat: string;
-
-    /**
-     * Gets or sets the position (in points) of the number or bullet for the list level.
-     */
-    public numberPosition: number;
+    public startAt: number;
 
     /**
      * Gets or sets the number style for this list level.
@@ -150,14 +125,34 @@ export class ListLevel extends LinkElement {
     public numberStyle: ListLevel.NumberStyleEnum;
 
     /**
+     * Gets or sets the number format for the list level.
+     */
+    public numberFormat: string;
+
+    /**
+     * Gets or sets the justification of the actual number of the list item.
+     */
+    public alignment: ListLevel.AlignmentEnum;
+
+    /**
+     * Gets or sets a value indicating whether the level turns all inherited numbers to Arabic, false if it preserves their number style.
+     */
+    public isLegal: boolean;
+
+    /**
      * Gets or sets the list level, that must appear before the specified list level restarts numbering.
      */
     public restartAfterLevel: number;
 
     /**
-     * Gets or sets the starting number for this list level.
+     * Gets or sets the character inserted after the number for the list level.
      */
-    public startAt: number;
+    public trailingCharacter: ListLevel.TrailingCharacterEnum;
+
+    /**
+     * Gets or sets character formatting used for the list label.
+     */
+    public font: Font;
 
     /**
      * Gets or sets the tab position (in points) for the list level.
@@ -165,14 +160,19 @@ export class ListLevel extends LinkElement {
     public tabPosition: number;
 
     /**
+     * Gets or sets the position (in points) of the number or bullet for the list level.
+     */
+    public numberPosition: number;
+
+    /**
      * Gets or sets the position (in points) for the second line of wrapping text for the list level.
      */
     public textPosition: number;
 
     /**
-     * Gets or sets the character inserted after the number for the list level.
+     * Gets or sets the paragraph style that is linked to this list level.
      */
-    public trailingCharacter: ListLevel.TrailingCharacterEnum;
+    public linkedStyle: Style;
 
     public constructor(init?: Partial< ListLevel >) {
         super(init);
@@ -189,12 +189,6 @@ export class ListLevel extends LinkElement {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace ListLevel {
-    export enum AlignmentEnum {
-        Left = 'Left' as any,
-        Center = 'Center' as any,
-        Right = 'Right' as any
-    }
-
     export enum NumberStyleEnum {
         Arabic = 'Arabic' as any,
         UppercaseRoman = 'UppercaseRoman' as any,
@@ -258,6 +252,12 @@ export namespace ListLevel {
         UppercaseRussian = 'UppercaseRussian' as any,
         None = 'None' as any,
         Custom = 'Custom' as any
+    }
+
+    export enum AlignmentEnum {
+        Left = 'Left' as any,
+        Center = 'Center' as any,
+        Right = 'Right' as any
     }
 
     export enum TrailingCharacterEnum {

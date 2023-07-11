@@ -42,11 +42,6 @@ export class SplitDocumentResult implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "pages",
-            baseName: "Pages",
-            type: "Array<FileLink>",
-        },
-        {
             name: "sourceDocument",
             baseName: "SourceDocument",
             type: "FileLink",
@@ -55,6 +50,11 @@ export class SplitDocumentResult implements ModelInterface {
             name: "zippedPages",
             baseName: "ZippedPages",
             type: "FileLink",
+        },
+        {
+            name: "pages",
+            baseName: "Pages",
+            type: "Array<FileLink>",
         }
     ];
 
@@ -66,11 +66,6 @@ export class SplitDocumentResult implements ModelInterface {
     }
 
     /**
-     * Gets or sets the list of pages.
-     */
-    public pages: Array<FileLink>;
-
-    /**
      * Gets or sets the link to the source document.
      */
     public sourceDocument: FileLink;
@@ -79,6 +74,11 @@ export class SplitDocumentResult implements ModelInterface {
      * Gets or sets the link to the file archive with pages.
      */
     public zippedPages: FileLink;
+
+    /**
+     * Gets or sets the list of pages.
+     */
+    public pages: Array<FileLink>;
 
     public constructor(init?: Partial< SplitDocumentResult >) {
         Object.assign(this, init);

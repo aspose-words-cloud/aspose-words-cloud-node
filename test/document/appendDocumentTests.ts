@@ -52,7 +52,7 @@ describe("appendDocument", () => {
                 const requestDocumentListDocumentEntries0FileReference = model.FileReference.fromRemoteFilePath(remoteDataFolder + "/" + remoteFileName);
                 const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
                     fileReference: requestDocumentListDocumentEntries0FileReference,
-                    importFormatMode: "KeepSourceFormatting"
+                    importFormatMode: model.DocumentEntry.ImportFormatModeEnum.KeepSourceFormatting
                 })
                 const requestDocumentListDocumentEntries = [
                     requestDocumentListDocumentEntries0
@@ -90,7 +90,7 @@ describe("appendDocument", () => {
             const requestDocumentListDocumentEntries0FileReference = model.FileReference.fromLocalFileContent(requestDocumentListDocumentEntries0FileReferenceStream);
             const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
                 fileReference: requestDocumentListDocumentEntries0FileReference,
-                importFormatMode: "KeepSourceFormatting"
+                importFormatMode: model.DocumentEntry.ImportFormatModeEnum.KeepSourceFormatting
             })
             const requestDocumentListDocumentEntries = [
                 requestDocumentListDocumentEntries0

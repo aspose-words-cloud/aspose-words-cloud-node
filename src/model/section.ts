@@ -49,8 +49,8 @@ export class Section extends LinkElement {
             type: "Array<NodeLink>",
         },
         {
-            name: "headerFooters",
-            baseName: "HeaderFooters",
+            name: "paragraphs",
+            baseName: "Paragraphs",
             type: "LinkElement",
         },
         {
@@ -59,8 +59,8 @@ export class Section extends LinkElement {
             type: "LinkElement",
         },
         {
-            name: "paragraphs",
-            baseName: "Paragraphs",
+            name: "headerFooters",
+            baseName: "HeaderFooters",
             type: "LinkElement",
         },
         {
@@ -83,9 +83,9 @@ export class Section extends LinkElement {
     public childNodes: Array<NodeLink>;
 
     /**
-     * Gets or sets the link to HeaderFooters resource.
+     * Gets or sets the link to Paragraphs resource.
      */
-    public headerFooters: LinkElement;
+    public paragraphs: LinkElement;
 
     /**
      * Gets or sets the link to PageSetup resource.
@@ -93,9 +93,9 @@ export class Section extends LinkElement {
     public pageSetup: LinkElement;
 
     /**
-     * Gets or sets the link to Paragraphs resource.
+     * Gets or sets the link to HeaderFooters resource.
      */
-    public paragraphs: LinkElement;
+    public headerFooters: LinkElement;
 
     /**
      * Gets or sets the link to Tables resource.

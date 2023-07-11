@@ -47,11 +47,6 @@ export class PageStatData implements ModelInterface {
             type: "FootnotesStatData",
         },
         {
-            name: "pageNumber",
-            baseName: "PageNumber",
-            type: "number",
-        },
-        {
             name: "paragraphCount",
             baseName: "ParagraphCount",
             type: "number",
@@ -59,6 +54,11 @@ export class PageStatData implements ModelInterface {
         {
             name: "wordCount",
             baseName: "WordCount",
+            type: "number",
+        },
+        {
+            name: "pageNumber",
+            baseName: "PageNumber",
             type: "number",
         }
     ];
@@ -76,11 +76,6 @@ export class PageStatData implements ModelInterface {
     public footnotesStatData: FootnotesStatData;
 
     /**
-     * Gets or sets the page number.
-     */
-    public pageNumber: number;
-
-    /**
      * Gets or sets the total count of paragraphs in the page.
      */
     public paragraphCount: number;
@@ -89,6 +84,11 @@ export class PageStatData implements ModelInterface {
      * Gets or sets the total count of words in the page.
      */
     public wordCount: number;
+
+    /**
+     * Gets or sets the page number.
+     */
+    public pageNumber: number;
 
     public constructor(init?: Partial< PageStatData >) {
         Object.assign(this, init);

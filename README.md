@@ -18,6 +18,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 ## Enhancements in Version 23.6
 
+- Fix XMLHttpRequest in web applications.
 
 
 ## Enhancements in Version 23.5

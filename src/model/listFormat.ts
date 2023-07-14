@@ -42,9 +42,9 @@ export class ListFormat extends LinkElement {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "isListItem",
-            baseName: "IsListItem",
-            type: "boolean",
+            name: "listLevelNumber",
+            baseName: "ListLevelNumber",
+            type: "number",
         },
         {
             name: "listId",
@@ -52,9 +52,9 @@ export class ListFormat extends LinkElement {
             type: "number",
         },
         {
-            name: "listLevelNumber",
-            baseName: "ListLevelNumber",
-            type: "number",
+            name: "isListItem",
+            baseName: "IsListItem",
+            type: "boolean",
         }
     ];
 
@@ -66,9 +66,9 @@ export class ListFormat extends LinkElement {
     }
 
     /**
-     * Gets or sets a value indicating whether the paragraph has bulleted or numbered formatting applied to it.
+     * Gets or sets the list level number (0 to 8) for the paragraph.
      */
-    public isListItem: boolean;
+    public listLevelNumber: number;
 
     /**
      * Gets or sets the list id of this paragraph.
@@ -76,9 +76,9 @@ export class ListFormat extends LinkElement {
     public listId: number;
 
     /**
-     * Gets or sets the list level number (0 to 8) for the paragraph.
+     * Gets or sets a value indicating whether the paragraph has bulleted or numbered formatting applied to it.
      */
-    public listLevelNumber: number;
+    public isListItem: boolean;
 
     public constructor(init?: Partial< ListFormat >) {
         super(init);

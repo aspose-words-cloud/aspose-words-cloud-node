@@ -42,11 +42,6 @@ export class DocumentProperty extends LinkElement {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "builtIn",
-            baseName: "BuiltIn",
-            type: "boolean",
-        },
-        {
             name: "name",
             baseName: "Name",
             type: "string",
@@ -55,6 +50,11 @@ export class DocumentProperty extends LinkElement {
             name: "value",
             baseName: "Value",
             type: "string",
+        },
+        {
+            name: "builtIn",
+            baseName: "BuiltIn",
+            type: "boolean",
         }
     ];
 
@@ -66,12 +66,6 @@ export class DocumentProperty extends LinkElement {
     }
 
     /**
-     * Gets or sets a value indicating whether the property is built-in or not.
-     * If true the property is built-in, if false the property is custom.
-     */
-    public builtIn: boolean;
-
-    /**
      * Gets or sets the name of the document property.
      */
     public name: string;
@@ -80,6 +74,12 @@ export class DocumentProperty extends LinkElement {
      * Gets or sets the value of the document property.
      */
     public value: string;
+
+    /**
+     * Gets or sets a value indicating whether the property is built-in or not.
+     * If true the property is built-in, if false the property is custom.
+     */
+    public builtIn: boolean;
 
     public constructor(init?: Partial< DocumentProperty >) {
         super(init);

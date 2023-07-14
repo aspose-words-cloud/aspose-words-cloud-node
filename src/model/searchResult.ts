@@ -42,13 +42,13 @@ export class SearchResult implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "rangeEnd",
-            baseName: "RangeEnd",
+            name: "rangeStart",
+            baseName: "RangeStart",
             type: "DocumentPosition",
         },
         {
-            name: "rangeStart",
-            baseName: "RangeStart",
+            name: "rangeEnd",
+            baseName: "RangeEnd",
             type: "DocumentPosition",
         }
     ];
@@ -61,14 +61,14 @@ export class SearchResult implements ModelInterface {
     }
 
     /**
-     * Gets or sets the link to result range end node.
-     */
-    public rangeEnd: DocumentPosition;
-
-    /**
      * Gets or sets the link to result range start node.
      */
     public rangeStart: DocumentPosition;
+
+    /**
+     * Gets or sets the link to result range end node.
+     */
+    public rangeEnd: DocumentPosition;
 
     public constructor(init?: Partial< SearchResult >) {
         Object.assign(this, init);

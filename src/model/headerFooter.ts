@@ -51,13 +51,13 @@ export class HeaderFooter extends HeaderFooterLink {
             type: "Array<NodeLink>",
         },
         {
-            name: "drawingObjects",
-            baseName: "DrawingObjects",
+            name: "paragraphs",
+            baseName: "Paragraphs",
             type: "LinkElement",
         },
         {
-            name: "paragraphs",
-            baseName: "Paragraphs",
+            name: "drawingObjects",
+            baseName: "DrawingObjects",
             type: "LinkElement",
         }
     ];
@@ -75,14 +75,14 @@ export class HeaderFooter extends HeaderFooterLink {
     public childNodes: Array<NodeLink>;
 
     /**
-     * Gets or sets the link to DrawingObjects resource.
-     */
-    public drawingObjects: LinkElement;
-
-    /**
      * Gets or sets the link to Paragraphs resource.
      */
     public paragraphs: LinkElement;
+
+    /**
+     * Gets or sets the link to DrawingObjects resource.
+     */
+    public drawingObjects: LinkElement;
 
     public constructor(init?: Partial< HeaderFooter >) {
         super(init);

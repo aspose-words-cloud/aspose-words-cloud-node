@@ -124,11 +124,6 @@ export class ParagraphFormatBase extends LinkElement {
             type: "number",
         },
         {
-            name: "shading",
-            baseName: "Shading",
-            type: "Shading",
-        },
-        {
             name: "spaceAfter",
             baseName: "SpaceAfter",
             type: "number",
@@ -172,6 +167,11 @@ export class ParagraphFormatBase extends LinkElement {
             name: "widowControl",
             baseName: "WidowControl",
             type: "boolean",
+        },
+        {
+            name: "shading",
+            baseName: "Shading",
+            type: "Shading",
         }
     ];
 
@@ -264,11 +264,6 @@ export class ParagraphFormatBase extends LinkElement {
     public rightIndent: number;
 
     /**
-     * Gets or sets the Shading object, that refers to the shading formatting for the paragraph.
-     */
-    public shading: Shading;
-
-    /**
      * Gets or sets the amount of spacing (in points) after the paragraph.
      */
     public spaceAfter: number;
@@ -312,6 +307,11 @@ export class ParagraphFormatBase extends LinkElement {
      * Gets or sets a value indicating whether the first and last lines in the paragraph are to remain on the same page as the rest of the paragraph.
      */
     public widowControl: boolean;
+
+    /**
+     * Gets or sets the Shading object, that refers to the shading formatting for the paragraph.
+     */
+    public shading: Shading;
 
     public constructor(init?: Partial< ParagraphFormatBase >) {
         super(init);

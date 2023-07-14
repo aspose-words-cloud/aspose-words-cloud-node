@@ -46,14 +46,9 @@ export class ListInfo extends LinkElement {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "isListStyleDefinition",
-            baseName: "IsListStyleDefinition",
-            type: "boolean",
-        },
-        {
-            name: "isListStyleReference",
-            baseName: "IsListStyleReference",
-            type: "boolean",
+            name: "listId",
+            baseName: "ListId",
+            type: "number",
         },
         {
             name: "isMultiLevel",
@@ -66,19 +61,24 @@ export class ListInfo extends LinkElement {
             type: "boolean",
         },
         {
-            name: "listId",
-            baseName: "ListId",
-            type: "number",
+            name: "isListStyleDefinition",
+            baseName: "IsListStyleDefinition",
+            type: "boolean",
         },
         {
-            name: "listLevels",
-            baseName: "ListLevels",
-            type: "ListLevels",
+            name: "isListStyleReference",
+            baseName: "IsListStyleReference",
+            type: "boolean",
         },
         {
             name: "style",
             baseName: "Style",
             type: "Style",
+        },
+        {
+            name: "listLevels",
+            baseName: "ListLevels",
+            type: "ListLevels",
         }
     ];
 
@@ -90,14 +90,9 @@ export class ListInfo extends LinkElement {
     }
 
     /**
-     * Gets or sets a value indicating whether this list is a definition of a list style.
+     * Gets or sets the unique identifier of the list.
      */
-    public isListStyleDefinition: boolean;
-
-    /**
-     * Gets or sets a value indicating whether this list is a reference to a list style.
-     */
-    public isListStyleReference: boolean;
+    public listId: number;
 
     /**
      * Gets or sets a value indicating whether the list contains 9 levels; false when 1 level.
@@ -110,19 +105,24 @@ export class ListInfo extends LinkElement {
     public isRestartAtEachSection: boolean;
 
     /**
-     * Gets or sets the unique identifier of the list.
+     * Gets or sets a value indicating whether this list is a definition of a list style.
      */
-    public listId: number;
+    public isListStyleDefinition: boolean;
 
     /**
-     * Gets or sets the collection of list levels for this list.
+     * Gets or sets a value indicating whether this list is a reference to a list style.
      */
-    public listLevels: ListLevels;
+    public isListStyleReference: boolean;
 
     /**
      * Gets or sets the list style that this list references or defines.
      */
     public style: Style;
+
+    /**
+     * Gets or sets the collection of list levels for this list.
+     */
+    public listLevels: ListLevels;
 
     public constructor(init?: Partial< ListInfo >) {
         super(init);

@@ -42,16 +42,6 @@ export class TableRowFormat extends LinkElement {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "allowBreakAcrossPages",
-            baseName: "AllowBreakAcrossPages",
-            type: "boolean",
-        },
-        {
-            name: "headingFormat",
-            baseName: "HeadingFormat",
-            type: "boolean",
-        },
-        {
             name: "height",
             baseName: "Height",
             type: "number",
@@ -60,6 +50,16 @@ export class TableRowFormat extends LinkElement {
             name: "heightRule",
             baseName: "HeightRule",
             type: "TableRowFormat.HeightRuleEnum",
+        },
+        {
+            name: "allowBreakAcrossPages",
+            baseName: "AllowBreakAcrossPages",
+            type: "boolean",
+        },
+        {
+            name: "headingFormat",
+            baseName: "HeadingFormat",
+            type: "boolean",
         }
     ];
 
@@ -71,16 +71,6 @@ export class TableRowFormat extends LinkElement {
     }
 
     /**
-     * Gets or sets a value indicating whether the text in a table row is allowed to split across a page break.
-     */
-    public allowBreakAcrossPages: boolean;
-
-    /**
-     * Gets or sets a value indicating whether the row is repeated as a table heading on every page when the table spans more than one page.
-     */
-    public headingFormat: boolean;
-
-    /**
      * Gets or sets the height of the table row in points.
      */
     public height: number;
@@ -89,6 +79,16 @@ export class TableRowFormat extends LinkElement {
      * Gets or sets the rule for determining the height of the table row.
      */
     public heightRule: TableRowFormat.HeightRuleEnum;
+
+    /**
+     * Gets or sets a value indicating whether the text in a table row is allowed to split across a page break.
+     */
+    public allowBreakAcrossPages: boolean;
+
+    /**
+     * Gets or sets a value indicating whether the row is repeated as a table heading on every page when the table spans more than one page.
+     */
+    public headingFormat: boolean;
 
     public constructor(init?: Partial< TableRowFormat >) {
         super(init);

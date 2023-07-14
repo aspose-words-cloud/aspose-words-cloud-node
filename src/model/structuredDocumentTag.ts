@@ -44,14 +44,44 @@ export class StructuredDocumentTag extends NodeLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "listItems",
+            baseName: "ListItems",
+            type: "Array<StructuredDocumentTagListItem>",
+        },
+        {
+            name: "checked",
+            baseName: "Checked",
+            type: "boolean",
+        },
+        {
             name: "appearance",
             baseName: "Appearance",
             type: "StructuredDocumentTag.AppearanceEnum",
         },
         {
-            name: "buildingBlockCategory",
-            baseName: "BuildingBlockCategory",
+            name: "dateDisplayLocale",
+            baseName: "DateDisplayLocale",
+            type: "number",
+        },
+        {
+            name: "dateDisplayFormat",
+            baseName: "DateDisplayFormat",
             type: "string",
+        },
+        {
+            name: "fullDate",
+            baseName: "FullDate",
+            type: "Date",
+        },
+        {
+            name: "title",
+            baseName: "Title",
+            type: "string",
+        },
+        {
+            name: "dateStorageFormat",
+            baseName: "DateStorageFormat",
+            type: "StructuredDocumentTag.DateStorageFormatEnum",
         },
         {
             name: "buildingBlockGallery",
@@ -59,13 +89,13 @@ export class StructuredDocumentTag extends NodeLink {
             type: "string",
         },
         {
-            name: "calendarType",
-            baseName: "CalendarType",
-            type: "StructuredDocumentTag.CalendarTypeEnum",
+            name: "buildingBlockCategory",
+            baseName: "BuildingBlockCategory",
+            type: "string",
         },
         {
-            name: "checked",
-            baseName: "Checked",
+            name: "multiline",
+            baseName: "Multiline",
             type: "boolean",
         },
         {
@@ -74,34 +104,14 @@ export class StructuredDocumentTag extends NodeLink {
             type: "string",
         },
         {
-            name: "dateDisplayFormat",
-            baseName: "DateDisplayFormat",
+            name: "styleName",
+            baseName: "StyleName",
             type: "string",
         },
         {
-            name: "dateDisplayLocale",
-            baseName: "DateDisplayLocale",
-            type: "number",
-        },
-        {
-            name: "dateStorageFormat",
-            baseName: "DateStorageFormat",
-            type: "StructuredDocumentTag.DateStorageFormatEnum",
-        },
-        {
-            name: "fullDate",
-            baseName: "FullDate",
-            type: "Date",
-        },
-        {
-            name: "id",
-            baseName: "Id",
-            type: "number",
-        },
-        {
-            name: "isShowingPlaceholderText",
-            baseName: "IsShowingPlaceholderText",
-            type: "boolean",
+            name: "calendarType",
+            baseName: "CalendarType",
+            type: "StructuredDocumentTag.CalendarTypeEnum",
         },
         {
             name: "isTemporary",
@@ -114,9 +124,14 @@ export class StructuredDocumentTag extends NodeLink {
             type: "StructuredDocumentTag.LevelEnum",
         },
         {
-            name: "listItems",
-            baseName: "ListItems",
-            type: "Array<StructuredDocumentTagListItem>",
+            name: "sdtType",
+            baseName: "SdtType",
+            type: "StructuredDocumentTag.SdtTypeEnum",
+        },
+        {
+            name: "placeholderName",
+            baseName: "PlaceholderName",
+            type: "string",
         },
         {
             name: "lockContentControl",
@@ -129,24 +144,9 @@ export class StructuredDocumentTag extends NodeLink {
             type: "boolean",
         },
         {
-            name: "multiline",
-            baseName: "Multiline",
+            name: "isShowingPlaceholderText",
+            baseName: "IsShowingPlaceholderText",
             type: "boolean",
-        },
-        {
-            name: "placeholderName",
-            baseName: "PlaceholderName",
-            type: "string",
-        },
-        {
-            name: "sdtType",
-            baseName: "SdtType",
-            type: "StructuredDocumentTag.SdtTypeEnum",
-        },
-        {
-            name: "styleName",
-            baseName: "StyleName",
-            type: "string",
         },
         {
             name: "tag",
@@ -154,9 +154,9 @@ export class StructuredDocumentTag extends NodeLink {
             type: "string",
         },
         {
-            name: "title",
-            baseName: "Title",
-            type: "string",
+            name: "id",
+            baseName: "Id",
+            type: "number",
         },
         {
             name: "wordOpenXML",
@@ -173,24 +173,9 @@ export class StructuredDocumentTag extends NodeLink {
     }
 
     /**
-     * Gets or sets the appearance of a structured document tag.
+     * Gets or sets Aspose.Words.Markup.SdtListItemCollection associated with this SDT.
      */
-    public appearance: StructuredDocumentTag.AppearanceEnum;
-
-    /**
-     * Gets or sets category of building block for this SDT node. Can not be null.
-     */
-    public buildingBlockCategory: string;
-
-    /**
-     * Gets or sets type of building block for this SDT. Can not be null.
-     */
-    public buildingBlockGallery: string;
-
-    /**
-     * Gets or sets the type of calendar for this SDT. Default is Aspose.Words.Markup.SdtCalendarType.Default.
-     */
-    public calendarType: StructuredDocumentTag.CalendarTypeEnum;
+    public listItems: Array<StructuredDocumentTagListItem>;
 
     /**
      * Gets or sets a value indicating whether current state of the Checkbox SDT. Default value for this property.
@@ -198,9 +183,14 @@ export class StructuredDocumentTag extends NodeLink {
     public checked: boolean;
 
     /**
-     * Gets or sets the color of the structured document tag.
+     * Gets or sets the appearance of a structured document tag.
      */
-    public color: string;
+    public appearance: StructuredDocumentTag.AppearanceEnum;
+
+    /**
+     * Gets or sets the language format for the date displayed in this SDT.
+     */
+    public dateDisplayLocale: number;
 
     /**
      * Gets or sets String that represents the format in which dates are displayed. Can not be null. The dates for English (U.S.) is "mm/dd/yyyy".
@@ -208,9 +198,14 @@ export class StructuredDocumentTag extends NodeLink {
     public dateDisplayFormat: string;
 
     /**
-     * Gets or sets the language format for the date displayed in this SDT.
+     * Gets or sets the full date and time last entered into this SDT.
      */
-    public dateDisplayLocale: number;
+    public fullDate: Date;
+
+    /**
+     * Gets or sets the friendly name associated with this SDT. Can not be null.
+     */
+    public title: string;
 
     /**
      * Gets or sets format in which the date for a date SDT is stored when the SDT is bound to an XML node in the document's data store.
@@ -219,20 +214,34 @@ export class StructuredDocumentTag extends NodeLink {
     public dateStorageFormat: StructuredDocumentTag.DateStorageFormatEnum;
 
     /**
-     * Gets or sets the full date and time last entered into this SDT.
+     * Gets or sets type of building block for this SDT. Can not be null.
      */
-    public fullDate: Date;
+    public buildingBlockGallery: string;
 
     /**
-     * Gets or sets a unique read-only persistent numerical Id for this SDT.
+     * Gets or sets category of building block for this SDT node. Can not be null.
      */
-    public id: number;
+    public buildingBlockCategory: string;
 
     /**
-     * Gets or sets a value indicating whether the content of this SDT shall be interpreted to contain placeholder text (as opposed to regular text contents within the SDT).
-     * If set to true, this state shall be resumed (showing placeholder text) upon opening his document.
+     * Gets or sets a value indicating whether this SDT allows multiple lines of text.
      */
-    public isShowingPlaceholderText: boolean;
+    public multiline: boolean;
+
+    /**
+     * Gets or sets the color of the structured document tag.
+     */
+    public color: string;
+
+    /**
+     * Gets or sets the name of the style applied to the structured document tag.
+     */
+    public styleName: string;
+
+    /**
+     * Gets or sets the type of calendar for this SDT. Default is Aspose.Words.Markup.SdtCalendarType.Default.
+     */
+    public calendarType: StructuredDocumentTag.CalendarTypeEnum;
 
     /**
      * Gets or sets a value indicating whether this SDT shall be removed from the WordProcessingML document when its contents are modified.
@@ -245,9 +254,15 @@ export class StructuredDocumentTag extends NodeLink {
     public level: StructuredDocumentTag.LevelEnum;
 
     /**
-     * Gets or sets Aspose.Words.Markup.SdtListItemCollection associated with this SDT.
+     * Gets or sets type of this Structured document tag.
      */
-    public listItems: Array<StructuredDocumentTagListItem>;
+    public sdtType: StructuredDocumentTag.SdtTypeEnum;
+
+    /**
+     * Gets or sets Name of the Aspose.Words.BuildingBlocks.BuildingBlock containing placeholder text.
+     * Aspose.Words.BuildingBlocks.BuildingBlock with this name Aspose.Words.BuildingBlocks.BuildingBlock.Name has to be present in the Aspose.Words.Document.GlossaryDocument otherwise System.InvalidOperationException will occur.
+     */
+    public placeholderName: string;
 
     /**
      * Gets or sets a value indicating whether, this property will prohibit a user from deleting this SDT.
@@ -260,25 +275,10 @@ export class StructuredDocumentTag extends NodeLink {
     public lockContents: boolean;
 
     /**
-     * Gets or sets a value indicating whether this SDT allows multiple lines of text.
+     * Gets or sets a value indicating whether the content of this SDT shall be interpreted to contain placeholder text (as opposed to regular text contents within the SDT).
+     * If set to true, this state shall be resumed (showing placeholder text) upon opening his document.
      */
-    public multiline: boolean;
-
-    /**
-     * Gets or sets Name of the Aspose.Words.BuildingBlocks.BuildingBlock containing placeholder text.
-     * Aspose.Words.BuildingBlocks.BuildingBlock with this name Aspose.Words.BuildingBlocks.BuildingBlock.Name has to be present in the Aspose.Words.Document.GlossaryDocument otherwise System.InvalidOperationException will occur.
-     */
-    public placeholderName: string;
-
-    /**
-     * Gets or sets type of this Structured document tag.
-     */
-    public sdtType: StructuredDocumentTag.SdtTypeEnum;
-
-    /**
-     * Gets or sets the name of the style applied to the structured document tag.
-     */
-    public styleName: string;
+    public isShowingPlaceholderText: boolean;
 
     /**
      * Gets or sets a tag associated with the current SDT node. Can not be null.
@@ -286,9 +286,9 @@ export class StructuredDocumentTag extends NodeLink {
     public tag: string;
 
     /**
-     * Gets or sets the friendly name associated with this SDT. Can not be null.
+     * Gets or sets a unique read-only persistent numerical Id for this SDT.
      */
-    public title: string;
+    public id: number;
 
     /**
      * Gets a string that represents the XML contained within the node in the Aspose.Words.SaveFormat.FlatOpc format.
@@ -317,6 +317,13 @@ export namespace StructuredDocumentTag {
         Hidden = 'Hidden' as any
     }
 
+    export enum DateStorageFormatEnum {
+        Date = 'Date' as any,
+        DateTime = 'DateTime' as any,
+        Default = 'Default' as any,
+        Text = 'Text' as any
+    }
+
     export enum CalendarTypeEnum {
         Default = 'Default' as any,
         Gregorian = 'Gregorian' as any,
@@ -333,13 +340,6 @@ export namespace StructuredDocumentTag {
         Saka = 'Saka' as any,
         Taiwan = 'Taiwan' as any,
         Thai = 'Thai' as any
-    }
-
-    export enum DateStorageFormatEnum {
-        Date = 'Date' as any,
-        DateTime = 'DateTime' as any,
-        Default = 'Default' as any,
-        Text = 'Text' as any
     }
 
     export enum LevelEnum {

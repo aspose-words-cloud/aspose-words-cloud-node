@@ -46,14 +46,14 @@ export class Table extends NodeLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "tableProperties",
-            baseName: "TableProperties",
-            type: "TableProperties",
-        },
-        {
             name: "tableRowList",
             baseName: "TableRowList",
             type: "Array<TableRow>",
+        },
+        {
+            name: "tableProperties",
+            baseName: "TableProperties",
+            type: "TableProperties",
         }
     ];
 
@@ -65,14 +65,14 @@ export class Table extends NodeLink {
     }
 
     /**
-     * Gets or sets table properties.
-     */
-    public tableProperties: TableProperties;
-
-    /**
      * Gets or sets the collection of table's rows.
      */
     public tableRowList: Array<TableRow>;
+
+    /**
+     * Gets or sets table properties.
+     */
+    public tableProperties: TableProperties;
 
     public constructor(init?: Partial< Table >) {
         super(init);

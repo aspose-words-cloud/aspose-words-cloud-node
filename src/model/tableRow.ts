@@ -46,14 +46,14 @@ export class TableRow extends NodeLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "rowFormat",
-            baseName: "RowFormat",
-            type: "TableRowFormat",
-        },
-        {
             name: "tableCellList",
             baseName: "TableCellList",
             type: "Array<TableCell>",
+        },
+        {
+            name: "rowFormat",
+            baseName: "RowFormat",
+            type: "TableRowFormat",
         }
     ];
 
@@ -65,14 +65,14 @@ export class TableRow extends NodeLink {
     }
 
     /**
-     * Gets or sets the formatting properties of a row.
-     */
-    public rowFormat: TableRowFormat;
-
-    /**
      * Gets or sets the collection of rows.
      */
     public tableCellList: Array<TableCell>;
+
+    /**
+     * Gets or sets the formatting properties of a row.
+     */
+    public rowFormat: TableRowFormat;
 
     public constructor(init?: Partial< TableRow >) {
         super(init);

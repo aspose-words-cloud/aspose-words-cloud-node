@@ -42,6 +42,16 @@ export abstract class CommentBase implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "rangeStart",
+            baseName: "RangeStart",
+            type: "NewDocumentPosition",
+        },
+        {
+            name: "rangeEnd",
+            baseName: "RangeEnd",
+            type: "NewDocumentPosition",
+        },
+        {
             name: "author",
             baseName: "Author",
             type: "string",
@@ -55,16 +65,6 @@ export abstract class CommentBase implements ModelInterface {
             name: "initial",
             baseName: "Initial",
             type: "string",
-        },
-        {
-            name: "rangeEnd",
-            baseName: "RangeEnd",
-            type: "NewDocumentPosition",
-        },
-        {
-            name: "rangeStart",
-            baseName: "RangeStart",
-            type: "NewDocumentPosition",
         },
         {
             name: "text",
@@ -81,6 +81,16 @@ export abstract class CommentBase implements ModelInterface {
     }
 
     /**
+     * Gets or sets the link to comment range start node.
+     */
+    public rangeStart: NewDocumentPosition;
+
+    /**
+     * Gets or sets the link to comment range end node.
+     */
+    public rangeEnd: NewDocumentPosition;
+
+    /**
      * Gets or sets the author name for a comment.
      */
     public author: string;
@@ -94,16 +104,6 @@ export abstract class CommentBase implements ModelInterface {
      * Gets or sets the initials of the user associated with a specific comment.
      */
     public initial: string;
-
-    /**
-     * Gets or sets the link to comment range end node.
-     */
-    public rangeEnd: NewDocumentPosition;
-
-    /**
-     * Gets or sets the link to comment range start node.
-     */
-    public rangeStart: NewDocumentPosition;
 
     /**
      * Gets or sets text of the comment.

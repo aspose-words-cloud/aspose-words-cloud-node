@@ -46,19 +46,14 @@ export class Footnote extends FootnoteLink {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "content",
-            baseName: "Content",
-            type: "StoryChildNodes",
+            name: "position",
+            baseName: "Position",
+            type: "DocumentPosition",
         },
         {
             name: "footnoteType",
             baseName: "FootnoteType",
             type: "Footnote.FootnoteTypeEnum",
-        },
-        {
-            name: "position",
-            baseName: "Position",
-            type: "DocumentPosition",
         },
         {
             name: "referenceMark",
@@ -69,6 +64,11 @@ export class Footnote extends FootnoteLink {
             name: "text",
             baseName: "Text",
             type: "string",
+        },
+        {
+            name: "content",
+            baseName: "Content",
+            type: "StoryChildNodes",
         }
     ];
 
@@ -80,19 +80,14 @@ export class Footnote extends FootnoteLink {
     }
 
     /**
-     * Gets or sets the content of the footnote.
+     * Gets or sets the link to comment range start node.
      */
-    public content: StoryChildNodes;
+    public position: DocumentPosition;
 
     /**
      * Gets or sets the value, that specifies whether this is a footnote or endnote.
      */
     public footnoteType: Footnote.FootnoteTypeEnum;
-
-    /**
-     * Gets or sets the link to comment range start node.
-     */
-    public position: DocumentPosition;
 
     /**
      * Gets or sets the custom reference mark to be used for this footnote.
@@ -104,6 +99,11 @@ export class Footnote extends FootnoteLink {
      * Gets or sets text of the footnote.
      */
     public text: string;
+
+    /**
+     * Gets or sets the content of the footnote.
+     */
+    public content: StoryChildNodes;
 
     public constructor(init?: Partial< Footnote >) {
         super(init);

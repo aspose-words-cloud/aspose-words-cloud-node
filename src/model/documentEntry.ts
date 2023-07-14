@@ -49,7 +49,7 @@ export class DocumentEntry extends BaseEntry {
         {
             name: "importFormatMode",
             baseName: "ImportFormatMode",
-            type: "string",
+            type: "DocumentEntry.ImportFormatModeEnum",
         }
     ];
 
@@ -68,7 +68,7 @@ export class DocumentEntry extends BaseEntry {
     /**
      * Gets or sets the option that controls formatting will be used: appended or destination document. Can be KeepSourceFormatting or UseDestinationStyles.
      */
-    public importFormatMode: string;
+    public importFormatMode: DocumentEntry.ImportFormatModeEnum;
 
     public constructor(init?: Partial< DocumentEntry >) {
         super(init);
@@ -79,4 +79,18 @@ export class DocumentEntry extends BaseEntry {
         super.collectFilesContent(_resultFilesContent);
     }
 }
+
+/**
+ * Enums for DocumentEntry
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace DocumentEntry {
+    export enum ImportFormatModeEnum {
+        UseDestinationStyles = 'UseDestinationStyles' as any,
+        KeepSourceFormatting = 'KeepSourceFormatting' as any,
+        KeepDifferentStyles = 'KeepDifferentStyles' as any
+    }
+}
+// tslint:enable:quotemark
 

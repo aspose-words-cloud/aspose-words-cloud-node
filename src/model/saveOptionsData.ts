@@ -97,11 +97,6 @@ export abstract class SaveOptionsData implements ModelInterface {
             type: "boolean",
         },
         {
-            name: "updateSdtContent",
-            baseName: "UpdateSdtContent",
-            type: "boolean",
-        },
-        {
             name: "zipOutput",
             baseName: "ZipOutput",
             type: "boolean",
@@ -176,11 +171,6 @@ export abstract class SaveOptionsData implements ModelInterface {
      * Gets or sets a value indicating whether the Aspose.Words.Properties.BuiltInDocumentProperties.LastSavedTime property is updated before saving.
      */
     public updateLastSavedTimeProperty: boolean;
-
-    /**
-     * Gets or sets a value indicating whether content of StructuredDocumentTag is updated before saving.
-     */
-    public updateSdtContent: boolean;
 
     /**
      * Gets or sets a value indicating whether to zip output or not.

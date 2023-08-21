@@ -43,7 +43,6 @@ describe("loadWebDocument", () => {
                 fileName: "google.doc",
                 dmlEffectsRenderingMode: model.DocSaveOptionsData.DmlEffectsRenderingModeEnum.None,
                 dmlRenderingMode: model.DocSaveOptionsData.DmlRenderingModeEnum.DrawingML,
-                updateSdtContent: false,
                 zipOutput: false
             })
             const requestData = new model.LoadWebDocumentData({

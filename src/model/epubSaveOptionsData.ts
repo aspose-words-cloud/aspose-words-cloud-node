@@ -42,8 +42,8 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "epubNavigationMapLevel",
-            baseName: "EpubNavigationMapLevel",
+            name: "navigationMapLevel",
+            baseName: "NavigationMapLevel",
             type: "number",
         }
     ];
@@ -58,7 +58,7 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
     /**
      * Gets or sets the maximum level of headings populated to the navigation map when exporting.
      */
-    public epubNavigationMapLevel: number;
+    public navigationMapLevel: number;
 
     public constructor(init?: Partial< EpubSaveOptionsData >) {
         super(init);

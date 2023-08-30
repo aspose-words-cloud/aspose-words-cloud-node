@@ -145,6 +145,17 @@ export class ObjectSerializer {
                 return expectedType;
             }
 
+            if (data['$type']) {
+                var inhType:string = data['$type'];
+                inhType = inhType.substring(0, inhType.length - 3);
+                if (typeMap[inhType]) {
+                    return inhType;
+                }
+                else {
+                    throw new Error('Failed to find type ' + inhType);
+                }
+            }
+
             if (!typeMap[expectedType]) {
                 return expectedType; // w/e we don't know the type
             }

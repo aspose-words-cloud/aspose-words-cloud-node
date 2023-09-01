@@ -729,6 +729,7 @@ const enumsMap = {
 };
 
 const typeMap = {
+    FileReference: importedFileReference.FileReference,
     ApiError: importedApiError.ApiError,
     AvailableFontsResponse: importedAvailableFontsResponse.AvailableFontsResponse,
     BmpSaveOptionsData: importedBmpSaveOptionsData.BmpSaveOptionsData,

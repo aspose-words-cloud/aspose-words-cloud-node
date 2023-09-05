@@ -50,14 +50,14 @@ export class MetafileRenderingOptionsData implements ModelInterface {
             type: "boolean",
         },
         {
+            name: "emulateRenderingToSizeOnPage",
+            baseName: "EmulateRenderingToSizeOnPage",
+            type: "boolean",
+        },
+        {
             name: "renderingMode",
             baseName: "RenderingMode",
             type: "MetafileRenderingOptionsData.RenderingModeEnum",
-        },
-        {
-            name: "scaleWmfFontsToMetafileSize",
-            baseName: "ScaleWmfFontsToMetafileSize",
-            type: "boolean",
         },
         {
             name: "useEmfEmbeddedToWmf",
@@ -84,15 +84,15 @@ export class MetafileRenderingOptionsData implements ModelInterface {
     public emulateRasterOperations: boolean;
 
     /**
+     * Gets or sets a value determining whether metafile rendering emulates the display of the metafile according to the size on page
+     * or the display of the metafile in its default size.
+     */
+    public emulateRenderingToSizeOnPage: boolean;
+
+    /**
      * Gets or sets the option that controls how metafile images should be rendered.
      */
     public renderingMode: MetafileRenderingOptionsData.RenderingModeEnum;
-
-    /**
-     * Gets or sets a value indicating whether to scale fonts in WMF metafile according to metafile size on the page.
-     * The default value is true.
-     */
-    public scaleWmfFontsToMetafileSize: boolean;
 
     /**
      * Gets or sets the flag, that controls how WMF metafiles with embedded EMF metafiles should be rendered.

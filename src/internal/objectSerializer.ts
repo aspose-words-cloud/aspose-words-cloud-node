@@ -68,8 +68,11 @@ export class ObjectSerializer {
             if (enumsMap[type]) {
                 return data;
             }
-            if (!typeMap[type]) { // in case we dont know the type
-                return data;
+            if (typeMap[data.constructor.name]) {
+                type = data.constructor.name;
+            }
+            else {
+                throw new Error('Invalid model type ' + type);
             }
 
             // get the map for the correct type.
@@ -143,6 +146,17 @@ export class ObjectSerializer {
         } else {
             if (enumsMap[expectedType]) {
                 return expectedType;
+            }
+
+            if (data['$type']) {
+                var inhType:string = data['$type'];
+                inhType = inhType.substring(0, inhType.length - 3);
+                if (typeMap[inhType]) {
+                    return inhType;
+                }
+                else {
+                    throw new Error('Failed to find type ' + inhType);
+                }
             }
 
             if (!typeMap[expectedType]) {

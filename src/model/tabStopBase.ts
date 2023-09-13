@@ -34,7 +34,7 @@ export const importsMapTabStopBase = {
 /**
  * Base class for paragraph format tab stop DTO.
  */
-export class TabStopBase implements ModelInterface {
+export abstract class TabStopBase implements ModelInterface {
     /**
      * Attribute type map
      */

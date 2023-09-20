@@ -99,6 +99,7 @@ import * as importedDrawingObjectResponse from './drawingObjectResponse';
 import * as importedDrawingObjectsResponse from './drawingObjectsResponse';
 import * as importedDrawingObjectUpdate from './drawingObjectUpdate';
 import * as importedEmfSaveOptionsData from './emfSaveOptionsData';
+import * as importedEpsSaveOptionsData from './epsSaveOptionsData';
 import * as importedEpubSaveOptionsData from './epubSaveOptionsData';
 import * as importedError from './error';
 import * as importedErrorDetails from './errorDetails';
@@ -381,6 +382,7 @@ export * from './drawingObjectResponse';
 export * from './drawingObjectsResponse';
 export * from './drawingObjectUpdate';
 export * from './emfSaveOptionsData';
+export * from './epsSaveOptionsData';
 export * from './epubSaveOptionsData';
 export * from './error';
 export * from './errorDetails';
@@ -791,6 +793,7 @@ const typeMap = {
     DrawingObjectsResponse: importedDrawingObjectsResponse.DrawingObjectsResponse,
     DrawingObjectUpdate: importedDrawingObjectUpdate.DrawingObjectUpdate,
     EmfSaveOptionsData: importedEmfSaveOptionsData.EmfSaveOptionsData,
+    EpsSaveOptionsData: importedEpsSaveOptionsData.EpsSaveOptionsData,
     EpubSaveOptionsData: importedEpubSaveOptionsData.EpubSaveOptionsData,
     Error: importedError.Error,
     ErrorDetails: importedErrorDetails.ErrorDetails,

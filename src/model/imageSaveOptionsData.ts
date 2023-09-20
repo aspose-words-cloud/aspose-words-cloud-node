@@ -97,6 +97,16 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
             type: "number",
         },
         {
+            name: "imageHeight",
+            baseName: "ImageHeight",
+            type: "number",
+        },
+        {
+            name: "imageWidth",
+            baseName: "ImageWidth",
+            type: "number",
+        },
+        {
             name: "useGdiEmfRenderer",
             baseName: "UseGdiEmfRenderer",
             type: "boolean",
@@ -170,6 +180,16 @@ export abstract class ImageSaveOptionsData extends FixedPageSaveOptionsData {
      * The default value is 96.
      */
     public verticalResolution: number;
+
+    /**
+     * Gets or sets the height of a generated image in pixels.
+     */
+    public imageHeight: number;
+
+    /**
+     * Gets or sets the width of a generated image in pixels.
+     */
+    public imageWidth: number;
 
     /**
      * Gets or sets a value indicating whether to use GDI+ or Aspose.Words metafile renderer when saving to EMF.

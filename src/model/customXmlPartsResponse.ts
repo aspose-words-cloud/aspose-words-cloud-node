@@ -37,6 +37,7 @@ export const importsMapCustomXmlPartsResponse = {
 
 /**
  * The REST response with a collection of custom xml parts.
+ * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/customXmlParts" REST API requests.
  */
 export class CustomXmlPartsResponse extends WordsResponse {
     /**

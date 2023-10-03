@@ -44,13 +44,13 @@ export class BookmarkInsert extends BookmarkData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "endRange",
-            baseName: "EndRange",
+            name: "startRange",
+            baseName: "StartRange",
             type: "NewDocumentPosition",
         },
         {
-            name: "startRange",
-            baseName: "StartRange",
+            name: "endRange",
+            baseName: "EndRange",
             type: "NewDocumentPosition",
         }
     ];
@@ -63,14 +63,14 @@ export class BookmarkInsert extends BookmarkData {
     }
 
     /**
-     * Gets or sets the link to end bookmark node.
-     */
-    public endRange: NewDocumentPosition;
-
-    /**
      * Gets or sets the link to start bookmark node.
      */
     public startRange: NewDocumentPosition;
+
+    /**
+     * Gets or sets the link to end bookmark node.
+     */
+    public endRange: NewDocumentPosition;
 
     public constructor(init?: Partial< BookmarkInsert >) {
         super(init);

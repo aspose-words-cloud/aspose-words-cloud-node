@@ -90,6 +90,8 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
     /**
      * Gets or sets the value determining how colors are rendered.
      * { Normal | Grayscale}.
+     * The default value is Normal.
+     * This property is used when the document is exported to fixed page formats.
      */
     public colorMode: FixedPageSaveOptionsData.ColorModeEnum;
 

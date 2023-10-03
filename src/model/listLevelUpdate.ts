@@ -40,6 +40,21 @@ export class ListLevelUpdate implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "startAt",
+            baseName: "StartAt",
+            type: "number",
+        },
+        {
+            name: "numberStyle",
+            baseName: "NumberStyle",
+            type: "ListLevelUpdate.NumberStyleEnum",
+        },
+        {
+            name: "numberFormat",
+            baseName: "NumberFormat",
+            type: "string",
+        },
+        {
             name: "alignment",
             baseName: "Alignment",
             type: "ListLevelUpdate.AlignmentEnum",
@@ -50,29 +65,14 @@ export class ListLevelUpdate implements ModelInterface {
             type: "boolean",
         },
         {
-            name: "numberFormat",
-            baseName: "NumberFormat",
-            type: "string",
-        },
-        {
-            name: "numberPosition",
-            baseName: "NumberPosition",
-            type: "number",
-        },
-        {
-            name: "numberStyle",
-            baseName: "NumberStyle",
-            type: "ListLevelUpdate.NumberStyleEnum",
-        },
-        {
             name: "restartAfterLevel",
             baseName: "RestartAfterLevel",
             type: "number",
         },
         {
-            name: "startAt",
-            baseName: "StartAt",
-            type: "number",
+            name: "trailingCharacter",
+            baseName: "TrailingCharacter",
+            type: "ListLevelUpdate.TrailingCharacterEnum",
         },
         {
             name: "tabPosition",
@@ -80,14 +80,14 @@ export class ListLevelUpdate implements ModelInterface {
             type: "number",
         },
         {
-            name: "textPosition",
-            baseName: "TextPosition",
+            name: "numberPosition",
+            baseName: "NumberPosition",
             type: "number",
         },
         {
-            name: "trailingCharacter",
-            baseName: "TrailingCharacter",
-            type: "ListLevelUpdate.TrailingCharacterEnum",
+            name: "textPosition",
+            baseName: "TextPosition",
+            type: "number",
         }
     ];
 
@@ -99,7 +99,26 @@ export class ListLevelUpdate implements ModelInterface {
     }
 
     /**
+     * Gets or sets the starting number for this list level.
+     * Default value is 1.
+     */
+    public startAt: number;
+
+    /**
+     * Gets or sets the number style for this list level.
+     */
+    public numberStyle: ListLevelUpdate.NumberStyleEnum;
+
+    /**
+     * Gets or sets the number format for the list level.
+     * Among normal text characters, the string can contain placeholder characters \\x0000 to \\x0008 representing the numbers from the corresponding list levels. For example, the string "\\x0000.\\x0001)" will generate a list label that looks something like "1.5)". The number "1" is the current number from the 1st list level, the number "5" is the current number from the 2nd list level. Null is not allowed, but an empty string meaning no number is valid.
+     */
+    public numberFormat: string;
+
+    /**
      * Gets or sets the justification of the actual number of the list item.
+     * The list label is justified relative to the Aspose.Words.Lists.ListLevel.NumberPosition
+     * property.
      */
     public alignment: ListLevelUpdate.AlignmentEnum;
 
@@ -109,44 +128,35 @@ export class ListLevelUpdate implements ModelInterface {
     public isLegal: boolean;
 
     /**
-     * Gets or sets the number format for the list level.
-     */
-    public numberFormat: string;
-
-    /**
-     * Gets or sets the position (in points) of the number or bullet for the list level.
-     */
-    public numberPosition: number;
-
-    /**
-     * Gets or sets the number style for this list level.
-     */
-    public numberStyle: ListLevelUpdate.NumberStyleEnum;
-
-    /**
      * Gets or sets the list level that must appear before the specified list level restarts numbering.
+     * The value of -1 means the numbering will continue.
      */
     public restartAfterLevel: number;
-
-    /**
-     * Gets or sets the starting number for this list level.
-     */
-    public startAt: number;
-
-    /**
-     * Gets or sets the tab position (in points) for the list level.
-     */
-    public tabPosition: number;
-
-    /**
-     * Gets or sets the position (in points) for the second line of wrapping text for the list level.
-     */
-    public textPosition: number;
 
     /**
      * Gets or sets the character to be inserted after the number for the list level.
      */
     public trailingCharacter: ListLevelUpdate.TrailingCharacterEnum;
+
+    /**
+     * Gets or sets the tab position (in points) for the list level.
+     * Has effect only when Aspose.Words.Lists.ListLevel.TrailingCharacter is a tab.
+     * Aspose.Words.Lists.ListLevel.NumberPosition Aspose.Words.Lists.ListLevel.TextPosition.
+     */
+    public tabPosition: number;
+
+    /**
+     * Gets or sets the position (in points) of the number or bullet for the list level.
+     * Aspose.Words.Lists.ListLevel.NumberPosition corresponds to LeftIndent plus FirstLineIndent of the paragraph. Aspose.Words.Lists.ListLevel.TextPosition Aspose.Words.Lists.ListLevel.TabPosition.
+     */
+    public numberPosition: number;
+
+    /**
+     * Gets or sets the position (in points) for the second line of wrapping text for the list level.
+     * Aspose.Words.Lists.ListLevel.TextPosition corresponds to LeftIndent of the paragraph.
+     * Aspose.Words.Lists.ListLevel.NumberPosition Aspose.Words.Lists.ListLevel.TabPosition.
+     */
+    public textPosition: number;
 
     public constructor(init?: Partial< ListLevelUpdate >) {
         Object.assign(this, init);
@@ -162,12 +172,6 @@ export class ListLevelUpdate implements ModelInterface {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace ListLevelUpdate {
-    export enum AlignmentEnum {
-        Left = 'Left' as any,
-        Center = 'Center' as any,
-        Right = 'Right' as any
-    }
-
     export enum NumberStyleEnum {
         Arabic = 'Arabic' as any,
         UppercaseRoman = 'UppercaseRoman' as any,
@@ -231,6 +235,12 @@ export namespace ListLevelUpdate {
         UppercaseRussian = 'UppercaseRussian' as any,
         None = 'None' as any,
         Custom = 'Custom' as any
+    }
+
+    export enum AlignmentEnum {
+        Left = 'Left' as any,
+        Center = 'Center' as any,
+        Right = 'Right' as any
     }
 
     export enum TrailingCharacterEnum {

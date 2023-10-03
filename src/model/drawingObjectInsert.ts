@@ -42,16 +42,6 @@ export class DrawingObjectInsert implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "height",
-            baseName: "Height",
-            type: "number",
-        },
-        {
-            name: "left",
-            baseName: "Left",
-            type: "number",
-        },
-        {
             name: "position",
             baseName: "Position",
             type: "NewDocumentPosition",
@@ -60,6 +50,11 @@ export class DrawingObjectInsert implements ModelInterface {
             name: "relativeHorizontalPosition",
             baseName: "RelativeHorizontalPosition",
             type: "DrawingObjectInsert.RelativeHorizontalPositionEnum",
+        },
+        {
+            name: "left",
+            baseName: "Left",
+            type: "number",
         },
         {
             name: "relativeVerticalPosition",
@@ -77,6 +72,11 @@ export class DrawingObjectInsert implements ModelInterface {
             type: "number",
         },
         {
+            name: "height",
+            baseName: "Height",
+            type: "number",
+        },
+        {
             name: "wrapType",
             baseName: "WrapType",
             type: "DrawingObjectInsert.WrapTypeEnum",
@@ -91,16 +91,6 @@ export class DrawingObjectInsert implements ModelInterface {
     }
 
     /**
-     * Gets or sets the height of the DrawingObject in points.
-     */
-    public height: number;
-
-    /**
-     * Gets or sets the distance in points from the origin to the left side of the image.
-     */
-    public left: number;
-
-    /**
      * Gets or sets the position, before which the DrawingObject will be inserted.
      */
     public position: NewDocumentPosition;
@@ -109,6 +99,11 @@ export class DrawingObjectInsert implements ModelInterface {
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
     public relativeHorizontalPosition: DrawingObjectInsert.RelativeHorizontalPositionEnum;
+
+    /**
+     * Gets or sets the distance in points from the origin to the left side of the image.
+     */
+    public left: number;
 
     /**
      * Gets or sets the relative vertical position, from which the distance to the image is measured.
@@ -124,6 +119,11 @@ export class DrawingObjectInsert implements ModelInterface {
      * Gets or sets the width of the DrawingObjects in points.
      */
     public width: number;
+
+    /**
+     * Gets or sets the height of the DrawingObject in points.
+     */
+    public height: number;
 
     /**
      * Gets or sets the option indicating how to wrap text around the image.

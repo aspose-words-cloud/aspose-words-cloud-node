@@ -42,11 +42,6 @@ export class FieldOptions implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "builtInTemplatesPaths",
-            baseName: "BuiltInTemplatesPaths",
-            type: "Array<string>",
-        },
-        {
             name: "currentUser",
             baseName: "CurrentUser",
             type: "UserInformation",
@@ -105,6 +100,11 @@ export class FieldOptions implements ModelInterface {
             name: "useInvariantCultureNumberFormat",
             baseName: "UseInvariantCultureNumberFormat",
             type: "boolean",
+        },
+        {
+            name: "builtInTemplatesPaths",
+            baseName: "BuiltInTemplatesPaths",
+            type: "Array<string>",
         }
     ];
 
@@ -114,11 +114,6 @@ export class FieldOptions implements ModelInterface {
     public static getAttributeTypeMap() {
         return FieldOptions.attributeTypeMap;
     }
-
-    /**
-     * Gets or sets BuiltIn Templates Paths.
-     */
-    public builtInTemplatesPaths: Array<string>;
 
     /**
      * Gets or sets Curren tUser.
@@ -181,6 +176,11 @@ export class FieldOptions implements ModelInterface {
      * Gets or sets if Use Invariant Culture Number Format.
      */
     public useInvariantCultureNumberFormat: boolean;
+
+    /**
+     * Gets or sets BuiltIn Templates Paths.
+     */
+    public builtInTemplatesPaths: Array<string>;
 
     public constructor(init?: Partial< FieldOptions >) {
         Object.assign(this, init);

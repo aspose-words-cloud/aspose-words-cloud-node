@@ -62,11 +62,13 @@ export class CustomXmlPart extends CustomXmlPartLink {
 
     /**
      * Gets or sets the custom xml part id.
+     * Cannot be null.
      */
     public id: string;
 
     /**
      * Gets or sets the custom xml part data.
+     * Cannot be null.Default is empty string.
      */
     public data: string;
 

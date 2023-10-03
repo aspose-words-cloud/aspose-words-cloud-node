@@ -109,6 +109,7 @@ export class Style extends LinkElement {
 
     /**
      * Gets or sets the character formatting of the style.
+     * For list styles this property returns null.
      */
     public font: Font;
 
@@ -119,11 +120,13 @@ export class Style extends LinkElement {
 
     /**
      * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
+     * This property is not used by Aspose.Words. The next paragraph style will only be applied automatically when you edit the document in MS Word.
      */
     public nextParagraphStyleName: string;
 
     /**
      * Gets or sets the name of the style this style is based on.
+     * This will be an empty string if the style is not based on any other style and it can be set to an empty string.
      */
     public baseStyleName: string;
 
@@ -154,11 +157,14 @@ export class Style extends LinkElement {
 
     /**
      * Gets or sets the locale independent style identifier for a built-in style.
+     * For user defined (custom) styles, this property returns Aspose.Words.StyleIdentifier.User.
+     * Aspose.Words.Style.Name.
      */
     public styleIdentifier: Style.StyleIdentifierEnum;
 
     /**
      * Gets or sets the name of the style.
+     * Can not be empty string. If there already is a style with such name in the collection, then this style will override it. All affected nodes will reference new style.
      */
     public name: string;
 

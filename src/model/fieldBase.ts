@@ -40,13 +40,13 @@ export abstract class FieldBase implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "fieldCode",
-            baseName: "FieldCode",
+            name: "localeId",
+            baseName: "LocaleId",
             type: "string",
         },
         {
-            name: "localeId",
-            baseName: "LocaleId",
+            name: "fieldCode",
+            baseName: "FieldCode",
             type: "string",
         }
     ];
@@ -59,14 +59,14 @@ export abstract class FieldBase implements ModelInterface {
     }
 
     /**
-     * Gets or sets the field code.
-     */
-    public fieldCode: string;
-
-    /**
      * Gets or sets the LCID of the field.
      */
     public localeId: string;
+
+    /**
+     * Gets or sets the field code.
+     */
+    public fieldCode: string;
 
     public constructor(init?: Partial< FieldBase >) {
         Object.assign(this, init);

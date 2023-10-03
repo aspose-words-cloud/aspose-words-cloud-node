@@ -37,6 +37,7 @@ export const importsMapHyperlinksResponse = {
 
 /**
  * The REST response with a collection of hyperlinks.
+ * This response should be returned by the service when handling "GET /{name}/hyperlinks" REST API calls.
  */
 export class HyperlinksResponse extends WordsResponse {
     /**

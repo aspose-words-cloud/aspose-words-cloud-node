@@ -37,6 +37,7 @@ export const importsMapDocumentPropertyResponse = {
 
 /**
  * The REST response with a document property.
+ * This response should be returned by the service when handling: GET documentProperties/{propertyName}.
  */
 export class DocumentPropertyResponse extends WordsResponse {
     /**

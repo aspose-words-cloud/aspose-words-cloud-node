@@ -62,6 +62,7 @@ export class FormFieldDropDown extends FormField {
 
     /**
      * Gets or sets the items array of a dropdown form field.
+     * Microsoft Word allows maximum 25 items in a dropdown form field.
      */
     public dropDownItems: Array<string>;
 

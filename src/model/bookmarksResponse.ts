@@ -37,6 +37,7 @@ export const importsMapBookmarksResponse = {
 
 /**
  * The REST response with a collection of bookmarks.
+ * This response should be returned by the service when handling: GET bookmarks.
  */
 export class BookmarksResponse extends WordsResponse {
     /**

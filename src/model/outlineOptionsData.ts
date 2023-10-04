@@ -42,11 +42,6 @@ export class OutlineOptionsData implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "bookmarksOutlineLevels",
-            baseName: "BookmarksOutlineLevels",
-            type: "Array<BookmarksOutlineLevelData>",
-        },
-        {
             name: "createMissingOutlineLevels",
             baseName: "CreateMissingOutlineLevels",
             type: "boolean",
@@ -70,6 +65,11 @@ export class OutlineOptionsData implements ModelInterface {
             name: "headingsOutlineLevels",
             baseName: "HeadingsOutlineLevels",
             type: "number",
+        },
+        {
+            name: "bookmarksOutlineLevels",
+            baseName: "BookmarksOutlineLevels",
+            type: "Array<BookmarksOutlineLevelData>",
         }
     ];
 
@@ -81,17 +81,13 @@ export class OutlineOptionsData implements ModelInterface {
     }
 
     /**
-     * Gets or sets the individual bookmarks outline level.
-     */
-    public bookmarksOutlineLevels: Array<BookmarksOutlineLevelData>;
-
-    /**
      * Gets or sets a value indicating whether to create missing outline levels when the document is exported. The default value is false.
      */
     public createMissingOutlineLevels: boolean;
 
     /**
      * Gets or sets a value indicating whether to create outlines for headings (paragraphs formatted with the Heading styles) inside tables.
+     * The default value is false.
      */
     public createOutlinesForHeadingsInTables: boolean;
 
@@ -109,6 +105,11 @@ export class OutlineOptionsData implements ModelInterface {
      * Gets or sets the number of levels of headings (paragraphs formatted with the Heading styles) to include in the document outline.
      */
     public headingsOutlineLevels: number;
+
+    /**
+     * Gets or sets the individual bookmarks outline level.
+     */
+    public bookmarksOutlineLevels: Array<BookmarksOutlineLevelData>;
 
     public constructor(init?: Partial< OutlineOptionsData >) {
         Object.assign(this, init);

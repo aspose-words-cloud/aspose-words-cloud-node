@@ -340,6 +340,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Compress and resize images inside the document.
      * The default settings allows to reduce the size of the document without any visible degradation of images quality.
      * @param requestObj contains request parameters
      */
@@ -359,6 +360,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Compress and resize images inside the document.
+     * The default settings allows to reduce the size of the document without any visible degradation of images quality.
      * @param requestObj contains request parameters
      */
     public async compressDocumentOnline(requestObj: model.CompressDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.CompressDocumentOnlineResponse > > {
@@ -478,6 +480,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Creates a new document in cloud storage in the format, determined by the file extension.
      * Supported all save format extensions.
      * @param requestObj contains request parameters
      */
@@ -649,6 +652,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Removes a border from the document node.
      * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
@@ -668,6 +672,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Removes a border from the document node.
+     * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
     public async deleteBorderOnline(requestObj: model.DeleteBorderOnlineRequest): Promise< model.WordsIncomingMessage< model.DeleteBorderOnlineResponse > > {
@@ -685,6 +690,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Removes borders from the document node.
      * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
@@ -704,6 +710,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Removes borders from the document node.
+     * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
     public async deleteBordersOnline(requestObj: model.DeleteBordersOnlineRequest): Promise< model.WordsIncomingMessage< model.DeleteBordersOnlineResponse > > {
@@ -1696,6 +1703,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Reads a border from the document node.
      * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
@@ -1715,6 +1723,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Reads a border from the document node.
+     * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
     public async getBorderOnline(requestObj: model.GetBorderOnlineRequest): Promise< model.WordsIncomingMessage< model.BorderResponse > > {
@@ -4972,7 +4981,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Converts a document to the specified format.
+     * Converts a document in cloud storage to the specified format.
      * @param requestObj contains request parameters
      */
     public async saveAsOnline(requestObj: model.SaveAsOnlineRequest): Promise< model.WordsIncomingMessage< model.SaveAsOnlineResponse > > {
@@ -5044,7 +5053,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Converts a document to TIFF format using detailed conversion settings.
+     * Converts a document in cloud storage to TIFF format using detailed conversion settings.
      * @param requestObj contains request parameters
      */
     public async saveAsTiffOnline(requestObj: model.SaveAsTiffOnlineRequest): Promise< model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse > > {
@@ -5206,6 +5215,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Updates a border in the document node.
      * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
@@ -5225,6 +5235,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Updates a border in the document node.
+     * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
      * @param requestObj contains request parameters
      */
     public async updateBorderOnline(requestObj: model.UpdateBorderOnlineRequest): Promise< model.WordsIncomingMessage< model.UpdateBorderOnlineResponse > > {

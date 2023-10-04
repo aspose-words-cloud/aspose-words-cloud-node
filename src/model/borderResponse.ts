@@ -37,6 +37,7 @@ export const importsMapBorderResponse = {
 
 /**
  * The REST response with a border.
+ * This response is returned by the Service when handling "GET {nodeWithBorders}/borders" REST API requests.
  */
 export class BorderResponse extends WordsResponse {
     /**

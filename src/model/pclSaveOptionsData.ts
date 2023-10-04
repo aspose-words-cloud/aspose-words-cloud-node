@@ -62,11 +62,13 @@ export class PclSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
      * Gets or sets the font name, that will be used if no expected font is found in printer and built-in fonts collections.
+     * If no fallback is found, "Arial" font is used.
      */
     public falllbackFontName: string;
 
     /**
      * Gets or sets a value indicating whether complex transformed elements should be rasterized before saving to PCL document.. The default value is true.
+     * PCL doesn't support some kind of transformations that are used by Aspose Words.  E.g. rotated, skewed images and texture brushes. To properly render such elements rasterization process is used, i.e. saving to image and clipping.  This process can take additional time and memory.  If flag is set to false, some content in output may be different as compared with the source document.
      */
     public rasterizeTransformedElements: boolean;
 

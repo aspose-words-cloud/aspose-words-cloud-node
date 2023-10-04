@@ -79,11 +79,13 @@ export class OfficeMathObject extends OfficeMathLink {
 
     /**
      * Gets or sets the display format type of the OfficeMath object. This display format defines whether an equation is displayed inline with the text or displayed on its own line.
+     * Display format type has effect for top level Office Math only.Returned display format type is always Inline for nested Office Math.
      */
     public displayType: OfficeMathObject.DisplayTypeEnum;
 
     /**
      * Gets or sets the justification of the OfficeMath object.
+     * Justification cannot be set to the Office Math with display format type Inline.Inline justification cannot be set to the Office Math with display format type Display.Corresponding DisplayType has to be set before setting Office Math justification.
      */
     public justification: OfficeMathObject.JustificationEnum;
 

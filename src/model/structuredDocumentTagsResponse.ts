@@ -37,6 +37,7 @@ export const importsMapStructuredDocumentTagsResponse = {
 
 /**
  * The REST response with a collection of StructuredDocumentTags.
+ * This response should be returned by the service when handling: GET /structuredDocumentTags.
  */
 export class StructuredDocumentTagsResponse extends WordsResponse {
     /**

@@ -71,22 +71,22 @@ export class Error implements ModelInterface {
     }
 
     /**
-     * Code.
+     * Gets or sets Code.
      */
     public code: string;
 
     /**
-     * Description.
+     * Gets or sets Description.
      */
     public description: string;
 
     /**
-     * Inner Error.
+     * Gets or sets InnerError.
      */
     public innerError: ErrorDetails;
 
     /**
-     * Message.
+     * Gets or sets Message.
      */
     public message: string;
 

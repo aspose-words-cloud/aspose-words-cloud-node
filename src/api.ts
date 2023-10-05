@@ -5036,6 +5036,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Converts a document in cloud storage to TIFF format using detailed conversion settings.
+     * @deprecated This operation will be removed in the future.
      * @param requestObj contains request parameters
      */
     public async saveAsTiff(requestObj: model.SaveAsTiffRequest): Promise< model.WordsIncomingMessage< model.SaveResponse > > {
@@ -5054,6 +5055,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Converts a document in cloud storage to TIFF format using detailed conversion settings.
+     * @deprecated This operation will be removed in the future.
      * @param requestObj contains request parameters
      */
     public async saveAsTiffOnline(requestObj: model.SaveAsTiffOnlineRequest): Promise< model.WordsIncomingMessage< model.SaveAsTiffOnlineResponse > > {

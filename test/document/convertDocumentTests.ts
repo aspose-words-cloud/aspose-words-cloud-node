@@ -160,6 +160,66 @@ describe("convertDocument", () => {
        });
     });
 
+    // Test for converting document to one of the available formats.
+    describe("saveAsTiff test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName = "test_multi_pages.docx";
+            const remoteName = "TestSaveAsTiff.pdf";
+
+            return wordsApi.uploadFileToStorage(
+                remoteFolder + "/" + remoteName,
+                BaseTest.localBaseTestDataFolder + "Common/" + localName
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const requestSaveOptions = new model.TiffSaveOptionsData({
+                    fileName: BaseTest.remoteBaseTestOutFolder + "/abc.tiff"
+                })
+                const request = new model.SaveAsTiffRequest({
+                    name: remoteName,
+                    saveOptions: requestSaveOptions,
+                    folder: remoteFolder
+                });
+
+                // Act
+                return wordsApi.saveAsTiff(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.saveResult).to.exist;
+                    expect(resultApi.body.saveResult.destDocument).to.exist;
+                });
+
+            });
+
+       });
+    });
+
+    // Test for converting document to one of the available formats.
+    describe("saveAsTiffOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName = "test_multi_pages.docx";
+
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localName);
+            const requestSaveOptions = new model.TiffSaveOptionsData({
+                fileName: BaseTest.remoteBaseTestOutFolder + "/abc.tiff"
+            })
+            const request = new model.SaveAsTiffOnlineRequest({
+                document: requestDocument,
+                saveOptions: requestSaveOptions
+            });
+
+            // Act
+            return wordsApi.saveAsTiffOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // A test for ConvertDocument.
     describe("convertDocument test", () => {
         it("should return response with code 200", () => {

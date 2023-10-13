@@ -65,16 +65,19 @@ export class DownsampleOptionsData implements ModelInterface {
 
     /**
      * Gets or sets a value indicating whether images should be downsampled.
+     * The default value is true.
      */
     public downsampleImages: boolean;
 
     /**
      * Gets or sets the resolution in pixels per inch which the images should be downsampled to.
+     * The default value is 220 ppi.
      */
     public resolution: number;
 
     /**
      * Gets or sets the threshold resolution in pixels per inch. If resolution of an image in the document is less than threshold value, the downsampling algorithm will not be applied. A value of 0 means the threshold check is not used and all images that can be reduced in size are downsampled.
+     * The default value is 0.
      */
     public resolutionThreshold: number;
 

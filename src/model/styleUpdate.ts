@@ -40,6 +40,11 @@ export class StyleUpdate implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "nextParagraphStyleName",
+            baseName: "NextParagraphStyleName",
+            type: "string",
+        },
+        {
             name: "baseStyleName",
             baseName: "BaseStyleName",
             type: "string",
@@ -53,11 +58,6 @@ export class StyleUpdate implements ModelInterface {
             name: "name",
             baseName: "Name",
             type: "string",
-        },
-        {
-            name: "nextParagraphStyleName",
-            baseName: "NextParagraphStyleName",
-            type: "string",
         }
     ];
 
@@ -69,7 +69,14 @@ export class StyleUpdate implements ModelInterface {
     }
 
     /**
+     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
+     * This property is not used by Aspose.Words. The next paragraph style will only be applied automatically when you edit the document in MS Word.
+     */
+    public nextParagraphStyleName: string;
+
+    /**
      * Gets or sets the name of the style this style is based on.
+     * This will be an empty string if the style is not based on any other style and it can be set to an empty string.
      */
     public baseStyleName: string;
 
@@ -80,13 +87,9 @@ export class StyleUpdate implements ModelInterface {
 
     /**
      * Gets or sets the name of the style.
+     * Can not be empty string. If there already is a style with such name in the collection, than this style will override it. All affected nodes will reference new style.
      */
     public name: string;
-
-    /**
-     * Gets or sets the name of the style to be applied automatically to a new paragraph inserted after a paragraph formatted with the specified style.
-     */
-    public nextParagraphStyleName: string;
 
     public constructor(init?: Partial< StyleUpdate >) {
         Object.assign(this, init);

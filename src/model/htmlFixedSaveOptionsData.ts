@@ -166,6 +166,10 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the margin around pages in HTML document.
      * The margins value is measured in points and should be equal to or greater than 0.
      * Default value is 10 points.
+     * Depends on the value of PageHorizontalAlignment property:
+     * Defines top, bottom and left page margins if the value is Left.
+     * Defines top, bottom and right page margins if the value is Right.
+     * Defines top and bottom page margins if the value is Center.
      */
     public pageMargins: number;
 
@@ -181,6 +185,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
      * Gets or sets a value indicating whether "@font-face" CSS rules should be placed into a separate file "fontFaces.css" when a document is being saved with external stylesheet (that is, when Aspose.Words.Saving.HtmlFixedSaveOptions.ExportEmbeddedCss is false). The default value is false, all CSS rules are written into single file "styles.css".
+     * Setting this property to true restores the old behavior (separate files) for compatibility with legacy code.
      */
     public saveFontFaceCssSeparately: boolean;
 

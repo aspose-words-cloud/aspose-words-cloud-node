@@ -40,19 +40,14 @@ export class DrawingObjectUpdate implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "height",
-            baseName: "Height",
-            type: "number",
+            name: "relativeHorizontalPosition",
+            baseName: "RelativeHorizontalPosition",
+            type: "DrawingObjectUpdate.RelativeHorizontalPositionEnum",
         },
         {
             name: "left",
             baseName: "Left",
             type: "number",
-        },
-        {
-            name: "relativeHorizontalPosition",
-            baseName: "RelativeHorizontalPosition",
-            type: "DrawingObjectUpdate.RelativeHorizontalPositionEnum",
         },
         {
             name: "relativeVerticalPosition",
@@ -70,6 +65,11 @@ export class DrawingObjectUpdate implements ModelInterface {
             type: "number",
         },
         {
+            name: "height",
+            baseName: "Height",
+            type: "number",
+        },
+        {
             name: "wrapType",
             baseName: "WrapType",
             type: "DrawingObjectUpdate.WrapTypeEnum",
@@ -84,19 +84,14 @@ export class DrawingObjectUpdate implements ModelInterface {
     }
 
     /**
-     * Gets or sets the height of the DrawingObject in points.
+     * Gets or sets the relative horizontal position, from which the distance to the image is measured.
      */
-    public height: number;
+    public relativeHorizontalPosition: DrawingObjectUpdate.RelativeHorizontalPositionEnum;
 
     /**
      * Gets or sets the distance in points from the origin to the left side of the image.
      */
     public left: number;
-
-    /**
-     * Gets or sets the relative horizontal position, from which the distance to the image is measured.
-     */
-    public relativeHorizontalPosition: DrawingObjectUpdate.RelativeHorizontalPositionEnum;
 
     /**
      * Gets or sets the relative vertical position, from which the distance to the image measured.
@@ -112,6 +107,11 @@ export class DrawingObjectUpdate implements ModelInterface {
      * Gets or sets the width of the DrawingObjects in points.
      */
     public width: number;
+
+    /**
+     * Gets or sets the height of the DrawingObject in points.
+     */
+    public height: number;
 
     /**
      * Gets or sets the option that controls how to wrap text around the image.

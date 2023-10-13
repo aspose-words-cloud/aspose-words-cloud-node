@@ -99,6 +99,7 @@ import * as importedDrawingObjectResponse from './drawingObjectResponse';
 import * as importedDrawingObjectsResponse from './drawingObjectsResponse';
 import * as importedDrawingObjectUpdate from './drawingObjectUpdate';
 import * as importedEmfSaveOptionsData from './emfSaveOptionsData';
+import * as importedEpsSaveOptionsData from './epsSaveOptionsData';
 import * as importedEpubSaveOptionsData from './epubSaveOptionsData';
 import * as importedError from './error';
 import * as importedErrorDetails from './errorDetails';
@@ -123,7 +124,6 @@ import * as importedFlatOpcSaveOptionsData from './flatOpcSaveOptionsData';
 import * as importedFlatOpcTemplateMacroSaveOptionsData from './flatOpcTemplateMacroSaveOptionsData';
 import * as importedFlatOpcTemplateSaveOptionsData from './flatOpcTemplateSaveOptionsData';
 import * as importedFont from './font';
-import * as importedFontDto from './fontDto';
 import * as importedFontInfo from './fontInfo';
 import * as importedFontResponse from './fontResponse';
 import * as importedFootnote from './footnote';
@@ -219,10 +219,8 @@ import * as importedProtectionRequest from './protectionRequest';
 import * as importedPsSaveOptionsData from './psSaveOptionsData';
 import * as importedPublicKeyResponse from './publicKeyResponse';
 import * as importedRangeDocument from './rangeDocument';
-import * as importedRangeDocumentDto from './rangeDocumentDto';
 import * as importedRangeTextResponse from './rangeTextResponse';
 import * as importedReplaceRange from './replaceRange';
-import * as importedReplaceRangeDto from './replaceRangeDto';
 import * as importedReplaceTextParameters from './replaceTextParameters';
 import * as importedReplaceTextResponse from './replaceTextResponse';
 import * as importedReportBuildOptions from './reportBuildOptions';
@@ -273,26 +271,20 @@ import * as importedSvgSaveOptionsData from './svgSaveOptionsData';
 import * as importedTable from './table';
 import * as importedTableCell from './tableCell';
 import * as importedTableCellFormat from './tableCellFormat';
-import * as importedTableCellFormatDto from './tableCellFormatDto';
 import * as importedTableCellFormatResponse from './tableCellFormatResponse';
 import * as importedTableCellInsert from './tableCellInsert';
-import * as importedTableCellInsertDto from './tableCellInsertDto';
 import * as importedTableCellResponse from './tableCellResponse';
 import * as importedTableInsert from './tableInsert';
-import * as importedTableInsertDto from './tableInsertDto';
 import * as importedTableLink from './tableLink';
 import * as importedTableLinkCollection from './tableLinkCollection';
 import * as importedTableLinkCollectionResponse from './tableLinkCollectionResponse';
 import * as importedTableProperties from './tableProperties';
-import * as importedTablePropertiesDto from './tablePropertiesDto';
 import * as importedTablePropertiesResponse from './tablePropertiesResponse';
 import * as importedTableResponse from './tableResponse';
 import * as importedTableRow from './tableRow';
 import * as importedTableRowFormat from './tableRowFormat';
-import * as importedTableRowFormatDto from './tableRowFormatDto';
 import * as importedTableRowFormatResponse from './tableRowFormatResponse';
 import * as importedTableRowInsert from './tableRowInsert';
-import * as importedTableRowInsertDto from './tableRowInsertDto';
 import * as importedTableRowResponse from './tableRowResponse';
 import * as importedTabStop from './tabStop';
 import * as importedTabStopBase from './tabStopBase';
@@ -381,6 +373,7 @@ export * from './drawingObjectResponse';
 export * from './drawingObjectsResponse';
 export * from './drawingObjectUpdate';
 export * from './emfSaveOptionsData';
+export * from './epsSaveOptionsData';
 export * from './epubSaveOptionsData';
 export * from './error';
 export * from './errorDetails';
@@ -405,7 +398,6 @@ export * from './flatOpcSaveOptionsData';
 export * from './flatOpcTemplateMacroSaveOptionsData';
 export * from './flatOpcTemplateSaveOptionsData';
 export * from './font';
-export * from './fontDto';
 export * from './fontInfo';
 export * from './fontResponse';
 export * from './footnote';
@@ -501,10 +493,8 @@ export * from './protectionRequest';
 export * from './psSaveOptionsData';
 export * from './publicKeyResponse';
 export * from './rangeDocument';
-export * from './rangeDocumentDto';
 export * from './rangeTextResponse';
 export * from './replaceRange';
-export * from './replaceRangeDto';
 export * from './replaceTextParameters';
 export * from './replaceTextResponse';
 export * from './reportBuildOptions';
@@ -555,26 +545,20 @@ export * from './svgSaveOptionsData';
 export * from './table';
 export * from './tableCell';
 export * from './tableCellFormat';
-export * from './tableCellFormatDto';
 export * from './tableCellFormatResponse';
 export * from './tableCellInsert';
-export * from './tableCellInsertDto';
 export * from './tableCellResponse';
 export * from './tableInsert';
-export * from './tableInsertDto';
 export * from './tableLink';
 export * from './tableLinkCollection';
 export * from './tableLinkCollectionResponse';
 export * from './tableProperties';
-export * from './tablePropertiesDto';
 export * from './tablePropertiesResponse';
 export * from './tableResponse';
 export * from './tableRow';
 export * from './tableRowFormat';
-export * from './tableRowFormatDto';
 export * from './tableRowFormatResponse';
 export * from './tableRowInsert';
-export * from './tableRowInsertDto';
 export * from './tableRowResponse';
 export * from './tabStop';
 export * from './tabStopBase';
@@ -656,8 +640,8 @@ const enumsMap = {
     "ListLevel.NumberStyleEnum": importedListLevel.ListLevel.NumberStyleEnum,
     "ListLevel.AlignmentEnum": importedListLevel.ListLevel.AlignmentEnum,
     "ListLevel.TrailingCharacterEnum": importedListLevel.ListLevel.TrailingCharacterEnum,
-    "ListLevelUpdate.AlignmentEnum": importedListLevelUpdate.ListLevelUpdate.AlignmentEnum,
     "ListLevelUpdate.NumberStyleEnum": importedListLevelUpdate.ListLevelUpdate.NumberStyleEnum,
+    "ListLevelUpdate.AlignmentEnum": importedListLevelUpdate.ListLevelUpdate.AlignmentEnum,
     "ListLevelUpdate.TrailingCharacterEnum": importedListLevelUpdate.ListLevelUpdate.TrailingCharacterEnum,
     "MarkdownSaveOptionsData.TableContentAlignmentEnum": importedMarkdownSaveOptionsData.MarkdownSaveOptionsData.TableContentAlignmentEnum,
     "MetafileRenderingOptionsData.EmfPlusDualRenderingModeEnum": importedMetafileRenderingOptionsData.MetafileRenderingOptionsData.EmfPlusDualRenderingModeEnum,
@@ -694,7 +678,6 @@ const enumsMap = {
     "PdfSaveOptionsData.ZoomBehaviorEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ZoomBehaviorEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
-    "ReplaceRangeDto.TextTypeEnum": importedReplaceRangeDto.ReplaceRangeDto.TextTypeEnum,
     "ReportBuildOptions": importedReportBuildOptions.ReportBuildOptions,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
     "SaveOptionsData.Dml3DEffectsRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.Dml3DEffectsRenderingModeEnum,
@@ -791,6 +774,7 @@ const typeMap = {
     DrawingObjectsResponse: importedDrawingObjectsResponse.DrawingObjectsResponse,
     DrawingObjectUpdate: importedDrawingObjectUpdate.DrawingObjectUpdate,
     EmfSaveOptionsData: importedEmfSaveOptionsData.EmfSaveOptionsData,
+    EpsSaveOptionsData: importedEpsSaveOptionsData.EpsSaveOptionsData,
     EpubSaveOptionsData: importedEpubSaveOptionsData.EpubSaveOptionsData,
     Error: importedError.Error,
     ErrorDetails: importedErrorDetails.ErrorDetails,
@@ -812,7 +796,6 @@ const typeMap = {
     FlatOpcTemplateMacroSaveOptionsData: importedFlatOpcTemplateMacroSaveOptionsData.FlatOpcTemplateMacroSaveOptionsData,
     FlatOpcTemplateSaveOptionsData: importedFlatOpcTemplateSaveOptionsData.FlatOpcTemplateSaveOptionsData,
     Font: importedFont.Font,
-    FontDto: importedFontDto.FontDto,
     FontInfo: importedFontInfo.FontInfo,
     FontResponse: importedFontResponse.FontResponse,
     Footnote: importedFootnote.Footnote,
@@ -903,10 +886,8 @@ const typeMap = {
     PsSaveOptionsData: importedPsSaveOptionsData.PsSaveOptionsData,
     PublicKeyResponse: importedPublicKeyResponse.PublicKeyResponse,
     RangeDocument: importedRangeDocument.RangeDocument,
-    RangeDocumentDto: importedRangeDocumentDto.RangeDocumentDto,
     RangeTextResponse: importedRangeTextResponse.RangeTextResponse,
     ReplaceRange: importedReplaceRange.ReplaceRange,
-    ReplaceRangeDto: importedReplaceRangeDto.ReplaceRangeDto,
     ReplaceTextParameters: importedReplaceTextParameters.ReplaceTextParameters,
     ReplaceTextResponse: importedReplaceTextResponse.ReplaceTextResponse,
     ReportBuildOptions: importedReportBuildOptions.ReportBuildOptions,
@@ -955,26 +936,20 @@ const typeMap = {
     Table: importedTable.Table,
     TableCell: importedTableCell.TableCell,
     TableCellFormat: importedTableCellFormat.TableCellFormat,
-    TableCellFormatDto: importedTableCellFormatDto.TableCellFormatDto,
     TableCellFormatResponse: importedTableCellFormatResponse.TableCellFormatResponse,
     TableCellInsert: importedTableCellInsert.TableCellInsert,
-    TableCellInsertDto: importedTableCellInsertDto.TableCellInsertDto,
     TableCellResponse: importedTableCellResponse.TableCellResponse,
     TableInsert: importedTableInsert.TableInsert,
-    TableInsertDto: importedTableInsertDto.TableInsertDto,
     TableLink: importedTableLink.TableLink,
     TableLinkCollection: importedTableLinkCollection.TableLinkCollection,
     TableLinkCollectionResponse: importedTableLinkCollectionResponse.TableLinkCollectionResponse,
     TableProperties: importedTableProperties.TableProperties,
-    TablePropertiesDto: importedTablePropertiesDto.TablePropertiesDto,
     TablePropertiesResponse: importedTablePropertiesResponse.TablePropertiesResponse,
     TableResponse: importedTableResponse.TableResponse,
     TableRow: importedTableRow.TableRow,
     TableRowFormat: importedTableRowFormat.TableRowFormat,
-    TableRowFormatDto: importedTableRowFormatDto.TableRowFormatDto,
     TableRowFormatResponse: importedTableRowFormatResponse.TableRowFormatResponse,
     TableRowInsert: importedTableRowInsert.TableRowInsert,
-    TableRowInsertDto: importedTableRowInsertDto.TableRowInsertDto,
     TableRowResponse: importedTableRowResponse.TableRowResponse,
     TabStop: importedTabStop.TabStop,
     TabStopInsert: importedTabStopInsert.TabStopInsert,
@@ -2764,6 +2739,7 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 
 /**
  * Request model for CompressDocument operation.
+ * Compress and resize images inside the document.
  * The default settings allows to reduce the size of the document without any visible degradation of images quality.
  */
 export class CompressDocumentRequest implements RequestInterface {
@@ -2900,6 +2876,7 @@ export class CompressDocumentRequest implements RequestInterface {
 /**
  * Request model for CompressDocumentOnline operation.
  * Compress and resize images inside the document.
+ * The default settings allows to reduce the size of the document without any visible degradation of images quality.
  */
 export class CompressDocumentOnlineRequest implements RequestInterface {
 
@@ -3224,6 +3201,11 @@ export class CopyFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.destPath" was undefined when calling copyFile.');
         }
 
+        // verify required parameter 'this.destPath' is not null
+        if (this.destPath === null) {
+            throw new Error('Required parameter "this.destPath" was null when calling copyFile.');
+        }
+
         // verify required parameter 'this.srcPath' is not undefined
         if (this.srcPath === undefined) {
             throw new Error('Required parameter "this.srcPath" was undefined when calling copyFile.');
@@ -3326,6 +3308,11 @@ export class CopyFolderRequest implements RequestInterface {
         // verify required parameter 'this.destPath' is not undefined
         if (this.destPath === undefined) {
             throw new Error('Required parameter "this.destPath" was undefined when calling copyFolder.');
+        }
+
+        // verify required parameter 'this.destPath' is not null
+        if (this.destPath === null) {
+            throw new Error('Required parameter "this.destPath" was null when calling copyFolder.');
         }
 
         // verify required parameter 'this.srcPath' is not undefined
@@ -3822,6 +3809,7 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
 
 /**
  * Request model for CreateDocument operation.
+ * Creates a new document in cloud storage in the format, determined by the file extension.
  * Supported all save format extensions.
  */
 export class CreateDocumentRequest implements RequestInterface {
@@ -5124,6 +5112,7 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
 
 /**
  * Request model for DeleteBorder operation.
+ * Removes a border from the document node.
  * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class DeleteBorderRequest implements RequestInterface {
@@ -5275,6 +5264,7 @@ export class DeleteBorderRequest implements RequestInterface {
 /**
  * Request model for DeleteBorderOnline operation.
  * Removes a border from the document node.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class DeleteBorderOnlineRequest implements RequestInterface {
 
@@ -5423,6 +5413,7 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
 
 /**
  * Request model for DeleteBorders operation.
+ * Removes borders from the document node.
  * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class DeleteBordersRequest implements RequestInterface {
@@ -5558,6 +5549,7 @@ export class DeleteBordersRequest implements RequestInterface {
 /**
  * Request model for DeleteBordersOnline operation.
  * Removes borders from the document node.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class DeleteBordersOnlineRequest implements RequestInterface {
 
@@ -8711,6 +8703,11 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeaderFooter.');
         }
 
+        // verify required parameter 'this.sectionPath' is not null
+        if (this.sectionPath === null) {
+            throw new Error('Required parameter "this.sectionPath" was null when calling deleteHeaderFooter.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteHeaderFooter.');
@@ -8853,6 +8850,11 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'this.sectionPath' is not null
+        if (this.sectionPath === null) {
+            throw new Error('Required parameter "this.sectionPath" was null when calling deleteHeaderFooterOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -9010,6 +9012,11 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeadersFooters.');
         }
 
+        // verify required parameter 'this.sectionPath' is not null
+        if (this.sectionPath === null) {
+            throw new Error('Required parameter "this.sectionPath" was null when calling deleteHeadersFooters.');
+        }
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -9142,6 +9149,11 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeadersFootersOnline.');
+        }
+
+        // verify required parameter 'this.sectionPath' is not null
+        if (this.sectionPath === null) {
+            throw new Error('Required parameter "this.sectionPath" was null when calling deleteHeadersFootersOnline.');
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -10723,6 +10735,11 @@ export class DeleteRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling deleteRun.');
         }
 
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling deleteRun.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteRun.');
@@ -10865,6 +10882,11 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling deleteRunOnline.');
+        }
+
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling deleteRunOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -11741,6 +11763,11 @@ export class DeleteTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling deleteTableCell.');
         }
 
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling deleteTableCell.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteTableCell.');
@@ -11883,6 +11910,11 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling deleteTableCellOnline.');
+        }
+
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling deleteTableCellOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -12181,6 +12213,11 @@ export class DeleteTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.tablePath" was undefined when calling deleteTableRow.');
         }
 
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling deleteTableRow.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteTableRow.');
@@ -12323,6 +12360,11 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling deleteTableRowOnline.');
+        }
+
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling deleteTableRowOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -13541,6 +13583,7 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 
 /**
  * Request model for GetBorder operation.
+ * Reads a border from the document node.
  * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class GetBorderRequest implements RequestInterface {
@@ -13674,6 +13717,7 @@ export class GetBorderRequest implements RequestInterface {
 /**
  * Request model for GetBorderOnline operation.
  * Reads a border from the document node.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class GetBorderOnlineRequest implements RequestInterface {
 
@@ -19866,6 +19910,11 @@ export class GetHeaderFootersRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling getHeaderFooters.');
         }
 
+        // verify required parameter 'this.sectionPath' is not null
+        if (this.sectionPath === null) {
+            throw new Error('Required parameter "this.sectionPath" was null when calling getHeaderFooters.');
+        }
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -19980,6 +20029,11 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling getHeaderFootersOnline.');
+        }
+
+        // verify required parameter 'this.sectionPath' is not null
+        if (this.sectionPath === null) {
+            throw new Error('Required parameter "this.sectionPath" was null when calling getHeaderFootersOnline.');
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -22661,6 +22715,11 @@ export class GetRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRun.');
         }
 
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling getRun.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getRun.');
@@ -22798,6 +22857,11 @@ export class GetRunFontRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunFont.');
         }
 
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling getRunFont.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getRunFont.');
@@ -22922,6 +22986,11 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunFontOnline.');
+        }
+
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling getRunFontOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -23049,6 +23118,11 @@ export class GetRunOnlineRequest implements RequestInterface {
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunOnline.');
+        }
+
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling getRunOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -23183,6 +23257,11 @@ export class GetRunsRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRuns.');
         }
 
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling getRuns.');
+        }
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -23291,6 +23370,11 @@ export class GetRunsOnlineRequest implements RequestInterface {
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunsOnline.');
+        }
+
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling getRunsOnline.');
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -25417,6 +25501,11 @@ export class GetTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling getTableCell.');
         }
 
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling getTableCell.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableCell.');
@@ -25554,6 +25643,11 @@ export class GetTableCellFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling getTableCellFormat.');
         }
 
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling getTableCellFormat.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableCellFormat.');
@@ -25678,6 +25772,11 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling getTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling getTableCellFormatOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -25805,6 +25904,11 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling getTableCellOnline.');
+        }
+
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling getTableCellOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -26321,6 +26425,11 @@ export class GetTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.tablePath" was undefined when calling getTableRow.');
         }
 
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling getTableRow.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableRow.');
@@ -26458,6 +26567,11 @@ export class GetTableRowFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.tablePath" was undefined when calling getTableRowFormat.');
         }
 
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling getTableRowFormat.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableRowFormat.');
@@ -26582,6 +26696,11 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling getTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling getTableRowFormatOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -26709,6 +26828,11 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling getTableRowOnline.');
+        }
+
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling getTableRowOnline.');
         }
 
         // verify required parameter 'this.index' is not undefined
@@ -29244,6 +29368,11 @@ export class InsertHeaderFooterRequest implements RequestInterface {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling insertHeaderFooter.');
         }
 
+        // verify required parameter 'this.sectionPath' is not null
+        if (this.sectionPath === null) {
+            throw new Error('Required parameter "this.sectionPath" was null when calling insertHeaderFooter.');
+        }
+
         // verify required parameter 'this.headerFooterType' is not undefined
         if (this.headerFooterType === undefined) {
             throw new Error('Required parameter "this.headerFooterType" was undefined when calling insertHeaderFooter.');
@@ -29388,6 +29517,11 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling insertHeaderFooterOnline.');
+        }
+
+        // verify required parameter 'this.sectionPath' is not null
+        if (this.sectionPath === null) {
+            throw new Error('Required parameter "this.sectionPath" was null when calling insertHeaderFooterOnline.');
         }
 
         // verify required parameter 'this.headerFooterType' is not undefined
@@ -30778,6 +30912,11 @@ export class InsertRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling insertRun.');
         }
 
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling insertRun.');
+        }
+
         // verify required parameter 'this.run' is not undefined
         if (this.run === undefined) {
             throw new Error('Required parameter "this.run" was undefined when calling insertRun.');
@@ -30929,6 +31068,11 @@ export class InsertRunOnlineRequest implements RequestInterface {
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling insertRunOnline.');
+        }
+
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling insertRunOnline.');
         }
 
         // verify required parameter 'this.run' is not undefined
@@ -32129,6 +32273,11 @@ export class InsertTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling insertTableCell.');
         }
 
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling insertTableCell.');
+        }
+
         // verify required parameter 'this.cell' is not undefined
         if (this.cell === undefined) {
             throw new Error('Required parameter "this.cell" was undefined when calling insertTableCell.');
@@ -32274,6 +32423,11 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling insertTableCellOnline.');
+        }
+
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling insertTableCellOnline.');
         }
 
         // verify required parameter 'this.cell' is not undefined
@@ -32596,6 +32750,11 @@ export class InsertTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.tablePath" was undefined when calling insertTableRow.');
         }
 
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling insertTableRow.');
+        }
+
         // verify required parameter 'this.row' is not undefined
         if (this.row === undefined) {
             throw new Error('Required parameter "this.row" was undefined when calling insertTableRow.');
@@ -32741,6 +32900,11 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling insertTableRowOnline.');
+        }
+
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling insertTableRowOnline.');
         }
 
         // verify required parameter 'this.row' is not undefined
@@ -33045,16 +33209,6 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
         // verify required parameter 'this.document' is not null
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertWatermarkImageOnline.');
-        }
-
-        // verify required parameter 'this.imageFile' is not undefined
-        if (this.imageFile === undefined) {
-            throw new Error('Required parameter "this.imageFile" was undefined when calling insertWatermarkImageOnline.');
-        }
-
-        // verify required parameter 'this.imageFile' is not null
-        if (this.imageFile === null) {
-            throw new Error('Required parameter "this.imageFile" was null when calling insertWatermarkImageOnline.');
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -33707,6 +33861,11 @@ export class MoveFileRequest implements RequestInterface {
             throw new Error('Required parameter "this.destPath" was undefined when calling moveFile.');
         }
 
+        // verify required parameter 'this.destPath' is not null
+        if (this.destPath === null) {
+            throw new Error('Required parameter "this.destPath" was null when calling moveFile.');
+        }
+
         // verify required parameter 'this.srcPath' is not undefined
         if (this.srcPath === undefined) {
             throw new Error('Required parameter "this.srcPath" was undefined when calling moveFile.');
@@ -33809,6 +33968,11 @@ export class MoveFolderRequest implements RequestInterface {
         // verify required parameter 'this.destPath' is not undefined
         if (this.destPath === undefined) {
             throw new Error('Required parameter "this.destPath" was undefined when calling moveFolder.');
+        }
+
+        // verify required parameter 'this.destPath' is not null
+        if (this.destPath === null) {
+            throw new Error('Required parameter "this.destPath" was null when calling moveFolder.');
         }
 
         // verify required parameter 'this.srcPath' is not undefined
@@ -37259,7 +37423,7 @@ export class SaveAsRequest implements RequestInterface {
 
 /**
  * Request model for SaveAsOnline operation.
- * Converts a document to the specified format.
+ * Converts a document in cloud storage to the specified format.
  */
 export class SaveAsOnlineRequest implements RequestInterface {
 
@@ -37931,7 +38095,7 @@ export class SaveAsTiffRequest implements RequestInterface {
 
 /**
  * Request model for SaveAsTiffOnline operation.
- * Converts a document to TIFF format using detailed conversion settings.
+ * Converts a document in cloud storage to TIFF format using detailed conversion settings.
  */
 export class SaveAsTiffOnlineRequest implements RequestInterface {
 
@@ -38238,6 +38402,11 @@ export class SearchRequest implements RequestInterface {
             throw new Error('Required parameter "this.pattern" was undefined when calling search.');
         }
 
+        // verify required parameter 'this.pattern' is not null
+        if (this.pattern === null) {
+            throw new Error('Required parameter "this.pattern" was null when calling search.');
+        }
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -38346,6 +38515,11 @@ export class SearchOnlineRequest implements RequestInterface {
         // verify required parameter 'this.pattern' is not undefined
         if (this.pattern === undefined) {
             throw new Error('Required parameter "this.pattern" was undefined when calling searchOnline.');
+        }
+
+        // verify required parameter 'this.pattern' is not null
+        if (this.pattern === null) {
+            throw new Error('Required parameter "this.pattern" was null when calling searchOnline.');
         }
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _encryptor);
@@ -39304,6 +39478,7 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
 
 /**
  * Request model for UpdateBorder operation.
+ * Updates a border in the document node.
  * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class UpdateBorderRequest implements RequestInterface {
@@ -39474,6 +39649,7 @@ export class UpdateBorderRequest implements RequestInterface {
 /**
  * Request model for UpdateBorderOnline operation.
  * Updates a border in the document node.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class UpdateBorderOnlineRequest implements RequestInterface {
 
@@ -43360,6 +43536,11 @@ export class UpdateRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling updateRun.');
         }
 
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling updateRun.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateRun.');
@@ -43534,6 +43715,11 @@ export class UpdateRunFontRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling updateRunFont.');
         }
 
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling updateRunFont.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateRunFont.');
@@ -43695,6 +43881,11 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling updateRunFontOnline.');
+        }
+
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling updateRunFontOnline.');
         }
 
         // verify required parameter 'this.fontDto' is not undefined
@@ -43868,6 +44059,11 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling updateRunOnline.');
+        }
+
+        // verify required parameter 'this.paragraphPath' is not null
+        if (this.paragraphPath === null) {
+            throw new Error('Required parameter "this.paragraphPath" was null when calling updateRunOnline.');
         }
 
         // verify required parameter 'this.run' is not undefined
@@ -45041,6 +45237,11 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling updateTableCellFormat.');
         }
 
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling updateTableCellFormat.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateTableCellFormat.');
@@ -45202,6 +45403,11 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling updateTableCellFormatOnline.');
+        }
+
+        // verify required parameter 'this.tableRowPath' is not null
+        if (this.tableRowPath === null) {
+            throw new Error('Required parameter "this.tableRowPath" was null when calling updateTableCellFormatOnline.');
         }
 
         // verify required parameter 'this.format' is not undefined
@@ -45725,6 +45931,11 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.tablePath" was undefined when calling updateTableRowFormat.');
         }
 
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling updateTableRowFormat.');
+        }
+
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateTableRowFormat.');
@@ -45886,6 +46097,11 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling updateTableRowFormatOnline.');
+        }
+
+        // verify required parameter 'this.tablePath' is not null
+        if (this.tablePath === null) {
+            throw new Error('Required parameter "this.tablePath" was null when calling updateTableRowFormatOnline.');
         }
 
         // verify required parameter 'this.format' is not undefined
@@ -46084,7 +46300,7 @@ export class UploadFileRequest implements RequestInterface {
  */
 export class AcceptAllRevisionsOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a result of the modification operations for the revisions collection (now these are acceptAll and rejectAll).
      */
     public model: importedRevisionsModificationResponse.RevisionsModificationResponse;
 
@@ -46100,7 +46316,7 @@ export class AcceptAllRevisionsOnlineResponse {
  */
 export class AppendDocumentOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46116,7 +46332,7 @@ export class AppendDocumentOnlineResponse {
  */
 export class ApplyStyleToDocumentElementOnlineResponse {
     /**
-     * The response model.
+     * The base class for all responses.
      */
     public model: importedWordsResponse.WordsResponse;
 
@@ -46132,7 +46348,7 @@ export class ApplyStyleToDocumentElementOnlineResponse {
  */
 export class CompareDocumentOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46145,10 +46361,11 @@ export class CompareDocumentOnlineResponse {
 /**
  * Response model for CompressDocumentOnline operation.
  * Compress and resize images inside the document.
+ * The default settings allows to reduce the size of the document without any visible degradation of images quality.
  */
 export class CompressDocumentOnlineResponse {
     /**
-     * The response model.
+     * The REST response of compressed document.
      */
     public model: importedCompressResponse.CompressResponse;
 
@@ -46164,7 +46381,8 @@ export class CompressDocumentOnlineResponse {
  */
 export class CopyStyleOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a style.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/styles/{0}" REST API requests.
      */
     public model: importedStyleResponse.StyleResponse;
 
@@ -46180,7 +46398,8 @@ export class CopyStyleOnlineResponse {
  */
 export class CreateOrUpdateDocumentPropertyOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document property.
+     * This response should be returned by the service when handling: GET documentProperties/{propertyName}.
      */
     public model: importedDocumentPropertyResponse.DocumentPropertyResponse;
 
@@ -46196,7 +46415,8 @@ export class CreateOrUpdateDocumentPropertyOnlineResponse {
  */
 export class DeleteAllParagraphTabStopsOnlineResponse {
     /**
-     * The response model.
+     * The REST response with an array of tab stops.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/tabstops" REST API requests.
      */
     public model: importedTabStopsResponse.TabStopsResponse;
 
@@ -46209,10 +46429,12 @@ export class DeleteAllParagraphTabStopsOnlineResponse {
 /**
  * Response model for DeleteBorderOnline operation.
  * Removes a border from the document node.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class DeleteBorderOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a border.
+     * This response is returned by the Service when handling "GET {nodeWithBorders}/borders" REST API requests.
      */
     public model: importedBorderResponse.BorderResponse;
 
@@ -46225,10 +46447,12 @@ export class DeleteBorderOnlineResponse {
 /**
  * Response model for DeleteBordersOnline operation.
  * Removes borders from the document node.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class DeleteBordersOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a collection of borders.
+     * This response is returned by the Service when handling "GET {nodeWithBorders}/borders" REST API requests.
      */
     public model: importedBordersResponse.BordersResponse;
 
@@ -46244,7 +46468,8 @@ export class DeleteBordersOnlineResponse {
  */
 export class DeleteParagraphListFormatOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a list format for a paragraph.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/listFormat" REST API requests.
      */
     public model: importedParagraphListFormatResponse.ParagraphListFormatResponse;
 
@@ -46260,7 +46485,8 @@ export class DeleteParagraphListFormatOnlineResponse {
  */
 export class DeleteParagraphTabStopOnlineResponse {
     /**
-     * The response model.
+     * The REST response with an array of tab stops.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/tabstops" REST API requests.
      */
     public model: importedTabStopsResponse.TabStopsResponse;
 
@@ -46276,7 +46502,7 @@ export class DeleteParagraphTabStopOnlineResponse {
  */
 export class DeleteWatermarkOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46292,7 +46518,8 @@ export class DeleteWatermarkOnlineResponse {
  */
 export class InsertBookmarkOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a bookmark.
+     * This response should be returned by the service when handling: GET bookmarks/{bookmarkName}.
      */
     public model: importedBookmarkResponse.BookmarkResponse;
 
@@ -46308,7 +46535,8 @@ export class InsertBookmarkOnlineResponse {
  */
 export class InsertCommentOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a comment.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/comments/0" REST API requests.
      */
     public model: importedCommentResponse.CommentResponse;
 
@@ -46324,7 +46552,8 @@ export class InsertCommentOnlineResponse {
  */
 export class InsertCustomXmlPartOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a custom xml part.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/customXmlParts/0" REST API requests.
      */
     public model: importedCustomXmlPartResponse.CustomXmlPartResponse;
 
@@ -46340,7 +46569,7 @@ export class InsertCustomXmlPartOnlineResponse {
  */
 export class InsertDrawingObjectOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a DrawingObject.
      */
     public model: importedDrawingObjectResponse.DrawingObjectResponse;
 
@@ -46356,7 +46585,8 @@ export class InsertDrawingObjectOnlineResponse {
  */
 export class InsertFieldOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a field.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/fields/{1}" REST API requests.
      */
     public model: importedFieldResponse.FieldResponse;
 
@@ -46372,7 +46602,8 @@ export class InsertFieldOnlineResponse {
  */
 export class InsertFootnoteOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a footnote.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/footnote/0" REST API requests.
      */
     public model: importedFootnoteResponse.FootnoteResponse;
 
@@ -46388,7 +46619,8 @@ export class InsertFootnoteOnlineResponse {
  */
 export class InsertFormFieldOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a form field.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/form fields/{1}" REST API requests.
      */
     public model: importedFormFieldResponse.FormFieldResponse;
 
@@ -46404,7 +46636,8 @@ export class InsertFormFieldOnlineResponse {
  */
 export class InsertHeaderFooterOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a HeaderFooter.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/headersfooters/{0}" REST API requests.
      */
     public model: importedHeaderFooterResponse.HeaderFooterResponse;
 
@@ -46420,7 +46653,8 @@ export class InsertHeaderFooterOnlineResponse {
  */
 export class InsertListOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a list information.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/lists/{n}" REST API requests.
      */
     public model: importedListResponse.ListResponse;
 
@@ -46436,7 +46670,8 @@ export class InsertListOnlineResponse {
  */
 export class InsertOrUpdateParagraphTabStopOnlineResponse {
     /**
-     * The response model.
+     * The REST response with an array of tab stops.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/tabstops" REST API requests.
      */
     public model: importedTabStopsResponse.TabStopsResponse;
 
@@ -46452,7 +46687,7 @@ export class InsertOrUpdateParagraphTabStopOnlineResponse {
  */
 export class InsertPageNumbersOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46468,7 +46703,8 @@ export class InsertPageNumbersOnlineResponse {
  */
 export class InsertParagraphOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a paragraph.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}" REST API requests.
      */
     public model: importedParagraphResponse.ParagraphResponse;
 
@@ -46484,7 +46720,8 @@ export class InsertParagraphOnlineResponse {
  */
 export class InsertRunOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a Run element.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/runs/{1}" REST API requests.
      */
     public model: importedRunResponse.RunResponse;
 
@@ -46500,7 +46737,7 @@ export class InsertRunOnlineResponse {
  */
 export class InsertStructuredDocumentTagOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a StructuredDocumentTag.
      */
     public model: importedStructuredDocumentTagResponse.StructuredDocumentTagResponse;
 
@@ -46516,7 +46753,8 @@ export class InsertStructuredDocumentTagOnlineResponse {
  */
 export class InsertStyleOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a style.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/styles/{0}" REST API requests.
      */
     public model: importedStyleResponse.StyleResponse;
 
@@ -46532,7 +46770,8 @@ export class InsertStyleOnlineResponse {
  */
 export class InsertTableCellOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a table cell.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}" REST API requests.
      */
     public model: importedTableCellResponse.TableCellResponse;
 
@@ -46548,7 +46787,8 @@ export class InsertTableCellOnlineResponse {
  */
 export class InsertTableOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a table.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}" REST API requests.
      */
     public model: importedTableResponse.TableResponse;
 
@@ -46564,7 +46804,8 @@ export class InsertTableOnlineResponse {
  */
 export class InsertTableRowOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a table row.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}" REST API requests.
      */
     public model: importedTableRowResponse.TableRowResponse;
 
@@ -46580,7 +46821,7 @@ export class InsertTableRowOnlineResponse {
  */
 export class InsertWatermarkImageOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46596,7 +46837,7 @@ export class InsertWatermarkImageOnlineResponse {
  */
 export class InsertWatermarkTextOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46612,7 +46853,7 @@ export class InsertWatermarkTextOnlineResponse {
  */
 export class ProtectDocumentOnlineResponse {
     /**
-     * The response model.
+     * The REST response with data on document's protection.
      */
     public model: importedProtectionDataResponse.ProtectionDataResponse;
 
@@ -46628,7 +46869,7 @@ export class ProtectDocumentOnlineResponse {
  */
 export class RejectAllRevisionsOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a result of the modification operations for the revisions collection (now these are acceptAll and rejectAll).
      */
     public model: importedRevisionsModificationResponse.RevisionsModificationResponse;
 
@@ -46644,7 +46885,7 @@ export class RejectAllRevisionsOnlineResponse {
  */
 export class RemoveRangeOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46660,7 +46901,7 @@ export class RemoveRangeOnlineResponse {
  */
 export class ReplaceTextOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a number of occurrences of the captured text in the document.
      */
     public model: importedReplaceTextResponse.ReplaceTextResponse;
 
@@ -46676,7 +46917,7 @@ export class ReplaceTextOnlineResponse {
  */
 export class ReplaceWithTextOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46688,11 +46929,11 @@ export class ReplaceWithTextOnlineResponse {
 
 /**
  * Response model for SaveAsOnline operation.
- * Converts a document to the specified format.
+ * Converts a document in cloud storage to the specified format.
  */
 export class SaveAsOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a save result.
      */
     public model: importedSaveResponse.SaveResponse;
 
@@ -46708,7 +46949,7 @@ export class SaveAsOnlineResponse {
  */
 export class SaveAsRangeOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46720,11 +46961,11 @@ export class SaveAsRangeOnlineResponse {
 
 /**
  * Response model for SaveAsTiffOnline operation.
- * Converts a document to TIFF format using detailed conversion settings.
+ * Converts a document in cloud storage to TIFF format using detailed conversion settings.
  */
 export class SaveAsTiffOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a save result.
      */
     public model: importedSaveResponse.SaveResponse;
 
@@ -46740,7 +46981,8 @@ export class SaveAsTiffOnlineResponse {
  */
 export class SplitDocumentOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a result of document splitting.
+     * This response should be returned by the service when handling: POST /{name}/split.
      */
     public model: importedSplitDocumentResponse.SplitDocumentResponse;
 
@@ -46756,7 +46998,7 @@ export class SplitDocumentOnlineResponse {
  */
 export class UnprotectDocumentOnlineResponse {
     /**
-     * The response model.
+     * The REST response with data on document's protection.
      */
     public model: importedProtectionDataResponse.ProtectionDataResponse;
 
@@ -46772,7 +47014,8 @@ export class UnprotectDocumentOnlineResponse {
  */
 export class UpdateBookmarkOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a bookmark.
+     * This response should be returned by the service when handling: GET bookmarks/{bookmarkName}.
      */
     public model: importedBookmarkResponse.BookmarkResponse;
 
@@ -46785,10 +47028,12 @@ export class UpdateBookmarkOnlineResponse {
 /**
  * Response model for UpdateBorderOnline operation.
  * Updates a border in the document node.
+ * The 'nodePath' parameter should refer to a paragraph, a cell or a row.
  */
 export class UpdateBorderOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a border.
+     * This response is returned by the Service when handling "GET {nodeWithBorders}/borders" REST API requests.
      */
     public model: importedBorderResponse.BorderResponse;
 
@@ -46804,7 +47049,8 @@ export class UpdateBorderOnlineResponse {
  */
 export class UpdateCommentOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a comment.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/comments/0" REST API requests.
      */
     public model: importedCommentResponse.CommentResponse;
 
@@ -46820,7 +47066,8 @@ export class UpdateCommentOnlineResponse {
  */
 export class UpdateCustomXmlPartOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a custom xml part.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/customXmlParts/0" REST API requests.
      */
     public model: importedCustomXmlPartResponse.CustomXmlPartResponse;
 
@@ -46836,7 +47083,7 @@ export class UpdateCustomXmlPartOnlineResponse {
  */
 export class UpdateDrawingObjectOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a DrawingObject.
      */
     public model: importedDrawingObjectResponse.DrawingObjectResponse;
 
@@ -46852,7 +47099,8 @@ export class UpdateDrawingObjectOnlineResponse {
  */
 export class UpdateFieldOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a field.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/fields/{1}" REST API requests.
      */
     public model: importedFieldResponse.FieldResponse;
 
@@ -46868,7 +47116,7 @@ export class UpdateFieldOnlineResponse {
  */
 export class UpdateFieldsOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
 
@@ -46884,7 +47132,8 @@ export class UpdateFieldsOnlineResponse {
  */
 export class UpdateFootnoteOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a footnote.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/footnote/0" REST API requests.
      */
     public model: importedFootnoteResponse.FootnoteResponse;
 
@@ -46900,7 +47149,8 @@ export class UpdateFootnoteOnlineResponse {
  */
 export class UpdateFormFieldOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a form field.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/form fields/{1}" REST API requests.
      */
     public model: importedFormFieldResponse.FormFieldResponse;
 
@@ -46916,7 +47166,8 @@ export class UpdateFormFieldOnlineResponse {
  */
 export class UpdateListLevelOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a list information.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/lists/{n}" REST API requests.
      */
     public model: importedListResponse.ListResponse;
 
@@ -46932,7 +47183,8 @@ export class UpdateListLevelOnlineResponse {
  */
 export class UpdateListOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a list information.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/lists/{n}" REST API requests.
      */
     public model: importedListResponse.ListResponse;
 
@@ -46948,7 +47200,8 @@ export class UpdateListOnlineResponse {
  */
 export class UpdateParagraphFormatOnlineResponse {
     /**
-     * The response model.
+     * The REST response with the formatting properties of a paragraph.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/format" REST API requests.
      */
     public model: importedParagraphFormatResponse.ParagraphFormatResponse;
 
@@ -46964,7 +47217,8 @@ export class UpdateParagraphFormatOnlineResponse {
  */
 export class UpdateParagraphListFormatOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a list format for a paragraph.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/listFormat" REST API requests.
      */
     public model: importedParagraphListFormatResponse.ParagraphListFormatResponse;
 
@@ -46980,7 +47234,8 @@ export class UpdateParagraphListFormatOnlineResponse {
  */
 export class UpdateRunFontOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a font.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/runs/{1}/font" REST API requests.
      */
     public model: importedFontResponse.FontResponse;
 
@@ -46996,7 +47251,8 @@ export class UpdateRunFontOnlineResponse {
  */
 export class UpdateRunOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a Run element.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/paragraphs/{0}/runs/{1}" REST API requests.
      */
     public model: importedRunResponse.RunResponse;
 
@@ -47012,7 +47268,8 @@ export class UpdateRunOnlineResponse {
  */
 export class UpdateSectionPageSetupOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a page setup of a section.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/sections/{0}/PageSetup" REST API requests.
      */
     public model: importedSectionPageSetupResponse.SectionPageSetupResponse;
 
@@ -47028,7 +47285,7 @@ export class UpdateSectionPageSetupOnlineResponse {
  */
 export class UpdateStructuredDocumentTagOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a StructuredDocumentTag.
      */
     public model: importedStructuredDocumentTagResponse.StructuredDocumentTagResponse;
 
@@ -47044,7 +47301,8 @@ export class UpdateStructuredDocumentTagOnlineResponse {
  */
 export class UpdateStyleOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a style.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/styles/{0}" REST API requests.
      */
     public model: importedStyleResponse.StyleResponse;
 
@@ -47060,7 +47318,8 @@ export class UpdateStyleOnlineResponse {
  */
 export class UpdateTableCellFormatOnlineResponse {
     /**
-     * The response model.
+     * The REST response with the formatting properties of a table cell.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/rows/{1}/cells/{2}/cellformat" REST API requests.
      */
     public model: importedTableCellFormatResponse.TableCellFormatResponse;
 
@@ -47076,7 +47335,8 @@ export class UpdateTableCellFormatOnlineResponse {
  */
 export class UpdateTablePropertiesOnlineResponse {
     /**
-     * The response model.
+     * The REST response with a table.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/properties" REST API requests.
      */
     public model: importedTablePropertiesResponse.TablePropertiesResponse;
 
@@ -47092,7 +47352,8 @@ export class UpdateTablePropertiesOnlineResponse {
  */
 export class UpdateTableRowFormatOnlineResponse {
     /**
-     * The response model.
+     * The REST response with the formatting properties of a table row.
+     * This response is returned by the Service when handling "GET https://api.aspose.cloud/v4.0/words/Test.doc/tables/{0}/rows/{1}/rowformat" REST API requests.
      */
     public model: importedTableRowFormatResponse.TableRowFormatResponse;
 

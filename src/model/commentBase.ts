@@ -57,14 +57,14 @@ export abstract class CommentBase implements ModelInterface {
             type: "string",
         },
         {
-            name: "dateTime",
-            baseName: "DateTime",
-            type: "Date",
-        },
-        {
             name: "initial",
             baseName: "Initial",
             type: "string",
+        },
+        {
+            name: "dateTime",
+            baseName: "DateTime",
+            type: "Date",
         },
         {
             name: "text",
@@ -92,21 +92,25 @@ export abstract class CommentBase implements ModelInterface {
 
     /**
      * Gets or sets the author name for a comment.
+     * Cannot be null.Default is empty string.
      */
     public author: string;
 
     /**
-     * Gets or sets the date and time that the comment was made.
-     */
-    public dateTime: Date;
-
-    /**
      * Gets or sets the initials of the user associated with a specific comment.
+     * Cannot be null.Default is empty string.
      */
     public initial: string;
 
     /**
+     * Gets or sets the date and time that the comment was made.
+     * Default is MinValue03.01.0001.
+     */
+    public dateTime: Date;
+
+    /**
      * Gets or sets text of the comment.
+     * This method allows to quickly set text of a comment from a string. The string can contain paragraph breaks, this will create paragraphs of text in the comment accordingly.
      */
     public text: string;
 

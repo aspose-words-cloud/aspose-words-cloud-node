@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="tablePropertiesDto.ts">
+ * <copyright company="Aspose" file="epsSaveOptionsData.ts">
  *   Copyright (c) 2023 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,14 +27,16 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { ImageSaveOptionsData } from './imageSaveOptionsData';
 
-export const importsMapTablePropertiesDto = {
+export const importsMapEpsSaveOptionsData = {
+    ImageSaveOptionsData,
 };
 
 /**
- * Model object.
+ * Container class for eps save options.
  */
-export class TablePropertiesDto implements ModelInterface {
+export class EpsSaveOptionsData extends ImageSaveOptionsData {
     /**
      * Attribute type map
      */
@@ -45,11 +47,14 @@ export class TablePropertiesDto implements ModelInterface {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return TablePropertiesDto.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(EpsSaveOptionsData.attributeTypeMap);
     }
 
 
-    public constructor(init?: Partial< TablePropertiesDto >) {
+    public constructor(init?: Partial< EpsSaveOptionsData >) {
+        super(init);
+        this.saveFormat = 'eps';
+
         Object.assign(this, init);
     }
 

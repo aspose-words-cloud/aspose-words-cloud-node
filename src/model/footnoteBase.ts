@@ -42,14 +42,14 @@ export abstract class FootnoteBase implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "footnoteType",
-            baseName: "FootnoteType",
-            type: "FootnoteBase.FootnoteTypeEnum",
-        },
-        {
             name: "position",
             baseName: "Position",
             type: "NewDocumentPosition",
+        },
+        {
+            name: "footnoteType",
+            baseName: "FootnoteType",
+            type: "FootnoteBase.FootnoteTypeEnum",
         },
         {
             name: "referenceMark",
@@ -71,23 +71,25 @@ export abstract class FootnoteBase implements ModelInterface {
     }
 
     /**
-     * Gets or sets the option, that specifies whether this is a footnote or endnote.
-     */
-    public footnoteType: FootnoteBase.FootnoteTypeEnum;
-
-    /**
      * Gets or sets the link to comment range start node.
      */
     public position: NewDocumentPosition;
 
     /**
+     * Gets or sets the option, that specifies whether this is a footnote or endnote.
+     */
+    public footnoteType: FootnoteBase.FootnoteTypeEnum;
+
+    /**
      * Gets or sets the custom reference mark to be used for this footnote.
      * Default value is Empty, meaning auto-numbered footnotes are used.
+     * RTF-format can only store 1 symbol as custom reference mark, so upon export only the first symbol will be written others will be discard.
      */
     public referenceMark: string;
 
     /**
      * Gets or sets text of the footnote.
+     * This method allows to quickly set text of a footnote from a string. The string can contain paragraph breaks, this will create paragraphs of text in the footnote accordingly.
      */
     public text: string;
 

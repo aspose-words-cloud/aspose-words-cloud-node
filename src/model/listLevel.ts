@@ -116,6 +116,7 @@ export class ListLevel extends LinkElement {
 
     /**
      * Gets or sets the starting number for this list level.
+     * Default value is 1.
      */
     public startAt: number;
 
@@ -126,11 +127,13 @@ export class ListLevel extends LinkElement {
 
     /**
      * Gets or sets the number format for the list level.
+     * Among normal text characters, the string can contain placeholder characters \\x0000 to \\x0008 representing the numbers from the corresponding list levels. For example, the string "\\x0000.\\x0001)" will generate a list label that looks something like "1.5)". The number "1" is the current number from the 1st list level, the number "5" is the current number from the 2nd list level. Null is not allowed, but an empty string meaning no number is valid.
      */
     public numberFormat: string;
 
     /**
      * Gets or sets the justification of the actual number of the list item.
+     * The list label is justified relative to the Aspose.Words.Lists.ListLevel.NumberPosition property.
      */
     public alignment: ListLevel.AlignmentEnum;
 
@@ -141,6 +144,7 @@ export class ListLevel extends LinkElement {
 
     /**
      * Gets or sets the list level, that must appear before the specified list level restarts numbering.
+     * The value of -1 means the numbering will continue.
      */
     public restartAfterLevel: number;
 
@@ -156,21 +160,28 @@ export class ListLevel extends LinkElement {
 
     /**
      * Gets or sets the tab position (in points) for the list level.
+     * Has effect only when Aspose.Words.Lists.ListLevel.TrailingCharacter is a tab.
+     * Aspose.Words.Lists.ListLevel.NumberPosition Aspose.Words.Lists.ListLevel.TextPosition.
      */
     public tabPosition: number;
 
     /**
      * Gets or sets the position (in points) of the number or bullet for the list level.
+     * Aspose.Words.Lists.ListLevel.NumberPosition corresponds to LeftIndent plus FirstLineIndent of the paragraph. Aspose.Words.Lists.ListLevel.TextPosition Aspose.Words.Lists.ListLevel.TabPosition.
      */
     public numberPosition: number;
 
     /**
      * Gets or sets the position (in points) for the second line of wrapping text for the list level.
+     * Aspose.Words.Lists.ListLevel.TextPosition corresponds to LeftIndent of the paragraph.
+     * Aspose.Words.Lists.ListLevel.NumberPosition Aspose.Words.Lists.ListLevel.TabPosition.
      */
     public textPosition: number;
 
     /**
      * Gets or sets the paragraph style that is linked to this list level.
+     * This property is null when the list level is not linked to a paragraph style.
+     * This property can be set to null.
      */
     public linkedStyle: Style;
 

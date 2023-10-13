@@ -59,6 +59,7 @@ export class ListLevels extends LinkElement {
 
     /**
      * Gets or sets the collection of list levels for this list.
+     * Use this property to access and modify formatting individual to each level of the list.
      */
     public listLevel: Array<ListLevel>;
 

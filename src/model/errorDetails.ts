@@ -59,12 +59,12 @@ export class ErrorDetails implements ModelInterface {
     }
 
     /**
-     * Error datetime.
+     * Gets or sets ErrorDateTime.
      */
     public errorDateTime: Date;
 
     /**
-     * The request id.
+     * Gets or sets RequestId.
      */
     public requestId: string;
 

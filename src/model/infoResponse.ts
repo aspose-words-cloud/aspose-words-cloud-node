@@ -68,17 +68,17 @@ export class InfoResponse extends WordsResponse {
     }
 
     /**
-     * Gets or sets additional info.
+     * Gets or sets AdditionalInfo.
      */
     public additionalInfo: Array<InfoAdditionalItem>;
 
     /**
-     * Gets or sets application name.
+     * Gets or sets Name.
      */
     public name: string;
 
     /**
-     * Gets or sets version.
+     * Gets or sets Version.
      */
     public version: string;
 

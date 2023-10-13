@@ -101,11 +101,13 @@ export class Comment extends CommentLink {
 
     /**
      * Gets or sets the author name for a comment.
+     * Cannot be null.Default is empty string.
      */
     public author: string;
 
     /**
      * Gets or sets the initials of the user associated with a specific comment.
+     * Cannot be null.Default is empty string.
      */
     public initial: string;
 
@@ -116,6 +118,7 @@ export class Comment extends CommentLink {
 
     /**
      * Gets or sets text of the comment.
+     * This method allows to quickly set text of a comment from a string. The string can contain paragraph breaks, this will create paragraphs of text in the comment accordingly.
      */
     public text: string;
 

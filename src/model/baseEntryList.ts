@@ -55,5 +55,8 @@ export abstract class BaseEntryList implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+    }
 }
 

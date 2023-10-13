@@ -88,5 +88,22 @@ export class DocumentEntryList extends BaseEntryList {
         }
 
     }
+
+    public validate() {
+        super.validate();
+        if (this.documentEntries === null || this.documentEntries === undefined)
+        {
+            throw new Error('Property DocumentEntries in DocumentEntryList is required.');
+        }
+
+        for (let elementDocumentEntries of this.documentEntries)
+        {
+            if (elementDocumentEntries !== null && elementDocumentEntries !== undefined)
+            {
+                elementDocumentEntries.validate();
+            }
+        }
+
+    }
 }
 

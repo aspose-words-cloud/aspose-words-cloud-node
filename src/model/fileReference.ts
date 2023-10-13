@@ -73,6 +73,10 @@ export class FileReference implements ModelInterface {
         }
     }
 
+    public validate() {
+        // Do nothing
+    }
+
     public getSource() {
         return this.source;
     }

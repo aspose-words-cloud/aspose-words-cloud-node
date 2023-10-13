@@ -134,6 +134,10 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 
 /**

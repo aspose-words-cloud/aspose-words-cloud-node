@@ -1321,6 +1321,9 @@ export class AppendDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentList" was null when calling appendDocument.');
         }
 
+        // Validate required properties in models.
+        this.documentList.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -1457,6 +1460,9 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         if (this.documentList === null) {
             throw new Error('Required parameter "this.documentList" was null when calling appendDocumentOnline.');
         }
+
+        // Validate required properties in models.
+        this.documentList.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -1632,6 +1638,9 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleApply" was null when calling applyStyleToDocumentElement.');
         }
 
+        // Validate required properties in models.
+        this.styleApply.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -1783,6 +1792,9 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         if (this.styleApply === null) {
             throw new Error('Required parameter "this.styleApply" was null when calling applyStyleToDocumentElementOnline.');
         }
+
+        // Validate required properties in models.
+        this.styleApply.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -1946,6 +1958,9 @@ export class BuildReportRequest implements RequestInterface {
             throw new Error('Required parameter "this.reportEngineSettings" was null when calling buildReport.');
         }
 
+        // Validate required properties in models.
+        this.reportEngineSettings.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -2072,6 +2087,9 @@ export class BuildReportOnlineRequest implements RequestInterface {
         if (this.reportEngineSettings === null) {
             throw new Error('Required parameter "this.reportEngineSettings" was null when calling buildReportOnline.');
         }
+
+        // Validate required properties in models.
+        this.reportEngineSettings.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
@@ -2536,6 +2554,9 @@ export class CompareDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.compareData" was null when calling compareDocument.');
         }
 
+        // Validate required properties in models.
+        this.compareData.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -2670,6 +2691,9 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         if (this.compareData === null) {
             throw new Error('Required parameter "this.compareData" was null when calling compareDocumentOnline.');
         }
+
+        // Validate required properties in models.
+        this.compareData.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -2821,6 +2845,9 @@ export class CompressDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.compressOptions" was null when calling compressDocument.');
         }
 
+        // Validate required properties in models.
+        this.compressOptions.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -2945,6 +2972,9 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         if (this.compressOptions === null) {
             throw new Error('Required parameter "this.compressOptions" was null when calling compressDocumentOnline.');
         }
+
+        // Validate required properties in models.
+        this.compressOptions.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -3463,6 +3493,9 @@ export class CopyStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleCopy" was null when calling copyStyle.');
         }
 
+        // Validate required properties in models.
+        this.styleCopy.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -3598,6 +3631,9 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         if (this.styleCopy === null) {
             throw new Error('Required parameter "this.styleCopy" was null when calling copyStyleOnline.');
         }
+
+        // Validate required properties in models.
+        this.styleCopy.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -4095,6 +4131,9 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
             throw new Error('Required parameter "this.property" was null when calling createOrUpdateDocumentProperty.');
         }
 
+        // Validate required properties in models.
+        this.property.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -4246,6 +4285,9 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         if (this.property === null) {
             throw new Error('Required parameter "this.property" was null when calling createOrUpdateDocumentPropertyOnline.');
         }
+
+        // Validate required properties in models.
+        this.property.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -27208,6 +27250,9 @@ export class InsertBookmarkRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmark" was null when calling insertBookmark.');
         }
 
+        // Validate required properties in models.
+        this.bookmark.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -27343,6 +27388,9 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         if (this.bookmark === null) {
             throw new Error('Required parameter "this.bookmark" was null when calling insertBookmarkOnline.');
         }
+
+        // Validate required properties in models.
+        this.bookmark.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -27501,6 +27549,9 @@ export class InsertCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling insertComment.');
         }
 
+        // Validate required properties in models.
+        this.comment.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -27636,6 +27687,9 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         if (this.comment === null) {
             throw new Error('Required parameter "this.comment" was null when calling insertCommentOnline.');
         }
+
+        // Validate required properties in models.
+        this.comment.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -27794,6 +27848,9 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPart.');
         }
 
+        // Validate required properties in models.
+        this.customXmlPart.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -27929,6 +27986,9 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPart === null) {
             throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPartOnline.');
         }
+
+        // Validate required properties in models.
+        this.customXmlPart.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -28098,6 +28158,9 @@ export class InsertDrawingObjectRequest implements RequestInterface {
             throw new Error('Required parameter "this.drawingObject" was null when calling insertDrawingObject.');
         }
 
+        // Validate required properties in models.
+        this.drawingObject.validate();
+
         // verify required parameter 'this.imageFile' is not undefined
         if (this.imageFile === undefined) {
             throw new Error('Required parameter "this.imageFile" was undefined when calling insertDrawingObject.');
@@ -28257,6 +28320,9 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling insertDrawingObjectOnline.');
         }
+
+        // Validate required properties in models.
+        this.drawingObject.validate();
 
         // verify required parameter 'this.imageFile' is not undefined
         if (this.imageFile === undefined) {
@@ -28439,6 +28505,9 @@ export class InsertFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.field" was null when calling insertField.');
         }
 
+        // Validate required properties in models.
+        this.field.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -28586,6 +28655,9 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         if (this.field === null) {
             throw new Error('Required parameter "this.field" was null when calling insertFieldOnline.');
         }
+
+        // Validate required properties in models.
+        this.field.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -28751,6 +28823,9 @@ export class InsertFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.footnoteDto" was null when calling insertFootnote.');
         }
 
+        // Validate required properties in models.
+        this.footnoteDto.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -28892,6 +28967,9 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         if (this.footnoteDto === null) {
             throw new Error('Required parameter "this.footnoteDto" was null when calling insertFootnoteOnline.');
         }
+
+        // Validate required properties in models.
+        this.footnoteDto.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -29061,6 +29139,9 @@ export class InsertFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.formField" was null when calling insertFormField.');
         }
 
+        // Validate required properties in models.
+        this.formField.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -29208,6 +29289,9 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         if (this.formField === null) {
             throw new Error('Required parameter "this.formField" was null when calling insertFormFieldOnline.');
         }
+
+        // Validate required properties in models.
+        this.formField.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -29690,6 +29774,9 @@ export class InsertListRequest implements RequestInterface {
             throw new Error('Required parameter "this.listInsert" was null when calling insertList.');
         }
 
+        // Validate required properties in models.
+        this.listInsert.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -29825,6 +29912,9 @@ export class InsertListOnlineRequest implements RequestInterface {
         if (this.listInsert === null) {
             throw new Error('Required parameter "this.listInsert" was null when calling insertListOnline.');
         }
+
+        // Validate required properties in models.
+        this.listInsert.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -29995,6 +30085,9 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
             throw new Error('Required parameter "this.tabStopInsertDto" was null when calling insertOrUpdateParagraphTabStop.');
         }
 
+        // Validate required properties in models.
+        this.tabStopInsertDto.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -30130,6 +30223,9 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         if (this.tabStopInsertDto === null) {
             throw new Error('Required parameter "this.tabStopInsertDto" was null when calling insertOrUpdateParagraphTabStopOnline.');
         }
+
+        // Validate required properties in models.
+        this.tabStopInsertDto.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -30296,6 +30392,9 @@ export class InsertPageNumbersRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageNumber" was null when calling insertPageNumbers.');
         }
 
+        // Validate required properties in models.
+        this.pageNumber.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -30431,6 +30530,9 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         if (this.pageNumber === null) {
             throw new Error('Required parameter "this.pageNumber" was null when calling insertPageNumbersOnline.');
         }
+
+        // Validate required properties in models.
+        this.pageNumber.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -30600,6 +30702,9 @@ export class InsertParagraphRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraph" was null when calling insertParagraph.');
         }
 
+        // Validate required properties in models.
+        this.paragraph.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -30747,6 +30852,9 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         if (this.paragraph === null) {
             throw new Error('Required parameter "this.paragraph" was null when calling insertParagraphOnline.');
         }
+
+        // Validate required properties in models.
+        this.paragraph.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -30927,6 +31035,9 @@ export class InsertRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.run" was null when calling insertRun.');
         }
 
+        // Validate required properties in models.
+        this.run.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -31084,6 +31195,9 @@ export class InsertRunOnlineRequest implements RequestInterface {
         if (this.run === null) {
             throw new Error('Required parameter "this.run" was null when calling insertRunOnline.');
         }
+
+        // Validate required properties in models.
+        this.run.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -31527,6 +31641,9 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
             throw new Error('Required parameter "this.structuredDocumentTag" was null when calling insertStructuredDocumentTag.');
         }
 
+        // Validate required properties in models.
+        this.structuredDocumentTag.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -31668,6 +31785,9 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.structuredDocumentTag === null) {
             throw new Error('Required parameter "this.structuredDocumentTag" was null when calling insertStructuredDocumentTagOnline.');
         }
+
+        // Validate required properties in models.
+        this.structuredDocumentTag.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -31826,6 +31946,9 @@ export class InsertStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleInsert" was null when calling insertStyle.');
         }
 
+        // Validate required properties in models.
+        this.styleInsert.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -31961,6 +32084,9 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         if (this.styleInsert === null) {
             throw new Error('Required parameter "this.styleInsert" was null when calling insertStyleOnline.');
         }
+
+        // Validate required properties in models.
+        this.styleInsert.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -32125,6 +32251,9 @@ export class InsertTableRequest implements RequestInterface {
             throw new Error('Required parameter "this.table" was null when calling insertTable.');
         }
 
+        // Validate required properties in models.
+        this.table.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -32288,6 +32417,9 @@ export class InsertTableCellRequest implements RequestInterface {
             throw new Error('Required parameter "this.cell" was null when calling insertTableCell.');
         }
 
+        // Validate required properties in models.
+        this.cell.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -32440,6 +32572,9 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
             throw new Error('Required parameter "this.cell" was null when calling insertTableCellOnline.');
         }
 
+        // Validate required properties in models.
+        this.cell.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -32591,6 +32726,9 @@ export class InsertTableOnlineRequest implements RequestInterface {
         if (this.table === null) {
             throw new Error('Required parameter "this.table" was null when calling insertTableOnline.');
         }
+
+        // Validate required properties in models.
+        this.table.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -32765,6 +32903,9 @@ export class InsertTableRowRequest implements RequestInterface {
             throw new Error('Required parameter "this.row" was null when calling insertTableRow.');
         }
 
+        // Validate required properties in models.
+        this.row.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -32916,6 +33057,9 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         if (this.row === null) {
             throw new Error('Required parameter "this.row" was null when calling insertTableRowOnline.');
         }
+
+        // Validate required properties in models.
+        this.row.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -33369,6 +33513,9 @@ export class InsertWatermarkTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.watermarkText" was null when calling insertWatermarkText.');
         }
 
+        // Validate required properties in models.
+        this.watermarkText.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -33504,6 +33651,9 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         if (this.watermarkText === null) {
             throw new Error('Required parameter "this.watermarkText" was null when calling insertWatermarkTextOnline.');
         }
+
+        // Validate required properties in models.
+        this.watermarkText.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -33760,6 +33910,9 @@ export class LoadWebDocumentRequest implements RequestInterface {
         if (this.data === null) {
             throw new Error('Required parameter "this.data" was null when calling loadWebDocument.');
         }
+
+        // Validate required properties in models.
+        this.data.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         if (this.data !== undefined) {
@@ -34123,6 +34276,9 @@ export class OptimizeDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.options" was null when calling optimizeDocument.');
         }
 
+        // Validate required properties in models.
+        this.options.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -34258,6 +34414,9 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
         if (this.options === null) {
             throw new Error('Required parameter "this.options" was null when calling optimizeDocumentOnline.');
         }
+
+        // Validate required properties in models.
+        this.options.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -34397,6 +34556,9 @@ export class ProtectDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling protectDocument.');
         }
 
+        // Validate required properties in models.
+        this.protectionRequest.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -34520,6 +34682,9 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         if (this.protectionRequest === null) {
             throw new Error('Required parameter "this.protectionRequest" was null when calling protectDocumentOnline.');
         }
+
+        // Validate required properties in models.
+        this.protectionRequest.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -36708,6 +36873,9 @@ export class ReplaceTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.replaceText" was null when calling replaceText.');
         }
 
+        // Validate required properties in models.
+        this.replaceText.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -36843,6 +37011,9 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         if (this.replaceText === null) {
             throw new Error('Required parameter "this.replaceText" was null when calling replaceTextOnline.');
         }
+
+        // Validate required properties in models.
+        this.replaceText.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -37013,6 +37184,9 @@ export class ReplaceWithTextRequest implements RequestInterface {
             throw new Error('Required parameter "this.rangeText" was null when calling replaceWithText.');
         }
 
+        // Validate required properties in models.
+        this.rangeText.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -37158,6 +37332,9 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         if (this.rangeText === null) {
             throw new Error('Required parameter "this.rangeText" was null when calling replaceWithTextOnline.');
         }
+
+        // Validate required properties in models.
+        this.rangeText.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -37369,6 +37546,9 @@ export class SaveAsRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptionsData" was null when calling saveAs.');
         }
 
+        // Validate required properties in models.
+        this.saveOptionsData.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -37492,6 +37672,9 @@ export class SaveAsOnlineRequest implements RequestInterface {
         if (this.saveOptionsData === null) {
             throw new Error('Required parameter "this.saveOptionsData" was null when calling saveAsOnline.');
         }
+
+        // Validate required properties in models.
+        this.saveOptionsData.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -37655,6 +37838,9 @@ export class SaveAsRangeRequest implements RequestInterface {
             throw new Error('Required parameter "this.documentParameters" was null when calling saveAsRange.');
         }
 
+        // Validate required properties in models.
+        this.documentParameters.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -37794,6 +37980,9 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         if (this.documentParameters === null) {
             throw new Error('Required parameter "this.documentParameters" was null when calling saveAsRangeOnline.');
         }
+
+        // Validate required properties in models.
+        this.documentParameters.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -38024,6 +38213,9 @@ export class SaveAsTiffRequest implements RequestInterface {
             throw new Error('Required parameter "this.saveOptions" was null when calling saveAsTiff.');
         }
 
+        // Validate required properties in models.
+        this.saveOptions.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -38249,6 +38441,9 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         if (this.saveOptions === null) {
             throw new Error('Required parameter "this.saveOptions" was null when calling saveAsTiffOnline.');
         }
+
+        // Validate required properties in models.
+        this.saveOptions.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -38965,6 +39160,9 @@ export class UnprotectDocumentRequest implements RequestInterface {
             throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocument.');
         }
 
+        // Validate required properties in models.
+        this.protectionRequest.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -39088,6 +39286,9 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         if (this.protectionRequest === null) {
             throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocumentOnline.');
         }
+
+        // Validate required properties in models.
+        this.protectionRequest.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -39260,6 +39461,9 @@ export class UpdateBookmarkRequest implements RequestInterface {
             throw new Error('Required parameter "this.bookmarkData" was null when calling updateBookmark.');
         }
 
+        // Validate required properties in models.
+        this.bookmarkData.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -39411,6 +39615,9 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         if (this.bookmarkData === null) {
             throw new Error('Required parameter "this.bookmarkData" was null when calling updateBookmarkOnline.');
         }
+
+        // Validate required properties in models.
+        this.bookmarkData.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -39592,6 +39799,9 @@ export class UpdateBorderRequest implements RequestInterface {
             throw new Error('Required parameter "this.borderProperties" was null when calling updateBorder.');
         }
 
+        // Validate required properties in models.
+        this.borderProperties.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -39740,6 +39950,9 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         if (this.borderProperties === null) {
             throw new Error('Required parameter "this.borderProperties" was null when calling updateBorderOnline.');
         }
+
+        // Validate required properties in models.
+        this.borderProperties.validate();
 
         // verify required parameter 'this.borderType' is not undefined
         if (this.borderType === undefined) {
@@ -39924,6 +40137,9 @@ export class UpdateCommentRequest implements RequestInterface {
             throw new Error('Required parameter "this.comment" was null when calling updateComment.');
         }
 
+        // Validate required properties in models.
+        this.comment.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -40075,6 +40291,9 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         if (this.comment === null) {
             throw new Error('Required parameter "this.comment" was null when calling updateCommentOnline.');
         }
+
+        // Validate required properties in models.
+        this.comment.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -40249,6 +40468,9 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
             throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPart.');
         }
 
+        // Validate required properties in models.
+        this.customXmlPart.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -40400,6 +40622,9 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPart === null) {
             throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPartOnline.');
         }
+
+        // Validate required properties in models.
+        this.customXmlPart.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -40574,6 +40799,9 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling updateDrawingObject.');
         }
+
+        // Validate required properties in models.
+        this.drawingObject.validate();
 
         // verify required parameter 'this.imageFile' is not undefined
         if (this.imageFile === undefined) {
@@ -40750,6 +40978,9 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling updateDrawingObjectOnline.');
         }
+
+        // Validate required properties in models.
+        this.drawingObject.validate();
 
         // verify required parameter 'this.imageFile' is not undefined
         if (this.imageFile === undefined) {
@@ -40953,6 +41184,9 @@ export class UpdateFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.field" was null when calling updateField.');
         }
 
+        // Validate required properties in models.
+        this.field.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -41100,6 +41334,9 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         if (this.field === null) {
             throw new Error('Required parameter "this.field" was null when calling updateFieldOnline.');
         }
+
+        // Validate required properties in models.
+        this.field.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -41521,6 +41758,9 @@ export class UpdateFootnoteRequest implements RequestInterface {
             throw new Error('Required parameter "this.footnoteDto" was null when calling updateFootnote.');
         }
 
+        // Validate required properties in models.
+        this.footnoteDto.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -41668,6 +41908,9 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         if (this.footnoteDto === null) {
             throw new Error('Required parameter "this.footnoteDto" was null when calling updateFootnoteOnline.');
         }
+
+        // Validate required properties in models.
+        this.footnoteDto.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -41858,6 +42101,9 @@ export class UpdateFormFieldRequest implements RequestInterface {
             throw new Error('Required parameter "this.formField" was null when calling updateFormField.');
         }
 
+        // Validate required properties in models.
+        this.formField.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -42005,6 +42251,9 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         if (this.formField === null) {
             throw new Error('Required parameter "this.formField" was null when calling updateFormFieldOnline.');
         }
+
+        // Validate required properties in models.
+        this.formField.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -42189,6 +42438,9 @@ export class UpdateListRequest implements RequestInterface {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateList.');
         }
 
+        // Validate required properties in models.
+        this.listUpdate.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -42368,6 +42620,9 @@ export class UpdateListLevelRequest implements RequestInterface {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListLevel.');
         }
 
+        // Validate required properties in models.
+        this.listUpdate.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -42525,6 +42780,9 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         if (this.listUpdate === null) {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListLevelOnline.');
         }
+
+        // Validate required properties in models.
+        this.listUpdate.validate();
 
         // verify required parameter 'this.listLevel' is not undefined
         if (this.listLevel === undefined) {
@@ -42697,6 +42955,9 @@ export class UpdateListOnlineRequest implements RequestInterface {
         if (this.listUpdate === null) {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListOnline.');
         }
+
+        // Validate required properties in models.
+        this.listUpdate.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -42877,6 +43138,9 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.paragraphFormatDto" was null when calling updateParagraphFormat.');
         }
 
+        // Validate required properties in models.
+        this.paragraphFormatDto.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -43024,6 +43288,9 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         if (this.paragraphFormatDto === null) {
             throw new Error('Required parameter "this.paragraphFormatDto" was null when calling updateParagraphFormatOnline.');
         }
+
+        // Validate required properties in models.
+        this.paragraphFormatDto.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -43214,6 +43481,9 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.listFormatDto" was null when calling updateParagraphListFormat.');
         }
 
+        // Validate required properties in models.
+        this.listFormatDto.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -43361,6 +43631,9 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         if (this.listFormatDto === null) {
             throw new Error('Required parameter "this.listFormatDto" was null when calling updateParagraphListFormatOnline.');
         }
+
+        // Validate required properties in models.
+        this.listFormatDto.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -43561,6 +43834,9 @@ export class UpdateRunRequest implements RequestInterface {
             throw new Error('Required parameter "this.run" was null when calling updateRun.');
         }
 
+        // Validate required properties in models.
+        this.run.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -43740,6 +44016,9 @@ export class UpdateRunFontRequest implements RequestInterface {
             throw new Error('Required parameter "this.fontDto" was null when calling updateRunFont.');
         }
 
+        // Validate required properties in models.
+        this.fontDto.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -43897,6 +44176,9 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         if (this.fontDto === null) {
             throw new Error('Required parameter "this.fontDto" was null when calling updateRunFontOnline.');
         }
+
+        // Validate required properties in models.
+        this.fontDto.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -44075,6 +44357,9 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         if (this.run === null) {
             throw new Error('Required parameter "this.run" was null when calling updateRunOnline.');
         }
+
+        // Validate required properties in models.
+        this.run.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -44259,6 +44544,9 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
             throw new Error('Required parameter "this.pageSetup" was null when calling updateSectionPageSetup.');
         }
 
+        // Validate required properties in models.
+        this.pageSetup.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -44410,6 +44698,9 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         if (this.pageSetup === null) {
             throw new Error('Required parameter "this.pageSetup" was null when calling updateSectionPageSetupOnline.');
         }
+
+        // Validate required properties in models.
+        this.pageSetup.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -44590,6 +44881,9 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
             throw new Error('Required parameter "this.structuredDocumentTag" was null when calling updateStructuredDocumentTag.');
         }
 
+        // Validate required properties in models.
+        this.structuredDocumentTag.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -44737,6 +45031,9 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.structuredDocumentTag === null) {
             throw new Error('Required parameter "this.structuredDocumentTag" was null when calling updateStructuredDocumentTagOnline.');
         }
+
+        // Validate required properties in models.
+        this.structuredDocumentTag.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -44921,6 +45218,9 @@ export class UpdateStyleRequest implements RequestInterface {
             throw new Error('Required parameter "this.styleUpdate" was null when calling updateStyle.');
         }
 
+        // Validate required properties in models.
+        this.styleUpdate.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -45072,6 +45372,9 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         if (this.styleUpdate === null) {
             throw new Error('Required parameter "this.styleUpdate" was null when calling updateStyleOnline.');
         }
+
+        // Validate required properties in models.
+        this.styleUpdate.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -45262,6 +45565,9 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling updateTableCellFormat.');
         }
 
+        // Validate required properties in models.
+        this.format.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -45419,6 +45725,9 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling updateTableCellFormatOnline.');
         }
+
+        // Validate required properties in models.
+        this.format.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -45609,6 +45918,9 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
             throw new Error('Required parameter "this.properties" was null when calling updateTableProperties.');
         }
 
+        // Validate required properties in models.
+        this.properties.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -45756,6 +46068,9 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         if (this.properties === null) {
             throw new Error('Required parameter "this.properties" was null when calling updateTablePropertiesOnline.');
         }
+
+        // Validate required properties in models.
+        this.properties.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
@@ -45956,6 +46271,9 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
             throw new Error('Required parameter "this.format" was null when calling updateTableRowFormat.');
         }
 
+        // Validate required properties in models.
+        this.format.validate();
+
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -46113,6 +46431,9 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling updateTableRowFormatOnline.');
         }
+
+        // Validate required properties in models.
+        this.format.validate();
 
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {

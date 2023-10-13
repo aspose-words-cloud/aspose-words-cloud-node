@@ -89,5 +89,9 @@ export class ImageEntryList extends BaseEntryList {
         }
 
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

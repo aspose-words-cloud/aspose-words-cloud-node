@@ -74,6 +74,9 @@ export class ReplaceRange implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+    }
 }
 
 /**

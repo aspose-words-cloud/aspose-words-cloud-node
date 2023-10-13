@@ -58,5 +58,9 @@ export class OfficeMathLink extends NodeLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

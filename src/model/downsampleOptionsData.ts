@@ -87,5 +87,8 @@ export class DownsampleOptionsData implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+    }
 }
 

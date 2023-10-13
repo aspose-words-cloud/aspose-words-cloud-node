@@ -74,6 +74,14 @@ export class StyleInsert implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.styleType === null || this.styleType === undefined)
+        {
+            throw new Error('Property StyleType in StyleInsert is required.');
+        }
+
+    }
 }
 
 /**

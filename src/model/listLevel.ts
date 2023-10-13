@@ -192,6 +192,55 @@ export class ListLevel extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.startAt === null || this.startAt === undefined)
+        {
+            throw new Error('Property StartAt in ListLevel is required.');
+        }
+
+        if (this.numberStyle === null || this.numberStyle === undefined)
+        {
+            throw new Error('Property NumberStyle in ListLevel is required.');
+        }
+
+        if (this.alignment === null || this.alignment === undefined)
+        {
+            throw new Error('Property Alignment in ListLevel is required.');
+        }
+
+        if (this.isLegal === null || this.isLegal === undefined)
+        {
+            throw new Error('Property IsLegal in ListLevel is required.');
+        }
+
+        if (this.restartAfterLevel === null || this.restartAfterLevel === undefined)
+        {
+            throw new Error('Property RestartAfterLevel in ListLevel is required.');
+        }
+
+        if (this.trailingCharacter === null || this.trailingCharacter === undefined)
+        {
+            throw new Error('Property TrailingCharacter in ListLevel is required.');
+        }
+
+        if (this.tabPosition === null || this.tabPosition === undefined)
+        {
+            throw new Error('Property TabPosition in ListLevel is required.');
+        }
+
+        if (this.numberPosition === null || this.numberPosition === undefined)
+        {
+            throw new Error('Property NumberPosition in ListLevel is required.');
+        }
+
+        if (this.textPosition === null || this.textPosition === undefined)
+        {
+            throw new Error('Property TextPosition in ListLevel is required.');
+        }
+
+    }
 }
 
 /**

@@ -58,5 +58,9 @@ export class FieldInsert extends FieldBase {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

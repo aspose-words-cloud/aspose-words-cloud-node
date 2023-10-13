@@ -136,6 +136,44 @@ export class DrawingObjectInsert implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.relativeHorizontalPosition === null || this.relativeHorizontalPosition === undefined)
+        {
+            throw new Error('Property RelativeHorizontalPosition in DrawingObjectInsert is required.');
+        }
+
+        if (this.left === null || this.left === undefined)
+        {
+            throw new Error('Property Left in DrawingObjectInsert is required.');
+        }
+
+        if (this.relativeVerticalPosition === null || this.relativeVerticalPosition === undefined)
+        {
+            throw new Error('Property RelativeVerticalPosition in DrawingObjectInsert is required.');
+        }
+
+        if (this.top === null || this.top === undefined)
+        {
+            throw new Error('Property Top in DrawingObjectInsert is required.');
+        }
+
+        if (this.width === null || this.width === undefined)
+        {
+            throw new Error('Property Width in DrawingObjectInsert is required.');
+        }
+
+        if (this.height === null || this.height === undefined)
+        {
+            throw new Error('Property Height in DrawingObjectInsert is required.');
+        }
+
+        if (this.wrapType === null || this.wrapType === undefined)
+        {
+            throw new Error('Property WrapType in DrawingObjectInsert is required.');
+        }
+
+    }
 }
 
 /**

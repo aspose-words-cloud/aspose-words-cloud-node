@@ -74,6 +74,14 @@ export class PreferredWidth implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.type === null || this.type === undefined)
+        {
+            throw new Error('Property Type in PreferredWidth is required.');
+        }
+
+    }
 }
 
 /**

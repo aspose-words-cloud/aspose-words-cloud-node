@@ -104,6 +104,19 @@ export class JsonDataLoadOptions implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.alwaysGenerateRootObject === null || this.alwaysGenerateRootObject === undefined)
+        {
+            throw new Error('Property AlwaysGenerateRootObject in JsonDataLoadOptions is required.');
+        }
+
+        if (this.simpleValueParseMode === null || this.simpleValueParseMode === undefined)
+        {
+            throw new Error('Property SimpleValueParseMode in JsonDataLoadOptions is required.');
+        }
+
+    }
 }
 
 /**

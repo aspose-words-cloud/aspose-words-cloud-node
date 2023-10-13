@@ -64,6 +64,14 @@ export class OptimizationOptions implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.msWordVersion === null || this.msWordVersion === undefined)
+        {
+            throw new Error('Property MsWordVersion in OptimizationOptions is required.');
+        }
+
+    }
 }
 
 /**

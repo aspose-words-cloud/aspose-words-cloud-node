@@ -104,5 +104,28 @@ export class ReplaceTextParameters implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.isMatchCase === null || this.isMatchCase === undefined)
+        {
+            throw new Error('Property IsMatchCase in ReplaceTextParameters is required.');
+        }
+
+        if (this.isMatchWholeWord === null || this.isMatchWholeWord === undefined)
+        {
+            throw new Error('Property IsMatchWholeWord in ReplaceTextParameters is required.');
+        }
+
+        if (this.isOldValueRegex === null || this.isOldValueRegex === undefined)
+        {
+            throw new Error('Property IsOldValueRegex in ReplaceTextParameters is required.');
+        }
+
+        if (this.oldValue === null || this.oldValue === undefined)
+        {
+            throw new Error('Property OldValue in ReplaceTextParameters is required.');
+        }
+
+    }
 }
 

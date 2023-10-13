@@ -70,5 +70,9 @@ export class ParagraphResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

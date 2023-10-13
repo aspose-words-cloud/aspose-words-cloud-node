@@ -94,5 +94,18 @@ export class XmlColor implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.xmlAlpha === null || this.xmlAlpha === undefined)
+        {
+            throw new Error('Property XmlAlpha in XmlColor is required.');
+        }
+
+        if (this.xmlAlphaSpecified === null || this.xmlAlphaSpecified === undefined)
+        {
+            throw new Error('Property XmlAlphaSpecified in XmlColor is required.');
+        }
+
+    }
 }
 

@@ -86,5 +86,8 @@ export class SaveResult implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+    }
 }
 

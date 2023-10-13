@@ -100,5 +100,28 @@ export class CsvDataLoadOptions implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.commentChar === null || this.commentChar === undefined)
+        {
+            throw new Error('Property CommentChar in CsvDataLoadOptions is required.');
+        }
+
+        if (this.delimiter === null || this.delimiter === undefined)
+        {
+            throw new Error('Property Delimiter in CsvDataLoadOptions is required.');
+        }
+
+        if (this.hasHeaders === null || this.hasHeaders === undefined)
+        {
+            throw new Error('Property HasHeaders in CsvDataLoadOptions is required.');
+        }
+
+        if (this.quoteChar === null || this.quoteChar === undefined)
+        {
+            throw new Error('Property QuoteChar in CsvDataLoadOptions is required.');
+        }
+
+    }
 }
 

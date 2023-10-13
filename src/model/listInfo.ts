@@ -138,5 +138,34 @@ export class ListInfo extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.listId === null || this.listId === undefined)
+        {
+            throw new Error('Property ListId in ListInfo is required.');
+        }
+
+        if (this.isMultiLevel === null || this.isMultiLevel === undefined)
+        {
+            throw new Error('Property IsMultiLevel in ListInfo is required.');
+        }
+
+        if (this.isRestartAtEachSection === null || this.isRestartAtEachSection === undefined)
+        {
+            throw new Error('Property IsRestartAtEachSection in ListInfo is required.');
+        }
+
+        if (this.isListStyleDefinition === null || this.isListStyleDefinition === undefined)
+        {
+            throw new Error('Property IsListStyleDefinition in ListInfo is required.');
+        }
+
+        if (this.isListStyleReference === null || this.isListStyleReference === undefined)
+        {
+            throw new Error('Property IsListStyleReference in ListInfo is required.');
+        }
+
+    }
 }
 

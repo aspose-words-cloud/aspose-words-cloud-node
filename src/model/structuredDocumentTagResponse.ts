@@ -69,5 +69,9 @@ export class StructuredDocumentTagResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

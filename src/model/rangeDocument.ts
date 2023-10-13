@@ -64,5 +64,13 @@ export class RangeDocument implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.documentName === null || this.documentName === undefined)
+        {
+            throw new Error('Property DocumentName in RangeDocument is required.');
+        }
+
+    }
 }
 

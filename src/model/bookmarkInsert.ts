@@ -79,5 +79,9 @@ export class BookmarkInsert extends BookmarkData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

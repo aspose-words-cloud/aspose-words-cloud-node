@@ -84,5 +84,13 @@ export class ProtectionRequest implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.password === null || this.password === undefined)
+        {
+            throw new Error('Property Password in ProtectionRequest is required.');
+        }
+
+    }
 }
 

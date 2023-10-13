@@ -91,5 +91,9 @@ export class HeaderFooter extends HeaderFooterLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

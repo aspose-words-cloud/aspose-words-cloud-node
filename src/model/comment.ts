@@ -134,5 +134,9 @@ export class Comment extends CommentLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

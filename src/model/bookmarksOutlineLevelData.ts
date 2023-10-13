@@ -74,5 +74,13 @@ export class BookmarksOutlineLevelData implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.bookmarksOutlineLevel === null || this.bookmarksOutlineLevel === undefined)
+        {
+            throw new Error('Property BookmarksOutlineLevel in BookmarksOutlineLevelData is required.');
+        }
+
+    }
 }
 

@@ -81,5 +81,9 @@ export class ProtectionDataResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

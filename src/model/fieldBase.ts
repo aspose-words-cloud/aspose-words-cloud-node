@@ -74,5 +74,13 @@ export abstract class FieldBase implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.fieldCode === null || this.fieldCode === undefined)
+        {
+            throw new Error('Property FieldCode in FieldBase is required.');
+        }
+
+    }
 }
 

@@ -96,5 +96,23 @@ export class PageStatData implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.paragraphCount === null || this.paragraphCount === undefined)
+        {
+            throw new Error('Property ParagraphCount in PageStatData is required.');
+        }
+
+        if (this.wordCount === null || this.wordCount === undefined)
+        {
+            throw new Error('Property WordCount in PageStatData is required.');
+        }
+
+        if (this.pageNumber === null || this.pageNumber === undefined)
+        {
+            throw new Error('Property PageNumber in PageStatData is required.');
+        }
+
+    }
 }
 

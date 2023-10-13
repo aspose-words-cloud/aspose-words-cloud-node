@@ -104,5 +104,8 @@ export class ApiError implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+    }
 }
 

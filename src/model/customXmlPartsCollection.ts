@@ -69,5 +69,9 @@ export class CustomXmlPartsCollection extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

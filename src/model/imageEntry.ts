@@ -59,5 +59,9 @@ export class ImageEntry extends BaseEntry {
     public collectFilesContent(_resultFilesContent: Array<any>) {
         super.collectFilesContent(_resultFilesContent);
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

@@ -86,5 +86,8 @@ export class PdfEncryptionDetailsData implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+    }
 }
 

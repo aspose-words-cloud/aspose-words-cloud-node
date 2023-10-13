@@ -81,5 +81,9 @@ export class Table extends NodeLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

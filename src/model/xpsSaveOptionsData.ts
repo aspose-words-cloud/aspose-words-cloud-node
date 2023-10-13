@@ -101,5 +101,9 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

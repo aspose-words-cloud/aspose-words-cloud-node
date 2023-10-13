@@ -70,6 +70,10 @@ export class MarkdownSaveOptionsData extends TxtSaveOptionsBaseData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 
 /**

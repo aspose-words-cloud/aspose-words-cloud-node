@@ -200,6 +200,14 @@ export abstract class SaveOptionsData implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.fileName === null || this.fileName === undefined)
+        {
+            throw new Error('Property FileName in SaveOptionsData is required.');
+        }
+
+    }
 }
 
 /**

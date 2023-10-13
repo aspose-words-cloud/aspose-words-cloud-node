@@ -159,6 +159,10 @@ export class DrawingObject extends DrawingObjectLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 
 /**

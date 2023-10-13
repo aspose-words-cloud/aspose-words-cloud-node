@@ -74,5 +74,13 @@ export class ClassificationResult implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.classProbability === null || this.classProbability === undefined)
+        {
+            throw new Error('Property ClassProbability in ClassificationResult is required.');
+        }
+
+    }
 }
 

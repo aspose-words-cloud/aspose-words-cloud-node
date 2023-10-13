@@ -94,5 +94,8 @@ export class TimeZoneInfoData implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+    }
 }
 

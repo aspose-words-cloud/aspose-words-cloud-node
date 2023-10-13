@@ -90,6 +90,10 @@ export class TiffSaveOptionsData extends ImageSaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 
 /**

@@ -58,5 +58,9 @@ export class DocumentPropertyCreateOrUpdate extends DocumentPropertyBase {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

@@ -118,6 +118,24 @@ export class Document implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.isEncrypted === null || this.isEncrypted === undefined)
+        {
+            throw new Error('Property IsEncrypted in Document is required.');
+        }
+
+        if (this.isSigned === null || this.isSigned === undefined)
+        {
+            throw new Error('Property IsSigned in Document is required.');
+        }
+
+        if (this.sourceFormat === null || this.sourceFormat === undefined)
+        {
+            throw new Error('Property SourceFormat in Document is required.');
+        }
+
+    }
 }
 
 /**

@@ -79,5 +79,14 @@ export class ReplaceTextResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.matches === null || this.matches === undefined)
+        {
+            throw new Error('Property Matches in ReplaceTextResponse is required.');
+        }
+
+    }
 }
 

@@ -78,6 +78,15 @@ export class DocumentEntry extends BaseEntry {
     public collectFilesContent(_resultFilesContent: Array<any>) {
         super.collectFilesContent(_resultFilesContent);
     }
+
+    public validate() {
+        super.validate();
+        if (this.importFormatMode === null || this.importFormatMode === undefined)
+        {
+            throw new Error('Property ImportFormatMode in DocumentEntry is required.');
+        }
+
+    }
 }
 
 /**

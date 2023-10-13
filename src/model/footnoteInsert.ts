@@ -58,5 +58,9 @@ export class FootnoteInsert extends FootnoteBase {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

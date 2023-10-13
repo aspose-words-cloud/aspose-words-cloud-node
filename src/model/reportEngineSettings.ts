@@ -122,6 +122,14 @@ export class ReportEngineSettings implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.dataSourceType === null || this.dataSourceType === undefined)
+        {
+            throw new Error('Property DataSourceType in ReportEngineSettings is required.');
+        }
+
+    }
 }
 
 /**

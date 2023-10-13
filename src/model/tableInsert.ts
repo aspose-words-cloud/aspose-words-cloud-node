@@ -86,5 +86,18 @@ export class TableInsert implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.columnsCount === null || this.columnsCount === undefined)
+        {
+            throw new Error('Property ColumnsCount in TableInsert is required.');
+        }
+
+        if (this.rowsCount === null || this.rowsCount === undefined)
+        {
+            throw new Error('Property RowsCount in TableInsert is required.');
+        }
+
+    }
 }
 

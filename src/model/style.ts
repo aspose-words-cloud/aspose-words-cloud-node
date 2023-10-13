@@ -175,6 +175,35 @@ export class Style extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.builtIn === null || this.builtIn === undefined)
+        {
+            throw new Error('Property BuiltIn in Style is required.');
+        }
+
+        if (this.isQuickStyle === null || this.isQuickStyle === undefined)
+        {
+            throw new Error('Property IsQuickStyle in Style is required.');
+        }
+
+        if (this.type === null || this.type === undefined)
+        {
+            throw new Error('Property Type in Style is required.');
+        }
+
+        if (this.isHeading === null || this.isHeading === undefined)
+        {
+            throw new Error('Property IsHeading in Style is required.');
+        }
+
+        if (this.styleIdentifier === null || this.styleIdentifier === undefined)
+        {
+            throw new Error('Property StyleIdentifier in Style is required.');
+        }
+
+    }
 }
 
 /**

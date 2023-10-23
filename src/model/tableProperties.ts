@@ -206,6 +206,15 @@ export class TableProperties extends LinkElement {
 
     public validate() {
         super.validate();
+
+        this.preferredWidth?.validate();
+
+
+
+
+
+
+
     }
 }
 

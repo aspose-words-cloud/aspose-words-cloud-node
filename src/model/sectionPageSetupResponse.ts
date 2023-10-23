@@ -73,6 +73,9 @@ export class SectionPageSetupResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.pageSetup?.validate();
+
     }
 }
 

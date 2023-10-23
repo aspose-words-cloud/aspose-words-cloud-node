@@ -73,6 +73,9 @@ export class TableCellResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.cell?.validate();
+
     }
 }
 

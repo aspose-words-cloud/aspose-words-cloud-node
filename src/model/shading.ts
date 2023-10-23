@@ -88,6 +88,14 @@ export class Shading implements ModelInterface {
     }
 
     public validate() {
+
+        this.backgroundPatternColor?.validate();
+
+
+
+        this.foregroundPatternColor?.validate();
+
+
     }
 }
 

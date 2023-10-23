@@ -83,6 +83,9 @@ export class SearchResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.searchResults?.validate();
+
     }
 }
 

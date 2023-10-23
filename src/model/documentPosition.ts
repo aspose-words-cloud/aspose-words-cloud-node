@@ -78,6 +78,10 @@ export class DocumentPosition implements ModelInterface {
     }
 
     public validate() {
+
+        this.node?.validate();
+
+
     }
 }
 

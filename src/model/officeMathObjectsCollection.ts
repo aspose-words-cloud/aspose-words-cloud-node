@@ -72,6 +72,15 @@ export class OfficeMathObjectsCollection extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.list !== null && this.list !== undefined)
+        {
+            for (let elementList of this.list)
+            {
+                elementList?.validate();
+            }
+        }
+
     }
 }
 

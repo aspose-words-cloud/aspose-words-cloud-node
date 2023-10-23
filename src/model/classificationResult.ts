@@ -80,7 +80,6 @@ export class ClassificationResult implements ModelInterface {
         {
             throw new Error('Property ClassProbability in ClassificationResult is required.');
         }
-
     }
 }
 

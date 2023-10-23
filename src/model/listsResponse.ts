@@ -73,6 +73,9 @@ export class ListsResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.lists?.validate();
+
     }
 }
 

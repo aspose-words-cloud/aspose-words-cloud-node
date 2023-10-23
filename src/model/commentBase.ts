@@ -126,16 +126,24 @@ export abstract class CommentBase implements ModelInterface {
         {
             throw new Error('Property Author in CommentBase is required.');
         }
-
         if (this.initial === null || this.initial === undefined)
         {
             throw new Error('Property Initial in CommentBase is required.');
         }
-
         if (this.text === null || this.text === undefined)
         {
             throw new Error('Property Text in CommentBase is required.');
         }
+
+        this.rangeStart?.validate();
+
+
+
+        this.rangeEnd?.validate();
+
+
+
+
 
     }
 }

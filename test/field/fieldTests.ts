@@ -386,7 +386,9 @@ describe("field", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const requestPageNumber = new model.PageNumber({
                     alignment: "center",
-                    format: "{PAGE} of {NUMPAGES}"
+                    format: "{PAGE} of {NUMPAGES}",
+                    isTop: true,
+                    setPageNumberOnFirstPage: true
                 })
                 const request = new model.InsertPageNumbersRequest({
                     name: remoteFileName,
@@ -418,7 +420,9 @@ describe("field", () => {
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/" + localFileName);
             const requestPageNumber = new model.PageNumber({
                 alignment: "center",
-                format: "{PAGE} of {NUMPAGES}"
+                format: "{PAGE} of {NUMPAGES}",
+                isTop: true,
+                setPageNumberOnFirstPage: true
             })
             const request = new model.InsertPageNumbersOnlineRequest({
                 document: requestDocument,

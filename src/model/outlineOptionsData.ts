@@ -119,6 +119,15 @@ export class OutlineOptionsData implements ModelInterface {
     }
 
     public validate() {
+
+        if (this.bookmarksOutlineLevels !== null && this.bookmarksOutlineLevels !== undefined)
+        {
+            for (let elementBookmarksOutlineLevels of this.bookmarksOutlineLevels)
+            {
+                elementBookmarksOutlineLevels?.validate();
+            }
+        }
+
     }
 }
 

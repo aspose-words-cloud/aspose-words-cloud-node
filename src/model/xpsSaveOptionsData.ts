@@ -104,6 +104,11 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
 
     public validate() {
         super.validate();
+
+        this.outlineOptions?.validate();
+
+
+
     }
 }
 

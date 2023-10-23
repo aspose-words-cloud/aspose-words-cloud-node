@@ -162,7 +162,6 @@ export abstract class FormField extends NodeLink {
         {
             throw new Error('Property Name in FormField is required.');
         }
-
     }
 }
 

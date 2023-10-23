@@ -80,7 +80,6 @@ export class TableRowInsert implements ModelInterface {
         {
             throw new Error('Property ColumnsCount in TableRowInsert is required.');
         }
-
     }
 }
 

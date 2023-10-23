@@ -73,6 +73,9 @@ export class FontResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.font?.validate();
+
     }
 }
 

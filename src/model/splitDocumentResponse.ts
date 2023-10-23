@@ -73,6 +73,9 @@ export class SplitDocumentResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.splitResult?.validate();
+
     }
 }
 

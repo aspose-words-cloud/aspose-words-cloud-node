@@ -94,7 +94,6 @@ export class FormFieldCheckbox extends FormField {
         {
             throw new Error('Property Checked in FormFieldCheckbox is required.');
         }
-
     }
 }
 

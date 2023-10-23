@@ -73,6 +73,9 @@ export class ParagraphResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.paragraph?.validate();
+
     }
 }
 

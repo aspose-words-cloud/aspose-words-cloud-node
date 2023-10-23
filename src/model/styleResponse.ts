@@ -73,6 +73,9 @@ export class StyleResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.style?.validate();
+
     }
 }
 

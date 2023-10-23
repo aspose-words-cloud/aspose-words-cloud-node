@@ -70,7 +70,6 @@ export abstract class RunBase implements ModelInterface {
         {
             throw new Error('Property Text in RunBase is required.');
         }
-
     }
 }
 

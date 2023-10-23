@@ -80,7 +80,6 @@ export class PreferredWidth implements ModelInterface {
         {
             throw new Error('Property Type in PreferredWidth is required.');
         }
-
     }
 }
 

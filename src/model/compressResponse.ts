@@ -72,6 +72,9 @@ export class CompressResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.document?.validate();
+
     }
 }
 

@@ -84,6 +84,19 @@ export class Table extends NodeLink {
 
     public validate() {
         super.validate();
+
+        if (this.tableRowList !== null && this.tableRowList !== undefined)
+        {
+            for (let elementTableRowList of this.tableRowList)
+            {
+                elementTableRowList?.validate();
+            }
+        }
+
+
+
+        this.tableProperties?.validate();
+
     }
 }
 

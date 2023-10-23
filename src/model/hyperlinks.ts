@@ -72,6 +72,15 @@ export class Hyperlinks extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.hyperlinkList !== null && this.hyperlinkList !== undefined)
+        {
+            for (let elementHyperlinkList of this.hyperlinkList)
+            {
+                elementHyperlinkList?.validate();
+            }
+        }
+
     }
 }
 

@@ -90,17 +90,14 @@ export abstract class TabStopBase implements ModelInterface {
         {
             throw new Error('Property Alignment in TabStopBase is required.');
         }
-
         if (this.leader === null || this.leader === undefined)
         {
             throw new Error('Property Leader in TabStopBase is required.');
         }
-
         if (this.position === null || this.position === undefined)
         {
             throw new Error('Property Position in TabStopBase is required.');
         }
-
     }
 }
 

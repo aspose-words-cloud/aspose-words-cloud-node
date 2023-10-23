@@ -72,6 +72,15 @@ export class SearchResultsCollection extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.resultsList !== null && this.resultsList !== undefined)
+        {
+            for (let elementResultsList of this.resultsList)
+            {
+                elementResultsList?.validate();
+            }
+        }
+
     }
 }
 

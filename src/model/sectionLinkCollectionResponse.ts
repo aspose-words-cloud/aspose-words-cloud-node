@@ -73,6 +73,9 @@ export class SectionLinkCollectionResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.sections?.validate();
+
     }
 }
 

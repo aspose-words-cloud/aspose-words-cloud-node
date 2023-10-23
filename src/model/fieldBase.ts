@@ -80,7 +80,6 @@ export abstract class FieldBase implements ModelInterface {
         {
             throw new Error('Property FieldCode in FieldBase is required.');
         }
-
     }
 }
 

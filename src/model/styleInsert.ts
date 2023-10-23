@@ -80,7 +80,6 @@ export class StyleInsert implements ModelInterface {
         {
             throw new Error('Property StyleType in StyleInsert is required.');
         }
-
     }
 }
 

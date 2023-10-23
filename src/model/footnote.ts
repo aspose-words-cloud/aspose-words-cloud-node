@@ -117,6 +117,16 @@ export class Footnote extends FootnoteLink {
 
     public validate() {
         super.validate();
+
+        this.position?.validate();
+
+
+
+
+
+
+        this.content?.validate();
+
     }
 }
 

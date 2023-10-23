@@ -80,12 +80,10 @@ export class FootnotesStatData implements ModelInterface {
         {
             throw new Error('Property ParagraphCount in FootnotesStatData is required.');
         }
-
         if (this.wordCount === null || this.wordCount === undefined)
         {
             throw new Error('Property WordCount in FootnotesStatData is required.');
         }
-
     }
 }
 

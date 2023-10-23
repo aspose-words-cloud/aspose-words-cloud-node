@@ -127,6 +127,13 @@ export class Border extends LinkElement {
 
     public validate() {
         super.validate();
+
+        this.color?.validate();
+
+
+
+
+
     }
 }
 

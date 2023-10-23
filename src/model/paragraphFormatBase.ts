@@ -330,6 +330,9 @@ export abstract class ParagraphFormatBase extends LinkElement {
 
     public validate() {
         super.validate();
+
+        this.shading?.validate();
+
     }
 }
 

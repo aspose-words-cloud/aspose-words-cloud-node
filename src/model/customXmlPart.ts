@@ -86,7 +86,6 @@ export class CustomXmlPart extends CustomXmlPartLink {
         {
             throw new Error('Property Data in CustomXmlPart is required.');
         }
-
     }
 }
 

@@ -80,12 +80,10 @@ export class WatermarkText implements ModelInterface {
         {
             throw new Error('Property RotationAngle in WatermarkText is required.');
         }
-
         if (this.text === null || this.text === undefined)
         {
             throw new Error('Property Text in WatermarkText is required.');
         }
-
     }
 }
 

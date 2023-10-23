@@ -72,6 +72,9 @@ export class DocumentResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.document?.validate();
+
     }
 }
 

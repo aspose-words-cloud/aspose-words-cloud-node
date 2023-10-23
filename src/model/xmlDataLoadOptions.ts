@@ -75,7 +75,6 @@ export class XmlDataLoadOptions implements ModelInterface {
         {
             throw new Error('Property AlwaysGenerateRootObject in XmlDataLoadOptions is required.');
         }
-
     }
 }
 

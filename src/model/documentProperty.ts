@@ -95,7 +95,6 @@ export class DocumentProperty extends LinkElement {
         {
             throw new Error('Property BuiltIn in DocumentProperty is required.');
         }
-
     }
 }
 

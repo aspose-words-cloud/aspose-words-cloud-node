@@ -84,6 +84,13 @@ export class ProtectionDataResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.documentLink?.validate();
+
+
+
+        this.protectionData?.validate();
+
     }
 }
 

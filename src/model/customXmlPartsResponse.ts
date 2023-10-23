@@ -73,6 +73,9 @@ export class CustomXmlPartsResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.customXmlParts?.validate();
+
     }
 }
 

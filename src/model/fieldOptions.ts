@@ -190,6 +190,21 @@ export class FieldOptions implements ModelInterface {
     }
 
     public validate() {
+
+        this.currentUser?.validate();
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
 

@@ -73,6 +73,9 @@ export class HeaderFootersResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.headerFooters?.validate();
+
     }
 }
 

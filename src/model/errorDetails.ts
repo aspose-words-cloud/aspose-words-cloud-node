@@ -80,7 +80,6 @@ export class ErrorDetails implements ModelInterface {
         {
             throw new Error('Property ErrorDateTime in ErrorDetails is required.');
         }
-
     }
 }
 

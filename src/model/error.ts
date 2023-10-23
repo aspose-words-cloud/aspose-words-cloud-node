@@ -98,6 +98,10 @@ export class Error implements ModelInterface {
     }
 
     public validate() {
+
+        this.innerError?.validate();
+
+
     }
 }
 

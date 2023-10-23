@@ -72,6 +72,15 @@ export class CustomXmlPartsCollection extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.customXmlPartsList !== null && this.customXmlPartsList !== undefined)
+        {
+            for (let elementCustomXmlPartsList of this.customXmlPartsList)
+            {
+                elementCustomXmlPartsList?.validate();
+            }
+        }
+
     }
 }
 

@@ -72,6 +72,9 @@ export class SaveResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.saveResult?.validate();
+
     }
 }
 

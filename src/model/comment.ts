@@ -137,6 +137,21 @@ export class Comment extends CommentLink {
 
     public validate() {
         super.validate();
+
+        this.rangeStart?.validate();
+
+
+
+        this.rangeEnd?.validate();
+
+
+
+
+
+
+
+        this.content?.validate();
+
     }
 }
 

@@ -80,7 +80,6 @@ export class BookmarksOutlineLevelData implements ModelInterface {
         {
             throw new Error('Property BookmarksOutlineLevel in BookmarksOutlineLevelData is required.');
         }
-
     }
 }
 

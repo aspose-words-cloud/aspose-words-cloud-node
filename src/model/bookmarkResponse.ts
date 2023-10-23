@@ -73,6 +73,9 @@ export class BookmarkResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.bookmark?.validate();
+
     }
 }
 

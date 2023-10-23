@@ -71,7 +71,6 @@ export class ListInsert implements ModelInterface {
         {
             throw new Error('Property Template in ListInsert is required.');
         }
-
     }
 }
 

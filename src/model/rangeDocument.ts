@@ -70,7 +70,6 @@ export class RangeDocument implements ModelInterface {
         {
             throw new Error('Property DocumentName in RangeDocument is required.');
         }
-
     }
 }
 

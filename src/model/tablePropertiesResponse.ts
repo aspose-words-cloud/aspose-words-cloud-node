@@ -73,6 +73,9 @@ export class TablePropertiesResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.properties?.validate();
+
     }
 }
 

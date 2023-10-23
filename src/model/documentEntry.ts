@@ -85,7 +85,6 @@ export class DocumentEntry extends BaseEntry {
         {
             throw new Error('Property ImportFormatMode in DocumentEntry is required.');
         }
-
     }
 }
 

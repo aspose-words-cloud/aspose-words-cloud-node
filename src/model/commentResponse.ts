@@ -73,6 +73,9 @@ export class CommentResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.comment?.validate();
+
     }
 }
 

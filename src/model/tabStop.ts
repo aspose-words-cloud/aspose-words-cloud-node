@@ -74,7 +74,6 @@ export class TabStop extends TabStopBase {
         {
             throw new Error('Property IsClear in TabStop is required.');
         }
-
     }
 }
 

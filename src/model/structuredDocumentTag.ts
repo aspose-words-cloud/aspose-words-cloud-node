@@ -335,6 +335,38 @@ export class StructuredDocumentTag extends NodeLink {
 
     public validate() {
         super.validate();
+
+        if (this.listItems !== null && this.listItems !== undefined)
+        {
+            for (let elementListItems of this.listItems)
+            {
+                elementListItems?.validate();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
 

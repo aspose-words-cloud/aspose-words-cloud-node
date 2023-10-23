@@ -207,6 +207,19 @@ export abstract class SaveOptionsData implements ModelInterface {
             throw new Error('Property FileName in SaveOptionsData is required.');
         }
 
+        this.customTimeZoneInfoData?.validate();
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
 

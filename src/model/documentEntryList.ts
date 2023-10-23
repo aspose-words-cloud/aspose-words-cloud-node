@@ -96,11 +96,11 @@ export class DocumentEntryList extends BaseEntryList {
             throw new Error('Property DocumentEntries in DocumentEntryList is required.');
         }
 
-        for (let elementDocumentEntries of this.documentEntries)
+        if (this.documentEntries !== null && this.documentEntries !== undefined)
         {
-            if (elementDocumentEntries !== null && elementDocumentEntries !== undefined)
+            for (let elementDocumentEntries of this.documentEntries)
             {
-                elementDocumentEntries.validate();
+                elementDocumentEntries?.validate();
             }
         }
 

@@ -87,6 +87,9 @@ export class ReplaceTextResponse extends WordsResponse {
             throw new Error('Property Matches in ReplaceTextResponse is required.');
         }
 
+        this.documentLink?.validate();
+
+
     }
 }
 

@@ -92,6 +92,35 @@ export class AvailableFontsResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        if (this.additionalFonts !== null && this.additionalFonts !== undefined)
+        {
+            for (let elementAdditionalFonts of this.additionalFonts)
+            {
+                elementAdditionalFonts?.validate();
+            }
+        }
+
+
+
+        if (this.customFonts !== null && this.customFonts !== undefined)
+        {
+            for (let elementCustomFonts of this.customFonts)
+            {
+                elementCustomFonts?.validate();
+            }
+        }
+
+
+
+        if (this.systemFonts !== null && this.systemFonts !== undefined)
+        {
+            for (let elementSystemFonts of this.systemFonts)
+            {
+                elementSystemFonts?.validate();
+            }
+        }
+
     }
 }
 

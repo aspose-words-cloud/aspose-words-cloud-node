@@ -73,6 +73,9 @@ export class FootnoteResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.footnote?.validate();
+
     }
 }
 

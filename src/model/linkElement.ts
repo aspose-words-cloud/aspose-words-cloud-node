@@ -68,6 +68,9 @@ export class LinkElement implements ModelInterface {
     }
 
     public validate() {
+
+        this.link?.validate();
+
     }
 }
 

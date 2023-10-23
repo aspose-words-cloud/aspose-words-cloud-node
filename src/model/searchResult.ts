@@ -78,6 +78,13 @@ export class SearchResult implements ModelInterface {
     }
 
     public validate() {
+
+        this.rangeStart?.validate();
+
+
+
+        this.rangeEnd?.validate();
+
     }
 }
 

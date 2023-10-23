@@ -90,7 +90,6 @@ export class ProtectionRequest implements ModelInterface {
         {
             throw new Error('Property Password in ProtectionRequest is required.');
         }
-
     }
 }
 

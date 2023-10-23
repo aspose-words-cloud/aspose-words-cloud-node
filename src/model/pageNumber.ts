@@ -110,12 +110,10 @@ export class PageNumber implements ModelInterface {
         {
             throw new Error('Property IsTop in PageNumber is required.');
         }
-
         if (this.setPageNumberOnFirstPage === null || this.setPageNumberOnFirstPage === undefined)
         {
             throw new Error('Property SetPageNumberOnFirstPage in PageNumber is required.');
         }
-
     }
 }
 

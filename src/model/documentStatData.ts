@@ -114,15 +114,28 @@ export class DocumentStatData implements ModelInterface {
         {
             throw new Error('Property PageCount in DocumentStatData is required.');
         }
-
         if (this.paragraphCount === null || this.paragraphCount === undefined)
         {
             throw new Error('Property ParagraphCount in DocumentStatData is required.');
         }
-
         if (this.wordCount === null || this.wordCount === undefined)
         {
             throw new Error('Property WordCount in DocumentStatData is required.');
+        }
+
+        this.footnotesStatData?.validate();
+
+
+
+
+
+
+        if (this.pageStatData !== null && this.pageStatData !== undefined)
+        {
+            for (let elementPageStatData of this.pageStatData)
+            {
+                elementPageStatData?.validate();
+            }
         }
 
     }

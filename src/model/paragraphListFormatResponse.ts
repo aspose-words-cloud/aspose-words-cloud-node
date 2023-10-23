@@ -73,6 +73,9 @@ export class ParagraphListFormatResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.listFormat?.validate();
+
     }
 }
 

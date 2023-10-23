@@ -98,6 +98,14 @@ export class ClassificationResponse extends WordsResponse {
             throw new Error('Property BestClassProbability in ClassificationResponse is required.');
         }
 
+        if (this.bestResults !== null && this.bestResults !== undefined)
+        {
+            for (let elementBestResults of this.bestResults)
+            {
+                elementBestResults?.validate();
+            }
+        }
+
     }
 }
 

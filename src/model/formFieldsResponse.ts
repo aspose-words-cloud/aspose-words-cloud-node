@@ -73,6 +73,9 @@ export class FormFieldsResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.formFields?.validate();
+
     }
 }
 

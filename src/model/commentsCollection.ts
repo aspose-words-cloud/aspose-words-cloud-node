@@ -72,6 +72,15 @@ export class CommentsCollection extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.commentList !== null && this.commentList !== undefined)
+        {
+            for (let elementCommentList of this.commentList)
+            {
+                elementCommentList?.validate();
+            }
+        }
+
     }
 }
 

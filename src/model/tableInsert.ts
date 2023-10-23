@@ -92,11 +92,13 @@ export class TableInsert implements ModelInterface {
         {
             throw new Error('Property ColumnsCount in TableInsert is required.');
         }
-
         if (this.rowsCount === null || this.rowsCount === undefined)
         {
             throw new Error('Property RowsCount in TableInsert is required.');
         }
+
+        this.position?.validate();
+
 
     }
 }

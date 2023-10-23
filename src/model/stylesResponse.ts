@@ -73,6 +73,15 @@ export class StylesResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        if (this.styles !== null && this.styles !== undefined)
+        {
+            for (let elementStyles of this.styles)
+            {
+                elementStyles?.validate();
+            }
+        }
+
     }
 }
 

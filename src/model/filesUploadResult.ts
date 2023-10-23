@@ -78,6 +78,16 @@ export class FilesUploadResult implements ModelInterface {
     }
 
     public validate() {
+
+        if (this.errors !== null && this.errors !== undefined)
+        {
+            for (let elementErrors of this.errors)
+            {
+                elementErrors?.validate();
+            }
+        }
+
+
     }
 }
 

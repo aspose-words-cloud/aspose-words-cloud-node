@@ -106,6 +106,10 @@ export class ApiError implements ModelInterface {
     }
 
     public validate() {
+
+        this.innerError?.validate();
+
+
     }
 }
 

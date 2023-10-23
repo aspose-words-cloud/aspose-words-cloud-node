@@ -72,6 +72,9 @@ export class WordsApiErrorResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.error?.validate();
+
     }
 }
 

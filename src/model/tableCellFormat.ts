@@ -185,6 +185,15 @@ export class TableCellFormat extends LinkElement {
 
     public validate() {
         super.validate();
+
+        this.preferredWidth?.validate();
+
+
+
+
+
+
+
     }
 }
 

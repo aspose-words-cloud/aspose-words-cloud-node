@@ -88,6 +88,23 @@ export class SplitDocumentResult implements ModelInterface {
     }
 
     public validate() {
+
+        this.sourceDocument?.validate();
+
+
+
+        this.zippedPages?.validate();
+
+
+
+        if (this.pages !== null && this.pages !== undefined)
+        {
+            for (let elementPages of this.pages)
+            {
+                elementPages?.validate();
+            }
+        }
+
     }
 }
 

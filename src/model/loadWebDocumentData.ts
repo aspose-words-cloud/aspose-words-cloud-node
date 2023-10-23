@@ -83,6 +83,9 @@ export class LoadWebDocumentData implements ModelInterface {
             throw new Error('Property LoadingDocumentUrl in LoadWebDocumentData is required.');
         }
 
+        this.saveOptions?.validate();
+
+
     }
 }
 

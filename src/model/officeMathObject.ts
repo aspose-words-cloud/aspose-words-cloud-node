@@ -104,6 +104,12 @@ export class OfficeMathObject extends OfficeMathLink {
 
     public validate() {
         super.validate();
+
+        this.content?.validate();
+
+
+
+
     }
 }
 

@@ -82,6 +82,13 @@ export class BookmarkInsert extends BookmarkData {
 
     public validate() {
         super.validate();
+
+        this.startRange?.validate();
+
+
+
+        this.endRange?.validate();
+
     }
 }
 

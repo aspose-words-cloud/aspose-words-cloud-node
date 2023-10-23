@@ -78,6 +78,13 @@ export class ModificationOperationResult implements ModelInterface {
     }
 
     public validate() {
+
+        this.dest?.validate();
+
+
+
+        this.source?.validate();
+
     }
 }
 

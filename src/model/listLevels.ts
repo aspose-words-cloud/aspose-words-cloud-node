@@ -73,6 +73,15 @@ export class ListLevels extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.listLevel !== null && this.listLevel !== undefined)
+        {
+            for (let elementListLevel of this.listLevel)
+            {
+                elementListLevel?.validate();
+            }
+        }
+
     }
 }
 

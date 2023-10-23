@@ -73,6 +73,9 @@ export class OfficeMathObjectsResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.officeMathObjects?.validate();
+
     }
 }
 

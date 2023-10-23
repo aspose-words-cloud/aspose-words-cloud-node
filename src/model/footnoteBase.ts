@@ -101,6 +101,12 @@ export abstract class FootnoteBase implements ModelInterface {
     }
 
     public validate() {
+
+        this.position?.validate();
+
+
+
+
     }
 }
 

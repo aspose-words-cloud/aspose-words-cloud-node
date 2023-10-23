@@ -74,7 +74,6 @@ export class HeaderFooterLink extends LinkElement {
         {
             throw new Error('Property Type in HeaderFooterLink is required.');
         }
-
     }
 }
 

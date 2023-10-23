@@ -73,6 +73,9 @@ export class RunResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.run?.validate();
+
     }
 }
 

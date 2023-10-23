@@ -96,12 +96,10 @@ export class ListFormat extends LinkElement {
         {
             throw new Error('Property ListLevelNumber in ListFormat is required.');
         }
-
         if (this.isListItem === null || this.isListItem === undefined)
         {
             throw new Error('Property IsListItem in ListFormat is required.');
         }
-
     }
 }
 

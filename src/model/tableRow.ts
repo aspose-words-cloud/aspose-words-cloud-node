@@ -84,6 +84,19 @@ export class TableRow extends NodeLink {
 
     public validate() {
         super.validate();
+
+        if (this.tableCellList !== null && this.tableCellList !== undefined)
+        {
+            for (let elementTableCellList of this.tableCellList)
+            {
+                elementTableCellList?.validate();
+            }
+        }
+
+
+
+        this.rowFormat?.validate();
+
     }
 }
 

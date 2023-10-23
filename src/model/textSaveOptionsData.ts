@@ -108,7 +108,6 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
         {
             throw new Error('Property MaxCharactersPerLine in TextSaveOptionsData is required.');
         }
-
     }
 }
 

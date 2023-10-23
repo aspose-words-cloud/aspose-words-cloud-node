@@ -88,6 +88,23 @@ export class SaveResult implements ModelInterface {
     }
 
     public validate() {
+
+        this.destDocument?.validate();
+
+
+
+        this.sourceDocument?.validate();
+
+
+
+        if (this.additionalItems !== null && this.additionalItems !== undefined)
+        {
+            for (let elementAdditionalItems of this.additionalItems)
+            {
+                elementAdditionalItems?.validate();
+            }
+        }
+
     }
 }
 

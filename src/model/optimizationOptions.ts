@@ -70,7 +70,6 @@ export class OptimizationOptions implements ModelInterface {
         {
             throw new Error('Property MsWordVersion in OptimizationOptions is required.');
         }
-
     }
 }
 

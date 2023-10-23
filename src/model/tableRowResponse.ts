@@ -73,6 +73,9 @@ export class TableRowResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.row?.validate();
+
     }
 }
 

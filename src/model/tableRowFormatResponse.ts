@@ -73,6 +73,9 @@ export class TableRowFormatResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.rowFormat?.validate();
+
     }
 }
 

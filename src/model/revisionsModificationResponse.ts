@@ -72,6 +72,9 @@ export class RevisionsModificationResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.result?.validate();
+
     }
 }
 

@@ -73,6 +73,9 @@ export class TableLinkCollectionResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.tables?.validate();
+
     }
 }
 

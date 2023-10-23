@@ -92,6 +92,15 @@ export class ImageEntryList extends BaseEntryList {
 
     public validate() {
         super.validate();
+
+        if (this.imageEntries !== null && this.imageEntries !== undefined)
+        {
+            for (let elementImageEntries of this.imageEntries)
+            {
+                elementImageEntries?.validate();
+            }
+        }
+
     }
 }
 

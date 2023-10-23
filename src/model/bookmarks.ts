@@ -72,6 +72,15 @@ export class Bookmarks extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.bookmarkList !== null && this.bookmarkList !== undefined)
+        {
+            for (let elementBookmarkList of this.bookmarkList)
+            {
+                elementBookmarkList?.validate();
+            }
+        }
+
     }
 }
 

@@ -84,6 +84,13 @@ export class StatDataResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.documentLink?.validate();
+
+
+
+        this.statData?.validate();
+
     }
 }
 

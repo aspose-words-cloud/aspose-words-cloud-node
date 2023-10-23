@@ -360,6 +360,41 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
     public validate() {
         super.validate();
+
+        this.digitalSignatureDetails?.validate();
+
+
+
+
+        this.downsampleOptions?.validate();
+
+
+
+
+
+        this.encryptionDetails?.validate();
+
+
+
+
+
+
+
+
+
+
+
+        this.outlineOptions?.validate();
+
+
+
+
+
+
+
+
+
+
     }
 }
 

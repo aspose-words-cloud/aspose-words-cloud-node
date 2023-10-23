@@ -110,12 +110,10 @@ export class JsonDataLoadOptions implements ModelInterface {
         {
             throw new Error('Property AlwaysGenerateRootObject in JsonDataLoadOptions is required.');
         }
-
         if (this.simpleValueParseMode === null || this.simpleValueParseMode === undefined)
         {
             throw new Error('Property SimpleValueParseMode in JsonDataLoadOptions is required.');
         }
-
     }
 }
 

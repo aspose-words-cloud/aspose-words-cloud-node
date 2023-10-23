@@ -72,6 +72,15 @@ export class TableLinkCollection extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.tableLinkList !== null && this.tableLinkList !== undefined)
+        {
+            for (let elementTableLinkList of this.tableLinkList)
+            {
+                elementTableLinkList?.validate();
+            }
+        }
+
     }
 }
 

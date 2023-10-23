@@ -80,7 +80,6 @@ export class NewDocumentPosition implements ModelInterface {
         {
             throw new Error('Property NodeId in NewDocumentPosition is required.');
         }
-
     }
 }
 

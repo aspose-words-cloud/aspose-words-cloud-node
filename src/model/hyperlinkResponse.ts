@@ -73,6 +73,9 @@ export class HyperlinkResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.hyperlink?.validate();
+
     }
 }
 

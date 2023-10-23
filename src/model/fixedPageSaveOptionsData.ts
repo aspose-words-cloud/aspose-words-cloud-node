@@ -137,6 +137,13 @@ export abstract class FixedPageSaveOptionsData extends SaveOptionsData {
 
     public validate() {
         super.validate();
+
+        this.metafileRenderingOptions?.validate();
+
+
+
+
+
     }
 }
 

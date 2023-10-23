@@ -129,6 +129,19 @@ export class ReportEngineSettings implements ModelInterface {
             throw new Error('Property DataSourceType in ReportEngineSettings is required.');
         }
 
+        this.csvDataLoadOptions?.validate();
+
+
+
+
+
+        this.jsonDataLoadOptions?.validate();
+
+
+
+
+        this.xmlDataLoadOptions?.validate();
+
     }
 }
 

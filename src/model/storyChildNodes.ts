@@ -68,6 +68,15 @@ export class StoryChildNodes implements ModelInterface {
     }
 
     public validate() {
+
+        if (this.childNodes !== null && this.childNodes !== undefined)
+        {
+            for (let elementChildNodes of this.childNodes)
+            {
+                elementChildNodes?.validate();
+            }
+        }
+
     }
 }
 

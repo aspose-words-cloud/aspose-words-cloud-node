@@ -73,6 +73,15 @@ export class TabStopsResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        if (this.tabStops !== null && this.tabStops !== undefined)
+        {
+            for (let elementTabStops of this.tabStops)
+            {
+                elementTabStops?.validate();
+            }
+        }
+
     }
 }
 

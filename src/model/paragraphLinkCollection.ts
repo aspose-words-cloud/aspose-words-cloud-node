@@ -72,6 +72,15 @@ export class ParagraphLinkCollection extends LinkElement {
 
     public validate() {
         super.validate();
+
+        if (this.paragraphLinkList !== null && this.paragraphLinkList !== undefined)
+        {
+            for (let elementParagraphLinkList of this.paragraphLinkList)
+            {
+                elementParagraphLinkList?.validate();
+            }
+        }
+
     }
 }
 

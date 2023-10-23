@@ -72,6 +72,9 @@ export class StructuredDocumentTagResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.structuredDocumentTag?.validate();
+
     }
 }
 

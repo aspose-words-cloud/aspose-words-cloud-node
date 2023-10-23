@@ -110,12 +110,10 @@ export class StorageFile implements ModelInterface {
         {
             throw new Error('Property IsFolder in StorageFile is required.');
         }
-
         if (this.size === null || this.size === undefined)
         {
             throw new Error('Property Size in StorageFile is required.');
         }
-
     }
 }
 

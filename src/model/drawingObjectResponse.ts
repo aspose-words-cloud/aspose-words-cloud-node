@@ -72,6 +72,9 @@ export class DrawingObjectResponse extends WordsResponse {
 
     public validate() {
         super.validate();
+
+        this.drawingObject?.validate();
+
     }
 }
 

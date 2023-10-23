@@ -106,12 +106,10 @@ export class FormFieldTextInput extends FormField {
         {
             throw new Error('Property TextInputFormat in FormFieldTextInput is required.');
         }
-
         if (this.textInputDefault === null || this.textInputDefault === undefined)
         {
             throw new Error('Property TextInputDefault in FormFieldTextInput is required.');
         }
-
     }
 }
 

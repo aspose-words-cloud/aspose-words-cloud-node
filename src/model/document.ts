@@ -124,16 +124,30 @@ export class Document implements ModelInterface {
         {
             throw new Error('Property IsEncrypted in Document is required.');
         }
-
         if (this.isSigned === null || this.isSigned === undefined)
         {
             throw new Error('Property IsSigned in Document is required.');
         }
-
         if (this.sourceFormat === null || this.sourceFormat === undefined)
         {
             throw new Error('Property SourceFormat in Document is required.');
         }
+
+        if (this.links !== null && this.links !== undefined)
+        {
+            for (let elementLinks of this.links)
+            {
+                elementLinks?.validate();
+            }
+        }
+
+
+
+        this.documentProperties?.validate();
+
+
+
+
 
     }
 }

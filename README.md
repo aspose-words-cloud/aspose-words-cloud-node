@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 23.11
+
+- Support of required properties in models.
+
+
 ## Enhancements in Version 23.9
 
 - Support for class inheritance in responses from the server.

@@ -74,5 +74,16 @@ export class WatermarkText implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.rotationAngle === null || this.rotationAngle === undefined)
+        {
+            throw new Error('Property RotationAngle in WatermarkText is required.');
+        }
+        if (this.text === null || this.text === undefined)
+        {
+            throw new Error('Property Text in WatermarkText is required.');
+        }
+    }
 }
 

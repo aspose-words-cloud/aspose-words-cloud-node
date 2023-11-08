@@ -74,5 +74,12 @@ export class NewDocumentPosition implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.nodeId === null || this.nodeId === undefined)
+        {
+            throw new Error('Property NodeId in NewDocumentPosition is required.');
+        }
+    }
 }
 

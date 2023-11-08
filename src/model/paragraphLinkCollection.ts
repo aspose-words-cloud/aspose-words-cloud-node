@@ -69,5 +69,18 @@ export class ParagraphLinkCollection extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.paragraphLinkList !== null && this.paragraphLinkList !== undefined)
+        {
+            for (let elementParagraphLinkList of this.paragraphLinkList)
+            {
+                elementParagraphLinkList?.validate();
+            }
+        }
+
+    }
 }
 

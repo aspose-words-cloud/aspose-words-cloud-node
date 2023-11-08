@@ -58,5 +58,9 @@ export class StructuredDocumentTagUpdate extends StructuredDocumentTag {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

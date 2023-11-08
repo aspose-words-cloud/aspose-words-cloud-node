@@ -101,5 +101,13 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.maxCharactersPerLine === null || this.maxCharactersPerLine === undefined)
+        {
+            throw new Error('Property MaxCharactersPerLine in TextSaveOptionsData is required.');
+        }
+    }
 }
 

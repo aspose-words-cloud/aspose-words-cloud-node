@@ -69,5 +69,18 @@ export class Lists extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.listInfo !== null && this.listInfo !== undefined)
+        {
+            for (let elementListInfo of this.listInfo)
+            {
+                elementListInfo?.validate();
+            }
+        }
+
+    }
 }
 

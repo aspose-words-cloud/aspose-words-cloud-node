@@ -70,5 +70,12 @@ export class CustomXmlPartsResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.customXmlParts?.validate();
+
+    }
 }
 

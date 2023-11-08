@@ -99,6 +99,10 @@ export abstract class TxtSaveOptionsBaseData extends SaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 
 /**

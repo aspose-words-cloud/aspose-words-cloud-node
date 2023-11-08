@@ -124,6 +124,17 @@ export class Border extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.color?.validate();
+
+
+
+
+
+    }
 }
 
 /**

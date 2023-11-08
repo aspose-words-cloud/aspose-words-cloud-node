@@ -78,5 +78,13 @@ export class FormFieldDropDown extends FormField {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.dropDownItems === null || this.dropDownItems === undefined)
+        {
+            throw new Error('Property DropDownItems in FormFieldDropDown is required.');
+        }
+    }
 }
 

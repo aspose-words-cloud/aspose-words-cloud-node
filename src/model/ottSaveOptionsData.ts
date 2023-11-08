@@ -60,5 +60,9 @@ export class OttSaveOptionsData extends OdtSaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

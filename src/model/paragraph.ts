@@ -67,5 +67,18 @@ export class Paragraph extends NodeLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.childNodes !== null && this.childNodes !== undefined)
+        {
+            for (let elementChildNodes of this.childNodes)
+            {
+                elementChildNodes?.validate();
+            }
+        }
+
+    }
 }
 

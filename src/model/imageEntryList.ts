@@ -89,5 +89,22 @@ export class ImageEntryList extends BaseEntryList {
         }
 
     }
+
+    public validate() {
+        super.validate();
+        if (this.imageEntries === null || this.imageEntries === undefined)
+        {
+            throw new Error('Property ImageEntries in ImageEntryList is required.');
+        }
+
+        if (this.imageEntries !== null && this.imageEntries !== undefined)
+        {
+            for (let elementImageEntries of this.imageEntries)
+            {
+                elementImageEntries?.validate();
+            }
+        }
+
+    }
 }
 

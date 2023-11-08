@@ -60,5 +60,9 @@ export class XamlFlowPackSaveOptionsData extends XamlFlowSaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

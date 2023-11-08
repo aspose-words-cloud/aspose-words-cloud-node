@@ -96,5 +96,12 @@ export class Error implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+
+        this.innerError?.validate();
+
+
+    }
 }
 

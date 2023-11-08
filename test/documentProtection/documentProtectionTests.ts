@@ -80,7 +80,8 @@ describe("documentProtection", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const requestProtectionRequest = new model.ProtectionRequest({
-                newPassword: "123"
+                password: "123",
+                protectionType: "ReadOnly"
             })
             const request = new model.ProtectDocumentOnlineRequest({
                 document: requestDocument,

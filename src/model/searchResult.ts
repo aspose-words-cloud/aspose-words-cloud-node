@@ -76,5 +76,15 @@ export class SearchResult implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+
+        this.rangeStart?.validate();
+
+
+
+        this.rangeEnd?.validate();
+
+    }
 }
 

@@ -74,5 +74,12 @@ export class ErrorDetails implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.errorDateTime === null || this.errorDateTime === undefined)
+        {
+            throw new Error('Property ErrorDateTime in ErrorDetails is required.');
+        }
+    }
 }
 

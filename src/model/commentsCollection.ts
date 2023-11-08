@@ -69,5 +69,18 @@ export class CommentsCollection extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.commentList !== null && this.commentList !== undefined)
+        {
+            for (let elementCommentList of this.commentList)
+            {
+                elementCommentList?.validate();
+            }
+        }
+
+    }
 }
 

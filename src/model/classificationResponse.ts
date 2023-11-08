@@ -90,5 +90,22 @@ export class ClassificationResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.bestClassProbability === null || this.bestClassProbability === undefined)
+        {
+            throw new Error('Property BestClassProbability in ClassificationResponse is required.');
+        }
+
+        if (this.bestResults !== null && this.bestResults !== undefined)
+        {
+            for (let elementBestResults of this.bestResults)
+            {
+                elementBestResults?.validate();
+            }
+        }
+
+    }
 }
 

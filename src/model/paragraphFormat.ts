@@ -77,5 +77,9 @@ export class ParagraphFormat extends ParagraphFormatBase {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

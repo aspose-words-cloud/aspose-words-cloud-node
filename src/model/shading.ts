@@ -86,6 +86,17 @@ export class Shading implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+
+        this.backgroundPatternColor?.validate();
+
+
+
+        this.foregroundPatternColor?.validate();
+
+
+    }
 }
 
 /**

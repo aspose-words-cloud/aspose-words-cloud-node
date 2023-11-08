@@ -70,5 +70,12 @@ export class DrawingObjectsResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.drawingObjects?.validate();
+
+    }
 }
 

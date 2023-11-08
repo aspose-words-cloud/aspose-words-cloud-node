@@ -155,5 +155,13 @@ export abstract class FormField extends NodeLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.name === null || this.name === undefined)
+        {
+            throw new Error('Property Name in FormField is required.');
+        }
+    }
 }
 

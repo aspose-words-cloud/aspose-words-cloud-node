@@ -466,6 +466,57 @@ export class Font extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.border?.validate();
+
+
+
+        this.color?.validate();
+
+
+
+
+
+
+
+
+        this.highlightColor?.validate();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        this.underlineColor?.validate();
+
+    }
 }
 
 /**

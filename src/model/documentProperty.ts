@@ -88,5 +88,13 @@ export class DocumentProperty extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.builtIn === null || this.builtIn === undefined)
+        {
+            throw new Error('Property BuiltIn in DocumentProperty is required.');
+        }
+    }
 }
 

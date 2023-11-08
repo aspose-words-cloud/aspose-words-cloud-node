@@ -84,6 +84,21 @@ export abstract class TabStopBase implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.alignment === null || this.alignment === undefined)
+        {
+            throw new Error('Property Alignment in TabStopBase is required.');
+        }
+        if (this.leader === null || this.leader === undefined)
+        {
+            throw new Error('Property Leader in TabStopBase is required.');
+        }
+        if (this.position === null || this.position === undefined)
+        {
+            throw new Error('Property Position in TabStopBase is required.');
+        }
+    }
 }
 
 /**

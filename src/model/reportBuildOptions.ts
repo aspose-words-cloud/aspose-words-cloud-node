@@ -31,5 +31,6 @@ export enum ReportBuildOptions {
     RemoveEmptyParagraphs = 'RemoveEmptyParagraphs' as any,
     InlineErrorMessages = 'InlineErrorMessages' as any,
     UseLegacyHeaderFooterVisiting = 'UseLegacyHeaderFooterVisiting' as any,
-    RespectJpegExifOrientation = 'RespectJpegExifOrientation' as any
+    RespectJpegExifOrientation = 'RespectJpegExifOrientation' as any,
+    UpdateFieldsSyntaxAware = 'UpdateFieldsSyntaxAware' as any
 }

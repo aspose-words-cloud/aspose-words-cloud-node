@@ -106,5 +106,22 @@ export class CompareData implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.author === null || this.author === undefined)
+        {
+            throw new Error('Property Author in CompareData is required.');
+        }
+        if (this.comparingWithDocument === null || this.comparingWithDocument === undefined)
+        {
+            throw new Error('Property ComparingWithDocument in CompareData is required.');
+        }
+
+        this.compareOptions?.validate();
+
+
+
+
+    }
 }
 

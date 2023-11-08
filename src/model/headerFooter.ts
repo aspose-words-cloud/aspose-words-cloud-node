@@ -91,5 +91,26 @@ export class HeaderFooter extends HeaderFooterLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.childNodes !== null && this.childNodes !== undefined)
+        {
+            for (let elementChildNodes of this.childNodes)
+            {
+                elementChildNodes?.validate();
+            }
+        }
+
+
+
+        this.paragraphs?.validate();
+
+
+
+        this.drawingObjects?.validate();
+
+    }
 }
 

@@ -66,5 +66,17 @@ export class StoryChildNodes implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+
+        if (this.childNodes !== null && this.childNodes !== undefined)
+        {
+            for (let elementChildNodes of this.childNodes)
+            {
+                elementChildNodes?.validate();
+            }
+        }
+
+    }
 }
 

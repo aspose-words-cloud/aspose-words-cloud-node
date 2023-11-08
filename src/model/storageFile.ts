@@ -104,5 +104,16 @@ export class StorageFile implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.isFolder === null || this.isFolder === undefined)
+        {
+            throw new Error('Property IsFolder in StorageFile is required.');
+        }
+        if (this.size === null || this.size === undefined)
+        {
+            throw new Error('Property Size in StorageFile is required.');
+        }
+    }
 }
 

@@ -58,5 +58,9 @@ export class RunInsert extends RunBase {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

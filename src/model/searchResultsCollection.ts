@@ -69,5 +69,18 @@ export class SearchResultsCollection extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.resultsList !== null && this.resultsList !== undefined)
+        {
+            for (let elementResultsList of this.resultsList)
+            {
+                elementResultsList?.validate();
+            }
+        }
+
+    }
 }
 

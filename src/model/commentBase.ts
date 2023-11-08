@@ -120,5 +120,39 @@ export abstract class CommentBase implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.rangeStart === null || this.rangeStart === undefined)
+        {
+            throw new Error('Property RangeStart in CommentBase is required.');
+        }
+        if (this.rangeEnd === null || this.rangeEnd === undefined)
+        {
+            throw new Error('Property RangeEnd in CommentBase is required.');
+        }
+        if (this.author === null || this.author === undefined)
+        {
+            throw new Error('Property Author in CommentBase is required.');
+        }
+        if (this.initial === null || this.initial === undefined)
+        {
+            throw new Error('Property Initial in CommentBase is required.');
+        }
+        if (this.text === null || this.text === undefined)
+        {
+            throw new Error('Property Text in CommentBase is required.');
+        }
+
+        this.rangeStart?.validate();
+
+
+
+        this.rangeEnd?.validate();
+
+
+
+
+
+    }
 }
 

@@ -58,5 +58,9 @@ export class CustomXmlPartInsert extends CustomXmlPart {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

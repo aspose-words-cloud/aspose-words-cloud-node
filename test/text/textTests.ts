@@ -51,7 +51,10 @@ describe("text", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const requestReplaceText = new model.ReplaceTextParameters({
                     oldValue: "Testing",
-                    newValue: "Aspose testing"
+                    newValue: "Aspose testing",
+                    isMatchCase: true,
+                    isMatchWholeWord: false,
+                    isOldValueRegex: false
                 })
                 const request = new model.ReplaceTextRequest({
                     name: remoteFileName,
@@ -82,7 +85,10 @@ describe("text", () => {
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
             const requestReplaceText = new model.ReplaceTextParameters({
                 oldValue: "aspose",
-                newValue: "aspose new"
+                newValue: "aspose new",
+                isMatchCase: true,
+                isMatchWholeWord: false,
+                isOldValueRegex: false
             })
             const request = new model.ReplaceTextOnlineRequest({
                 document: requestDocument,

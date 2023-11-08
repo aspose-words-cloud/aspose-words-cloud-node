@@ -101,6 +101,16 @@ export class OfficeMathObject extends OfficeMathLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.content?.validate();
+
+
+
+
+    }
 }
 
 /**

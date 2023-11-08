@@ -69,5 +69,18 @@ export class SectionLinkCollection extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.sectionLinkList !== null && this.sectionLinkList !== undefined)
+        {
+            for (let elementSectionLinkList of this.sectionLinkList)
+            {
+                elementSectionLinkList?.validate();
+            }
+        }
+
+    }
 }
 

@@ -60,5 +60,9 @@ export class DotSaveOptionsData extends DocSaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

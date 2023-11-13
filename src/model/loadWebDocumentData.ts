@@ -76,5 +76,16 @@ export class LoadWebDocumentData implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.loadingDocumentUrl === null || this.loadingDocumentUrl === undefined)
+        {
+            throw new Error('Property LoadingDocumentUrl in LoadWebDocumentData is required.');
+        }
+
+        this.saveOptions?.validate();
+
+
+    }
 }
 

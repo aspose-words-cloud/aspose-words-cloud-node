@@ -66,5 +66,17 @@ export class FilesList implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+
+        if (this.value !== null && this.value !== undefined)
+        {
+            for (let elementValue of this.value)
+            {
+                elementValue?.validate();
+            }
+        }
+
+    }
 }
 

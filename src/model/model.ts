@@ -81,7 +81,6 @@ import * as importedDocumentPosition from './documentPosition';
 import * as importedDocumentProperties from './documentProperties';
 import * as importedDocumentPropertiesResponse from './documentPropertiesResponse';
 import * as importedDocumentProperty from './documentProperty';
-import * as importedDocumentPropertyBase from './documentPropertyBase';
 import * as importedDocumentPropertyCreateOrUpdate from './documentPropertyCreateOrUpdate';
 import * as importedDocumentPropertyResponse from './documentPropertyResponse';
 import * as importedDocumentResponse from './documentResponse';
@@ -254,6 +253,7 @@ import * as importedStatDataResponse from './statDataResponse';
 import * as importedStorageFile from './storageFile';
 import * as importedStoryChildNodes from './storyChildNodes';
 import * as importedStructuredDocumentTag from './structuredDocumentTag';
+import * as importedStructuredDocumentTagBase from './structuredDocumentTagBase';
 import * as importedStructuredDocumentTagCollection from './structuredDocumentTagCollection';
 import * as importedStructuredDocumentTagInsert from './structuredDocumentTagInsert';
 import * as importedStructuredDocumentTagListItem from './structuredDocumentTagListItem';
@@ -355,7 +355,6 @@ export * from './documentPosition';
 export * from './documentProperties';
 export * from './documentPropertiesResponse';
 export * from './documentProperty';
-export * from './documentPropertyBase';
 export * from './documentPropertyCreateOrUpdate';
 export * from './documentPropertyResponse';
 export * from './documentResponse';
@@ -528,6 +527,7 @@ export * from './statDataResponse';
 export * from './storageFile';
 export * from './storyChildNodes';
 export * from './structuredDocumentTag';
+export * from './structuredDocumentTagBase';
 export * from './structuredDocumentTagCollection';
 export * from './structuredDocumentTagInsert';
 export * from './structuredDocumentTagListItem';
@@ -685,11 +685,13 @@ const enumsMap = {
     "SaveOptionsData.DmlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.DmlRenderingModeEnum,
     "SaveOptionsData.ImlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.ImlRenderingModeEnum,
     "Shading.TextureEnum": importedShading.Shading.TextureEnum,
-    "StructuredDocumentTag.AppearanceEnum": importedStructuredDocumentTag.StructuredDocumentTag.AppearanceEnum,
-    "StructuredDocumentTag.DateStorageFormatEnum": importedStructuredDocumentTag.StructuredDocumentTag.DateStorageFormatEnum,
-    "StructuredDocumentTag.CalendarTypeEnum": importedStructuredDocumentTag.StructuredDocumentTag.CalendarTypeEnum,
     "StructuredDocumentTag.LevelEnum": importedStructuredDocumentTag.StructuredDocumentTag.LevelEnum,
     "StructuredDocumentTag.SdtTypeEnum": importedStructuredDocumentTag.StructuredDocumentTag.SdtTypeEnum,
+    "StructuredDocumentTagBase.AppearanceEnum": importedStructuredDocumentTagBase.StructuredDocumentTagBase.AppearanceEnum,
+    "StructuredDocumentTagBase.DateStorageFormatEnum": importedStructuredDocumentTagBase.StructuredDocumentTagBase.DateStorageFormatEnum,
+    "StructuredDocumentTagBase.CalendarTypeEnum": importedStructuredDocumentTagBase.StructuredDocumentTagBase.CalendarTypeEnum,
+    "StructuredDocumentTagInsert.LevelEnum": importedStructuredDocumentTagInsert.StructuredDocumentTagInsert.LevelEnum,
+    "StructuredDocumentTagInsert.SdtTypeEnum": importedStructuredDocumentTagInsert.StructuredDocumentTagInsert.SdtTypeEnum,
     "Style.TypeEnum": importedStyle.Style.TypeEnum,
     "Style.StyleIdentifierEnum": importedStyle.Style.StyleIdentifierEnum,
     "StyleInsert.StyleTypeEnum": importedStyleInsert.StyleInsert.StyleTypeEnum,
@@ -1064,7 +1066,6 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling acceptAllRevisions.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -1169,7 +1170,6 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling acceptAllRevisionsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -1310,7 +1310,6 @@ export class AppendDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling appendDocument.');
         }
-
         // verify required parameter 'this.documentList' is not undefined
         if (this.documentList === undefined) {
             throw new Error('Required parameter "this.documentList" was undefined when calling appendDocument.');
@@ -1320,6 +1319,7 @@ export class AppendDocumentRequest implements RequestInterface {
         if (this.documentList === null) {
             throw new Error('Required parameter "this.documentList" was null when calling appendDocument.');
         }
+        this.documentList?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -1447,7 +1447,6 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling appendDocumentOnline.');
         }
-
         // verify required parameter 'this.documentList' is not undefined
         if (this.documentList === undefined) {
             throw new Error('Required parameter "this.documentList" was undefined when calling appendDocumentOnline.');
@@ -1457,6 +1456,7 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         if (this.documentList === null) {
             throw new Error('Required parameter "this.documentList" was null when calling appendDocumentOnline.');
         }
+        this.documentList?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -1611,7 +1611,6 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling applyStyleToDocumentElement.');
         }
-
         // verify required parameter 'this.styledNodePath' is not undefined
         if (this.styledNodePath === undefined) {
             throw new Error('Required parameter "this.styledNodePath" was undefined when calling applyStyleToDocumentElement.');
@@ -1621,7 +1620,6 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         if (this.styledNodePath === null) {
             throw new Error('Required parameter "this.styledNodePath" was null when calling applyStyleToDocumentElement.');
         }
-
         // verify required parameter 'this.styleApply' is not undefined
         if (this.styleApply === undefined) {
             throw new Error('Required parameter "this.styleApply" was undefined when calling applyStyleToDocumentElement.');
@@ -1631,6 +1629,7 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         if (this.styleApply === null) {
             throw new Error('Required parameter "this.styleApply" was null when calling applyStyleToDocumentElement.');
         }
+        this.styleApply?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -1763,7 +1762,6 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling applyStyleToDocumentElementOnline.');
         }
-
         // verify required parameter 'this.styledNodePath' is not undefined
         if (this.styledNodePath === undefined) {
             throw new Error('Required parameter "this.styledNodePath" was undefined when calling applyStyleToDocumentElementOnline.');
@@ -1773,7 +1771,6 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         if (this.styledNodePath === null) {
             throw new Error('Required parameter "this.styledNodePath" was null when calling applyStyleToDocumentElementOnline.');
         }
-
         // verify required parameter 'this.styleApply' is not undefined
         if (this.styleApply === undefined) {
             throw new Error('Required parameter "this.styleApply" was undefined when calling applyStyleToDocumentElementOnline.');
@@ -1783,6 +1780,7 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         if (this.styleApply === null) {
             throw new Error('Required parameter "this.styleApply" was null when calling applyStyleToDocumentElementOnline.');
         }
+        this.styleApply?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -1925,7 +1923,6 @@ export class BuildReportRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling buildReport.');
         }
-
         // verify required parameter 'this.data' is not undefined
         if (this.data === undefined) {
             throw new Error('Required parameter "this.data" was undefined when calling buildReport.');
@@ -1935,7 +1932,6 @@ export class BuildReportRequest implements RequestInterface {
         if (this.data === null) {
             throw new Error('Required parameter "this.data" was null when calling buildReport.');
         }
-
         // verify required parameter 'this.reportEngineSettings' is not undefined
         if (this.reportEngineSettings === undefined) {
             throw new Error('Required parameter "this.reportEngineSettings" was undefined when calling buildReport.');
@@ -1945,6 +1941,7 @@ export class BuildReportRequest implements RequestInterface {
         if (this.reportEngineSettings === null) {
             throw new Error('Required parameter "this.reportEngineSettings" was null when calling buildReport.');
         }
+        this.reportEngineSettings?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -2052,7 +2049,6 @@ export class BuildReportOnlineRequest implements RequestInterface {
         if (this.template === null) {
             throw new Error('Required parameter "this.template" was null when calling buildReportOnline.');
         }
-
         // verify required parameter 'this.data' is not undefined
         if (this.data === undefined) {
             throw new Error('Required parameter "this.data" was undefined when calling buildReportOnline.');
@@ -2062,7 +2058,6 @@ export class BuildReportOnlineRequest implements RequestInterface {
         if (this.data === null) {
             throw new Error('Required parameter "this.data" was null when calling buildReportOnline.');
         }
-
         // verify required parameter 'this.reportEngineSettings' is not undefined
         if (this.reportEngineSettings === undefined) {
             throw new Error('Required parameter "this.reportEngineSettings" was undefined when calling buildReportOnline.');
@@ -2072,6 +2067,7 @@ export class BuildReportOnlineRequest implements RequestInterface {
         if (this.reportEngineSettings === null) {
             throw new Error('Required parameter "this.reportEngineSettings" was null when calling buildReportOnline.');
         }
+        this.reportEngineSettings?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
@@ -2167,7 +2163,6 @@ export class ClassifyRequest implements RequestInterface {
         if (this.text === null) {
             throw new Error('Required parameter "this.text" was null when calling classify.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
         if (this.text !== undefined) {
             formParams.push(['Text', this.text, 'text/plain']);
@@ -2286,7 +2281,6 @@ export class ClassifyDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling classifyDocument.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -2397,7 +2391,6 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling classifyDocumentOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -2525,7 +2518,6 @@ export class CompareDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling compareDocument.');
         }
-
         // verify required parameter 'this.compareData' is not undefined
         if (this.compareData === undefined) {
             throw new Error('Required parameter "this.compareData" was undefined when calling compareDocument.');
@@ -2535,6 +2527,7 @@ export class CompareDocumentRequest implements RequestInterface {
         if (this.compareData === null) {
             throw new Error('Required parameter "this.compareData" was null when calling compareDocument.');
         }
+        this.compareData?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -2660,7 +2653,6 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling compareDocumentOnline.');
         }
-
         // verify required parameter 'this.compareData' is not undefined
         if (this.compareData === undefined) {
             throw new Error('Required parameter "this.compareData" was undefined when calling compareDocumentOnline.');
@@ -2670,6 +2662,7 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         if (this.compareData === null) {
             throw new Error('Required parameter "this.compareData" was null when calling compareDocumentOnline.');
         }
+        this.compareData?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -2810,7 +2803,6 @@ export class CompressDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling compressDocument.');
         }
-
         // verify required parameter 'this.compressOptions' is not undefined
         if (this.compressOptions === undefined) {
             throw new Error('Required parameter "this.compressOptions" was undefined when calling compressDocument.');
@@ -2820,6 +2812,7 @@ export class CompressDocumentRequest implements RequestInterface {
         if (this.compressOptions === null) {
             throw new Error('Required parameter "this.compressOptions" was null when calling compressDocument.');
         }
+        this.compressOptions?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -2935,7 +2928,6 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling compressDocumentOnline.');
         }
-
         // verify required parameter 'this.compressOptions' is not undefined
         if (this.compressOptions === undefined) {
             throw new Error('Required parameter "this.compressOptions" was undefined when calling compressDocumentOnline.');
@@ -2945,6 +2937,7 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         if (this.compressOptions === null) {
             throw new Error('Required parameter "this.compressOptions" was null when calling compressDocumentOnline.');
         }
+        this.compressOptions?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -3084,7 +3077,6 @@ export class ConvertDocumentRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling convertDocument.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling convertDocument.');
@@ -3094,7 +3086,6 @@ export class ConvertDocumentRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling convertDocument.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", this.fileNameFieldValue, _encryptor);
@@ -3205,7 +3196,6 @@ export class CopyFileRequest implements RequestInterface {
         if (this.destPath === null) {
             throw new Error('Required parameter "this.destPath" was null when calling copyFile.');
         }
-
         // verify required parameter 'this.srcPath' is not undefined
         if (this.srcPath === undefined) {
             throw new Error('Required parameter "this.srcPath" was undefined when calling copyFile.');
@@ -3215,7 +3205,6 @@ export class CopyFileRequest implements RequestInterface {
         if (this.srcPath === null) {
             throw new Error('Required parameter "this.srcPath" was null when calling copyFile.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
@@ -3314,7 +3303,6 @@ export class CopyFolderRequest implements RequestInterface {
         if (this.destPath === null) {
             throw new Error('Required parameter "this.destPath" was null when calling copyFolder.');
         }
-
         // verify required parameter 'this.srcPath' is not undefined
         if (this.srcPath === undefined) {
             throw new Error('Required parameter "this.srcPath" was undefined when calling copyFolder.');
@@ -3324,7 +3312,6 @@ export class CopyFolderRequest implements RequestInterface {
         if (this.srcPath === null) {
             throw new Error('Required parameter "this.srcPath" was null when calling copyFolder.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
@@ -3452,7 +3439,6 @@ export class CopyStyleRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling copyStyle.');
         }
-
         // verify required parameter 'this.styleCopy' is not undefined
         if (this.styleCopy === undefined) {
             throw new Error('Required parameter "this.styleCopy" was undefined when calling copyStyle.');
@@ -3462,6 +3448,7 @@ export class CopyStyleRequest implements RequestInterface {
         if (this.styleCopy === null) {
             throw new Error('Required parameter "this.styleCopy" was null when calling copyStyle.');
         }
+        this.styleCopy?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -3588,7 +3575,6 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling copyStyleOnline.');
         }
-
         // verify required parameter 'this.styleCopy' is not undefined
         if (this.styleCopy === undefined) {
             throw new Error('Required parameter "this.styleCopy" was undefined when calling copyStyleOnline.');
@@ -3598,6 +3584,7 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         if (this.styleCopy === null) {
             throw new Error('Required parameter "this.styleCopy" was null when calling copyStyleOnline.');
         }
+        this.styleCopy?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -3745,7 +3732,6 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling copyStylesFromTemplate.');
         }
-
         // verify required parameter 'this.templateName' is not undefined
         if (this.templateName === undefined) {
             throw new Error('Required parameter "this.templateName" was undefined when calling copyStylesFromTemplate.');
@@ -3755,7 +3741,6 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
         if (this.templateName === null) {
             throw new Error('Required parameter "this.templateName" was null when calling copyStylesFromTemplate.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "templateName", this.templateName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -3854,7 +3839,6 @@ export class CreateDocumentRequest implements RequestInterface {
         if (this.fileName === null) {
             throw new Error('Required parameter "this.fileName" was null when calling createDocument.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fileName", this.fileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -3942,7 +3926,6 @@ export class CreateFolderRequest implements RequestInterface {
         if (this.path === null) {
             throw new Error('Required parameter "this.path" was null when calling createFolder.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -4074,7 +4057,6 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling createOrUpdateDocumentProperty.');
         }
-
         // verify required parameter 'this.propertyName' is not undefined
         if (this.propertyName === undefined) {
             throw new Error('Required parameter "this.propertyName" was undefined when calling createOrUpdateDocumentProperty.');
@@ -4084,7 +4066,6 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         if (this.propertyName === null) {
             throw new Error('Required parameter "this.propertyName" was null when calling createOrUpdateDocumentProperty.');
         }
-
         // verify required parameter 'this.property' is not undefined
         if (this.property === undefined) {
             throw new Error('Required parameter "this.property" was undefined when calling createOrUpdateDocumentProperty.');
@@ -4094,6 +4075,7 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         if (this.property === null) {
             throw new Error('Required parameter "this.property" was null when calling createOrUpdateDocumentProperty.');
         }
+        this.property?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -4226,7 +4208,6 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling createOrUpdateDocumentPropertyOnline.');
         }
-
         // verify required parameter 'this.propertyName' is not undefined
         if (this.propertyName === undefined) {
             throw new Error('Required parameter "this.propertyName" was undefined when calling createOrUpdateDocumentPropertyOnline.');
@@ -4236,7 +4217,6 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         if (this.propertyName === null) {
             throw new Error('Required parameter "this.propertyName" was null when calling createOrUpdateDocumentPropertyOnline.');
         }
-
         // verify required parameter 'this.property' is not undefined
         if (this.property === undefined) {
             throw new Error('Required parameter "this.property" was undefined when calling createOrUpdateDocumentPropertyOnline.');
@@ -4246,6 +4226,7 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         if (this.property === null) {
             throw new Error('Required parameter "this.property" was null when calling createOrUpdateDocumentPropertyOnline.');
         }
+        this.property?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -4390,7 +4371,6 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteAllParagraphTabStops.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteAllParagraphTabStops.');
@@ -4400,7 +4380,6 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteAllParagraphTabStops.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -4517,7 +4496,6 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteAllParagraphTabStopsOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteAllParagraphTabStopsOnline.');
@@ -4527,7 +4505,6 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteAllParagraphTabStopsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -4669,7 +4646,6 @@ export class DeleteBookmarkRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteBookmark.');
         }
-
         // verify required parameter 'this.bookmarkName' is not undefined
         if (this.bookmarkName === undefined) {
             throw new Error('Required parameter "this.bookmarkName" was undefined when calling deleteBookmark.');
@@ -4679,7 +4655,6 @@ export class DeleteBookmarkRequest implements RequestInterface {
         if (this.bookmarkName === null) {
             throw new Error('Required parameter "this.bookmarkName" was null when calling deleteBookmark.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -4802,7 +4777,6 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteBookmarkOnline.');
         }
-
         // verify required parameter 'this.bookmarkName' is not undefined
         if (this.bookmarkName === undefined) {
             throw new Error('Required parameter "this.bookmarkName" was undefined when calling deleteBookmarkOnline.');
@@ -4812,7 +4786,6 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
         if (this.bookmarkName === null) {
             throw new Error('Required parameter "this.bookmarkName" was null when calling deleteBookmarkOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -4941,7 +4914,6 @@ export class DeleteBookmarksRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteBookmarks.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -5058,7 +5030,6 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteBookmarksOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -5200,7 +5171,6 @@ export class DeleteBorderRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteBorder.');
         }
-
         // verify required parameter 'this.borderType' is not undefined
         if (this.borderType === undefined) {
             throw new Error('Required parameter "this.borderType" was undefined when calling deleteBorder.');
@@ -5210,7 +5180,6 @@ export class DeleteBorderRequest implements RequestInterface {
         if (this.borderType === null) {
             throw new Error('Required parameter "this.borderType" was null when calling deleteBorder.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -5340,7 +5309,6 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteBorderOnline.');
         }
-
         // verify required parameter 'this.borderType' is not undefined
         if (this.borderType === undefined) {
             throw new Error('Required parameter "this.borderType" was undefined when calling deleteBorderOnline.');
@@ -5350,7 +5318,6 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
         if (this.borderType === null) {
             throw new Error('Required parameter "this.borderType" was null when calling deleteBorderOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -5495,7 +5462,6 @@ export class DeleteBordersRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteBorders.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -5619,7 +5585,6 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteBordersOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -5763,7 +5728,6 @@ export class DeleteCommentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteComment.');
         }
-
         // verify required parameter 'this.commentIndex' is not undefined
         if (this.commentIndex === undefined) {
             throw new Error('Required parameter "this.commentIndex" was undefined when calling deleteComment.');
@@ -5773,7 +5737,6 @@ export class DeleteCommentRequest implements RequestInterface {
         if (this.commentIndex === null) {
             throw new Error('Required parameter "this.commentIndex" was null when calling deleteComment.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -5896,7 +5859,6 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteCommentOnline.');
         }
-
         // verify required parameter 'this.commentIndex' is not undefined
         if (this.commentIndex === undefined) {
             throw new Error('Required parameter "this.commentIndex" was undefined when calling deleteCommentOnline.');
@@ -5906,7 +5868,6 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
         if (this.commentIndex === null) {
             throw new Error('Required parameter "this.commentIndex" was null when calling deleteCommentOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -6035,7 +5996,6 @@ export class DeleteCommentsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteComments.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -6152,7 +6112,6 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteCommentsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -6287,7 +6246,6 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteCustomXmlPart.');
         }
-
         // verify required parameter 'this.customXmlPartIndex' is not undefined
         if (this.customXmlPartIndex === undefined) {
             throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling deleteCustomXmlPart.');
@@ -6297,7 +6255,6 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
         if (this.customXmlPartIndex === null) {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling deleteCustomXmlPart.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -6420,7 +6377,6 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteCustomXmlPartOnline.');
         }
-
         // verify required parameter 'this.customXmlPartIndex' is not undefined
         if (this.customXmlPartIndex === undefined) {
             throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling deleteCustomXmlPartOnline.');
@@ -6430,7 +6386,6 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPartIndex === null) {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling deleteCustomXmlPartOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -6559,7 +6514,6 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteCustomXmlParts.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -6676,7 +6630,6 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteCustomXmlPartsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -6811,7 +6764,6 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteDocumentProperty.');
         }
-
         // verify required parameter 'this.propertyName' is not undefined
         if (this.propertyName === undefined) {
             throw new Error('Required parameter "this.propertyName" was undefined when calling deleteDocumentProperty.');
@@ -6821,7 +6773,6 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
         if (this.propertyName === null) {
             throw new Error('Required parameter "this.propertyName" was null when calling deleteDocumentProperty.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -6944,7 +6895,6 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteDocumentPropertyOnline.');
         }
-
         // verify required parameter 'this.propertyName' is not undefined
         if (this.propertyName === undefined) {
             throw new Error('Required parameter "this.propertyName" was undefined when calling deleteDocumentPropertyOnline.');
@@ -6954,7 +6904,6 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
         if (this.propertyName === null) {
             throw new Error('Required parameter "this.propertyName" was null when calling deleteDocumentPropertyOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -7095,7 +7044,6 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteDrawingObject.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteDrawingObject.');
@@ -7105,7 +7053,6 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteDrawingObject.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -7234,7 +7181,6 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteDrawingObjectOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteDrawingObjectOnline.');
@@ -7244,7 +7190,6 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteDrawingObjectOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -7385,7 +7330,6 @@ export class DeleteFieldRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteField.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteField.');
@@ -7395,7 +7339,6 @@ export class DeleteFieldRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteField.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -7524,7 +7467,6 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteFieldOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteFieldOnline.');
@@ -7534,7 +7476,6 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteFieldOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -7669,7 +7610,6 @@ export class DeleteFieldsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteFields.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -7792,7 +7732,6 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteFieldsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -7891,7 +7830,6 @@ export class DeleteFileRequest implements RequestInterface {
         if (this.path === null) {
             throw new Error('Required parameter "this.path" was null when calling deleteFile.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
@@ -7983,7 +7921,6 @@ export class DeleteFolderRequest implements RequestInterface {
         if (this.path === null) {
             throw new Error('Required parameter "this.path" was null when calling deleteFolder.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "recursive", this.recursive, _encryptor);
 
@@ -8117,7 +8054,6 @@ export class DeleteFootnoteRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteFootnote.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteFootnote.');
@@ -8127,7 +8063,6 @@ export class DeleteFootnoteRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteFootnote.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -8256,7 +8191,6 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteFootnoteOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteFootnoteOnline.');
@@ -8266,7 +8200,6 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteFootnoteOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -8407,7 +8340,6 @@ export class DeleteFormFieldRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteFormField.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteFormField.');
@@ -8417,7 +8349,6 @@ export class DeleteFormFieldRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteFormField.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -8546,7 +8477,6 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteFormFieldOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteFormFieldOnline.');
@@ -8556,7 +8486,6 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteFormFieldOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -8697,7 +8626,6 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteHeaderFooter.');
         }
-
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeaderFooter.');
@@ -8707,7 +8635,6 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         if (this.sectionPath === null) {
             throw new Error('Required parameter "this.sectionPath" was null when calling deleteHeaderFooter.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteHeaderFooter.');
@@ -8717,7 +8644,6 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteHeaderFooter.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -8846,7 +8772,6 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteHeaderFooterOnline.');
         }
-
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeaderFooterOnline.');
@@ -8856,7 +8781,6 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         if (this.sectionPath === null) {
             throw new Error('Required parameter "this.sectionPath" was null when calling deleteHeaderFooterOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteHeaderFooterOnline.');
@@ -8866,7 +8790,6 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteHeaderFooterOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -9006,7 +8929,6 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteHeadersFooters.');
         }
-
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeadersFooters.');
@@ -9016,7 +8938,6 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
         if (this.sectionPath === null) {
             throw new Error('Required parameter "this.sectionPath" was null when calling deleteHeadersFooters.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -9145,7 +9066,6 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteHeadersFootersOnline.');
         }
-
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling deleteHeadersFootersOnline.');
@@ -9155,7 +9075,6 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         if (this.sectionPath === null) {
             throw new Error('Required parameter "this.sectionPath" was null when calling deleteHeadersFootersOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -9285,7 +9204,6 @@ export class DeleteMacrosRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteMacros.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -9402,7 +9320,6 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteMacrosOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -9543,7 +9460,6 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteOfficeMathObject.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteOfficeMathObject.');
@@ -9553,7 +9469,6 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteOfficeMathObject.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -9682,7 +9597,6 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteOfficeMathObjectOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteOfficeMathObjectOnline.');
@@ -9692,7 +9606,6 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteOfficeMathObjectOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -9833,7 +9746,6 @@ export class DeleteParagraphRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteParagraph.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteParagraph.');
@@ -9843,7 +9755,6 @@ export class DeleteParagraphRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraph.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -9983,7 +9894,6 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteParagraphListFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteParagraphListFormat.');
@@ -9993,7 +9903,6 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphListFormat.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -10122,7 +10031,6 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteParagraphListFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteParagraphListFormatOnline.');
@@ -10132,7 +10040,6 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphListFormatOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -10271,7 +10178,6 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteParagraphOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteParagraphOnline.');
@@ -10281,7 +10187,6 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -10417,7 +10322,6 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteParagraphTabStop.');
         }
-
         // verify required parameter 'this.position' is not undefined
         if (this.position === undefined) {
             throw new Error('Required parameter "this.position" was undefined when calling deleteParagraphTabStop.');
@@ -10427,7 +10331,6 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         if (this.position === null) {
             throw new Error('Required parameter "this.position" was null when calling deleteParagraphTabStop.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteParagraphTabStop.');
@@ -10437,7 +10340,6 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphTabStop.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -10560,7 +10462,6 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteParagraphTabStopOnline.');
         }
-
         // verify required parameter 'this.position' is not undefined
         if (this.position === undefined) {
             throw new Error('Required parameter "this.position" was undefined when calling deleteParagraphTabStopOnline.');
@@ -10570,7 +10471,6 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         if (this.position === null) {
             throw new Error('Required parameter "this.position" was null when calling deleteParagraphTabStopOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteParagraphTabStopOnline.');
@@ -10580,7 +10480,6 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteParagraphTabStopOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "position", this.position, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -10729,7 +10628,6 @@ export class DeleteRunRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteRun.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling deleteRun.');
@@ -10739,7 +10637,6 @@ export class DeleteRunRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling deleteRun.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteRun.');
@@ -10749,7 +10646,6 @@ export class DeleteRunRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteRun.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -10878,7 +10774,6 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteRunOnline.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling deleteRunOnline.');
@@ -10888,7 +10783,6 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling deleteRunOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteRunOnline.');
@@ -10898,7 +10792,6 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteRunOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -11033,7 +10926,6 @@ export class DeleteSectionRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteSection.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling deleteSection.');
@@ -11043,7 +10935,6 @@ export class DeleteSectionRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling deleteSection.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -11166,7 +11057,6 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteSectionOnline.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling deleteSectionOnline.');
@@ -11176,7 +11066,6 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling deleteSectionOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -11317,7 +11206,6 @@ export class DeleteStructuredDocumentTagRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteStructuredDocumentTag.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteStructuredDocumentTag.');
@@ -11327,7 +11215,6 @@ export class DeleteStructuredDocumentTagRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteStructuredDocumentTag.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -11456,7 +11343,6 @@ export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteStructuredDocumentTagOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteStructuredDocumentTagOnline.');
@@ -11466,7 +11352,6 @@ export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteStructuredDocumentTagOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -11607,7 +11492,6 @@ export class DeleteTableRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteTable.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteTable.');
@@ -11617,7 +11501,6 @@ export class DeleteTableRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteTable.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -11757,7 +11640,6 @@ export class DeleteTableCellRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteTableCell.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling deleteTableCell.');
@@ -11767,7 +11649,6 @@ export class DeleteTableCellRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling deleteTableCell.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteTableCell.');
@@ -11777,7 +11658,6 @@ export class DeleteTableCellRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteTableCell.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -11906,7 +11786,6 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteTableCellOnline.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling deleteTableCellOnline.');
@@ -11916,7 +11795,6 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling deleteTableCellOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteTableCellOnline.');
@@ -11926,7 +11804,6 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteTableCellOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -12056,7 +11933,6 @@ export class DeleteTableOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteTableOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteTableOnline.');
@@ -12066,7 +11942,6 @@ export class DeleteTableOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteTableOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -12207,7 +12082,6 @@ export class DeleteTableRowRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteTableRow.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling deleteTableRow.');
@@ -12217,7 +12091,6 @@ export class DeleteTableRowRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling deleteTableRow.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteTableRow.');
@@ -12227,7 +12100,6 @@ export class DeleteTableRowRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteTableRow.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -12356,7 +12228,6 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteTableRowOnline.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling deleteTableRowOnline.');
@@ -12366,7 +12237,6 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling deleteTableRowOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling deleteTableRowOnline.');
@@ -12376,7 +12246,6 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteTableRowOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -12505,7 +12374,6 @@ export class DeleteWatermarkRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling deleteWatermark.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -12622,7 +12490,6 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling deleteWatermarkOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -12730,7 +12597,6 @@ export class DownloadFileRequest implements RequestInterface {
         if (this.path === null) {
             throw new Error('Required parameter "this.path" was null when calling downloadFile.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
@@ -12872,6 +12738,7 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling executeMailMerge.');
         }
+        this.options?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -12993,7 +12860,6 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
         if (this.template === null) {
             throw new Error('Required parameter "this.template" was null when calling executeMailMergeOnline.');
         }
-
         // verify required parameter 'this.data' is not undefined
         if (this.data === undefined) {
             throw new Error('Required parameter "this.data" was undefined when calling executeMailMergeOnline.');
@@ -13003,6 +12869,7 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
         if (this.data === null) {
             throw new Error('Required parameter "this.data" was null when calling executeMailMergeOnline.');
         }
+        this.options?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
@@ -13197,7 +13064,6 @@ export class GetBookmarkByNameRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getBookmarkByName.');
         }
-
         // verify required parameter 'this.bookmarkName' is not undefined
         if (this.bookmarkName === undefined) {
             throw new Error('Required parameter "this.bookmarkName" was undefined when calling getBookmarkByName.');
@@ -13207,7 +13073,6 @@ export class GetBookmarkByNameRequest implements RequestInterface {
         if (this.bookmarkName === null) {
             throw new Error('Required parameter "this.bookmarkName" was null when calling getBookmarkByName.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -13312,7 +13177,6 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getBookmarkByNameOnline.');
         }
-
         // verify required parameter 'this.bookmarkName' is not undefined
         if (this.bookmarkName === undefined) {
             throw new Error('Required parameter "this.bookmarkName" was undefined when calling getBookmarkByNameOnline.');
@@ -13322,7 +13186,6 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
         if (this.bookmarkName === null) {
             throw new Error('Required parameter "this.bookmarkName" was null when calling getBookmarkByNameOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -13433,7 +13296,6 @@ export class GetBookmarksRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getBookmarks.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -13532,7 +13394,6 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getBookmarksOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -13656,7 +13517,6 @@ export class GetBorderRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getBorder.');
         }
-
         // verify required parameter 'this.borderType' is not undefined
         if (this.borderType === undefined) {
             throw new Error('Required parameter "this.borderType" was undefined when calling getBorder.');
@@ -13666,7 +13526,6 @@ export class GetBorderRequest implements RequestInterface {
         if (this.borderType === null) {
             throw new Error('Required parameter "this.borderType" was null when calling getBorder.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -13778,7 +13637,6 @@ export class GetBorderOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getBorderOnline.');
         }
-
         // verify required parameter 'this.borderType' is not undefined
         if (this.borderType === undefined) {
             throw new Error('Required parameter "this.borderType" was undefined when calling getBorderOnline.');
@@ -13788,7 +13646,6 @@ export class GetBorderOnlineRequest implements RequestInterface {
         if (this.borderType === null) {
             throw new Error('Required parameter "this.borderType" was null when calling getBorderOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -13905,7 +13762,6 @@ export class GetBordersRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getBorders.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -14010,7 +13866,6 @@ export class GetBordersOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getBordersOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -14127,7 +13982,6 @@ export class GetCommentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getComment.');
         }
-
         // verify required parameter 'this.commentIndex' is not undefined
         if (this.commentIndex === undefined) {
             throw new Error('Required parameter "this.commentIndex" was undefined when calling getComment.');
@@ -14137,7 +13991,6 @@ export class GetCommentRequest implements RequestInterface {
         if (this.commentIndex === null) {
             throw new Error('Required parameter "this.commentIndex" was null when calling getComment.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -14242,7 +14095,6 @@ export class GetCommentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getCommentOnline.');
         }
-
         // verify required parameter 'this.commentIndex' is not undefined
         if (this.commentIndex === undefined) {
             throw new Error('Required parameter "this.commentIndex" was undefined when calling getCommentOnline.');
@@ -14252,7 +14104,6 @@ export class GetCommentOnlineRequest implements RequestInterface {
         if (this.commentIndex === null) {
             throw new Error('Required parameter "this.commentIndex" was null when calling getCommentOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -14363,7 +14214,6 @@ export class GetCommentsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getComments.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -14462,7 +14312,6 @@ export class GetCommentsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getCommentsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -14579,7 +14428,6 @@ export class GetCustomXmlPartRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getCustomXmlPart.');
         }
-
         // verify required parameter 'this.customXmlPartIndex' is not undefined
         if (this.customXmlPartIndex === undefined) {
             throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling getCustomXmlPart.');
@@ -14589,7 +14437,6 @@ export class GetCustomXmlPartRequest implements RequestInterface {
         if (this.customXmlPartIndex === null) {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling getCustomXmlPart.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -14694,7 +14541,6 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getCustomXmlPartOnline.');
         }
-
         // verify required parameter 'this.customXmlPartIndex' is not undefined
         if (this.customXmlPartIndex === undefined) {
             throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling getCustomXmlPartOnline.');
@@ -14704,7 +14550,6 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPartIndex === null) {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling getCustomXmlPartOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -14815,7 +14660,6 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getCustomXmlParts.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -14914,7 +14758,6 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getCustomXmlPartsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -15025,7 +14868,6 @@ export class GetDocumentRequest implements RequestInterface {
         if (this.documentName === null) {
             throw new Error('Required parameter "this.documentName" was null when calling getDocument.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -15147,7 +14989,6 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentDrawingObjectByIndex.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getDocumentDrawingObjectByIndex.');
@@ -15157,7 +14998,6 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectByIndex.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -15268,7 +15108,6 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentDrawingObjectByIndexOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getDocumentDrawingObjectByIndexOnline.');
@@ -15278,7 +15117,6 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectByIndexOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -15401,7 +15239,6 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentDrawingObjectImageData.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getDocumentDrawingObjectImageData.');
@@ -15411,7 +15248,6 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectImageData.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -15522,7 +15358,6 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentDrawingObjectImageDataOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getDocumentDrawingObjectImageDataOnline.');
@@ -15532,7 +15367,6 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectImageDataOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -15655,7 +15489,6 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentDrawingObjectOleData.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getDocumentDrawingObjectOleData.');
@@ -15665,7 +15498,6 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectOleData.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -15776,7 +15608,6 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentDrawingObjectOleDataOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getDocumentDrawingObjectOleDataOnline.');
@@ -15786,7 +15617,6 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getDocumentDrawingObjectOleDataOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -15903,7 +15733,6 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentDrawingObjects.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -16008,7 +15837,6 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentDrawingObjectsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -16124,7 +15952,6 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentFieldNames.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -16229,7 +16056,6 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
         if (this.template === null) {
             throw new Error('Required parameter "this.template" was null when calling getDocumentFieldNamesOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -16347,7 +16173,6 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentHyperlinkByIndex.');
         }
-
         // verify required parameter 'this.hyperlinkIndex' is not undefined
         if (this.hyperlinkIndex === undefined) {
             throw new Error('Required parameter "this.hyperlinkIndex" was undefined when calling getDocumentHyperlinkByIndex.');
@@ -16357,7 +16182,6 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
         if (this.hyperlinkIndex === null) {
             throw new Error('Required parameter "this.hyperlinkIndex" was null when calling getDocumentHyperlinkByIndex.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -16462,7 +16286,6 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentHyperlinkByIndexOnline.');
         }
-
         // verify required parameter 'this.hyperlinkIndex' is not undefined
         if (this.hyperlinkIndex === undefined) {
             throw new Error('Required parameter "this.hyperlinkIndex" was undefined when calling getDocumentHyperlinkByIndexOnline.');
@@ -16472,7 +16295,6 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
         if (this.hyperlinkIndex === null) {
             throw new Error('Required parameter "this.hyperlinkIndex" was null when calling getDocumentHyperlinkByIndexOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -16583,7 +16405,6 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentHyperlinks.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -16682,7 +16503,6 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentHyperlinksOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -16793,7 +16613,6 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentProperties.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -16892,7 +16711,6 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentPropertiesOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -17009,7 +16827,6 @@ export class GetDocumentPropertyRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentProperty.');
         }
-
         // verify required parameter 'this.propertyName' is not undefined
         if (this.propertyName === undefined) {
             throw new Error('Required parameter "this.propertyName" was undefined when calling getDocumentProperty.');
@@ -17019,7 +16836,6 @@ export class GetDocumentPropertyRequest implements RequestInterface {
         if (this.propertyName === null) {
             throw new Error('Required parameter "this.propertyName" was null when calling getDocumentProperty.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -17124,7 +16940,6 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentPropertyOnline.');
         }
-
         // verify required parameter 'this.propertyName' is not undefined
         if (this.propertyName === undefined) {
             throw new Error('Required parameter "this.propertyName" was undefined when calling getDocumentPropertyOnline.');
@@ -17134,7 +16949,6 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
         if (this.propertyName === null) {
             throw new Error('Required parameter "this.propertyName" was null when calling getDocumentPropertyOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -17245,7 +17059,6 @@ export class GetDocumentProtectionRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentProtection.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -17344,7 +17157,6 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentProtectionOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -17470,7 +17282,6 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentStatistics.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -17587,7 +17398,6 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getDocumentStatisticsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -17716,7 +17526,6 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getDocumentWithFormat.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling getDocumentWithFormat.');
@@ -17726,7 +17535,6 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling getDocumentWithFormat.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -17851,7 +17659,6 @@ export class GetFieldRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getField.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getField.');
@@ -17861,7 +17668,6 @@ export class GetFieldRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getField.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -17972,7 +17778,6 @@ export class GetFieldOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getFieldOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getFieldOnline.');
@@ -17982,7 +17787,6 @@ export class GetFieldOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getFieldOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -18099,7 +17903,6 @@ export class GetFieldsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getFields.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -18204,7 +18007,6 @@ export class GetFieldsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getFieldsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -18295,7 +18097,6 @@ export class GetFilesListRequest implements RequestInterface {
         if (this.path === null) {
             throw new Error('Required parameter "this.path" was null when calling getFilesList.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -18413,7 +18214,6 @@ export class GetFootnoteRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getFootnote.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getFootnote.');
@@ -18423,7 +18223,6 @@ export class GetFootnoteRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getFootnote.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -18534,7 +18333,6 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getFootnoteOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getFootnoteOnline.');
@@ -18544,7 +18342,6 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getFootnoteOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -18661,7 +18458,6 @@ export class GetFootnotesRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getFootnotes.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -18766,7 +18562,6 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getFootnotesOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -18889,7 +18684,6 @@ export class GetFormFieldRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getFormField.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getFormField.');
@@ -18899,7 +18693,6 @@ export class GetFormFieldRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getFormField.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -19010,7 +18803,6 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getFormFieldOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getFormFieldOnline.');
@@ -19020,7 +18812,6 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getFormFieldOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -19137,7 +18928,6 @@ export class GetFormFieldsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getFormFields.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -19242,7 +19032,6 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getFormFieldsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -19364,7 +19153,6 @@ export class GetHeaderFooterRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getHeaderFooter.');
         }
-
         // verify required parameter 'this.headerFooterIndex' is not undefined
         if (this.headerFooterIndex === undefined) {
             throw new Error('Required parameter "this.headerFooterIndex" was undefined when calling getHeaderFooter.');
@@ -19374,7 +19162,6 @@ export class GetHeaderFooterRequest implements RequestInterface {
         if (this.headerFooterIndex === null) {
             throw new Error('Required parameter "this.headerFooterIndex" was null when calling getHeaderFooter.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -19502,7 +19289,6 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getHeaderFooterOfSection.');
         }
-
         // verify required parameter 'this.headerFooterIndex' is not undefined
         if (this.headerFooterIndex === undefined) {
             throw new Error('Required parameter "this.headerFooterIndex" was undefined when calling getHeaderFooterOfSection.');
@@ -19512,7 +19298,6 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         if (this.headerFooterIndex === null) {
             throw new Error('Required parameter "this.headerFooterIndex" was null when calling getHeaderFooterOfSection.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling getHeaderFooterOfSection.');
@@ -19522,7 +19307,6 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getHeaderFooterOfSection.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -19639,7 +19423,6 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getHeaderFooterOfSectionOnline.');
         }
-
         // verify required parameter 'this.headerFooterIndex' is not undefined
         if (this.headerFooterIndex === undefined) {
             throw new Error('Required parameter "this.headerFooterIndex" was undefined when calling getHeaderFooterOfSectionOnline.');
@@ -19649,7 +19432,6 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
         if (this.headerFooterIndex === null) {
             throw new Error('Required parameter "this.headerFooterIndex" was null when calling getHeaderFooterOfSectionOnline.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling getHeaderFooterOfSectionOnline.');
@@ -19659,7 +19441,6 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getHeaderFooterOfSectionOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -19771,7 +19552,6 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getHeaderFooterOnline.');
         }
-
         // verify required parameter 'this.headerFooterIndex' is not undefined
         if (this.headerFooterIndex === undefined) {
             throw new Error('Required parameter "this.headerFooterIndex" was undefined when calling getHeaderFooterOnline.');
@@ -19781,7 +19561,6 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
         if (this.headerFooterIndex === null) {
             throw new Error('Required parameter "this.headerFooterIndex" was null when calling getHeaderFooterOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -19904,7 +19683,6 @@ export class GetHeaderFootersRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getHeaderFooters.');
         }
-
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling getHeaderFooters.');
@@ -19914,7 +19692,6 @@ export class GetHeaderFootersRequest implements RequestInterface {
         if (this.sectionPath === null) {
             throw new Error('Required parameter "this.sectionPath" was null when calling getHeaderFooters.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -20025,7 +19802,6 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getHeaderFootersOnline.');
         }
-
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling getHeaderFootersOnline.');
@@ -20035,7 +19811,6 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         if (this.sectionPath === null) {
             throw new Error('Required parameter "this.sectionPath" was null when calling getHeaderFootersOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -20218,7 +19993,6 @@ export class GetListRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getList.');
         }
-
         // verify required parameter 'this.listId' is not undefined
         if (this.listId === undefined) {
             throw new Error('Required parameter "this.listId" was undefined when calling getList.');
@@ -20228,7 +20002,6 @@ export class GetListRequest implements RequestInterface {
         if (this.listId === null) {
             throw new Error('Required parameter "this.listId" was null when calling getList.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -20333,7 +20106,6 @@ export class GetListOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getListOnline.');
         }
-
         // verify required parameter 'this.listId' is not undefined
         if (this.listId === undefined) {
             throw new Error('Required parameter "this.listId" was undefined when calling getListOnline.');
@@ -20343,7 +20115,6 @@ export class GetListOnlineRequest implements RequestInterface {
         if (this.listId === null) {
             throw new Error('Required parameter "this.listId" was null when calling getListOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -20454,7 +20225,6 @@ export class GetListsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getLists.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -20553,7 +20323,6 @@ export class GetListsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getListsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -20676,7 +20445,6 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getOfficeMathObject.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getOfficeMathObject.');
@@ -20686,7 +20454,6 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getOfficeMathObject.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -20797,7 +20564,6 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getOfficeMathObjectOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getOfficeMathObjectOnline.');
@@ -20807,7 +20573,6 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getOfficeMathObjectOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -20924,7 +20689,6 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getOfficeMathObjects.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -21029,7 +20793,6 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getOfficeMathObjectsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -21152,7 +20915,6 @@ export class GetParagraphRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getParagraph.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getParagraph.');
@@ -21162,7 +20924,6 @@ export class GetParagraphRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getParagraph.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -21284,7 +21045,6 @@ export class GetParagraphFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getParagraphFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getParagraphFormat.');
@@ -21294,7 +21054,6 @@ export class GetParagraphFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getParagraphFormat.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -21405,7 +21164,6 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getParagraphFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getParagraphFormatOnline.');
@@ -21415,7 +21173,6 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getParagraphFormatOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -21538,7 +21295,6 @@ export class GetParagraphListFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getParagraphListFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getParagraphListFormat.');
@@ -21548,7 +21304,6 @@ export class GetParagraphListFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getParagraphListFormat.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -21659,7 +21414,6 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getParagraphListFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getParagraphListFormatOnline.');
@@ -21669,7 +21423,6 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getParagraphListFormatOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -21781,7 +21534,6 @@ export class GetParagraphOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getParagraphOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getParagraphOnline.');
@@ -21791,7 +21543,6 @@ export class GetParagraphOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getParagraphOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -21908,7 +21659,6 @@ export class GetParagraphsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getParagraphs.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -22013,7 +21763,6 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getParagraphsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -22136,7 +21885,6 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getParagraphTabStops.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getParagraphTabStops.');
@@ -22146,7 +21894,6 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getParagraphTabStops.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -22257,7 +22004,6 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getParagraphTabStopsOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getParagraphTabStopsOnline.');
@@ -22267,7 +22013,6 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getParagraphTabStopsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -22455,7 +22200,6 @@ export class GetRangeTextRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getRangeText.');
         }
-
         // verify required parameter 'this.rangeStartIdentifier' is not undefined
         if (this.rangeStartIdentifier === undefined) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was undefined when calling getRangeText.');
@@ -22465,7 +22209,6 @@ export class GetRangeTextRequest implements RequestInterface {
         if (this.rangeStartIdentifier === null) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling getRangeText.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -22576,7 +22319,6 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getRangeTextOnline.');
         }
-
         // verify required parameter 'this.rangeStartIdentifier' is not undefined
         if (this.rangeStartIdentifier === undefined) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was undefined when calling getRangeTextOnline.');
@@ -22586,7 +22328,6 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
         if (this.rangeStartIdentifier === null) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling getRangeTextOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -22709,7 +22450,6 @@ export class GetRunRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getRun.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRun.');
@@ -22719,7 +22459,6 @@ export class GetRunRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling getRun.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getRun.');
@@ -22729,7 +22468,6 @@ export class GetRunRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getRun.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -22851,7 +22589,6 @@ export class GetRunFontRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getRunFont.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunFont.');
@@ -22861,7 +22598,6 @@ export class GetRunFontRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling getRunFont.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getRunFont.');
@@ -22871,7 +22607,6 @@ export class GetRunFontRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getRunFont.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -22982,7 +22717,6 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getRunFontOnline.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunFontOnline.');
@@ -22992,7 +22726,6 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling getRunFontOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getRunFontOnline.');
@@ -23002,7 +22735,6 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getRunFontOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -23114,7 +22846,6 @@ export class GetRunOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getRunOnline.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunOnline.');
@@ -23124,7 +22855,6 @@ export class GetRunOnlineRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling getRunOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getRunOnline.');
@@ -23134,7 +22864,6 @@ export class GetRunOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getRunOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -23251,7 +22980,6 @@ export class GetRunsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getRuns.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRuns.');
@@ -23261,7 +22989,6 @@ export class GetRunsRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling getRuns.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -23366,7 +23093,6 @@ export class GetRunsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getRunsOnline.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling getRunsOnline.');
@@ -23376,7 +23102,6 @@ export class GetRunsOnlineRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling getRunsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -23493,7 +23218,6 @@ export class GetSectionRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getSection.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling getSection.');
@@ -23503,7 +23227,6 @@ export class GetSectionRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSection.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -23608,7 +23331,6 @@ export class GetSectionOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getSectionOnline.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling getSectionOnline.');
@@ -23618,7 +23340,6 @@ export class GetSectionOnlineRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -23735,7 +23456,6 @@ export class GetSectionPageSetupRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getSectionPageSetup.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling getSectionPageSetup.');
@@ -23745,7 +23465,6 @@ export class GetSectionPageSetupRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionPageSetup.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -23850,7 +23569,6 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getSectionPageSetupOnline.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling getSectionPageSetupOnline.');
@@ -23860,7 +23578,6 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling getSectionPageSetupOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -23971,7 +23688,6 @@ export class GetSectionsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getSections.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -24070,7 +23786,6 @@ export class GetSectionsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getSectionsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -24193,7 +23908,6 @@ export class GetStructuredDocumentTagRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getStructuredDocumentTag.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getStructuredDocumentTag.');
@@ -24203,7 +23917,6 @@ export class GetStructuredDocumentTagRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getStructuredDocumentTag.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -24314,7 +24027,6 @@ export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getStructuredDocumentTagOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getStructuredDocumentTagOnline.');
@@ -24324,7 +24036,6 @@ export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getStructuredDocumentTagOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -24441,7 +24152,6 @@ export class GetStructuredDocumentTagsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getStructuredDocumentTags.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -24546,7 +24256,6 @@ export class GetStructuredDocumentTagsOnlineRequest implements RequestInterface 
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getStructuredDocumentTagsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -24663,7 +24372,6 @@ export class GetStyleRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getStyle.');
         }
-
         // verify required parameter 'this.styleName' is not undefined
         if (this.styleName === undefined) {
             throw new Error('Required parameter "this.styleName" was undefined when calling getStyle.');
@@ -24673,7 +24381,6 @@ export class GetStyleRequest implements RequestInterface {
         if (this.styleName === null) {
             throw new Error('Required parameter "this.styleName" was null when calling getStyle.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -24789,7 +24496,6 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getStyleFromDocumentElement.');
         }
-
         // verify required parameter 'this.styledNodePath' is not undefined
         if (this.styledNodePath === undefined) {
             throw new Error('Required parameter "this.styledNodePath" was undefined when calling getStyleFromDocumentElement.');
@@ -24799,7 +24505,6 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
         if (this.styledNodePath === null) {
             throw new Error('Required parameter "this.styledNodePath" was null when calling getStyleFromDocumentElement.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -24904,7 +24609,6 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getStyleFromDocumentElementOnline.');
         }
-
         // verify required parameter 'this.styledNodePath' is not undefined
         if (this.styledNodePath === undefined) {
             throw new Error('Required parameter "this.styledNodePath" was undefined when calling getStyleFromDocumentElementOnline.');
@@ -24914,7 +24618,6 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
         if (this.styledNodePath === null) {
             throw new Error('Required parameter "this.styledNodePath" was null when calling getStyleFromDocumentElementOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -25020,7 +24723,6 @@ export class GetStyleOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getStyleOnline.');
         }
-
         // verify required parameter 'this.styleName' is not undefined
         if (this.styleName === undefined) {
             throw new Error('Required parameter "this.styleName" was undefined when calling getStyleOnline.');
@@ -25030,7 +24732,6 @@ export class GetStyleOnlineRequest implements RequestInterface {
         if (this.styleName === null) {
             throw new Error('Required parameter "this.styleName" was null when calling getStyleOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -25141,7 +24842,6 @@ export class GetStylesRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getStyles.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -25240,7 +24940,6 @@ export class GetStylesOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getStylesOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -25363,7 +25062,6 @@ export class GetTableRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getTable.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTable.');
@@ -25373,7 +25071,6 @@ export class GetTableRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTable.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -25495,7 +25192,6 @@ export class GetTableCellRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getTableCell.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling getTableCell.');
@@ -25505,7 +25201,6 @@ export class GetTableCellRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling getTableCell.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableCell.');
@@ -25515,7 +25210,6 @@ export class GetTableCellRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableCell.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -25637,7 +25331,6 @@ export class GetTableCellFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getTableCellFormat.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling getTableCellFormat.');
@@ -25647,7 +25340,6 @@ export class GetTableCellFormatRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling getTableCellFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableCellFormat.');
@@ -25657,7 +25349,6 @@ export class GetTableCellFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableCellFormat.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -25768,7 +25459,6 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getTableCellFormatOnline.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling getTableCellFormatOnline.');
@@ -25778,7 +25468,6 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling getTableCellFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableCellFormatOnline.');
@@ -25788,7 +25477,6 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableCellFormatOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -25900,7 +25588,6 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getTableCellOnline.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling getTableCellOnline.');
@@ -25910,7 +25597,6 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling getTableCellOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableCellOnline.');
@@ -25920,7 +25606,6 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableCellOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -26032,7 +25717,6 @@ export class GetTableOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getTableOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableOnline.');
@@ -26042,7 +25726,6 @@ export class GetTableOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -26165,7 +25848,6 @@ export class GetTablePropertiesRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getTableProperties.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableProperties.');
@@ -26175,7 +25857,6 @@ export class GetTablePropertiesRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableProperties.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -26286,7 +25967,6 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getTablePropertiesOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTablePropertiesOnline.');
@@ -26296,7 +25976,6 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTablePropertiesOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -26419,7 +26098,6 @@ export class GetTableRowRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getTableRow.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling getTableRow.');
@@ -26429,7 +26107,6 @@ export class GetTableRowRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling getTableRow.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableRow.');
@@ -26439,7 +26116,6 @@ export class GetTableRowRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableRow.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -26561,7 +26237,6 @@ export class GetTableRowFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getTableRowFormat.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling getTableRowFormat.');
@@ -26571,7 +26246,6 @@ export class GetTableRowFormatRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling getTableRowFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableRowFormat.');
@@ -26581,7 +26255,6 @@ export class GetTableRowFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableRowFormat.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -26692,7 +26365,6 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getTableRowFormatOnline.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling getTableRowFormatOnline.');
@@ -26702,7 +26374,6 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling getTableRowFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableRowFormatOnline.');
@@ -26712,7 +26383,6 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableRowFormatOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -26824,7 +26494,6 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getTableRowOnline.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling getTableRowOnline.');
@@ -26834,7 +26503,6 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling getTableRowOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling getTableRowOnline.');
@@ -26844,7 +26512,6 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling getTableRowOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -26961,7 +26628,6 @@ export class GetTablesRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling getTables.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -27066,7 +26732,6 @@ export class GetTablesOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling getTablesOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -27197,7 +26862,6 @@ export class InsertBookmarkRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertBookmark.');
         }
-
         // verify required parameter 'this.bookmark' is not undefined
         if (this.bookmark === undefined) {
             throw new Error('Required parameter "this.bookmark" was undefined when calling insertBookmark.');
@@ -27207,6 +26871,7 @@ export class InsertBookmarkRequest implements RequestInterface {
         if (this.bookmark === null) {
             throw new Error('Required parameter "this.bookmark" was null when calling insertBookmark.');
         }
+        this.bookmark?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -27333,7 +26998,6 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertBookmarkOnline.');
         }
-
         // verify required parameter 'this.bookmark' is not undefined
         if (this.bookmark === undefined) {
             throw new Error('Required parameter "this.bookmark" was undefined when calling insertBookmarkOnline.');
@@ -27343,6 +27007,7 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         if (this.bookmark === null) {
             throw new Error('Required parameter "this.bookmark" was null when calling insertBookmarkOnline.');
         }
+        this.bookmark?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -27490,7 +27155,6 @@ export class InsertCommentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertComment.');
         }
-
         // verify required parameter 'this.comment' is not undefined
         if (this.comment === undefined) {
             throw new Error('Required parameter "this.comment" was undefined when calling insertComment.');
@@ -27500,6 +27164,7 @@ export class InsertCommentRequest implements RequestInterface {
         if (this.comment === null) {
             throw new Error('Required parameter "this.comment" was null when calling insertComment.');
         }
+        this.comment?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -27626,7 +27291,6 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertCommentOnline.');
         }
-
         // verify required parameter 'this.comment' is not undefined
         if (this.comment === undefined) {
             throw new Error('Required parameter "this.comment" was undefined when calling insertCommentOnline.');
@@ -27636,6 +27300,7 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         if (this.comment === null) {
             throw new Error('Required parameter "this.comment" was null when calling insertCommentOnline.');
         }
+        this.comment?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -27783,7 +27448,6 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertCustomXmlPart.');
         }
-
         // verify required parameter 'this.customXmlPart' is not undefined
         if (this.customXmlPart === undefined) {
             throw new Error('Required parameter "this.customXmlPart" was undefined when calling insertCustomXmlPart.');
@@ -27793,6 +27457,7 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         if (this.customXmlPart === null) {
             throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPart.');
         }
+        this.customXmlPart?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -27919,7 +27584,6 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertCustomXmlPartOnline.');
         }
-
         // verify required parameter 'this.customXmlPart' is not undefined
         if (this.customXmlPart === undefined) {
             throw new Error('Required parameter "this.customXmlPart" was undefined when calling insertCustomXmlPartOnline.');
@@ -27929,6 +27593,7 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPart === null) {
             throw new Error('Required parameter "this.customXmlPart" was null when calling insertCustomXmlPartOnline.');
         }
+        this.customXmlPart?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -28087,7 +27752,6 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertDrawingObject.');
         }
-
         // verify required parameter 'this.drawingObject' is not undefined
         if (this.drawingObject === undefined) {
             throw new Error('Required parameter "this.drawingObject" was undefined when calling insertDrawingObject.');
@@ -28097,7 +27761,6 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling insertDrawingObject.');
         }
-
         // verify required parameter 'this.imageFile' is not undefined
         if (this.imageFile === undefined) {
             throw new Error('Required parameter "this.imageFile" was undefined when calling insertDrawingObject.');
@@ -28107,6 +27770,7 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         if (this.imageFile === null) {
             throw new Error('Required parameter "this.imageFile" was null when calling insertDrawingObject.');
         }
+        this.drawingObject?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -28247,7 +27911,6 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertDrawingObjectOnline.');
         }
-
         // verify required parameter 'this.drawingObject' is not undefined
         if (this.drawingObject === undefined) {
             throw new Error('Required parameter "this.drawingObject" was undefined when calling insertDrawingObjectOnline.');
@@ -28257,7 +27920,6 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling insertDrawingObjectOnline.');
         }
-
         // verify required parameter 'this.imageFile' is not undefined
         if (this.imageFile === undefined) {
             throw new Error('Required parameter "this.imageFile" was undefined when calling insertDrawingObjectOnline.');
@@ -28267,6 +27929,7 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         if (this.imageFile === null) {
             throw new Error('Required parameter "this.imageFile" was null when calling insertDrawingObjectOnline.');
         }
+        this.drawingObject?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -28428,7 +28091,6 @@ export class InsertFieldRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertField.');
         }
-
         // verify required parameter 'this.field' is not undefined
         if (this.field === undefined) {
             throw new Error('Required parameter "this.field" was undefined when calling insertField.');
@@ -28438,6 +28100,7 @@ export class InsertFieldRequest implements RequestInterface {
         if (this.field === null) {
             throw new Error('Required parameter "this.field" was null when calling insertField.');
         }
+        this.field?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -28576,7 +28239,6 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertFieldOnline.');
         }
-
         // verify required parameter 'this.field' is not undefined
         if (this.field === undefined) {
             throw new Error('Required parameter "this.field" was undefined when calling insertFieldOnline.');
@@ -28586,6 +28248,7 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         if (this.field === null) {
             throw new Error('Required parameter "this.field" was null when calling insertFieldOnline.');
         }
+        this.field?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -28740,7 +28403,6 @@ export class InsertFootnoteRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertFootnote.');
         }
-
         // verify required parameter 'this.footnoteDto' is not undefined
         if (this.footnoteDto === undefined) {
             throw new Error('Required parameter "this.footnoteDto" was undefined when calling insertFootnote.');
@@ -28750,6 +28412,7 @@ export class InsertFootnoteRequest implements RequestInterface {
         if (this.footnoteDto === null) {
             throw new Error('Required parameter "this.footnoteDto" was null when calling insertFootnote.');
         }
+        this.footnoteDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -28882,7 +28545,6 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertFootnoteOnline.');
         }
-
         // verify required parameter 'this.footnoteDto' is not undefined
         if (this.footnoteDto === undefined) {
             throw new Error('Required parameter "this.footnoteDto" was undefined when calling insertFootnoteOnline.');
@@ -28892,6 +28554,7 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         if (this.footnoteDto === null) {
             throw new Error('Required parameter "this.footnoteDto" was null when calling insertFootnoteOnline.');
         }
+        this.footnoteDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -29050,7 +28713,6 @@ export class InsertFormFieldRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertFormField.');
         }
-
         // verify required parameter 'this.formField' is not undefined
         if (this.formField === undefined) {
             throw new Error('Required parameter "this.formField" was undefined when calling insertFormField.');
@@ -29060,6 +28722,7 @@ export class InsertFormFieldRequest implements RequestInterface {
         if (this.formField === null) {
             throw new Error('Required parameter "this.formField" was null when calling insertFormField.');
         }
+        this.formField?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -29198,7 +28861,6 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertFormFieldOnline.');
         }
-
         // verify required parameter 'this.formField' is not undefined
         if (this.formField === undefined) {
             throw new Error('Required parameter "this.formField" was undefined when calling insertFormFieldOnline.');
@@ -29208,6 +28870,7 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         if (this.formField === null) {
             throw new Error('Required parameter "this.formField" was null when calling insertFormFieldOnline.');
         }
+        this.formField?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -29362,7 +29025,6 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertHeaderFooter.');
         }
-
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling insertHeaderFooter.');
@@ -29372,7 +29034,6 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         if (this.sectionPath === null) {
             throw new Error('Required parameter "this.sectionPath" was null when calling insertHeaderFooter.');
         }
-
         // verify required parameter 'this.headerFooterType' is not undefined
         if (this.headerFooterType === undefined) {
             throw new Error('Required parameter "this.headerFooterType" was undefined when calling insertHeaderFooter.');
@@ -29382,7 +29043,6 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         if (this.headerFooterType === null) {
             throw new Error('Required parameter "this.headerFooterType" was null when calling insertHeaderFooter.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -29513,7 +29173,6 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertHeaderFooterOnline.');
         }
-
         // verify required parameter 'this.sectionPath' is not undefined
         if (this.sectionPath === undefined) {
             throw new Error('Required parameter "this.sectionPath" was undefined when calling insertHeaderFooterOnline.');
@@ -29523,7 +29182,6 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         if (this.sectionPath === null) {
             throw new Error('Required parameter "this.sectionPath" was null when calling insertHeaderFooterOnline.');
         }
-
         // verify required parameter 'this.headerFooterType' is not undefined
         if (this.headerFooterType === undefined) {
             throw new Error('Required parameter "this.headerFooterType" was undefined when calling insertHeaderFooterOnline.');
@@ -29533,7 +29191,6 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         if (this.headerFooterType === null) {
             throw new Error('Required parameter "this.headerFooterType" was null when calling insertHeaderFooterOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -29679,7 +29336,6 @@ export class InsertListRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertList.');
         }
-
         // verify required parameter 'this.listInsert' is not undefined
         if (this.listInsert === undefined) {
             throw new Error('Required parameter "this.listInsert" was undefined when calling insertList.');
@@ -29689,6 +29345,7 @@ export class InsertListRequest implements RequestInterface {
         if (this.listInsert === null) {
             throw new Error('Required parameter "this.listInsert" was null when calling insertList.');
         }
+        this.listInsert?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -29815,7 +29472,6 @@ export class InsertListOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertListOnline.');
         }
-
         // verify required parameter 'this.listInsert' is not undefined
         if (this.listInsert === undefined) {
             throw new Error('Required parameter "this.listInsert" was undefined when calling insertListOnline.');
@@ -29825,6 +29481,7 @@ export class InsertListOnlineRequest implements RequestInterface {
         if (this.listInsert === null) {
             throw new Error('Required parameter "this.listInsert" was null when calling insertListOnline.');
         }
+        this.listInsert?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -29974,7 +29631,6 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertOrUpdateParagraphTabStop.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling insertOrUpdateParagraphTabStop.');
@@ -29984,7 +29640,6 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling insertOrUpdateParagraphTabStop.');
         }
-
         // verify required parameter 'this.tabStopInsertDto' is not undefined
         if (this.tabStopInsertDto === undefined) {
             throw new Error('Required parameter "this.tabStopInsertDto" was undefined when calling insertOrUpdateParagraphTabStop.');
@@ -29994,6 +29649,7 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         if (this.tabStopInsertDto === null) {
             throw new Error('Required parameter "this.tabStopInsertDto" was null when calling insertOrUpdateParagraphTabStop.');
         }
+        this.tabStopInsertDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -30120,7 +29776,6 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertOrUpdateParagraphTabStopOnline.');
         }
-
         // verify required parameter 'this.tabStopInsertDto' is not undefined
         if (this.tabStopInsertDto === undefined) {
             throw new Error('Required parameter "this.tabStopInsertDto" was undefined when calling insertOrUpdateParagraphTabStopOnline.');
@@ -30130,7 +29785,6 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         if (this.tabStopInsertDto === null) {
             throw new Error('Required parameter "this.tabStopInsertDto" was null when calling insertOrUpdateParagraphTabStopOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling insertOrUpdateParagraphTabStopOnline.');
@@ -30140,6 +29794,7 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling insertOrUpdateParagraphTabStopOnline.');
         }
+        this.tabStopInsertDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -30285,7 +29940,6 @@ export class InsertPageNumbersRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertPageNumbers.');
         }
-
         // verify required parameter 'this.pageNumber' is not undefined
         if (this.pageNumber === undefined) {
             throw new Error('Required parameter "this.pageNumber" was undefined when calling insertPageNumbers.');
@@ -30295,6 +29949,7 @@ export class InsertPageNumbersRequest implements RequestInterface {
         if (this.pageNumber === null) {
             throw new Error('Required parameter "this.pageNumber" was null when calling insertPageNumbers.');
         }
+        this.pageNumber?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -30421,7 +30076,6 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertPageNumbersOnline.');
         }
-
         // verify required parameter 'this.pageNumber' is not undefined
         if (this.pageNumber === undefined) {
             throw new Error('Required parameter "this.pageNumber" was undefined when calling insertPageNumbersOnline.');
@@ -30431,6 +30085,7 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         if (this.pageNumber === null) {
             throw new Error('Required parameter "this.pageNumber" was null when calling insertPageNumbersOnline.');
         }
+        this.pageNumber?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -30589,7 +30244,6 @@ export class InsertParagraphRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertParagraph.');
         }
-
         // verify required parameter 'this.paragraph' is not undefined
         if (this.paragraph === undefined) {
             throw new Error('Required parameter "this.paragraph" was undefined when calling insertParagraph.');
@@ -30599,6 +30253,7 @@ export class InsertParagraphRequest implements RequestInterface {
         if (this.paragraph === null) {
             throw new Error('Required parameter "this.paragraph" was null when calling insertParagraph.');
         }
+        this.paragraph?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -30737,7 +30392,6 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertParagraphOnline.');
         }
-
         // verify required parameter 'this.paragraph' is not undefined
         if (this.paragraph === undefined) {
             throw new Error('Required parameter "this.paragraph" was undefined when calling insertParagraphOnline.');
@@ -30747,6 +30401,7 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         if (this.paragraph === null) {
             throw new Error('Required parameter "this.paragraph" was null when calling insertParagraphOnline.');
         }
+        this.paragraph?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -30906,7 +30561,6 @@ export class InsertRunRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertRun.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling insertRun.');
@@ -30916,7 +30570,6 @@ export class InsertRunRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling insertRun.');
         }
-
         // verify required parameter 'this.run' is not undefined
         if (this.run === undefined) {
             throw new Error('Required parameter "this.run" was undefined when calling insertRun.');
@@ -30926,6 +30579,7 @@ export class InsertRunRequest implements RequestInterface {
         if (this.run === null) {
             throw new Error('Required parameter "this.run" was null when calling insertRun.');
         }
+        this.run?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -31064,7 +30718,6 @@ export class InsertRunOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertRunOnline.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling insertRunOnline.');
@@ -31074,7 +30727,6 @@ export class InsertRunOnlineRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling insertRunOnline.');
         }
-
         // verify required parameter 'this.run' is not undefined
         if (this.run === undefined) {
             throw new Error('Required parameter "this.run" was undefined when calling insertRunOnline.');
@@ -31084,6 +30736,7 @@ export class InsertRunOnlineRequest implements RequestInterface {
         if (this.run === null) {
             throw new Error('Required parameter "this.run" was null when calling insertRunOnline.');
         }
+        this.run?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -31233,7 +30886,6 @@ export class InsertSectionRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertSection.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling insertSection.');
@@ -31243,7 +30895,6 @@ export class InsertSectionRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling insertSection.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -31366,7 +31017,6 @@ export class InsertSectionOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertSectionOnline.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling insertSectionOnline.');
@@ -31376,7 +31026,6 @@ export class InsertSectionOnlineRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling insertSectionOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -31516,7 +31165,6 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertStructuredDocumentTag.');
         }
-
         // verify required parameter 'this.structuredDocumentTag' is not undefined
         if (this.structuredDocumentTag === undefined) {
             throw new Error('Required parameter "this.structuredDocumentTag" was undefined when calling insertStructuredDocumentTag.');
@@ -31526,6 +31174,7 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
         if (this.structuredDocumentTag === null) {
             throw new Error('Required parameter "this.structuredDocumentTag" was null when calling insertStructuredDocumentTag.');
         }
+        this.structuredDocumentTag?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -31658,7 +31307,6 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertStructuredDocumentTagOnline.');
         }
-
         // verify required parameter 'this.structuredDocumentTag' is not undefined
         if (this.structuredDocumentTag === undefined) {
             throw new Error('Required parameter "this.structuredDocumentTag" was undefined when calling insertStructuredDocumentTagOnline.');
@@ -31668,6 +31316,7 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.structuredDocumentTag === null) {
             throw new Error('Required parameter "this.structuredDocumentTag" was null when calling insertStructuredDocumentTagOnline.');
         }
+        this.structuredDocumentTag?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -31815,7 +31464,6 @@ export class InsertStyleRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertStyle.');
         }
-
         // verify required parameter 'this.styleInsert' is not undefined
         if (this.styleInsert === undefined) {
             throw new Error('Required parameter "this.styleInsert" was undefined when calling insertStyle.');
@@ -31825,6 +31473,7 @@ export class InsertStyleRequest implements RequestInterface {
         if (this.styleInsert === null) {
             throw new Error('Required parameter "this.styleInsert" was null when calling insertStyle.');
         }
+        this.styleInsert?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -31951,7 +31600,6 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertStyleOnline.');
         }
-
         // verify required parameter 'this.styleInsert' is not undefined
         if (this.styleInsert === undefined) {
             throw new Error('Required parameter "this.styleInsert" was undefined when calling insertStyleOnline.');
@@ -31961,6 +31609,7 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         if (this.styleInsert === null) {
             throw new Error('Required parameter "this.styleInsert" was null when calling insertStyleOnline.');
         }
+        this.styleInsert?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -32114,7 +31763,6 @@ export class InsertTableRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertTable.');
         }
-
         // verify required parameter 'this.table' is not undefined
         if (this.table === undefined) {
             throw new Error('Required parameter "this.table" was undefined when calling insertTable.');
@@ -32124,6 +31772,7 @@ export class InsertTableRequest implements RequestInterface {
         if (this.table === null) {
             throw new Error('Required parameter "this.table" was null when calling insertTable.');
         }
+        this.table?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -32267,7 +31916,6 @@ export class InsertTableCellRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertTableCell.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling insertTableCell.');
@@ -32277,7 +31925,6 @@ export class InsertTableCellRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling insertTableCell.');
         }
-
         // verify required parameter 'this.cell' is not undefined
         if (this.cell === undefined) {
             throw new Error('Required parameter "this.cell" was undefined when calling insertTableCell.');
@@ -32287,6 +31934,7 @@ export class InsertTableCellRequest implements RequestInterface {
         if (this.cell === null) {
             throw new Error('Required parameter "this.cell" was null when calling insertTableCell.');
         }
+        this.cell?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -32419,7 +32067,6 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertTableCellOnline.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling insertTableCellOnline.');
@@ -32429,7 +32076,6 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling insertTableCellOnline.');
         }
-
         // verify required parameter 'this.cell' is not undefined
         if (this.cell === undefined) {
             throw new Error('Required parameter "this.cell" was undefined when calling insertTableCellOnline.');
@@ -32439,6 +32085,7 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         if (this.cell === null) {
             throw new Error('Required parameter "this.cell" was null when calling insertTableCellOnline.');
         }
+        this.cell?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -32581,7 +32228,6 @@ export class InsertTableOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertTableOnline.');
         }
-
         // verify required parameter 'this.table' is not undefined
         if (this.table === undefined) {
             throw new Error('Required parameter "this.table" was undefined when calling insertTableOnline.');
@@ -32591,6 +32237,7 @@ export class InsertTableOnlineRequest implements RequestInterface {
         if (this.table === null) {
             throw new Error('Required parameter "this.table" was null when calling insertTableOnline.');
         }
+        this.table?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -32744,7 +32391,6 @@ export class InsertTableRowRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertTableRow.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling insertTableRow.');
@@ -32754,7 +32400,6 @@ export class InsertTableRowRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling insertTableRow.');
         }
-
         // verify required parameter 'this.row' is not undefined
         if (this.row === undefined) {
             throw new Error('Required parameter "this.row" was undefined when calling insertTableRow.');
@@ -32764,6 +32409,7 @@ export class InsertTableRowRequest implements RequestInterface {
         if (this.row === null) {
             throw new Error('Required parameter "this.row" was null when calling insertTableRow.');
         }
+        this.row?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -32896,7 +32542,6 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertTableRowOnline.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling insertTableRowOnline.');
@@ -32906,7 +32551,6 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling insertTableRowOnline.');
         }
-
         // verify required parameter 'this.row' is not undefined
         if (this.row === undefined) {
             throw new Error('Required parameter "this.row" was undefined when calling insertTableRowOnline.');
@@ -32916,6 +32560,7 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         if (this.row === null) {
             throw new Error('Required parameter "this.row" was null when calling insertTableRowOnline.');
         }
+        this.row?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -33073,7 +32718,6 @@ export class InsertWatermarkImageRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertWatermarkImage.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -33210,7 +32854,6 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertWatermarkImageOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -33358,7 +33001,6 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertWatermarkText.');
         }
-
         // verify required parameter 'this.watermarkText' is not undefined
         if (this.watermarkText === undefined) {
             throw new Error('Required parameter "this.watermarkText" was undefined when calling insertWatermarkText.');
@@ -33368,6 +33010,7 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         if (this.watermarkText === null) {
             throw new Error('Required parameter "this.watermarkText" was null when calling insertWatermarkText.');
         }
+        this.watermarkText?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -33494,7 +33137,6 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertWatermarkTextOnline.');
         }
-
         // verify required parameter 'this.watermarkText' is not undefined
         if (this.watermarkText === undefined) {
             throw new Error('Required parameter "this.watermarkText" was undefined when calling insertWatermarkTextOnline.');
@@ -33504,6 +33146,7 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         if (this.watermarkText === null) {
             throw new Error('Required parameter "this.watermarkText" was null when calling insertWatermarkTextOnline.');
         }
+        this.watermarkText?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -33657,7 +33300,6 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling linkHeaderFootersToPrevious.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling linkHeaderFootersToPrevious.');
@@ -33667,7 +33309,6 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling linkHeaderFootersToPrevious.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -33760,6 +33401,7 @@ export class LoadWebDocumentRequest implements RequestInterface {
         if (this.data === null) {
             throw new Error('Required parameter "this.data" was null when calling loadWebDocument.');
         }
+        this.data?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         if (this.data !== undefined) {
@@ -33865,7 +33507,6 @@ export class MoveFileRequest implements RequestInterface {
         if (this.destPath === null) {
             throw new Error('Required parameter "this.destPath" was null when calling moveFile.');
         }
-
         // verify required parameter 'this.srcPath' is not undefined
         if (this.srcPath === undefined) {
             throw new Error('Required parameter "this.srcPath" was undefined when calling moveFile.');
@@ -33875,7 +33516,6 @@ export class MoveFileRequest implements RequestInterface {
         if (this.srcPath === null) {
             throw new Error('Required parameter "this.srcPath" was null when calling moveFile.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
@@ -33974,7 +33614,6 @@ export class MoveFolderRequest implements RequestInterface {
         if (this.destPath === null) {
             throw new Error('Required parameter "this.destPath" was null when calling moveFolder.');
         }
-
         // verify required parameter 'this.srcPath' is not undefined
         if (this.srcPath === undefined) {
             throw new Error('Required parameter "this.srcPath" was undefined when calling moveFolder.');
@@ -33984,7 +33623,6 @@ export class MoveFolderRequest implements RequestInterface {
         if (this.srcPath === null) {
             throw new Error('Required parameter "this.srcPath" was null when calling moveFolder.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destPath", this.destPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "srcStorageName", this.srcStorageName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
@@ -34112,7 +33750,6 @@ export class OptimizeDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling optimizeDocument.');
         }
-
         // verify required parameter 'this.options' is not undefined
         if (this.options === undefined) {
             throw new Error('Required parameter "this.options" was undefined when calling optimizeDocument.');
@@ -34122,6 +33759,7 @@ export class OptimizeDocumentRequest implements RequestInterface {
         if (this.options === null) {
             throw new Error('Required parameter "this.options" was null when calling optimizeDocument.');
         }
+        this.options?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -34248,7 +33886,6 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling optimizeDocumentOnline.');
         }
-
         // verify required parameter 'this.options' is not undefined
         if (this.options === undefined) {
             throw new Error('Required parameter "this.options" was undefined when calling optimizeDocumentOnline.');
@@ -34258,6 +33895,7 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
         if (this.options === null) {
             throw new Error('Required parameter "this.options" was null when calling optimizeDocumentOnline.');
         }
+        this.options?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -34386,7 +34024,6 @@ export class ProtectDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling protectDocument.');
         }
-
         // verify required parameter 'this.protectionRequest' is not undefined
         if (this.protectionRequest === undefined) {
             throw new Error('Required parameter "this.protectionRequest" was undefined when calling protectDocument.');
@@ -34396,6 +34033,7 @@ export class ProtectDocumentRequest implements RequestInterface {
         if (this.protectionRequest === null) {
             throw new Error('Required parameter "this.protectionRequest" was null when calling protectDocument.');
         }
+        this.protectionRequest?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -34510,7 +34148,6 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling protectDocumentOnline.');
         }
-
         // verify required parameter 'this.protectionRequest' is not undefined
         if (this.protectionRequest === undefined) {
             throw new Error('Required parameter "this.protectionRequest" was undefined when calling protectDocumentOnline.');
@@ -34520,6 +34157,7 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         if (this.protectionRequest === null) {
             throw new Error('Required parameter "this.protectionRequest" was null when calling protectDocumentOnline.');
         }
+        this.protectionRequest?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -34650,7 +34288,6 @@ export class RejectAllRevisionsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling rejectAllRevisions.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -34755,7 +34392,6 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling rejectAllRevisionsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -34893,7 +34529,6 @@ export class RemoveRangeRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling removeRange.');
         }
-
         // verify required parameter 'this.rangeStartIdentifier' is not undefined
         if (this.rangeStartIdentifier === undefined) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was undefined when calling removeRange.');
@@ -34903,7 +34538,6 @@ export class RemoveRangeRequest implements RequestInterface {
         if (this.rangeStartIdentifier === null) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling removeRange.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -35020,7 +34654,6 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling removeRangeOnline.');
         }
-
         // verify required parameter 'this.rangeStartIdentifier' is not undefined
         if (this.rangeStartIdentifier === undefined) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was undefined when calling removeRangeOnline.');
@@ -35030,7 +34663,6 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
         if (this.rangeStartIdentifier === null) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling removeRangeOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -35178,7 +34810,6 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling renderDrawingObject.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderDrawingObject.');
@@ -35188,7 +34819,6 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderDrawingObject.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling renderDrawingObject.');
@@ -35198,7 +34828,6 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling renderDrawingObject.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -35327,7 +34956,6 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling renderDrawingObjectOnline.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderDrawingObjectOnline.');
@@ -35337,7 +34965,6 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderDrawingObjectOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling renderDrawingObjectOnline.');
@@ -35347,7 +34974,6 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling renderDrawingObjectOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -35488,7 +35114,6 @@ export class RenderMathObjectRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling renderMathObject.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderMathObject.');
@@ -35498,7 +35123,6 @@ export class RenderMathObjectRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderMathObject.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling renderMathObject.');
@@ -35508,7 +35132,6 @@ export class RenderMathObjectRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling renderMathObject.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -35637,7 +35260,6 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling renderMathObjectOnline.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderMathObjectOnline.');
@@ -35647,7 +35269,6 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderMathObjectOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling renderMathObjectOnline.');
@@ -35657,7 +35278,6 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling renderMathObjectOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -35787,7 +35407,6 @@ export class RenderPageRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling renderPage.');
         }
-
         // verify required parameter 'this.pageIndex' is not undefined
         if (this.pageIndex === undefined) {
             throw new Error('Required parameter "this.pageIndex" was undefined when calling renderPage.');
@@ -35797,7 +35416,6 @@ export class RenderPageRequest implements RequestInterface {
         if (this.pageIndex === null) {
             throw new Error('Required parameter "this.pageIndex" was null when calling renderPage.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderPage.');
@@ -35807,7 +35425,6 @@ export class RenderPageRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderPage.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -35924,7 +35541,6 @@ export class RenderPageOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling renderPageOnline.');
         }
-
         // verify required parameter 'this.pageIndex' is not undefined
         if (this.pageIndex === undefined) {
             throw new Error('Required parameter "this.pageIndex" was undefined when calling renderPageOnline.');
@@ -35934,7 +35550,6 @@ export class RenderPageOnlineRequest implements RequestInterface {
         if (this.pageIndex === null) {
             throw new Error('Required parameter "this.pageIndex" was null when calling renderPageOnline.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderPageOnline.');
@@ -35944,7 +35559,6 @@ export class RenderPageOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderPageOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -36084,7 +35698,6 @@ export class RenderParagraphRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling renderParagraph.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderParagraph.');
@@ -36094,7 +35707,6 @@ export class RenderParagraphRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderParagraph.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling renderParagraph.');
@@ -36104,7 +35716,6 @@ export class RenderParagraphRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling renderParagraph.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -36233,7 +35844,6 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling renderParagraphOnline.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderParagraphOnline.');
@@ -36243,7 +35853,6 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderParagraphOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling renderParagraphOnline.');
@@ -36253,7 +35862,6 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling renderParagraphOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -36394,7 +36002,6 @@ export class RenderTableRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling renderTable.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderTable.');
@@ -36404,7 +36011,6 @@ export class RenderTableRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderTable.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling renderTable.');
@@ -36414,7 +36020,6 @@ export class RenderTableRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling renderTable.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -36543,7 +36148,6 @@ export class RenderTableOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling renderTableOnline.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling renderTableOnline.');
@@ -36553,7 +36157,6 @@ export class RenderTableOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling renderTableOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling renderTableOnline.');
@@ -36563,7 +36166,6 @@ export class RenderTableOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling renderTableOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -36697,7 +36299,6 @@ export class ReplaceTextRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling replaceText.');
         }
-
         // verify required parameter 'this.replaceText' is not undefined
         if (this.replaceText === undefined) {
             throw new Error('Required parameter "this.replaceText" was undefined when calling replaceText.');
@@ -36707,6 +36308,7 @@ export class ReplaceTextRequest implements RequestInterface {
         if (this.replaceText === null) {
             throw new Error('Required parameter "this.replaceText" was null when calling replaceText.');
         }
+        this.replaceText?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -36833,7 +36435,6 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling replaceTextOnline.');
         }
-
         // verify required parameter 'this.replaceText' is not undefined
         if (this.replaceText === undefined) {
             throw new Error('Required parameter "this.replaceText" was undefined when calling replaceTextOnline.');
@@ -36843,6 +36444,7 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         if (this.replaceText === null) {
             throw new Error('Required parameter "this.replaceText" was null when calling replaceTextOnline.');
         }
+        this.replaceText?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -36992,7 +36594,6 @@ export class ReplaceWithTextRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling replaceWithText.');
         }
-
         // verify required parameter 'this.rangeStartIdentifier' is not undefined
         if (this.rangeStartIdentifier === undefined) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was undefined when calling replaceWithText.');
@@ -37002,7 +36603,6 @@ export class ReplaceWithTextRequest implements RequestInterface {
         if (this.rangeStartIdentifier === null) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling replaceWithText.');
         }
-
         // verify required parameter 'this.rangeText' is not undefined
         if (this.rangeText === undefined) {
             throw new Error('Required parameter "this.rangeText" was undefined when calling replaceWithText.');
@@ -37012,6 +36612,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
         if (this.rangeText === null) {
             throw new Error('Required parameter "this.rangeText" was null when calling replaceWithText.');
         }
+        this.rangeText?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -37138,7 +36739,6 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling replaceWithTextOnline.');
         }
-
         // verify required parameter 'this.rangeStartIdentifier' is not undefined
         if (this.rangeStartIdentifier === undefined) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was undefined when calling replaceWithTextOnline.');
@@ -37148,7 +36748,6 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         if (this.rangeStartIdentifier === null) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling replaceWithTextOnline.');
         }
-
         // verify required parameter 'this.rangeText' is not undefined
         if (this.rangeText === undefined) {
             throw new Error('Required parameter "this.rangeText" was undefined when calling replaceWithTextOnline.');
@@ -37158,6 +36757,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         if (this.rangeText === null) {
             throw new Error('Required parameter "this.rangeText" was null when calling replaceWithTextOnline.');
         }
+        this.rangeText?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -37358,7 +36958,6 @@ export class SaveAsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling saveAs.');
         }
-
         // verify required parameter 'this.saveOptionsData' is not undefined
         if (this.saveOptionsData === undefined) {
             throw new Error('Required parameter "this.saveOptionsData" was undefined when calling saveAs.');
@@ -37368,6 +36967,7 @@ export class SaveAsRequest implements RequestInterface {
         if (this.saveOptionsData === null) {
             throw new Error('Required parameter "this.saveOptionsData" was null when calling saveAs.');
         }
+        this.saveOptionsData?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -37482,7 +37082,6 @@ export class SaveAsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling saveAsOnline.');
         }
-
         // verify required parameter 'this.saveOptionsData' is not undefined
         if (this.saveOptionsData === undefined) {
             throw new Error('Required parameter "this.saveOptionsData" was undefined when calling saveAsOnline.');
@@ -37492,6 +37091,7 @@ export class SaveAsOnlineRequest implements RequestInterface {
         if (this.saveOptionsData === null) {
             throw new Error('Required parameter "this.saveOptionsData" was null when calling saveAsOnline.');
         }
+        this.saveOptionsData?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -37634,7 +37234,6 @@ export class SaveAsRangeRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling saveAsRange.');
         }
-
         // verify required parameter 'this.rangeStartIdentifier' is not undefined
         if (this.rangeStartIdentifier === undefined) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was undefined when calling saveAsRange.');
@@ -37644,7 +37243,6 @@ export class SaveAsRangeRequest implements RequestInterface {
         if (this.rangeStartIdentifier === null) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling saveAsRange.');
         }
-
         // verify required parameter 'this.documentParameters' is not undefined
         if (this.documentParameters === undefined) {
             throw new Error('Required parameter "this.documentParameters" was undefined when calling saveAsRange.');
@@ -37654,6 +37252,7 @@ export class SaveAsRangeRequest implements RequestInterface {
         if (this.documentParameters === null) {
             throw new Error('Required parameter "this.documentParameters" was null when calling saveAsRange.');
         }
+        this.documentParameters?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -37774,7 +37373,6 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling saveAsRangeOnline.');
         }
-
         // verify required parameter 'this.rangeStartIdentifier' is not undefined
         if (this.rangeStartIdentifier === undefined) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was undefined when calling saveAsRangeOnline.');
@@ -37784,7 +37382,6 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         if (this.rangeStartIdentifier === null) {
             throw new Error('Required parameter "this.rangeStartIdentifier" was null when calling saveAsRangeOnline.');
         }
-
         // verify required parameter 'this.documentParameters' is not undefined
         if (this.documentParameters === undefined) {
             throw new Error('Required parameter "this.documentParameters" was undefined when calling saveAsRangeOnline.');
@@ -37794,6 +37391,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         if (this.documentParameters === null) {
             throw new Error('Required parameter "this.documentParameters" was null when calling saveAsRangeOnline.');
         }
+        this.documentParameters?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -38013,7 +37611,6 @@ export class SaveAsTiffRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling saveAsTiff.');
         }
-
         // verify required parameter 'this.saveOptions' is not undefined
         if (this.saveOptions === undefined) {
             throw new Error('Required parameter "this.saveOptions" was undefined when calling saveAsTiff.');
@@ -38023,6 +37620,7 @@ export class SaveAsTiffRequest implements RequestInterface {
         if (this.saveOptions === null) {
             throw new Error('Required parameter "this.saveOptions" was null when calling saveAsTiff.');
         }
+        this.saveOptions?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -38239,7 +37837,6 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling saveAsTiffOnline.');
         }
-
         // verify required parameter 'this.saveOptions' is not undefined
         if (this.saveOptions === undefined) {
             throw new Error('Required parameter "this.saveOptions" was undefined when calling saveAsTiffOnline.');
@@ -38249,6 +37846,7 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         if (this.saveOptions === null) {
             throw new Error('Required parameter "this.saveOptions" was null when calling saveAsTiffOnline.');
         }
+        this.saveOptions?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -38396,7 +37994,6 @@ export class SearchRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling search.');
         }
-
         // verify required parameter 'this.pattern' is not undefined
         if (this.pattern === undefined) {
             throw new Error('Required parameter "this.pattern" was undefined when calling search.');
@@ -38406,7 +38003,6 @@ export class SearchRequest implements RequestInterface {
         if (this.pattern === null) {
             throw new Error('Required parameter "this.pattern" was null when calling search.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -38511,7 +38107,6 @@ export class SearchOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling searchOnline.');
         }
-
         // verify required parameter 'this.pattern' is not undefined
         if (this.pattern === undefined) {
             throw new Error('Required parameter "this.pattern" was undefined when calling searchOnline.');
@@ -38521,7 +38116,6 @@ export class SearchOnlineRequest implements RequestInterface {
         if (this.pattern === null) {
             throw new Error('Required parameter "this.pattern" was null when calling searchOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "pattern", this.pattern, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -38663,7 +38257,6 @@ export class SplitDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling splitDocument.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling splitDocument.');
@@ -38673,7 +38266,6 @@ export class SplitDocumentRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling splitDocument.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -38808,7 +38400,6 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling splitDocumentOnline.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling splitDocumentOnline.');
@@ -38818,7 +38409,6 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling splitDocumentOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -38954,7 +38544,6 @@ export class UnprotectDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling unprotectDocument.');
         }
-
         // verify required parameter 'this.protectionRequest' is not undefined
         if (this.protectionRequest === undefined) {
             throw new Error('Required parameter "this.protectionRequest" was undefined when calling unprotectDocument.');
@@ -38964,6 +38553,7 @@ export class UnprotectDocumentRequest implements RequestInterface {
         if (this.protectionRequest === null) {
             throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocument.');
         }
+        this.protectionRequest?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -39078,7 +38668,6 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling unprotectDocumentOnline.');
         }
-
         // verify required parameter 'this.protectionRequest' is not undefined
         if (this.protectionRequest === undefined) {
             throw new Error('Required parameter "this.protectionRequest" was undefined when calling unprotectDocumentOnline.');
@@ -39088,6 +38677,7 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         if (this.protectionRequest === null) {
             throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocumentOnline.');
         }
+        this.protectionRequest?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -39239,7 +38829,6 @@ export class UpdateBookmarkRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateBookmark.');
         }
-
         // verify required parameter 'this.bookmarkName' is not undefined
         if (this.bookmarkName === undefined) {
             throw new Error('Required parameter "this.bookmarkName" was undefined when calling updateBookmark.');
@@ -39249,7 +38838,6 @@ export class UpdateBookmarkRequest implements RequestInterface {
         if (this.bookmarkName === null) {
             throw new Error('Required parameter "this.bookmarkName" was null when calling updateBookmark.');
         }
-
         // verify required parameter 'this.bookmarkData' is not undefined
         if (this.bookmarkData === undefined) {
             throw new Error('Required parameter "this.bookmarkData" was undefined when calling updateBookmark.');
@@ -39259,6 +38847,7 @@ export class UpdateBookmarkRequest implements RequestInterface {
         if (this.bookmarkData === null) {
             throw new Error('Required parameter "this.bookmarkData" was null when calling updateBookmark.');
         }
+        this.bookmarkData?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -39391,7 +38980,6 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateBookmarkOnline.');
         }
-
         // verify required parameter 'this.bookmarkName' is not undefined
         if (this.bookmarkName === undefined) {
             throw new Error('Required parameter "this.bookmarkName" was undefined when calling updateBookmarkOnline.');
@@ -39401,7 +38989,6 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         if (this.bookmarkName === null) {
             throw new Error('Required parameter "this.bookmarkName" was null when calling updateBookmarkOnline.');
         }
-
         // verify required parameter 'this.bookmarkData' is not undefined
         if (this.bookmarkData === undefined) {
             throw new Error('Required parameter "this.bookmarkData" was undefined when calling updateBookmarkOnline.');
@@ -39411,6 +38998,7 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         if (this.bookmarkData === null) {
             throw new Error('Required parameter "this.bookmarkData" was null when calling updateBookmarkOnline.');
         }
+        this.bookmarkData?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -39571,7 +39159,6 @@ export class UpdateBorderRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateBorder.');
         }
-
         // verify required parameter 'this.borderType' is not undefined
         if (this.borderType === undefined) {
             throw new Error('Required parameter "this.borderType" was undefined when calling updateBorder.');
@@ -39581,7 +39168,6 @@ export class UpdateBorderRequest implements RequestInterface {
         if (this.borderType === null) {
             throw new Error('Required parameter "this.borderType" was null when calling updateBorder.');
         }
-
         // verify required parameter 'this.borderProperties' is not undefined
         if (this.borderProperties === undefined) {
             throw new Error('Required parameter "this.borderProperties" was undefined when calling updateBorder.');
@@ -39591,6 +39177,7 @@ export class UpdateBorderRequest implements RequestInterface {
         if (this.borderProperties === null) {
             throw new Error('Required parameter "this.borderProperties" was null when calling updateBorder.');
         }
+        this.borderProperties?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -39730,7 +39317,6 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateBorderOnline.');
         }
-
         // verify required parameter 'this.borderProperties' is not undefined
         if (this.borderProperties === undefined) {
             throw new Error('Required parameter "this.borderProperties" was undefined when calling updateBorderOnline.');
@@ -39740,7 +39326,6 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         if (this.borderProperties === null) {
             throw new Error('Required parameter "this.borderProperties" was null when calling updateBorderOnline.');
         }
-
         // verify required parameter 'this.borderType' is not undefined
         if (this.borderType === undefined) {
             throw new Error('Required parameter "this.borderType" was undefined when calling updateBorderOnline.');
@@ -39750,6 +39335,7 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         if (this.borderType === null) {
             throw new Error('Required parameter "this.borderType" was null when calling updateBorderOnline.');
         }
+        this.borderProperties?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -39903,7 +39489,6 @@ export class UpdateCommentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateComment.');
         }
-
         // verify required parameter 'this.commentIndex' is not undefined
         if (this.commentIndex === undefined) {
             throw new Error('Required parameter "this.commentIndex" was undefined when calling updateComment.');
@@ -39913,7 +39498,6 @@ export class UpdateCommentRequest implements RequestInterface {
         if (this.commentIndex === null) {
             throw new Error('Required parameter "this.commentIndex" was null when calling updateComment.');
         }
-
         // verify required parameter 'this.comment' is not undefined
         if (this.comment === undefined) {
             throw new Error('Required parameter "this.comment" was undefined when calling updateComment.');
@@ -39923,6 +39507,7 @@ export class UpdateCommentRequest implements RequestInterface {
         if (this.comment === null) {
             throw new Error('Required parameter "this.comment" was null when calling updateComment.');
         }
+        this.comment?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -40055,7 +39640,6 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateCommentOnline.');
         }
-
         // verify required parameter 'this.commentIndex' is not undefined
         if (this.commentIndex === undefined) {
             throw new Error('Required parameter "this.commentIndex" was undefined when calling updateCommentOnline.');
@@ -40065,7 +39649,6 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         if (this.commentIndex === null) {
             throw new Error('Required parameter "this.commentIndex" was null when calling updateCommentOnline.');
         }
-
         // verify required parameter 'this.comment' is not undefined
         if (this.comment === undefined) {
             throw new Error('Required parameter "this.comment" was undefined when calling updateCommentOnline.');
@@ -40075,6 +39658,7 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         if (this.comment === null) {
             throw new Error('Required parameter "this.comment" was null when calling updateCommentOnline.');
         }
+        this.comment?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -40228,7 +39812,6 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateCustomXmlPart.');
         }
-
         // verify required parameter 'this.customXmlPartIndex' is not undefined
         if (this.customXmlPartIndex === undefined) {
             throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling updateCustomXmlPart.');
@@ -40238,7 +39821,6 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         if (this.customXmlPartIndex === null) {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling updateCustomXmlPart.');
         }
-
         // verify required parameter 'this.customXmlPart' is not undefined
         if (this.customXmlPart === undefined) {
             throw new Error('Required parameter "this.customXmlPart" was undefined when calling updateCustomXmlPart.');
@@ -40248,6 +39830,7 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         if (this.customXmlPart === null) {
             throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPart.');
         }
+        this.customXmlPart?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -40380,7 +39963,6 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateCustomXmlPartOnline.');
         }
-
         // verify required parameter 'this.customXmlPartIndex' is not undefined
         if (this.customXmlPartIndex === undefined) {
             throw new Error('Required parameter "this.customXmlPartIndex" was undefined when calling updateCustomXmlPartOnline.');
@@ -40390,7 +39972,6 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPartIndex === null) {
             throw new Error('Required parameter "this.customXmlPartIndex" was null when calling updateCustomXmlPartOnline.');
         }
-
         // verify required parameter 'this.customXmlPart' is not undefined
         if (this.customXmlPart === undefined) {
             throw new Error('Required parameter "this.customXmlPart" was undefined when calling updateCustomXmlPartOnline.');
@@ -40400,6 +39981,7 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         if (this.customXmlPart === null) {
             throw new Error('Required parameter "this.customXmlPart" was null when calling updateCustomXmlPartOnline.');
         }
+        this.customXmlPart?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -40564,7 +40146,6 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateDrawingObject.');
         }
-
         // verify required parameter 'this.drawingObject' is not undefined
         if (this.drawingObject === undefined) {
             throw new Error('Required parameter "this.drawingObject" was undefined when calling updateDrawingObject.');
@@ -40574,7 +40155,6 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling updateDrawingObject.');
         }
-
         // verify required parameter 'this.imageFile' is not undefined
         if (this.imageFile === undefined) {
             throw new Error('Required parameter "this.imageFile" was undefined when calling updateDrawingObject.');
@@ -40584,7 +40164,6 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         if (this.imageFile === null) {
             throw new Error('Required parameter "this.imageFile" was null when calling updateDrawingObject.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateDrawingObject.');
@@ -40594,6 +40173,7 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateDrawingObject.');
         }
+        this.drawingObject?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -40740,7 +40320,6 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateDrawingObjectOnline.');
         }
-
         // verify required parameter 'this.drawingObject' is not undefined
         if (this.drawingObject === undefined) {
             throw new Error('Required parameter "this.drawingObject" was undefined when calling updateDrawingObjectOnline.');
@@ -40750,7 +40329,6 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling updateDrawingObjectOnline.');
         }
-
         // verify required parameter 'this.imageFile' is not undefined
         if (this.imageFile === undefined) {
             throw new Error('Required parameter "this.imageFile" was undefined when calling updateDrawingObjectOnline.');
@@ -40760,7 +40338,6 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         if (this.imageFile === null) {
             throw new Error('Required parameter "this.imageFile" was null when calling updateDrawingObjectOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateDrawingObjectOnline.');
@@ -40770,6 +40347,7 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateDrawingObjectOnline.');
         }
+        this.drawingObject?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -40932,7 +40510,6 @@ export class UpdateFieldRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateField.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateField.');
@@ -40942,7 +40519,6 @@ export class UpdateFieldRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateField.');
         }
-
         // verify required parameter 'this.field' is not undefined
         if (this.field === undefined) {
             throw new Error('Required parameter "this.field" was undefined when calling updateField.');
@@ -40952,6 +40528,7 @@ export class UpdateFieldRequest implements RequestInterface {
         if (this.field === null) {
             throw new Error('Required parameter "this.field" was null when calling updateField.');
         }
+        this.field?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -41090,7 +40667,6 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateFieldOnline.');
         }
-
         // verify required parameter 'this.field' is not undefined
         if (this.field === undefined) {
             throw new Error('Required parameter "this.field" was undefined when calling updateFieldOnline.');
@@ -41100,7 +40676,6 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         if (this.field === null) {
             throw new Error('Required parameter "this.field" was null when calling updateFieldOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateFieldOnline.');
@@ -41110,6 +40685,7 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateFieldOnline.');
         }
+        this.field?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -41242,7 +40818,6 @@ export class UpdateFieldsRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateFields.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -41347,7 +40922,6 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateFieldsOnline.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -41500,7 +41074,6 @@ export class UpdateFootnoteRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateFootnote.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateFootnote.');
@@ -41510,7 +41083,6 @@ export class UpdateFootnoteRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateFootnote.');
         }
-
         // verify required parameter 'this.footnoteDto' is not undefined
         if (this.footnoteDto === undefined) {
             throw new Error('Required parameter "this.footnoteDto" was undefined when calling updateFootnote.');
@@ -41520,6 +41092,7 @@ export class UpdateFootnoteRequest implements RequestInterface {
         if (this.footnoteDto === null) {
             throw new Error('Required parameter "this.footnoteDto" was null when calling updateFootnote.');
         }
+        this.footnoteDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -41658,7 +41231,6 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateFootnoteOnline.');
         }
-
         // verify required parameter 'this.footnoteDto' is not undefined
         if (this.footnoteDto === undefined) {
             throw new Error('Required parameter "this.footnoteDto" was undefined when calling updateFootnoteOnline.');
@@ -41668,7 +41240,6 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         if (this.footnoteDto === null) {
             throw new Error('Required parameter "this.footnoteDto" was null when calling updateFootnoteOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateFootnoteOnline.');
@@ -41678,6 +41249,7 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateFootnoteOnline.');
         }
+        this.footnoteDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -41837,7 +41409,6 @@ export class UpdateFormFieldRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateFormField.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateFormField.');
@@ -41847,7 +41418,6 @@ export class UpdateFormFieldRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateFormField.');
         }
-
         // verify required parameter 'this.formField' is not undefined
         if (this.formField === undefined) {
             throw new Error('Required parameter "this.formField" was undefined when calling updateFormField.');
@@ -41857,6 +41427,7 @@ export class UpdateFormFieldRequest implements RequestInterface {
         if (this.formField === null) {
             throw new Error('Required parameter "this.formField" was null when calling updateFormField.');
         }
+        this.formField?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -41995,7 +41566,6 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateFormFieldOnline.');
         }
-
         // verify required parameter 'this.formField' is not undefined
         if (this.formField === undefined) {
             throw new Error('Required parameter "this.formField" was undefined when calling updateFormFieldOnline.');
@@ -42005,7 +41575,6 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         if (this.formField === null) {
             throw new Error('Required parameter "this.formField" was null when calling updateFormFieldOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateFormFieldOnline.');
@@ -42015,6 +41584,7 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateFormFieldOnline.');
         }
+        this.formField?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -42168,7 +41738,6 @@ export class UpdateListRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateList.');
         }
-
         // verify required parameter 'this.listId' is not undefined
         if (this.listId === undefined) {
             throw new Error('Required parameter "this.listId" was undefined when calling updateList.');
@@ -42178,7 +41747,6 @@ export class UpdateListRequest implements RequestInterface {
         if (this.listId === null) {
             throw new Error('Required parameter "this.listId" was null when calling updateList.');
         }
-
         // verify required parameter 'this.listUpdate' is not undefined
         if (this.listUpdate === undefined) {
             throw new Error('Required parameter "this.listUpdate" was undefined when calling updateList.');
@@ -42188,6 +41756,7 @@ export class UpdateListRequest implements RequestInterface {
         if (this.listUpdate === null) {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateList.');
         }
+        this.listUpdate?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -42337,7 +41906,6 @@ export class UpdateListLevelRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateListLevel.');
         }
-
         // verify required parameter 'this.listId' is not undefined
         if (this.listId === undefined) {
             throw new Error('Required parameter "this.listId" was undefined when calling updateListLevel.');
@@ -42347,7 +41915,6 @@ export class UpdateListLevelRequest implements RequestInterface {
         if (this.listId === null) {
             throw new Error('Required parameter "this.listId" was null when calling updateListLevel.');
         }
-
         // verify required parameter 'this.listLevel' is not undefined
         if (this.listLevel === undefined) {
             throw new Error('Required parameter "this.listLevel" was undefined when calling updateListLevel.');
@@ -42357,7 +41924,6 @@ export class UpdateListLevelRequest implements RequestInterface {
         if (this.listLevel === null) {
             throw new Error('Required parameter "this.listLevel" was null when calling updateListLevel.');
         }
-
         // verify required parameter 'this.listUpdate' is not undefined
         if (this.listUpdate === undefined) {
             throw new Error('Required parameter "this.listUpdate" was undefined when calling updateListLevel.');
@@ -42367,6 +41933,7 @@ export class UpdateListLevelRequest implements RequestInterface {
         if (this.listUpdate === null) {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListLevel.');
         }
+        this.listUpdate?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -42505,7 +42072,6 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateListLevelOnline.');
         }
-
         // verify required parameter 'this.listId' is not undefined
         if (this.listId === undefined) {
             throw new Error('Required parameter "this.listId" was undefined when calling updateListLevelOnline.');
@@ -42515,7 +42081,6 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         if (this.listId === null) {
             throw new Error('Required parameter "this.listId" was null when calling updateListLevelOnline.');
         }
-
         // verify required parameter 'this.listUpdate' is not undefined
         if (this.listUpdate === undefined) {
             throw new Error('Required parameter "this.listUpdate" was undefined when calling updateListLevelOnline.');
@@ -42525,7 +42090,6 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         if (this.listUpdate === null) {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListLevelOnline.');
         }
-
         // verify required parameter 'this.listLevel' is not undefined
         if (this.listLevel === undefined) {
             throw new Error('Required parameter "this.listLevel" was undefined when calling updateListLevelOnline.');
@@ -42535,6 +42099,7 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         if (this.listLevel === null) {
             throw new Error('Required parameter "this.listLevel" was null when calling updateListLevelOnline.');
         }
+        this.listUpdate?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -42677,7 +42242,6 @@ export class UpdateListOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateListOnline.');
         }
-
         // verify required parameter 'this.listId' is not undefined
         if (this.listId === undefined) {
             throw new Error('Required parameter "this.listId" was undefined when calling updateListOnline.');
@@ -42687,7 +42251,6 @@ export class UpdateListOnlineRequest implements RequestInterface {
         if (this.listId === null) {
             throw new Error('Required parameter "this.listId" was null when calling updateListOnline.');
         }
-
         // verify required parameter 'this.listUpdate' is not undefined
         if (this.listUpdate === undefined) {
             throw new Error('Required parameter "this.listUpdate" was undefined when calling updateListOnline.');
@@ -42697,6 +42260,7 @@ export class UpdateListOnlineRequest implements RequestInterface {
         if (this.listUpdate === null) {
             throw new Error('Required parameter "this.listUpdate" was null when calling updateListOnline.');
         }
+        this.listUpdate?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -42856,7 +42420,6 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateParagraphFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateParagraphFormat.');
@@ -42866,7 +42429,6 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateParagraphFormat.');
         }
-
         // verify required parameter 'this.paragraphFormatDto' is not undefined
         if (this.paragraphFormatDto === undefined) {
             throw new Error('Required parameter "this.paragraphFormatDto" was undefined when calling updateParagraphFormat.');
@@ -42876,6 +42438,7 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         if (this.paragraphFormatDto === null) {
             throw new Error('Required parameter "this.paragraphFormatDto" was null when calling updateParagraphFormat.');
         }
+        this.paragraphFormatDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -43014,7 +42577,6 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateParagraphFormatOnline.');
         }
-
         // verify required parameter 'this.paragraphFormatDto' is not undefined
         if (this.paragraphFormatDto === undefined) {
             throw new Error('Required parameter "this.paragraphFormatDto" was undefined when calling updateParagraphFormatOnline.');
@@ -43024,7 +42586,6 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         if (this.paragraphFormatDto === null) {
             throw new Error('Required parameter "this.paragraphFormatDto" was null when calling updateParagraphFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateParagraphFormatOnline.');
@@ -43034,6 +42595,7 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateParagraphFormatOnline.');
         }
+        this.paragraphFormatDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -43193,7 +42755,6 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateParagraphListFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateParagraphListFormat.');
@@ -43203,7 +42764,6 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateParagraphListFormat.');
         }
-
         // verify required parameter 'this.listFormatDto' is not undefined
         if (this.listFormatDto === undefined) {
             throw new Error('Required parameter "this.listFormatDto" was undefined when calling updateParagraphListFormat.');
@@ -43213,6 +42773,7 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         if (this.listFormatDto === null) {
             throw new Error('Required parameter "this.listFormatDto" was null when calling updateParagraphListFormat.');
         }
+        this.listFormatDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -43351,7 +42912,6 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateParagraphListFormatOnline.');
         }
-
         // verify required parameter 'this.listFormatDto' is not undefined
         if (this.listFormatDto === undefined) {
             throw new Error('Required parameter "this.listFormatDto" was undefined when calling updateParagraphListFormatOnline.');
@@ -43361,7 +42921,6 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         if (this.listFormatDto === null) {
             throw new Error('Required parameter "this.listFormatDto" was null when calling updateParagraphListFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateParagraphListFormatOnline.');
@@ -43371,6 +42930,7 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateParagraphListFormatOnline.');
         }
+        this.listFormatDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -43530,7 +43090,6 @@ export class UpdateRunRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateRun.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling updateRun.');
@@ -43540,7 +43099,6 @@ export class UpdateRunRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling updateRun.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateRun.');
@@ -43550,7 +43108,6 @@ export class UpdateRunRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateRun.');
         }
-
         // verify required parameter 'this.run' is not undefined
         if (this.run === undefined) {
             throw new Error('Required parameter "this.run" was undefined when calling updateRun.');
@@ -43560,6 +43117,7 @@ export class UpdateRunRequest implements RequestInterface {
         if (this.run === null) {
             throw new Error('Required parameter "this.run" was null when calling updateRun.');
         }
+        this.run?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -43709,7 +43267,6 @@ export class UpdateRunFontRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateRunFont.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling updateRunFont.');
@@ -43719,7 +43276,6 @@ export class UpdateRunFontRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling updateRunFont.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateRunFont.');
@@ -43729,7 +43285,6 @@ export class UpdateRunFontRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateRunFont.');
         }
-
         // verify required parameter 'this.fontDto' is not undefined
         if (this.fontDto === undefined) {
             throw new Error('Required parameter "this.fontDto" was undefined when calling updateRunFont.');
@@ -43739,6 +43294,7 @@ export class UpdateRunFontRequest implements RequestInterface {
         if (this.fontDto === null) {
             throw new Error('Required parameter "this.fontDto" was null when calling updateRunFont.');
         }
+        this.fontDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -43877,7 +43433,6 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateRunFontOnline.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling updateRunFontOnline.');
@@ -43887,7 +43442,6 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling updateRunFontOnline.');
         }
-
         // verify required parameter 'this.fontDto' is not undefined
         if (this.fontDto === undefined) {
             throw new Error('Required parameter "this.fontDto" was undefined when calling updateRunFontOnline.');
@@ -43897,7 +43451,6 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         if (this.fontDto === null) {
             throw new Error('Required parameter "this.fontDto" was null when calling updateRunFontOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateRunFontOnline.');
@@ -43907,6 +43460,7 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateRunFontOnline.');
         }
+        this.fontDto?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -44055,7 +43609,6 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateRunOnline.');
         }
-
         // verify required parameter 'this.paragraphPath' is not undefined
         if (this.paragraphPath === undefined) {
             throw new Error('Required parameter "this.paragraphPath" was undefined when calling updateRunOnline.');
@@ -44065,7 +43618,6 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         if (this.paragraphPath === null) {
             throw new Error('Required parameter "this.paragraphPath" was null when calling updateRunOnline.');
         }
-
         // verify required parameter 'this.run' is not undefined
         if (this.run === undefined) {
             throw new Error('Required parameter "this.run" was undefined when calling updateRunOnline.');
@@ -44075,7 +43627,6 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         if (this.run === null) {
             throw new Error('Required parameter "this.run" was null when calling updateRunOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateRunOnline.');
@@ -44085,6 +43636,7 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateRunOnline.');
         }
+        this.run?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -44238,7 +43790,6 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateSectionPageSetup.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling updateSectionPageSetup.');
@@ -44248,7 +43799,6 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling updateSectionPageSetup.');
         }
-
         // verify required parameter 'this.pageSetup' is not undefined
         if (this.pageSetup === undefined) {
             throw new Error('Required parameter "this.pageSetup" was undefined when calling updateSectionPageSetup.');
@@ -44258,6 +43808,7 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         if (this.pageSetup === null) {
             throw new Error('Required parameter "this.pageSetup" was null when calling updateSectionPageSetup.');
         }
+        this.pageSetup?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -44390,7 +43941,6 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateSectionPageSetupOnline.');
         }
-
         // verify required parameter 'this.sectionIndex' is not undefined
         if (this.sectionIndex === undefined) {
             throw new Error('Required parameter "this.sectionIndex" was undefined when calling updateSectionPageSetupOnline.');
@@ -44400,7 +43950,6 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         if (this.sectionIndex === null) {
             throw new Error('Required parameter "this.sectionIndex" was null when calling updateSectionPageSetupOnline.');
         }
-
         // verify required parameter 'this.pageSetup' is not undefined
         if (this.pageSetup === undefined) {
             throw new Error('Required parameter "this.pageSetup" was undefined when calling updateSectionPageSetupOnline.');
@@ -44410,6 +43959,7 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         if (this.pageSetup === null) {
             throw new Error('Required parameter "this.pageSetup" was null when calling updateSectionPageSetupOnline.');
         }
+        this.pageSetup?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -44569,7 +44119,6 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateStructuredDocumentTag.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateStructuredDocumentTag.');
@@ -44579,7 +44128,6 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateStructuredDocumentTag.');
         }
-
         // verify required parameter 'this.structuredDocumentTag' is not undefined
         if (this.structuredDocumentTag === undefined) {
             throw new Error('Required parameter "this.structuredDocumentTag" was undefined when calling updateStructuredDocumentTag.');
@@ -44589,6 +44137,7 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
         if (this.structuredDocumentTag === null) {
             throw new Error('Required parameter "this.structuredDocumentTag" was null when calling updateStructuredDocumentTag.');
         }
+        this.structuredDocumentTag?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -44727,7 +44276,6 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateStructuredDocumentTagOnline.');
         }
-
         // verify required parameter 'this.structuredDocumentTag' is not undefined
         if (this.structuredDocumentTag === undefined) {
             throw new Error('Required parameter "this.structuredDocumentTag" was undefined when calling updateStructuredDocumentTagOnline.');
@@ -44737,7 +44285,6 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.structuredDocumentTag === null) {
             throw new Error('Required parameter "this.structuredDocumentTag" was null when calling updateStructuredDocumentTagOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateStructuredDocumentTagOnline.');
@@ -44747,6 +44294,7 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateStructuredDocumentTagOnline.');
         }
+        this.structuredDocumentTag?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -44900,7 +44448,6 @@ export class UpdateStyleRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateStyle.');
         }
-
         // verify required parameter 'this.styleName' is not undefined
         if (this.styleName === undefined) {
             throw new Error('Required parameter "this.styleName" was undefined when calling updateStyle.');
@@ -44910,7 +44457,6 @@ export class UpdateStyleRequest implements RequestInterface {
         if (this.styleName === null) {
             throw new Error('Required parameter "this.styleName" was null when calling updateStyle.');
         }
-
         // verify required parameter 'this.styleUpdate' is not undefined
         if (this.styleUpdate === undefined) {
             throw new Error('Required parameter "this.styleUpdate" was undefined when calling updateStyle.');
@@ -44920,6 +44466,7 @@ export class UpdateStyleRequest implements RequestInterface {
         if (this.styleUpdate === null) {
             throw new Error('Required parameter "this.styleUpdate" was null when calling updateStyle.');
         }
+        this.styleUpdate?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -45052,7 +44599,6 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateStyleOnline.');
         }
-
         // verify required parameter 'this.styleName' is not undefined
         if (this.styleName === undefined) {
             throw new Error('Required parameter "this.styleName" was undefined when calling updateStyleOnline.');
@@ -45062,7 +44608,6 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         if (this.styleName === null) {
             throw new Error('Required parameter "this.styleName" was null when calling updateStyleOnline.');
         }
-
         // verify required parameter 'this.styleUpdate' is not undefined
         if (this.styleUpdate === undefined) {
             throw new Error('Required parameter "this.styleUpdate" was undefined when calling updateStyleOnline.');
@@ -45072,6 +44617,7 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         if (this.styleUpdate === null) {
             throw new Error('Required parameter "this.styleUpdate" was null when calling updateStyleOnline.');
         }
+        this.styleUpdate?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -45231,7 +44777,6 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateTableCellFormat.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling updateTableCellFormat.');
@@ -45241,7 +44786,6 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling updateTableCellFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateTableCellFormat.');
@@ -45251,7 +44795,6 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateTableCellFormat.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling updateTableCellFormat.');
@@ -45261,6 +44804,7 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling updateTableCellFormat.');
         }
+        this.format?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -45399,7 +44943,6 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateTableCellFormatOnline.');
         }
-
         // verify required parameter 'this.tableRowPath' is not undefined
         if (this.tableRowPath === undefined) {
             throw new Error('Required parameter "this.tableRowPath" was undefined when calling updateTableCellFormatOnline.');
@@ -45409,7 +44952,6 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         if (this.tableRowPath === null) {
             throw new Error('Required parameter "this.tableRowPath" was null when calling updateTableCellFormatOnline.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling updateTableCellFormatOnline.');
@@ -45419,7 +44961,6 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling updateTableCellFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateTableCellFormatOnline.');
@@ -45429,6 +44970,7 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateTableCellFormatOnline.');
         }
+        this.format?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -45588,7 +45130,6 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateTableProperties.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateTableProperties.');
@@ -45598,7 +45139,6 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateTableProperties.');
         }
-
         // verify required parameter 'this.properties' is not undefined
         if (this.properties === undefined) {
             throw new Error('Required parameter "this.properties" was undefined when calling updateTableProperties.');
@@ -45608,6 +45148,7 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         if (this.properties === null) {
             throw new Error('Required parameter "this.properties" was null when calling updateTableProperties.');
         }
+        this.properties?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -45746,7 +45287,6 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateTablePropertiesOnline.');
         }
-
         // verify required parameter 'this.properties' is not undefined
         if (this.properties === undefined) {
             throw new Error('Required parameter "this.properties" was undefined when calling updateTablePropertiesOnline.');
@@ -45756,7 +45296,6 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         if (this.properties === null) {
             throw new Error('Required parameter "this.properties" was null when calling updateTablePropertiesOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateTablePropertiesOnline.');
@@ -45766,6 +45305,7 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateTablePropertiesOnline.');
         }
+        this.properties?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -45925,7 +45465,6 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling updateTableRowFormat.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling updateTableRowFormat.');
@@ -45935,7 +45474,6 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling updateTableRowFormat.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateTableRowFormat.');
@@ -45945,7 +45483,6 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateTableRowFormat.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling updateTableRowFormat.');
@@ -45955,6 +45492,7 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling updateTableRowFormat.');
         }
+        this.format?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
@@ -46093,7 +45631,6 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling updateTableRowFormatOnline.');
         }
-
         // verify required parameter 'this.tablePath' is not undefined
         if (this.tablePath === undefined) {
             throw new Error('Required parameter "this.tablePath" was undefined when calling updateTableRowFormatOnline.');
@@ -46103,7 +45640,6 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         if (this.tablePath === null) {
             throw new Error('Required parameter "this.tablePath" was null when calling updateTableRowFormatOnline.');
         }
-
         // verify required parameter 'this.format' is not undefined
         if (this.format === undefined) {
             throw new Error('Required parameter "this.format" was undefined when calling updateTableRowFormatOnline.');
@@ -46113,7 +45649,6 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         if (this.format === null) {
             throw new Error('Required parameter "this.format" was null when calling updateTableRowFormatOnline.');
         }
-
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateTableRowFormatOnline.');
@@ -46123,6 +45658,7 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling updateTableRowFormatOnline.');
         }
+        this.format?.validate();
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -46237,7 +45773,6 @@ export class UploadFileRequest implements RequestInterface {
         if (this.fileContent === null) {
             throw new Error('Required parameter "this.fileContent" was null when calling uploadFile.');
         }
-
         // verify required parameter 'this.path' is not undefined
         if (this.path === undefined) {
             throw new Error('Required parameter "this.path" was undefined when calling uploadFile.');
@@ -46247,7 +45782,6 @@ export class UploadFileRequest implements RequestInterface {
         if (this.path === null) {
             throw new Error('Required parameter "this.path" was null when calling uploadFile.');
         }
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         if (this.fileContent !== undefined) {
             formParams.push(['FileContent', this.fileContent, 'application/octet-stream']);

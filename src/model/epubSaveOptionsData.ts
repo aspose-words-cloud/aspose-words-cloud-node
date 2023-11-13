@@ -69,5 +69,9 @@ export class EpubSaveOptionsData extends HtmlSaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

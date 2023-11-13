@@ -27,36 +27,49 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { DocumentPropertyBase } from './documentPropertyBase';
 
 export const importsMapDocumentPropertyCreateOrUpdate = {
-    DocumentPropertyBase,
 };
 
 /**
  * Words document property DTO for create or update.
  */
-export class DocumentPropertyCreateOrUpdate extends DocumentPropertyBase {
+export class DocumentPropertyCreateOrUpdate implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "value",
+            baseName: "Value",
+            type: "string",
+        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(DocumentPropertyCreateOrUpdate.attributeTypeMap);
+        return DocumentPropertyCreateOrUpdate.attributeTypeMap;
     }
 
+    /**
+     * Gets or sets the value of the document property.
+     */
+    public value: string;
 
     public constructor(init?: Partial< DocumentPropertyCreateOrUpdate >) {
-        super(init);
         Object.assign(this, init);
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+    }
+
+    public validate() {
+        if (this.value === null || this.value === undefined)
+        {
+            throw new Error('Property Value in DocumentPropertyCreateOrUpdate is required.');
+        }
     }
 }
 

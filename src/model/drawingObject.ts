@@ -159,6 +159,34 @@ export class DrawingObject extends DrawingObjectLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.renderLinks !== null && this.renderLinks !== undefined)
+        {
+            for (let elementRenderLinks of this.renderLinks)
+            {
+                elementRenderLinks?.validate();
+            }
+        }
+
+
+
+
+
+        this.oleDataLink?.validate();
+
+
+
+        this.imageDataLink?.validate();
+
+
+
+
+
+
+    }
 }
 
 /**

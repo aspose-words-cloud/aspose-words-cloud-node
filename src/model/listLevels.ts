@@ -70,5 +70,18 @@ export class ListLevels extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.listLevel !== null && this.listLevel !== undefined)
+        {
+            for (let elementListLevel of this.listLevel)
+            {
+                elementListLevel?.validate();
+            }
+        }
+
+    }
 }
 

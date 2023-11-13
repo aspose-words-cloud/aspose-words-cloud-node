@@ -101,5 +101,9 @@ export class DocSaveOptionsData extends SaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

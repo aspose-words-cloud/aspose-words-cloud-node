@@ -55,6 +55,11 @@ export class MetafileRenderingOptionsData implements ModelInterface {
             type: "boolean",
         },
         {
+            name: "emulateRenderingToSizeOnPageResolution",
+            baseName: "EmulateRenderingToSizeOnPageResolution",
+            type: "number",
+        },
+        {
             name: "renderingMode",
             baseName: "RenderingMode",
             type: "MetafileRenderingOptionsData.RenderingModeEnum",
@@ -91,6 +96,13 @@ export class MetafileRenderingOptionsData implements ModelInterface {
     public emulateRenderingToSizeOnPage: boolean;
 
     /**
+     * Gets or sets the resolution in pixels per inch for the emulation of metafile rendering to the size on page.
+     * This option is used only when EmulateRenderingToSizeOnPage is set to true.The default value is 96. This is a default display resolution. I.e. metafile rendering will emulate the display of
+     * the metafile in MS Word with a 100% zoom factor.
+     */
+    public emulateRenderingToSizeOnPageResolution: number;
+
+    /**
      * Gets or sets the option that controls how metafile images should be rendered.
      */
     public renderingMode: MetafileRenderingOptionsData.RenderingModeEnum;
@@ -105,6 +117,9 @@ export class MetafileRenderingOptionsData implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+    }
+
+    public validate() {
     }
 }
 

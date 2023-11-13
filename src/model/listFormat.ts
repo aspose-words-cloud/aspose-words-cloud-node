@@ -89,5 +89,17 @@ export class ListFormat extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.listLevelNumber === null || this.listLevelNumber === undefined)
+        {
+            throw new Error('Property ListLevelNumber in ListFormat is required.');
+        }
+        if (this.isListItem === null || this.isListItem === undefined)
+        {
+            throw new Error('Property IsListItem in ListFormat is required.');
+        }
+    }
 }
 

@@ -58,5 +58,9 @@ export class FileLink extends Link {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

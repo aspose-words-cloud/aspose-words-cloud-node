@@ -87,5 +87,13 @@ export class FormFieldCheckbox extends FormField {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.checked === null || this.checked === undefined)
+        {
+            throw new Error('Property Checked in FormFieldCheckbox is required.');
+        }
+    }
 }
 

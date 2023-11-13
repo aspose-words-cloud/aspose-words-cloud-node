@@ -60,5 +60,9 @@ export class DocmSaveOptionsData extends OoxmlSaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

@@ -99,6 +99,18 @@ export class FormFieldTextInput extends FormField {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.textInputFormat === null || this.textInputFormat === undefined)
+        {
+            throw new Error('Property TextInputFormat in FormFieldTextInput is required.');
+        }
+        if (this.textInputDefault === null || this.textInputDefault === undefined)
+        {
+            throw new Error('Property TextInputDefault in FormFieldTextInput is required.');
+        }
+    }
 }
 
 /**

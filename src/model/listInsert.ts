@@ -65,6 +65,13 @@ export class ListInsert implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.template === null || this.template === undefined)
+        {
+            throw new Error('Property Template in ListInsert is required.');
+        }
+    }
 }
 
 /**

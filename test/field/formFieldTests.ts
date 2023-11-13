@@ -55,7 +55,8 @@ describe("formField", () => {
                     calculateOnExit: true,
                     statusText: "",
                     textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
-                    textInputDefault: "No name"
+                    textInputDefault: "No name",
+                    textInputFormat: ""
                 })
                 const request = new model.UpdateFormFieldRequest({
                     name: remoteFileName,
@@ -92,7 +93,8 @@ describe("formField", () => {
                 calculateOnExit: true,
                 statusText: "",
                 textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
-                textInputDefault: "No name"
+                textInputDefault: "No name",
+                textInputFormat: ""
             })
             const request = new model.UpdateFormFieldOnlineRequest({
                 document: requestDocument,
@@ -128,7 +130,8 @@ describe("formField", () => {
                     calculateOnExit: true,
                     statusText: "",
                     textInputType: model.FormFieldTextInput.TextInputTypeEnum.Regular,
-                    textInputDefault: "No name"
+                    textInputDefault: "No name",
+                    textInputFormat: ""
                 })
                 const request = new model.UpdateFormFieldRequest({
                     name: remoteFileName,

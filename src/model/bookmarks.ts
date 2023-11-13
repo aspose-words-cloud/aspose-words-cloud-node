@@ -69,5 +69,18 @@ export class Bookmarks extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.bookmarkList !== null && this.bookmarkList !== undefined)
+        {
+            for (let elementBookmarkList of this.bookmarkList)
+            {
+                elementBookmarkList?.validate();
+            }
+        }
+
+    }
 }
 

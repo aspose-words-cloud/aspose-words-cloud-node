@@ -69,5 +69,18 @@ export class TableLinkCollection extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.tableLinkList !== null && this.tableLinkList !== undefined)
+        {
+            for (let elementTableLinkList of this.tableLinkList)
+            {
+                elementTableLinkList?.validate();
+            }
+        }
+
+    }
 }
 

@@ -69,5 +69,12 @@ export class XmlDataLoadOptions implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.alwaysGenerateRootObject === null || this.alwaysGenerateRootObject === undefined)
+        {
+            throw new Error('Property AlwaysGenerateRootObject in XmlDataLoadOptions is required.');
+        }
+    }
 }
 

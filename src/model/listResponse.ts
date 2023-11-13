@@ -70,5 +70,12 @@ export class ListResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.list?.validate();
+
+    }
 }
 

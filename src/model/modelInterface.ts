@@ -30,4 +30,5 @@
  */
 export interface ModelInterface {
     collectFilesContent(_resultFilesContent: Array<any>);
+    validate();
 }

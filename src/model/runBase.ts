@@ -64,5 +64,12 @@ export abstract class RunBase implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.text === null || this.text === undefined)
+        {
+            throw new Error('Property Text in RunBase is required.');
+        }
+    }
 }
 

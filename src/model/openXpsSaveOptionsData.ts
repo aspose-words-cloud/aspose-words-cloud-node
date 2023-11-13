@@ -60,5 +60,9 @@ export class OpenXpsSaveOptionsData extends XpsSaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

@@ -67,5 +67,18 @@ export class DrawingObjectCollection extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.list !== null && this.list !== undefined)
+        {
+            for (let elementList of this.list)
+            {
+                elementList?.validate();
+            }
+        }
+
+    }
 }
 

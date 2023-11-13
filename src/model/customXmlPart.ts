@@ -79,5 +79,13 @@ export class CustomXmlPart extends CustomXmlPartLink {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.data === null || this.data === undefined)
+        {
+            throw new Error('Property Data in CustomXmlPart is required.');
+        }
+    }
 }
 

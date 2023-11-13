@@ -70,5 +70,12 @@ export class FootnoteResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.footnote?.validate();
+
+    }
 }
 

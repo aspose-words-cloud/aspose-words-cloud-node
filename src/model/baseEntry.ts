@@ -71,5 +71,15 @@ export abstract class BaseEntry implements ModelInterface {
         }
 
     }
+
+    public validate() {
+        if (this.fileReference === null || this.fileReference === undefined)
+        {
+            throw new Error('Property FileReference in BaseEntry is required.');
+        }
+
+        this.fileReference?.validate();
+
+    }
 }
 

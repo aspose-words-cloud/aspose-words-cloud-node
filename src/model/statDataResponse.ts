@@ -81,5 +81,16 @@ export class StatDataResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.documentLink?.validate();
+
+
+
+        this.statData?.validate();
+
+    }
 }
 

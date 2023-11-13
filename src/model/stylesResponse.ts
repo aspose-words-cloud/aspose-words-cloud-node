@@ -70,5 +70,18 @@ export class StylesResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.styles !== null && this.styles !== undefined)
+        {
+            for (let elementStyles of this.styles)
+            {
+                elementStyles?.validate();
+            }
+        }
+
+    }
 }
 

@@ -79,5 +79,16 @@ export class BookmarkInsert extends BookmarkData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.startRange?.validate();
+
+
+
+        this.endRange?.validate();
+
+    }
 }
 

@@ -97,6 +97,10 @@ export abstract class OoxmlSaveOptionsData extends SaveOptionsData {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 
 /**

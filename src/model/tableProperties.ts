@@ -203,6 +203,19 @@ export class TableProperties extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        this.preferredWidth?.validate();
+
+
+
+
+
+
+
+    }
 }
 
 /**

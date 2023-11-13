@@ -64,5 +64,12 @@ export class StyleApply implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.styleName === null || this.styleName === undefined)
+        {
+            throw new Error('Property StyleName in StyleApply is required.');
+        }
+    }
 }
 

@@ -89,5 +89,20 @@ export class InfoResponse extends WordsResponse {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.additionalInfo !== null && this.additionalInfo !== undefined)
+        {
+            for (let elementAdditionalInfo of this.additionalInfo)
+            {
+                elementAdditionalInfo?.validate();
+            }
+        }
+
+
+
+    }
 }
 

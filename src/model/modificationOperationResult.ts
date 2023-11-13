@@ -76,5 +76,15 @@ export class ModificationOperationResult implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+
+        this.dest?.validate();
+
+
+
+        this.source?.validate();
+
+    }
 }
 

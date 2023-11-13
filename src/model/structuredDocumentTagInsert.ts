@@ -27,20 +27,30 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { StructuredDocumentTag } from './structuredDocumentTag';
+import { StructuredDocumentTagBase } from './structuredDocumentTagBase';
 
 export const importsMapStructuredDocumentTagInsert = {
-    StructuredDocumentTag,
+    StructuredDocumentTagBase,
 };
 
 /**
  * DTO container with a StructuredDocumentTag.
  */
-export class StructuredDocumentTagInsert extends StructuredDocumentTag {
+export class StructuredDocumentTagInsert extends StructuredDocumentTagBase {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "level",
+            baseName: "Level",
+            type: "StructuredDocumentTagInsert.LevelEnum",
+        },
+        {
+            name: "sdtType",
+            baseName: "SdtType",
+            type: "StructuredDocumentTagInsert.SdtTypeEnum",
+        }
     ];
 
     /**
@@ -50,6 +60,15 @@ export class StructuredDocumentTagInsert extends StructuredDocumentTag {
         return super.getAttributeTypeMap().concat(StructuredDocumentTagInsert.attributeTypeMap);
     }
 
+    /**
+     * Gets or sets the level at which this SDT occurs in the document tree.
+     */
+    public level: StructuredDocumentTagInsert.LevelEnum;
+
+    /**
+     * Gets or sets type of this Structured document tag.
+     */
+    public sdtType: StructuredDocumentTagInsert.SdtTypeEnum;
 
     public constructor(init?: Partial< StructuredDocumentTagInsert >) {
         super(init);
@@ -58,5 +77,53 @@ export class StructuredDocumentTagInsert extends StructuredDocumentTag {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.level === null || this.level === undefined)
+        {
+            throw new Error('Property Level in StructuredDocumentTagInsert is required.');
+        }
+        if (this.sdtType === null || this.sdtType === undefined)
+        {
+            throw new Error('Property SdtType in StructuredDocumentTagInsert is required.');
+        }
+    }
 }
+
+/**
+ * Enums for StructuredDocumentTagInsert
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace StructuredDocumentTagInsert {
+    export enum LevelEnum {
+        Unknown = 'Unknown' as any,
+        Inline = 'Inline' as any,
+        Block = 'Block' as any,
+        Row = 'Row' as any,
+        Cell = 'Cell' as any
+    }
+
+    export enum SdtTypeEnum {
+        None = 'None' as any,
+        Bibliography = 'Bibliography' as any,
+        Citation = 'Citation' as any,
+        Equation = 'Equation' as any,
+        DropDownList = 'DropDownList' as any,
+        ComboBox = 'ComboBox' as any,
+        Date = 'Date' as any,
+        BuildingBlockGallery = 'BuildingBlockGallery' as any,
+        DocPartObj = 'DocPartObj' as any,
+        Group = 'Group' as any,
+        Picture = 'Picture' as any,
+        RichText = 'RichText' as any,
+        PlainText = 'PlainText' as any,
+        Checkbox = 'Checkbox' as any,
+        RepeatingSection = 'RepeatingSection' as any,
+        RepeatingSectionItem = 'RepeatingSectionItem' as any,
+        EntityPicker = 'EntityPicker' as any
+    }
+}
+// tslint:enable:quotemark
 

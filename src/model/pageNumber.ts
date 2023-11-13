@@ -104,5 +104,16 @@ export class PageNumber implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        if (this.isTop === null || this.isTop === undefined)
+        {
+            throw new Error('Property IsTop in PageNumber is required.');
+        }
+        if (this.setPageNumberOnFirstPage === null || this.setPageNumberOnFirstPage === undefined)
+        {
+            throw new Error('Property SetPageNumberOnFirstPage in PageNumber is required.');
+        }
+    }
 }
 

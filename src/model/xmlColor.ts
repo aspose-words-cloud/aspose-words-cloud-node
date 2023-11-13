@@ -48,16 +48,6 @@ export class XmlColor implements ModelInterface {
             name: "web",
             baseName: "Web",
             type: "string",
-        },
-        {
-            name: "xmlAlpha",
-            baseName: "XmlAlpha",
-            type: "number",
-        },
-        {
-            name: "xmlAlphaSpecified",
-            baseName: "XmlAlphaSpecified",
-            type: "boolean",
         }
     ];
 
@@ -78,21 +68,14 @@ export class XmlColor implements ModelInterface {
      */
     public web: string;
 
-    /**
-     * Gets or sets the Alpha wrapper for serialization.
-     */
-    public xmlAlpha: number;
-
-    /**
-     * Gets a value indicating whether Alpha is specified.
-     */
-    public xmlAlphaSpecified: boolean;
-
     public constructor(init?: Partial< XmlColor >) {
         Object.assign(this, init);
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+    }
+
+    public validate() {
     }
 }
 

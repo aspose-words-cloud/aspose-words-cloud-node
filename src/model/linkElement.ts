@@ -66,5 +66,11 @@ export class LinkElement implements ModelInterface {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+
+        this.link?.validate();
+
+    }
 }
 

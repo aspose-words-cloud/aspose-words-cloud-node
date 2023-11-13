@@ -69,5 +69,18 @@ export class CustomXmlPartsCollection extends LinkElement {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+
+        if (this.customXmlPartsList !== null && this.customXmlPartsList !== undefined)
+        {
+            for (let elementCustomXmlPartsList of this.customXmlPartsList)
+            {
+                elementCustomXmlPartsList?.validate();
+            }
+        }
+
+    }
 }
 

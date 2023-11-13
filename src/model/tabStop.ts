@@ -67,5 +67,13 @@ export class TabStop extends TabStopBase {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+        if (this.isClear === null || this.isClear === undefined)
+        {
+            throw new Error('Property IsClear in TabStop is required.');
+        }
+    }
 }
 

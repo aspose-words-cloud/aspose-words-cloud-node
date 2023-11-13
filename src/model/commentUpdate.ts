@@ -58,5 +58,9 @@ export class CommentUpdate extends CommentBase {
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
     }
+
+    public validate() {
+        super.validate();
+    }
 }
 

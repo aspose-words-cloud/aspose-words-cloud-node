@@ -27,22 +27,30 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { BookmarkData } from './bookmarkData';
 import { NewDocumentPosition } from './newDocumentPosition';
 
 export const importsMapBookmarkInsert = {
-    BookmarkData,
     NewDocumentPosition,
 };
 
 /**
  * Represents a bookmark to insert.
  */
-export class BookmarkInsert extends BookmarkData {
+export class BookmarkInsert implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "name",
+            baseName: "Name",
+            type: "string",
+        },
+        {
+            name: "text",
+            baseName: "Text",
+            type: "string",
+        },
         {
             name: "startRange",
             baseName: "StartRange",
@@ -59,8 +67,18 @@ export class BookmarkInsert extends BookmarkData {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(BookmarkInsert.attributeTypeMap);
+        return BookmarkInsert.attributeTypeMap;
     }
+
+    /**
+     * Gets or sets the name of the bookmark.
+     */
+    public name: string;
+
+    /**
+     * Gets or sets text, enclosed in the bookmark.
+     */
+    public text: string;
 
     /**
      * Gets or sets the link to start bookmark node.
@@ -73,7 +91,6 @@ export class BookmarkInsert extends BookmarkData {
     public endRange: NewDocumentPosition;
 
     public constructor(init?: Partial< BookmarkInsert >) {
-        super(init);
         Object.assign(this, init);
     }
 
@@ -81,7 +98,22 @@ export class BookmarkInsert extends BookmarkData {
     }
 
     public validate() {
-        super.validate();
+        if (this.name === null || this.name === undefined)
+        {
+            throw new Error('Property Name in BookmarkInsert is required.');
+        }
+        if (this.text === null || this.text === undefined)
+        {
+            throw new Error('Property Text in BookmarkInsert is required.');
+        }
+        if (this.startRange === null || this.startRange === undefined)
+        {
+            throw new Error('Property StartRange in BookmarkInsert is required.');
+        }
+        if (this.endRange === null || this.endRange === undefined)
+        {
+            throw new Error('Property EndRange in BookmarkInsert is required.');
+        }
 
         this.startRange?.validate();
 

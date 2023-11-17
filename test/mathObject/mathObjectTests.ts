@@ -369,4 +369,51 @@ describe("mathObject", () => {
 
        });
     });
+
+    // Test for deleting math objects.
+    describe("deleteOfficeMathObjects test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestDeleteOfficeMathObject.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.DeleteOfficeMathObjectsRequest({
+                    name: remoteFileName,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.deleteOfficeMathObjects(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // Test for deleting math objects online.
+    describe("deleteOfficeMathObjectsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.DeleteOfficeMathObjectsOnlineRequest({
+                document: requestDocument
+            });
+
+            // Act
+            return wordsApi.deleteOfficeMathObjectsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
 });

@@ -9658,6 +9658,250 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
 }
 
 /**
+ * Request model for DeleteOfficeMathObjects operation.
+ * Removes all office math objects from the document.
+ */
+export class DeleteOfficeMathObjectsRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteOfficeMathObjectsRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling deleteOfficeMathObjects.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling deleteOfficeMathObjects.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return null;
+	}
+}
+
+/**
+ * Request model for DeleteOfficeMathObjectsOnline operation.
+ * Removes all office math objects from the document.
+ */
+export class DeleteOfficeMathObjectsOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteOfficeMathObjectsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/OfficeMathObjects"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling deleteOfficeMathObjectsOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling deleteOfficeMathObjectsOnline.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
+	}
+}
+
+/**
  * Request model for DeleteParagraph operation.
  * Removes a paragraph from the document node.
  */

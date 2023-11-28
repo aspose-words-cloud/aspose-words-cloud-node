@@ -215,6 +215,8 @@ import * as importedPreferredWidth from './preferredWidth';
 import * as importedProtectionData from './protectionData';
 import * as importedProtectionDataResponse from './protectionDataResponse';
 import * as importedProtectionRequest from './protectionRequest';
+import * as importedProtectionRequestBase from './protectionRequestBase';
+import * as importedProtectionRequestV2 from './protectionRequestV2';
 import * as importedPsSaveOptionsData from './psSaveOptionsData';
 import * as importedPublicKeyResponse from './publicKeyResponse';
 import * as importedRangeDocument from './rangeDocument';
@@ -489,6 +491,8 @@ export * from './preferredWidth';
 export * from './protectionData';
 export * from './protectionDataResponse';
 export * from './protectionRequest';
+export * from './protectionRequestBase';
+export * from './protectionRequestV2';
 export * from './psSaveOptionsData';
 export * from './publicKeyResponse';
 export * from './rangeDocument';
@@ -677,6 +681,8 @@ const enumsMap = {
     "PdfSaveOptionsData.TextCompressionEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.TextCompressionEnum,
     "PdfSaveOptionsData.ZoomBehaviorEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ZoomBehaviorEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
+    "ProtectionData.ProtectionTypeEnum": importedProtectionData.ProtectionData.ProtectionTypeEnum,
+    "ProtectionRequestV2.ProtectionTypeEnum": importedProtectionRequestV2.ProtectionRequestV2.ProtectionTypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
     "ReportBuildOptions": importedReportBuildOptions.ReportBuildOptions,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
@@ -885,6 +891,7 @@ const typeMap = {
     ProtectionData: importedProtectionData.ProtectionData,
     ProtectionDataResponse: importedProtectionDataResponse.ProtectionDataResponse,
     ProtectionRequest: importedProtectionRequest.ProtectionRequest,
+    ProtectionRequestV2: importedProtectionRequestV2.ProtectionRequestV2,
     PsSaveOptionsData: importedPsSaveOptionsData.PsSaveOptionsData,
     PublicKeyResponse: importedPublicKeyResponse.PublicKeyResponse,
     RangeDocument: importedRangeDocument.RangeDocument,
@@ -34198,7 +34205,7 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 
 /**
  * Request model for ProtectDocument operation.
- * Adds protection to the document.
+ * Changes the document protection. The previous protection will be overwritten if it exist.
  */
 export class ProtectDocumentRequest implements RequestInterface {
 
@@ -34212,9 +34219,9 @@ export class ProtectDocumentRequest implements RequestInterface {
     public name: string;
 
     /**
-     * Protection request.
+     * Use ProtectionRequestV2 model to provide protection options.
      */
-    public protectionRequest: importedProtectionRequest.ProtectionRequest;
+    public protectionRequest: importedProtectionRequestBase.ProtectionRequestBase;
 
     /**
      * Original document folder.
@@ -34286,7 +34293,7 @@ export class ProtectDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.protectionRequest !== undefined) {
-            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
+            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequestBase.ProtectionRequestBase" : this.protectionRequest.constructor.name);
             formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
         }
 
@@ -34333,7 +34340,7 @@ export class ProtectDocumentRequest implements RequestInterface {
 
 /**
  * Request model for ProtectDocumentOnline operation.
- * Adds protection to the document.
+ * Changes the document protection. The previous protection will be overwritten if it exist.
  */
 export class ProtectDocumentOnlineRequest implements RequestInterface {
 
@@ -34347,9 +34354,9 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * Protection request.
+     * Use ProtectionRequestV2 model to provide protection options.
      */
-    public protectionRequest: importedProtectionRequest.ProtectionRequest;
+    public protectionRequest: importedProtectionRequestBase.ProtectionRequestBase;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -34411,7 +34418,7 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.protectionRequest !== undefined) {
-            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
+            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequestBase.ProtectionRequestBase" : this.protectionRequest.constructor.name);
             formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
         }
 
@@ -38732,11 +38739,6 @@ export class UnprotectDocumentRequest implements RequestInterface {
     public name: string;
 
     /**
-     * Protection request.
-     */
-    public protectionRequest: importedProtectionRequest.ProtectionRequest;
-
-    /**
      * Original document folder.
      */
     public folder: string;
@@ -38788,27 +38790,12 @@ export class UnprotectDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling unprotectDocument.');
         }
-        // verify required parameter 'this.protectionRequest' is not undefined
-        if (this.protectionRequest === undefined) {
-            throw new Error('Required parameter "this.protectionRequest" was undefined when calling unprotectDocument.');
-        }
-
-        // verify required parameter 'this.protectionRequest' is not null
-        if (this.protectionRequest === null) {
-            throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocument.');
-        }
-        this.protectionRequest?.validate();
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
-        if (this.protectionRequest !== undefined) {
-            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
-            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
-        }
 
         for (let fileContent of filesContent) {
             formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
@@ -38867,11 +38854,6 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * Protection request.
-     */
-    public protectionRequest: importedProtectionRequest.ProtectionRequest;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -38912,27 +38894,12 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling unprotectDocumentOnline.');
         }
-        // verify required parameter 'this.protectionRequest' is not undefined
-        if (this.protectionRequest === undefined) {
-            throw new Error('Required parameter "this.protectionRequest" was undefined when calling unprotectDocumentOnline.');
-        }
-
-        // verify required parameter 'this.protectionRequest' is not null
-        if (this.protectionRequest === null) {
-            throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocumentOnline.');
-        }
-        this.protectionRequest?.validate();
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
-        }
-        if (this.protectionRequest !== undefined) {
-            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
-            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
@@ -46627,7 +46594,7 @@ export class InsertWatermarkTextOnlineResponse {
 
 /**
  * Response model for ProtectDocumentOnline operation.
- * Adds protection to the document.
+ * Changes the document protection. The previous protection will be overwritten if it exist.
  */
 export class ProtectDocumentOnlineResponse {
     /**

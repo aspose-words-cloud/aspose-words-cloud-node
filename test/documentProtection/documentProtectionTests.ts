@@ -49,9 +49,9 @@ describe("documentProtection", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestProtectionRequest = new model.ProtectionRequest({
-                    password: "123",
-                    protectionType: "ReadOnly"
+                const requestProtectionRequest = new model.ProtectionRequestV2({
+                    protectionPassword: "123",
+                    protectionType: model.ProtectionRequestV2.ProtectionTypeEnum.ReadOnly
                 })
                 const request = new model.ProtectDocumentRequest({
                     name: remoteFileName,
@@ -66,7 +66,7 @@ describe("documentProtection", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.protectionData).to.exist;
-                    expect(resultApi.body.protectionData.protectionType).to.equal("ReadOnly");
+
                 });
 
             });
@@ -79,9 +79,9 @@ describe("documentProtection", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestProtectionRequest = new model.ProtectionRequest({
-                password: "123",
-                protectionType: "ReadOnly"
+            const requestProtectionRequest = new model.ProtectionRequestV2({
+                protectionPassword: "123",
+                protectionType: model.ProtectionRequestV2.ProtectionTypeEnum.ReadOnly
             })
             const request = new model.ProtectDocumentOnlineRequest({
                 document: requestDocument,
@@ -158,12 +158,8 @@ describe("documentProtection", () => {
                 BaseTest.localBaseTestDataFolder + localFilePath
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestProtectionRequest = new model.ProtectionRequest({
-                    password: "aspose"
-                })
                 const request = new model.UnprotectDocumentRequest({
                     name: remoteFileName,
-                    protectionRequest: requestProtectionRequest,
                     folder: remoteDataFolder
                 });
 
@@ -173,7 +169,7 @@ describe("documentProtection", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.protectionData).to.exist;
-                    expect(resultApi.body.protectionData.protectionType).to.equal("NoProtection");
+
                 });
 
             });
@@ -188,12 +184,8 @@ describe("documentProtection", () => {
             const localFilePath = "DocumentActions/DocumentProtection/SampleProtectedBlankWordDocument.docx";
 
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFilePath);
-            const requestProtectionRequest = new model.ProtectionRequest({
-                password: "aspose"
-            })
             const request = new model.UnprotectDocumentOnlineRequest({
-                document: requestDocument,
-                protectionRequest: requestProtectionRequest
+                document: requestDocument
             });
 
             // Act

@@ -4621,7 +4621,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Adds protection to the document.
+     * Changes the document protection. The previous protection will be overwritten if it exist.
      * @param requestObj contains request parameters
      */
     public async protectDocument(requestObj: model.ProtectDocumentRequest): Promise< model.WordsIncomingMessage< model.ProtectionDataResponse > > {
@@ -4639,7 +4639,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Adds protection to the document.
+     * Changes the document protection. The previous protection will be overwritten if it exist.
      * @param requestObj contains request parameters
      */
     public async protectDocumentOnline(requestObj: model.ProtectDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.ProtectDocumentOnlineResponse > > {

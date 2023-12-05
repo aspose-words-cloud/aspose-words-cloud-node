@@ -112,7 +112,7 @@ describe("watermark", () => {
                     BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png"
                 ).then((result1) => {
                     expect(result1.response.statusMessage).to.equal("OK");
-                    const requestWatermarkDataImage = model.FileReference.fromRemoteFilePath(remoteDataFolder + "/" + remoteFileName);
+                    const requestWatermarkDataImage = model.FileReference.fromRemoteFilePath(remoteImagePath);
                     const requestWatermarkData = new model.WatermarkDataImage({
                         image: requestWatermarkDataImage
                     })
@@ -143,7 +143,7 @@ describe("watermark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestWatermarkDataImageStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestWatermarkDataImageStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png");
             const requestWatermarkDataImage = model.FileReference.fromLocalFileContent(requestWatermarkDataImageStream);
             const requestWatermarkData = new model.WatermarkDataImage({
                 image: requestWatermarkDataImage

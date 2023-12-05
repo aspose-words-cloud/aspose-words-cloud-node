@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="watermarkText.ts">
+ * <copyright company="Aspose" file="watermarkDataBase.ts">
  *   Copyright (c) 2023 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -28,48 +28,28 @@
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
 
-export const importsMapWatermarkText = {
+export const importsMapWatermarkDataBase = {
 };
 
 /**
  * Class for insert watermark text request building.
- * @deprecated This model will be removed in the future.
  */
-export class WatermarkText implements ModelInterface {
+export abstract class WatermarkDataBase implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "rotationAngle",
-            baseName: "RotationAngle",
-            type: "number",
-        },
-        {
-            name: "text",
-            baseName: "Text",
-            type: "string",
-        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return WatermarkText.attributeTypeMap;
+        return WatermarkDataBase.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets the watermark rotation angle.
-     */
-    public rotationAngle: number;
 
-    /**
-     * Gets or sets the watermark text.
-     */
-    public text: string;
-
-    public constructor(init?: Partial< WatermarkText >) {
+    public constructor(init?: Partial< WatermarkDataBase >) {
         Object.assign(this, init);
     }
 
@@ -77,14 +57,6 @@ export class WatermarkText implements ModelInterface {
     }
 
     public validate() {
-        if (this.rotationAngle === null || this.rotationAngle === undefined)
-        {
-            throw new Error('Property RotationAngle in WatermarkText is required.');
-        }
-        if (this.text === null || this.text === undefined)
-        {
-            throw new Error('Property Text in WatermarkText is required.');
-        }
     }
 }
 

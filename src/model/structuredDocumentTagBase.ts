@@ -29,10 +29,12 @@ import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
 import { NodeLink } from './nodeLink';
 import { StructuredDocumentTagListItem } from './structuredDocumentTagListItem';
+import { XmlColor } from './xmlColor';
 
 export const importsMapStructuredDocumentTagBase = {
     NodeLink,
     StructuredDocumentTagListItem,
+    XmlColor,
 };
 
 /**
@@ -101,7 +103,7 @@ export abstract class StructuredDocumentTagBase extends NodeLink {
         {
             name: "color",
             baseName: "Color",
-            type: "string",
+            type: "XmlColor",
         },
         {
             name: "styleName",
@@ -240,7 +242,7 @@ export abstract class StructuredDocumentTagBase extends NodeLink {
     /**
      * Gets or sets the color of the structured document tag.
      */
-    public color: string;
+    public color: XmlColor;
 
     /**
      * Gets or sets the name of the style applied to the structured document tag.
@@ -334,6 +336,9 @@ export abstract class StructuredDocumentTagBase extends NodeLink {
 
 
 
+
+
+        this.color?.validate();
 
 
 

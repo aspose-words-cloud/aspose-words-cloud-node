@@ -38,8 +38,133 @@ describe("watermark", () => {
     const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/DocumentActions/Watermark";
     const localFile = "Common/test_multi_pages.docx";
 
-    // Test for adding watermark image.
+    // Test for adding watermark text.
+    describe("insertWatermarkText test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestInsertWatermarkText.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const requestWatermarkData = new model.WatermarkDataText({
+                    text: "watermark text"
+                })
+                const request = new model.InsertWatermarkRequest({
+                    name: remoteFileName,
+                    watermarkData: requestWatermarkData,
+                    folder: remoteDataFolder,
+                    destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
+                });
+
+                // Act
+                return wordsApi.insertWatermark(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.document).to.exist;
+                });
+
+            });
+
+       });
+    });
+
+    // Test for adding watermark text online.
+    describe("insertWatermarkTextOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestWatermarkData = new model.WatermarkDataText({
+                text: "watermark text"
+            })
+            const request = new model.InsertWatermarkOnlineRequest({
+                document: requestDocument,
+                watermarkData: requestWatermarkData
+            });
+
+            // Act
+            return wordsApi.insertWatermarkOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
+    // Test for adding watermark text.
     describe("insertWatermarkImage test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestInsertWatermarkImage.docx";
+            const remoteImagePath = remoteDataFolder + "/TestInsertWatermarkImage.png";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                return wordsApi.uploadFileToStorage(
+                    remoteImagePath,
+                    BaseTest.localBaseTestDataFolder + "Common/aspose-cloud.png"
+                ).then((result1) => {
+                    expect(result1.response.statusMessage).to.equal("OK");
+                    const requestWatermarkDataImage = model.FileReference.fromRemoteFilePath(remoteDataFolder + "/" + remoteFileName);
+                    const requestWatermarkData = new model.WatermarkDataImage({
+                        image: requestWatermarkDataImage
+                    })
+                    const request = new model.InsertWatermarkRequest({
+                        name: remoteFileName,
+                        watermarkData: requestWatermarkData,
+                        folder: remoteDataFolder,
+                        destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
+                    });
+
+                    // Act
+                    return wordsApi.insertWatermark(request)
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body.document).to.exist;
+                    });
+
+                });
+
+            });
+
+       });
+    });
+
+    // Test for adding watermark text online.
+    describe("insertWatermarkImageOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestWatermarkDataImageStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestWatermarkDataImage = model.FileReference.fromLocalFileContent(requestWatermarkDataImageStream);
+            const requestWatermarkData = new model.WatermarkDataImage({
+                image: requestWatermarkDataImage
+            })
+            const request = new model.InsertWatermarkOnlineRequest({
+                document: requestDocument,
+                watermarkData: requestWatermarkData
+            });
+
+            // Act
+            return wordsApi.insertWatermarkOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
+    // Test for adding watermark image.
+    describe("insertWatermarkImageDeprecated test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestInsertWatermarkImage.docx";
@@ -80,7 +205,7 @@ describe("watermark", () => {
     });
 
     // Test for adding watermark image online.
-    describe("insertWatermarkImageOnline test", () => {
+    describe("insertWatermarkImageDeprecatedOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
@@ -101,7 +226,7 @@ describe("watermark", () => {
     });
 
     // Test for adding watermark text.
-    describe("insertWatermarkText test", () => {
+    describe("insertWatermarkTextDeprecated test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const remoteFileName = "TestInsertWatermarkText.docx";
@@ -137,7 +262,7 @@ describe("watermark", () => {
     });
 
     // Test for adding watermark text online.
-    describe("insertWatermarkTextOnline test", () => {
+    describe("insertWatermarkTextDeprecatedOnline test", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);

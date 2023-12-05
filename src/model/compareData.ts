@@ -28,9 +28,11 @@
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
 import { CompareOptions } from './compareOptions';
+import { FileReference } from './fileReference';
 
 export const importsMapCompareData = {
     CompareOptions,
+    FileReference,
 };
 
 /**
@@ -60,6 +62,11 @@ export class CompareData implements ModelInterface {
             name: "dateTime",
             baseName: "DateTime",
             type: "Date",
+        },
+        {
+            name: "fileReference",
+            baseName: "FileReference",
+            type: "FileReference",
         },
         {
             name: "resultDocumentFormat",
@@ -96,6 +103,11 @@ export class CompareData implements ModelInterface {
     public dateTime: Date;
 
     /**
+     * Gets or sets the file reference.
+     */
+    public fileReference: FileReference;
+
+    /**
      * Gets or sets the result document format.
      */
     public resultDocumentFormat: string;
@@ -105,6 +117,12 @@ export class CompareData implements ModelInterface {
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+        if (this.fileReference)
+        {
+            this.fileReference.collectFilesContent(_resultFilesContent);
+        }
+
+
     }
 
     public validate() {
@@ -112,14 +130,18 @@ export class CompareData implements ModelInterface {
         {
             throw new Error('Property Author in CompareData is required.');
         }
-        if (this.comparingWithDocument === null || this.comparingWithDocument === undefined)
+        if (this.fileReference === null || this.fileReference === undefined)
         {
-            throw new Error('Property ComparingWithDocument in CompareData is required.');
+            throw new Error('Property FileReference in CompareData is required.');
         }
 
         this.compareOptions?.validate();
 
 
+
+
+
+        this.fileReference?.validate();
 
 
     }

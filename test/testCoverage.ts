@@ -61,6 +61,10 @@ describe("API method coverage", () => {
 });
 
 const deprecatedMethods = [
+    "insertWatermarkImage",
+    "insertWatermarkImageOnline",
+    "insertWatermarkText",
+    "insertWatermarkTextOnline",
     "saveAsTiff",
     "saveAsTiffOnline",
 

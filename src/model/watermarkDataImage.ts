@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="watermarkText.ts">
+ * <copyright company="Aspose" file="watermarkDataImage.ts">
  *   Copyright (c) 2023 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,28 +27,36 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { FileReference } from './fileReference';
+import { WatermarkDataBase } from './watermarkDataBase';
 
-export const importsMapWatermarkText = {
+export const importsMapWatermarkDataImage = {
+    FileReference,
+    WatermarkDataBase,
 };
 
 /**
- * Class for insert watermark text request building.
- * @deprecated This model will be removed in the future.
+ * Class for insert watermark image request building.
  */
-export class WatermarkText implements ModelInterface {
+export class WatermarkDataImage extends WatermarkDataBase {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "rotationAngle",
-            baseName: "RotationAngle",
-            type: "number",
+            name: "image",
+            baseName: "Image",
+            type: "FileReference",
         },
         {
-            name: "text",
-            baseName: "Text",
-            type: "string",
+            name: "isWashout",
+            baseName: "IsWashout",
+            type: "boolean",
+        },
+        {
+            name: "scale",
+            baseName: "Scale",
+            type: "number",
         }
     ];
 
@@ -56,35 +64,52 @@ export class WatermarkText implements ModelInterface {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return WatermarkText.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(WatermarkDataImage.attributeTypeMap);
     }
 
     /**
-     * Gets or sets the watermark rotation angle.
+     * Gets or sets the watermark image.
      */
-    public rotationAngle: number;
+    public image: FileReference;
 
     /**
-     * Gets or sets the watermark text.
+     * Gets or sets a boolean value which is responsible for washout effect of the watermark. The default value is true.
      */
-    public text: string;
+    public isWashout: boolean;
 
-    public constructor(init?: Partial< WatermarkText >) {
+    /**
+     * Gets or sets the scale factor expressed as a fraction of the image. The default value is 0 - auto.
+     * Valid values range from 0 to 65.5 inclusive. Auto scale means that the watermark will be scaled to its max width and max height relative to the page margins.
+     */
+    public scale: number;
+
+    public constructor(init?: Partial< WatermarkDataImage >) {
+        super(init);
         Object.assign(this, init);
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+        super.collectFilesContent(_resultFilesContent);
+        if (this.image)
+        {
+            this.image.collectFilesContent(_resultFilesContent);
+        }
+
+
+
     }
 
     public validate() {
-        if (this.rotationAngle === null || this.rotationAngle === undefined)
+        super.validate();
+        if (this.image === null || this.image === undefined)
         {
-            throw new Error('Property RotationAngle in WatermarkText is required.');
+            throw new Error('Property Image in WatermarkDataImage is required.');
         }
-        if (this.text === null || this.text === undefined)
-        {
-            throw new Error('Property Text in WatermarkText is required.');
-        }
+
+        this.image?.validate();
+
+
+
     }
 }
 

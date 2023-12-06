@@ -4453,7 +4453,26 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Insert a watermark to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertWatermark(requestObj: model.InsertWatermarkRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertWatermark.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new watermark image to the document.
+     * @deprecated This operation is deprecated and is used for backward compatibility only. Please use InsertWatermark instead.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkImage(requestObj: model.InsertWatermarkImageRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -4472,6 +4491,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Inserts a new watermark image to the document.
+     * @deprecated This operation is deprecated and is used for backward compatibility only. Please use InsertWatermark instead.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkImageOnline(requestObj: model.InsertWatermarkImageOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertWatermarkImageOnlineResponse > > {
@@ -4489,7 +4509,26 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Insert a watermark to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertWatermarkOnline(requestObj: model.InsertWatermarkOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertWatermarkOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertWatermarkOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.InsertWatermarkOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new watermark text to the document.
+     * @deprecated This operation is deprecated and is used for backward compatibility only. Please use InsertWatermark instead.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkText(requestObj: model.InsertWatermarkTextRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -4508,6 +4547,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Inserts a new watermark text to the document.
+     * @deprecated This operation is deprecated and is used for backward compatibility only. Please use InsertWatermark instead.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkTextOnline(requestObj: model.InsertWatermarkTextOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertWatermarkTextOnlineResponse > > {

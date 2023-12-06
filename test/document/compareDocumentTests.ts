@@ -57,10 +57,11 @@ describe("compareDocument", () => {
                     BaseTest.localBaseTestDataFolder + localFolder + "/" + localName2
                 ).then((result1) => {
                     expect(result1.response.statusMessage).to.equal("OK");
+                    const requestCompareDataFileReference = model.FileReference.fromRemoteFilePath(remoteFolder + "/" + remoteName2);
                     const requestCompareData = new model.CompareData({
                         author: "author",
-                        comparingWithDocument: remoteFolder + "/" + remoteName2,
-                        dateTime: new Date('2015-10-26T00:00:00Z')
+                        dateTime: new Date('2015-10-26T00:00:00Z'),
+                        fileReference: requestCompareDataFileReference
                     })
                     const request = new model.CompareDocumentRequest({
                         name: remoteName1,
@@ -99,10 +100,11 @@ describe("compareDocument", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/" + localName1);
+                const requestCompareDataFileReference = model.FileReference.fromRemoteFilePath(remoteFolder + "/" + remoteName2);
                 const requestCompareData = new model.CompareData({
                     author: "author",
-                    comparingWithDocument: remoteFolder + "/" + remoteName2,
-                    dateTime: new Date('2015-10-26T00:00:00Z')
+                    dateTime: new Date('2015-10-26T00:00:00Z'),
+                    fileReference: requestCompareDataFileReference
                 })
                 const request = new model.CompareDocumentOnlineRequest({
                     document: requestDocument,
@@ -136,16 +138,16 @@ describe("compareDocument", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/" + localName1);
+                const requestCompareDataFileReferenceStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/" + localName2);
+                const requestCompareDataFileReference = model.FileReference.fromLocalFileContent(requestCompareDataFileReferenceStream);
                 const requestCompareData = new model.CompareData({
                     author: "author",
-                    comparingWithDocument: remoteFolder + "/" + remoteName2,
-                    dateTime: new Date('2015-10-26T00:00:00Z')
+                    dateTime: new Date('2015-10-26T00:00:00Z'),
+                    fileReference: requestCompareDataFileReference
                 })
-                const requestComparingDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/" + localName2);
                 const request = new model.CompareDocumentOnlineRequest({
                     document: requestDocument,
                     compareData: requestCompareData,
-                    comparingDocument: requestComparingDocument,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/TestCompareDocumentOut.doc"
                 });
 

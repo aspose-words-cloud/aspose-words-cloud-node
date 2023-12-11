@@ -42,7 +42,7 @@ export class ProtectionData implements ModelInterface {
         {
             name: "protectionType",
             baseName: "ProtectionType",
-            type: "string",
+            type: "ProtectionData.ProtectionTypeEnum",
         }
     ];
 
@@ -56,7 +56,7 @@ export class ProtectionData implements ModelInterface {
     /**
      * Gets or sets type of the protection.
      */
-    public protectionType: string;
+    public protectionType: ProtectionData.ProtectionTypeEnum;
 
     public constructor(init?: Partial< ProtectionData >) {
         Object.assign(this, init);
@@ -66,6 +66,26 @@ export class ProtectionData implements ModelInterface {
     }
 
     public validate() {
+        if (this.protectionType === null || this.protectionType === undefined)
+        {
+            throw new Error('Property ProtectionType in ProtectionData is required.');
+        }
     }
 }
+
+/**
+ * Enums for ProtectionData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace ProtectionData {
+    export enum ProtectionTypeEnum {
+        AllowOnlyRevisions = 'AllowOnlyRevisions' as any,
+        AllowOnlyComments = 'AllowOnlyComments' as any,
+        AllowOnlyFormFields = 'AllowOnlyFormFields' as any,
+        ReadOnly = 'ReadOnly' as any,
+        NoProtection = 'NoProtection' as any
+    }
+}
+// tslint:enable:quotemark
 

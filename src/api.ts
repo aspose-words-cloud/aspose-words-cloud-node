@@ -1220,6 +1220,39 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Removes all office math objects from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteOfficeMathObjects(requestObj: model.DeleteOfficeMathObjectsRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteOfficeMathObjects.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Removes all office math objects from the document.
+     * @param requestObj contains request parameters
+     */
+    public async deleteOfficeMathObjectsOnline(requestObj: model.DeleteOfficeMathObjectsOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling deleteOfficeMathObjectsOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a paragraph from the document node.
      * @param requestObj contains request parameters
      */
@@ -4420,7 +4453,26 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Insert a watermark to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertWatermark(requestObj: model.InsertWatermarkRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertWatermark.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.DocumentResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new watermark image to the document.
+     * @deprecated This operation is deprecated and is used for backward compatibility only. Please use InsertWatermark instead.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkImage(requestObj: model.InsertWatermarkImageRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -4439,6 +4491,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Inserts a new watermark image to the document.
+     * @deprecated This operation is deprecated and is used for backward compatibility only. Please use InsertWatermark instead.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkImageOnline(requestObj: model.InsertWatermarkImageOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertWatermarkImageOnlineResponse > > {
@@ -4456,7 +4509,26 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Insert a watermark to the document.
+     * @param requestObj contains request parameters
+     */
+    public async insertWatermarkOnline(requestObj: model.InsertWatermarkOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertWatermarkOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling insertWatermarkOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.InsertWatermarkOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Inserts a new watermark text to the document.
+     * @deprecated This operation is deprecated and is used for backward compatibility only. Please use InsertWatermark instead.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkText(requestObj: model.InsertWatermarkTextRequest): Promise< model.WordsIncomingMessage< model.DocumentResponse > > {
@@ -4475,6 +4547,7 @@ export class WordsApi implements Encryptor {
 
     /**
      * Inserts a new watermark text to the document.
+     * @deprecated This operation is deprecated and is used for backward compatibility only. Please use InsertWatermark instead.
      * @param requestObj contains request parameters
      */
     public async insertWatermarkTextOnline(requestObj: model.InsertWatermarkTextOnlineRequest): Promise< model.WordsIncomingMessage< model.InsertWatermarkTextOnlineResponse > > {
@@ -4588,7 +4661,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Adds protection to the document.
+     * Changes the document protection. The previous protection will be overwritten if it exist.
      * @param requestObj contains request parameters
      */
     public async protectDocument(requestObj: model.ProtectDocumentRequest): Promise< model.WordsIncomingMessage< model.ProtectionDataResponse > > {
@@ -4606,7 +4679,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Adds protection to the document.
+     * Changes the document protection. The previous protection will be overwritten if it exist.
      * @param requestObj contains request parameters
      */
     public async protectDocumentOnline(requestObj: model.ProtectDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.ProtectDocumentOnlineResponse > > {

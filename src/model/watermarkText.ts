@@ -33,6 +33,7 @@ export const importsMapWatermarkText = {
 
 /**
  * Class for insert watermark text request building.
+ * @deprecated This model will be removed in the future.
  */
 export class WatermarkText implements ModelInterface {
     /**

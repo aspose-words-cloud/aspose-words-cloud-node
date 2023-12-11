@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="bookmarkInsert.ts">
+ * <copyright company="Aspose" file="protectionRequestV2.ts">
  *   Copyright (c) 2023 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,39 +27,29 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { NewDocumentPosition } from './newDocumentPosition';
+import { ProtectionRequestBase } from './protectionRequestBase';
 
-export const importsMapBookmarkInsert = {
-    NewDocumentPosition,
+export const importsMapProtectionRequestV2 = {
+    ProtectionRequestBase,
 };
 
 /**
- * Represents a bookmark to insert.
+ * Request on changing of protection.
  */
-export class BookmarkInsert implements ModelInterface {
+export class ProtectionRequestV2 extends ProtectionRequestBase {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "name",
-            baseName: "Name",
+            name: "protectionPassword",
+            baseName: "ProtectionPassword",
             type: "string",
         },
         {
-            name: "text",
-            baseName: "Text",
-            type: "string",
-        },
-        {
-            name: "startRange",
-            baseName: "StartRange",
-            type: "NewDocumentPosition",
-        },
-        {
-            name: "endRange",
-            baseName: "EndRange",
-            type: "NewDocumentPosition",
+            name: "protectionType",
+            baseName: "ProtectionType",
+            type: "ProtectionRequestV2.ProtectionTypeEnum",
         }
     ];
 
@@ -67,30 +57,22 @@ export class BookmarkInsert implements ModelInterface {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return BookmarkInsert.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(ProtectionRequestV2.attributeTypeMap);
     }
 
     /**
-     * Gets or sets the name of the bookmark.
+     * Gets or sets the new password for the document protection.
+     * This property is required, but empty value is allowed.
      */
-    public name: string;
+    public protectionPassword: string;
 
     /**
-     * Gets or sets text, enclosed in the bookmark.
+     * Gets or sets the new type of the document protection.
      */
-    public text: string;
+    public protectionType: ProtectionRequestV2.ProtectionTypeEnum;
 
-    /**
-     * Gets or sets the link to start bookmark node.
-     */
-    public startRange: NewDocumentPosition;
-
-    /**
-     * Gets or sets the link to end bookmark node.
-     */
-    public endRange: NewDocumentPosition;
-
-    public constructor(init?: Partial< BookmarkInsert >) {
+    public constructor(init?: Partial< ProtectionRequestV2 >) {
+        super(init);
         Object.assign(this, init);
     }
 
@@ -98,29 +80,31 @@ export class BookmarkInsert implements ModelInterface {
     }
 
     public validate() {
-        if (this.name === null || this.name === undefined)
+        super.validate();
+        if (this.protectionPassword === null || this.protectionPassword === undefined)
         {
-            throw new Error('Property Name in BookmarkInsert is required.');
+            throw new Error('Property ProtectionPassword in ProtectionRequestV2 is required.');
         }
-        if (this.text === null || this.text === undefined)
+        if (this.protectionType === null || this.protectionType === undefined)
         {
-            throw new Error('Property Text in BookmarkInsert is required.');
+            throw new Error('Property ProtectionType in ProtectionRequestV2 is required.');
         }
-        if (this.startRange === null || this.startRange === undefined)
-        {
-            throw new Error('Property StartRange in BookmarkInsert is required.');
-        }
-        if (this.endRange === null || this.endRange === undefined)
-        {
-            throw new Error('Property EndRange in BookmarkInsert is required.');
-        }
-
-        this.startRange?.validate();
-
-
-
-        this.endRange?.validate();
-
     }
 }
+
+/**
+ * Enums for ProtectionRequestV2
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace ProtectionRequestV2 {
+    export enum ProtectionTypeEnum {
+        AllowOnlyRevisions = 'AllowOnlyRevisions' as any,
+        AllowOnlyComments = 'AllowOnlyComments' as any,
+        AllowOnlyFormFields = 'AllowOnlyFormFields' as any,
+        ReadOnly = 'ReadOnly' as any,
+        NoProtection = 'NoProtection' as any
+    }
+}
+// tslint:enable:quotemark
 

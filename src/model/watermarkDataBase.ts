@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="protectionRequest.ts">
+ * <copyright company="Aspose" file="watermarkDataBase.ts">
  *   Copyright (c) 2023 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,62 +27,29 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { ProtectionRequestBase } from './protectionRequestBase';
 
-export const importsMapProtectionRequest = {
-    ProtectionRequestBase,
+export const importsMapWatermarkDataBase = {
 };
 
 /**
- * Request on changing of protection.
- * @deprecated ProtectionRequest is deprecated and remains for backwards compatibility only.
+ * Class for insert watermark text request building.
  */
-export class ProtectionRequest extends ProtectionRequestBase {
+export abstract class WatermarkDataBase implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "newPassword",
-            baseName: "NewPassword",
-            type: "string",
-        },
-        {
-            name: "password",
-            baseName: "Password",
-            type: "string",
-        },
-        {
-            name: "protectionType",
-            baseName: "ProtectionType",
-            type: "string",
-        }
     ];
 
     /**
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(ProtectionRequest.attributeTypeMap);
+        return WatermarkDataBase.attributeTypeMap;
     }
 
-    /**
-     * Gets or sets the new password.
-     */
-    public newPassword: string;
 
-    /**
-     * Gets or sets the current password.
-     */
-    public password: string;
-
-    /**
-     * Gets or sets the new type of protection.
-     */
-    public protectionType: string;
-
-    public constructor(init?: Partial< ProtectionRequest >) {
-        super(init);
+    public constructor(init?: Partial< WatermarkDataBase >) {
         Object.assign(this, init);
     }
 
@@ -90,11 +57,6 @@ export class ProtectionRequest extends ProtectionRequestBase {
     }
 
     public validate() {
-        super.validate();
-        if (this.password === null || this.password === undefined)
-        {
-            throw new Error('Property Password in ProtectionRequest is required.');
-        }
     }
 }
 

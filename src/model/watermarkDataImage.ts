@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="bookmarkInsert.ts">
+ * <copyright company="Aspose" file="watermarkDataImage.ts">
  *   Copyright (c) 2023 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,39 +27,36 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { NewDocumentPosition } from './newDocumentPosition';
+import { FileReference } from './fileReference';
+import { WatermarkDataBase } from './watermarkDataBase';
 
-export const importsMapBookmarkInsert = {
-    NewDocumentPosition,
+export const importsMapWatermarkDataImage = {
+    FileReference,
+    WatermarkDataBase,
 };
 
 /**
- * Represents a bookmark to insert.
+ * Class for insert watermark image request building.
  */
-export class BookmarkInsert implements ModelInterface {
+export class WatermarkDataImage extends WatermarkDataBase {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "name",
-            baseName: "Name",
-            type: "string",
+            name: "image",
+            baseName: "Image",
+            type: "FileReference",
         },
         {
-            name: "text",
-            baseName: "Text",
-            type: "string",
+            name: "isWashout",
+            baseName: "IsWashout",
+            type: "boolean",
         },
         {
-            name: "startRange",
-            baseName: "StartRange",
-            type: "NewDocumentPosition",
-        },
-        {
-            name: "endRange",
-            baseName: "EndRange",
-            type: "NewDocumentPosition",
+            name: "scale",
+            baseName: "Scale",
+            type: "number",
         }
     ];
 
@@ -67,59 +64,51 @@ export class BookmarkInsert implements ModelInterface {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return BookmarkInsert.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(WatermarkDataImage.attributeTypeMap);
     }
 
     /**
-     * Gets or sets the name of the bookmark.
+     * Gets or sets the watermark image.
      */
-    public name: string;
+    public image: FileReference;
 
     /**
-     * Gets or sets text, enclosed in the bookmark.
+     * Gets or sets a boolean value which is responsible for washout effect of the watermark. The default value is true.
      */
-    public text: string;
+    public isWashout: boolean;
 
     /**
-     * Gets or sets the link to start bookmark node.
+     * Gets or sets the scale factor expressed as a fraction of the image. The default value is 0 - auto.
+     * Valid values range from 0 to 65.5 inclusive. Auto scale means that the watermark will be scaled to its max width and max height relative to the page margins.
      */
-    public startRange: NewDocumentPosition;
+    public scale: number;
 
-    /**
-     * Gets or sets the link to end bookmark node.
-     */
-    public endRange: NewDocumentPosition;
-
-    public constructor(init?: Partial< BookmarkInsert >) {
+    public constructor(init?: Partial< WatermarkDataImage >) {
+        super(init);
         Object.assign(this, init);
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
+        super.collectFilesContent(_resultFilesContent);
+        if (this.image)
+        {
+            this.image.collectFilesContent(_resultFilesContent);
+        }
+
+
+
     }
 
     public validate() {
-        if (this.name === null || this.name === undefined)
+        super.validate();
+        if (this.image === null || this.image === undefined)
         {
-            throw new Error('Property Name in BookmarkInsert is required.');
-        }
-        if (this.text === null || this.text === undefined)
-        {
-            throw new Error('Property Text in BookmarkInsert is required.');
-        }
-        if (this.startRange === null || this.startRange === undefined)
-        {
-            throw new Error('Property StartRange in BookmarkInsert is required.');
-        }
-        if (this.endRange === null || this.endRange === undefined)
-        {
-            throw new Error('Property EndRange in BookmarkInsert is required.');
+            throw new Error('Property Image in WatermarkDataImage is required.');
         }
 
-        this.startRange?.validate();
+        this.image?.validate();
 
 
-
-        this.endRange?.validate();
 
     }
 }

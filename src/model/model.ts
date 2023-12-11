@@ -215,6 +215,8 @@ import * as importedPreferredWidth from './preferredWidth';
 import * as importedProtectionData from './protectionData';
 import * as importedProtectionDataResponse from './protectionDataResponse';
 import * as importedProtectionRequest from './protectionRequest';
+import * as importedProtectionRequestBase from './protectionRequestBase';
+import * as importedProtectionRequestV2 from './protectionRequestV2';
 import * as importedPsSaveOptionsData from './psSaveOptionsData';
 import * as importedPublicKeyResponse from './publicKeyResponse';
 import * as importedRangeDocument from './rangeDocument';
@@ -295,6 +297,9 @@ import * as importedTiffSaveOptionsData from './tiffSaveOptionsData';
 import * as importedTimeZoneInfoData from './timeZoneInfoData';
 import * as importedTxtSaveOptionsBaseData from './txtSaveOptionsBaseData';
 import * as importedUserInformation from './userInformation';
+import * as importedWatermarkDataBase from './watermarkDataBase';
+import * as importedWatermarkDataImage from './watermarkDataImage';
+import * as importedWatermarkDataText from './watermarkDataText';
 import * as importedWatermarkText from './watermarkText';
 import * as importedWordMLSaveOptionsData from './wordMLSaveOptionsData';
 import * as importedWordsApiErrorResponse from './wordsApiErrorResponse';
@@ -489,6 +494,8 @@ export * from './preferredWidth';
 export * from './protectionData';
 export * from './protectionDataResponse';
 export * from './protectionRequest';
+export * from './protectionRequestBase';
+export * from './protectionRequestV2';
 export * from './psSaveOptionsData';
 export * from './publicKeyResponse';
 export * from './rangeDocument';
@@ -569,6 +576,9 @@ export * from './tiffSaveOptionsData';
 export * from './timeZoneInfoData';
 export * from './txtSaveOptionsBaseData';
 export * from './userInformation';
+export * from './watermarkDataBase';
+export * from './watermarkDataImage';
+export * from './watermarkDataText';
 export * from './watermarkText';
 export * from './wordMLSaveOptionsData';
 export * from './wordsApiErrorResponse';
@@ -677,6 +687,8 @@ const enumsMap = {
     "PdfSaveOptionsData.TextCompressionEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.TextCompressionEnum,
     "PdfSaveOptionsData.ZoomBehaviorEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ZoomBehaviorEnum,
     "PreferredWidth.TypeEnum": importedPreferredWidth.PreferredWidth.TypeEnum,
+    "ProtectionData.ProtectionTypeEnum": importedProtectionData.ProtectionData.ProtectionTypeEnum,
+    "ProtectionRequestV2.ProtectionTypeEnum": importedProtectionRequestV2.ProtectionRequestV2.ProtectionTypeEnum,
     "ReplaceRange.TextTypeEnum": importedReplaceRange.ReplaceRange.TextTypeEnum,
     "ReportBuildOptions": importedReportBuildOptions.ReportBuildOptions,
     "ReportEngineSettings.DataSourceTypeEnum": importedReportEngineSettings.ReportEngineSettings.DataSourceTypeEnum,
@@ -710,6 +722,7 @@ const enumsMap = {
     "TiffSaveOptionsData.TiffBinarizationMethodEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffBinarizationMethodEnum,
     "TiffSaveOptionsData.TiffCompressionEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffCompressionEnum,
     "TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum": importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum,
+    "WatermarkDataText.LayoutEnum": importedWatermarkDataText.WatermarkDataText.LayoutEnum,
 
 };
 
@@ -885,6 +898,7 @@ const typeMap = {
     ProtectionData: importedProtectionData.ProtectionData,
     ProtectionDataResponse: importedProtectionDataResponse.ProtectionDataResponse,
     ProtectionRequest: importedProtectionRequest.ProtectionRequest,
+    ProtectionRequestV2: importedProtectionRequestV2.ProtectionRequestV2,
     PsSaveOptionsData: importedPsSaveOptionsData.PsSaveOptionsData,
     PublicKeyResponse: importedPublicKeyResponse.PublicKeyResponse,
     RangeDocument: importedRangeDocument.RangeDocument,
@@ -960,6 +974,8 @@ const typeMap = {
     TiffSaveOptionsData: importedTiffSaveOptionsData.TiffSaveOptionsData,
     TimeZoneInfoData: importedTimeZoneInfoData.TimeZoneInfoData,
     UserInformation: importedUserInformation.UserInformation,
+    WatermarkDataImage: importedWatermarkDataImage.WatermarkDataImage,
+    WatermarkDataText: importedWatermarkDataText.WatermarkDataText,
     WatermarkText: importedWatermarkText.WatermarkText,
     WordMLSaveOptionsData: importedWordMLSaveOptionsData.WordMLSaveOptionsData,
     WordsApiErrorResponse: importedWordsApiErrorResponse.WordsApiErrorResponse,
@@ -2539,6 +2555,7 @@ export class CompareDocumentRequest implements RequestInterface {
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
             formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
+            this.compareData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
@@ -2601,11 +2618,6 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
      * Compare data.
      */
     public compareData: importedCompareData.CompareData;
-
-    /**
-     * The comparing document.
-     */
-    public comparingDocument: Readable;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -2675,9 +2687,7 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
             formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
-        }
-        if (this.comparingDocument !== undefined) {
-            formParams.push(['ComparingDocument', this.comparingDocument, 'application/octet-stream']);
+            this.compareData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
@@ -9605,6 +9615,250 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
         // verify required parameter 'this.index' is not null
         if (this.index === null) {
             throw new Error('Required parameter "this.index" was null when calling deleteOfficeMathObjectOnline.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return parseFilesCollection(_response, _headers);
+	}
+}
+
+/**
+ * Request model for DeleteOfficeMathObjects operation.
+ * Removes all office math objects from the document.
+ */
+export class DeleteOfficeMathObjectsRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteOfficeMathObjectsRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/OfficeMathObjects"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling deleteOfficeMathObjects.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling deleteOfficeMathObjects.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "DELETE",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return null;
+	}
+}
+
+/**
+ * Request model for DeleteOfficeMathObjectsOnline operation.
+ * Removes all office math objects from the document.
+ */
+export class DeleteOfficeMathObjectsOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< DeleteOfficeMathObjectsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/delete/OfficeMathObjects"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling deleteOfficeMathObjectsOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling deleteOfficeMathObjectsOnline.');
         }
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
@@ -32627,6 +32881,154 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 }
 
 /**
+ * Request model for InsertWatermark operation.
+ * Insert a watermark to the document.
+ */
+export class InsertWatermarkRequest implements RequestInterface {
+
+    public constructor(init?: Partial< InsertWatermarkRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * The watermark data.
+     */
+    public watermarkData: importedWatermarkDataBase.WatermarkDataBase;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/watermarks/insert"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling insertWatermark.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling insertWatermark.');
+        }
+        // verify required parameter 'this.watermarkData' is not undefined
+        if (this.watermarkData === undefined) {
+            throw new Error('Required parameter "this.watermarkData" was undefined when calling insertWatermark.');
+        }
+
+        // verify required parameter 'this.watermarkData' is not null
+        if (this.watermarkData === null) {
+            throw new Error('Required parameter "this.watermarkData" was null when calling insertWatermark.');
+        }
+        this.watermarkData?.validate();
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.watermarkData !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.watermarkData, this.watermarkData.constructor.name === "Object" ? "importedWatermarkDataBase.WatermarkDataBase" : this.watermarkData.constructor.name);
+            formParams.push(['WatermarkData', JSON.stringify(_obj), 'application/json']);
+            this.watermarkData.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "POST",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
+	}
+}
+
+/**
  * Request model for InsertWatermarkImage operation.
  * Inserts a new watermark image to the document.
  */
@@ -32907,6 +33309,153 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         const result = new InsertWatermarkImageOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
+
+
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
+
+        return result;
+	}
+}
+
+/**
+ * Request model for InsertWatermarkOnline operation.
+ * Insert a watermark to the document.
+ */
+export class InsertWatermarkOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< InsertWatermarkOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The watermark data.
+     */
+    public watermarkData: importedWatermarkDataBase.WatermarkDataBase;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/watermarks/insert"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling insertWatermarkOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling insertWatermarkOnline.');
+        }
+        // verify required parameter 'this.watermarkData' is not undefined
+        if (this.watermarkData === undefined) {
+            throw new Error('Required parameter "this.watermarkData" was undefined when calling insertWatermarkOnline.');
+        }
+
+        // verify required parameter 'this.watermarkData' is not null
+        if (this.watermarkData === null) {
+            throw new Error('Required parameter "this.watermarkData" was null when calling insertWatermarkOnline.');
+        }
+        this.watermarkData?.validate();
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+        if (this.watermarkData !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.watermarkData, this.watermarkData.constructor.name === "Object" ? "importedWatermarkDataBase.WatermarkDataBase" : this.watermarkData.constructor.name);
+            formParams.push(['WatermarkData', JSON.stringify(_obj), 'application/json']);
+            this.watermarkData.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new InsertWatermarkOnlineResponse();
         const boundary = getBoundary(_headers);
         const parts = parseMultipart(_response, boundary);
         result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "DocumentResponse");
@@ -33954,7 +34503,7 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 
 /**
  * Request model for ProtectDocument operation.
- * Adds protection to the document.
+ * Changes the document protection. The previous protection will be overwritten if it exist.
  */
 export class ProtectDocumentRequest implements RequestInterface {
 
@@ -33968,9 +34517,9 @@ export class ProtectDocumentRequest implements RequestInterface {
     public name: string;
 
     /**
-     * Protection request.
+     * Use ProtectionRequestV2 model to provide protection options.
      */
-    public protectionRequest: importedProtectionRequest.ProtectionRequest;
+    public protectionRequest: importedProtectionRequestBase.ProtectionRequestBase;
 
     /**
      * Original document folder.
@@ -34042,7 +34591,7 @@ export class ProtectDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.protectionRequest !== undefined) {
-            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
+            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequestBase.ProtectionRequestBase" : this.protectionRequest.constructor.name);
             formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
         }
 
@@ -34089,7 +34638,7 @@ export class ProtectDocumentRequest implements RequestInterface {
 
 /**
  * Request model for ProtectDocumentOnline operation.
- * Adds protection to the document.
+ * Changes the document protection. The previous protection will be overwritten if it exist.
  */
 export class ProtectDocumentOnlineRequest implements RequestInterface {
 
@@ -34103,9 +34652,9 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * Protection request.
+     * Use ProtectionRequestV2 model to provide protection options.
      */
-    public protectionRequest: importedProtectionRequest.ProtectionRequest;
+    public protectionRequest: importedProtectionRequestBase.ProtectionRequestBase;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -34167,7 +34716,7 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
         if (this.protectionRequest !== undefined) {
-            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
+            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequestBase.ProtectionRequestBase" : this.protectionRequest.constructor.name);
             formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
         }
 
@@ -38488,11 +39037,6 @@ export class UnprotectDocumentRequest implements RequestInterface {
     public name: string;
 
     /**
-     * Protection request.
-     */
-    public protectionRequest: importedProtectionRequest.ProtectionRequest;
-
-    /**
      * Original document folder.
      */
     public folder: string;
@@ -38544,27 +39088,12 @@ export class UnprotectDocumentRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling unprotectDocument.');
         }
-        // verify required parameter 'this.protectionRequest' is not undefined
-        if (this.protectionRequest === undefined) {
-            throw new Error('Required parameter "this.protectionRequest" was undefined when calling unprotectDocument.');
-        }
-
-        // verify required parameter 'this.protectionRequest' is not null
-        if (this.protectionRequest === null) {
-            throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocument.');
-        }
-        this.protectionRequest?.validate();
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
-        if (this.protectionRequest !== undefined) {
-            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
-            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
-        }
 
         for (let fileContent of filesContent) {
             formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
@@ -38623,11 +39152,6 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * Protection request.
-     */
-    public protectionRequest: importedProtectionRequest.ProtectionRequest;
-
-    /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
      */
     public loadEncoding: string;
@@ -38668,27 +39192,12 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling unprotectDocumentOnline.');
         }
-        // verify required parameter 'this.protectionRequest' is not undefined
-        if (this.protectionRequest === undefined) {
-            throw new Error('Required parameter "this.protectionRequest" was undefined when calling unprotectDocumentOnline.');
-        }
-
-        // verify required parameter 'this.protectionRequest' is not null
-        if (this.protectionRequest === null) {
-            throw new Error('Required parameter "this.protectionRequest" was null when calling unprotectDocumentOnline.');
-        }
-        this.protectionRequest?.validate();
-
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
-        }
-        if (this.protectionRequest !== undefined) {
-            let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequest.ProtectionRequest" : this.protectionRequest.constructor.name);
-            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
@@ -46366,6 +46875,22 @@ export class InsertWatermarkImageOnlineResponse {
 }
 
 /**
+ * Response model for InsertWatermarkOnline operation.
+ * Insert a watermark to the document.
+ */
+export class InsertWatermarkOnlineResponse {
+    /**
+     * The REST response with a document description.
+     */
+    public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Map<string, Buffer>;
+}
+
+/**
  * Response model for InsertWatermarkTextOnline operation.
  * Inserts a new watermark text to the document.
  */
@@ -46383,7 +46908,7 @@ export class InsertWatermarkTextOnlineResponse {
 
 /**
  * Response model for ProtectDocumentOnline operation.
- * Adds protection to the document.
+ * Changes the document protection. The previous protection will be overwritten if it exist.
  */
 export class ProtectDocumentOnlineResponse {
     /**

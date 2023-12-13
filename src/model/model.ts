@@ -1090,7 +1090,10 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -1195,7 +1198,10 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -1352,7 +1358,10 @@ export class AppendDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -1490,7 +1499,10 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -1661,7 +1673,10 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -1813,7 +1828,10 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -1974,7 +1992,10 @@ export class BuildReportRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -2098,7 +2119,10 @@ export class BuildReportOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -2185,7 +2209,10 @@ export class ClassifyRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -2306,7 +2333,10 @@ export class ClassifyDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -2417,7 +2447,10 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -2507,11 +2540,6 @@ export class CompareDocumentRequest implements RequestInterface {
      */
     public destFileName: string;
 
-    /**
-     * encrypted password for the second document.
-     */
-    public encryptedPassword2: string;
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -2551,7 +2579,6 @@ export class CompareDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _encryptor);
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
             formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
@@ -2559,7 +2586,10 @@ export class CompareDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -2639,11 +2669,6 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
      */
     public destFileName: string;
 
-    /**
-     * encrypted password for the second document.
-     */
-    public encryptedPassword2: string;
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -2680,7 +2705,6 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword2", this.encryptedPassword2, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -2691,7 +2715,10 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -2836,7 +2863,10 @@ export class CompressDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -2962,7 +2992,10 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -3109,7 +3142,10 @@ export class ConvertDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -3221,7 +3257,10 @@ export class CopyFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -3327,7 +3366,10 @@ export class CopyFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -3474,7 +3516,10 @@ export class CopyStyleRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -3611,7 +3656,10 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -3762,7 +3810,10 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -3854,7 +3905,10 @@ export class CreateDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -3939,7 +3993,10 @@ export class CreateFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -4101,7 +4158,10 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -4253,7 +4313,10 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -4398,7 +4461,10 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -4524,7 +4590,10 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -4675,7 +4744,10 @@ export class DeleteBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -4807,7 +4879,10 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -4934,7 +5009,10 @@ export class DeleteBookmarksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -5051,7 +5129,10 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -5200,7 +5281,10 @@ export class DeleteBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -5339,7 +5423,10 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -5482,7 +5569,10 @@ export class DeleteBordersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -5606,7 +5696,10 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -5757,7 +5850,10 @@ export class DeleteCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -5889,7 +5985,10 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -6016,7 +6115,10 @@ export class DeleteCommentsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -6133,7 +6235,10 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -6275,7 +6380,10 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -6407,7 +6515,10 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -6534,7 +6645,10 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -6651,7 +6765,10 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -6793,7 +6910,10 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -6925,7 +7045,10 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -7073,7 +7196,10 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -7211,7 +7337,10 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -7359,7 +7488,10 @@ export class DeleteFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -7497,7 +7629,10 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -7630,7 +7765,10 @@ export class DeleteFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -7753,7 +7891,10 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -7844,7 +7985,10 @@ export class DeleteFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -7935,7 +8079,10 @@ export class DeleteFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "recursive", this.recursive, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -8083,7 +8230,10 @@ export class DeleteFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -8221,7 +8371,10 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -8369,7 +8522,10 @@ export class DeleteFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -8507,7 +8663,10 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -8664,7 +8823,10 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -8811,7 +8973,10 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -8959,7 +9124,10 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -9097,7 +9265,10 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -9224,7 +9395,10 @@ export class DeleteMacrosRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -9341,7 +9515,10 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -9489,7 +9666,10 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -9627,7 +9807,10 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -9754,7 +9937,10 @@ export class DeleteOfficeMathObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -9871,7 +10057,10 @@ export class DeleteOfficeMathObjectsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -10019,7 +10208,10 @@ export class DeleteParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -10167,7 +10359,10 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -10305,7 +10500,10 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -10452,7 +10650,10 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -10603,7 +10804,10 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -10744,7 +10948,10 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -10910,7 +11117,10 @@ export class DeleteRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -11057,7 +11267,10 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -11199,7 +11412,10 @@ export class DeleteSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -11331,7 +11547,10 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -11479,7 +11698,10 @@ export class DeleteStructuredDocumentTagRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -11617,7 +11839,10 @@ export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterfac
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -11765,7 +11990,10 @@ export class DeleteTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -11922,7 +12150,10 @@ export class DeleteTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -12069,7 +12300,10 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -12207,7 +12441,10 @@ export class DeleteTableOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -12364,7 +12601,10 @@ export class DeleteTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -12511,7 +12751,10 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -12638,7 +12881,10 @@ export class DeleteWatermarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -12755,7 +13001,10 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -12855,7 +13104,10 @@ export class DownloadFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13013,7 +13265,10 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13140,7 +13395,10 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13210,7 +13468,10 @@ export class GetAvailableFontsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13334,7 +13595,10 @@ export class GetBookmarkByNameRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13448,7 +13712,10 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13557,7 +13824,10 @@ export class GetBookmarksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13656,7 +13926,10 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13787,7 +14060,10 @@ export class GetBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -13908,7 +14184,10 @@ export class GetBorderOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14023,7 +14302,10 @@ export class GetBordersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14128,7 +14410,10 @@ export class GetBordersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14252,7 +14537,10 @@ export class GetCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14366,7 +14654,10 @@ export class GetCommentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14475,7 +14766,10 @@ export class GetCommentsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14574,7 +14868,10 @@ export class GetCommentsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14698,7 +14995,10 @@ export class GetCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14812,7 +15112,10 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -14921,7 +15224,10 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15020,7 +15326,10 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15129,7 +15438,10 @@ export class GetDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15259,7 +15571,10 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15379,7 +15694,10 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15509,7 +15827,10 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15629,7 +15950,10 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15759,7 +16083,10 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15879,7 +16206,10 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -15994,7 +16324,10 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16099,7 +16432,10 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16214,7 +16550,10 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16319,7 +16658,10 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16443,7 +16785,10 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16557,7 +16902,10 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16666,7 +17014,10 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16765,7 +17116,10 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16874,7 +17228,10 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -16973,7 +17330,10 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -17097,7 +17457,10 @@ export class GetDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -17211,7 +17574,10 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -17320,7 +17686,10 @@ export class GetDocumentProtectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -17419,7 +17788,10 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -17546,7 +17918,10 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -17663,7 +18038,10 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -17799,7 +18177,10 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -17929,7 +18310,10 @@ export class GetFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18049,7 +18433,10 @@ export class GetFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18164,7 +18551,10 @@ export class GetFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18269,7 +18659,10 @@ export class GetFieldsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18354,7 +18747,10 @@ export class GetFilesListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18484,7 +18880,10 @@ export class GetFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18604,7 +19003,10 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18719,7 +19121,10 @@ export class GetFootnotesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18824,7 +19229,10 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -18954,7 +19362,10 @@ export class GetFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -19074,7 +19485,10 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -19189,7 +19603,10 @@ export class GetFormFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -19294,7 +19711,10 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -19424,7 +19844,10 @@ export class GetHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -19569,7 +19992,10 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -19704,7 +20130,10 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -19824,7 +20253,10 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -19954,7 +20386,10 @@ export class GetHeaderFootersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20074,7 +20509,10 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20139,7 +20577,10 @@ export class GetInfoRequest implements RequestInterface {
         var filesContent: any = [];
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20263,7 +20704,10 @@ export class GetListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20377,7 +20821,10 @@ export class GetListOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20486,7 +20933,10 @@ export class GetListsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20585,7 +21035,10 @@ export class GetListsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20715,7 +21168,10 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20835,7 +21291,10 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -20950,7 +21409,10 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -21055,7 +21517,10 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -21185,7 +21650,10 @@ export class GetParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -21315,7 +21783,10 @@ export class GetParagraphFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -21435,7 +21906,10 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -21565,7 +22039,10 @@ export class GetParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -21685,7 +22162,10 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -21805,7 +22285,10 @@ export class GetParagraphOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -21920,7 +22403,10 @@ export class GetParagraphsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22025,7 +22511,10 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22155,7 +22644,10 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22275,7 +22767,10 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22340,7 +22835,10 @@ export class GetPublicKeyRequest implements RequestInterface {
         var filesContent: any = [];
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22470,7 +22968,10 @@ export class GetRangeTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22590,7 +23091,10 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22729,7 +23233,10 @@ export class GetRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22868,7 +23375,10 @@ export class GetRunFontRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -22997,7 +23507,10 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -23126,7 +23639,10 @@ export class GetRunOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -23250,7 +23766,10 @@ export class GetRunsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -23364,7 +23883,10 @@ export class GetRunsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -23488,7 +24010,10 @@ export class GetSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -23602,7 +24127,10 @@ export class GetSectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -23726,7 +24254,10 @@ export class GetSectionPageSetupRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -23840,7 +24371,10 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -23949,7 +24483,10 @@ export class GetSectionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24048,7 +24585,10 @@ export class GetSectionsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24178,7 +24718,10 @@ export class GetStructuredDocumentTagRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24298,7 +24841,10 @@ export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24413,7 +24959,10 @@ export class GetStructuredDocumentTagsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24518,7 +25067,10 @@ export class GetStructuredDocumentTagsOnlineRequest implements RequestInterface 
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24642,7 +25194,10 @@ export class GetStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24766,7 +25321,10 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24880,7 +25438,10 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -24994,7 +25555,10 @@ export class GetStyleOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -25103,7 +25667,10 @@ export class GetStylesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -25202,7 +25769,10 @@ export class GetStylesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -25332,7 +25902,10 @@ export class GetTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -25471,7 +26044,10 @@ export class GetTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -25610,7 +26186,10 @@ export class GetTableCellFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -25739,7 +26318,10 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -25868,7 +26450,10 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -25988,7 +26573,10 @@ export class GetTableOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -26118,7 +26706,10 @@ export class GetTablePropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -26238,7 +26829,10 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -26377,7 +26971,10 @@ export class GetTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -26516,7 +27113,10 @@ export class GetTableRowFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -26645,7 +27245,10 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -26774,7 +27377,10 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -26889,7 +27495,10 @@ export class GetTablesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -26994,7 +27603,10 @@ export class GetTablesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -27141,7 +27753,10 @@ export class InsertBookmarkRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -27278,7 +27893,10 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -27434,7 +28052,10 @@ export class InsertCommentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -27571,7 +28192,10 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -27727,7 +28351,10 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -27864,7 +28491,10 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -28043,7 +28673,10 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -28203,7 +28836,10 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -28371,7 +29007,10 @@ export class InsertFieldRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -28520,7 +29159,10 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -28682,7 +29324,10 @@ export class InsertFootnoteRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -28825,7 +29470,10 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -28993,7 +29641,10 @@ export class InsertFormFieldRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -29142,7 +29793,10 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -29310,7 +29964,10 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -29459,7 +30116,10 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -29615,7 +30275,10 @@ export class InsertListRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -29752,7 +30415,10 @@ export class InsertListOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -29917,7 +30583,10 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -30063,7 +30732,10 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -30219,7 +30891,10 @@ export class InsertPageNumbersRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -30356,7 +31031,10 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -30524,7 +31202,10 @@ export class InsertParagraphRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -30673,7 +31354,10 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -30850,7 +31534,10 @@ export class InsertRunRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -31008,7 +31695,10 @@ export class InsertRunOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -31159,7 +31849,10 @@ export class InsertSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -31291,7 +31984,10 @@ export class InsertSectionOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -31444,7 +32140,10 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -31587,7 +32286,10 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -31743,7 +32445,10 @@ export class InsertStyleRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -31880,7 +32585,10 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -32042,7 +32750,10 @@ export class InsertTableRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -32204,7 +32915,10 @@ export class InsertTableCellRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -32356,7 +33070,10 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -32508,7 +33225,10 @@ export class InsertTableOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -32679,7 +33399,10 @@ export class InsertTableRowRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -32831,7 +33554,10 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -32988,7 +33714,10 @@ export class InsertWatermarkRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -33135,7 +33864,10 @@ export class InsertWatermarkImageRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -33272,7 +34004,10 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -33419,7 +34154,10 @@ export class InsertWatermarkOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -33575,7 +34313,10 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -33712,7 +34453,10 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -33869,7 +34613,10 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mode", this.mode, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -33959,7 +34706,10 @@ export class LoadWebDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -34071,7 +34821,10 @@ export class MoveFileRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "versionId", this.versionId, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -34177,7 +34930,10 @@ export class MoveFolderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destStorageName", this.destStorageName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -34324,7 +35080,10 @@ export class OptimizeDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -34461,7 +35220,10 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -34596,7 +35358,10 @@ export class ProtectDocumentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -34721,7 +35486,10 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -34845,7 +35613,10 @@ export class RejectAllRevisionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -34950,7 +35721,10 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -35095,7 +35869,10 @@ export class RemoveRangeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -35221,7 +35998,10 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -35387,7 +36167,10 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -35534,7 +36317,10 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -35691,7 +36477,10 @@ export class RenderMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -35838,7 +36627,10 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -35983,7 +36775,10 @@ export class RenderPageRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -36118,7 +36913,10 @@ export class RenderPageOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -36275,7 +37073,10 @@ export class RenderParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -36422,7 +37223,10 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -36579,7 +37383,10 @@ export class RenderTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -36726,7 +37533,10 @@ export class RenderTableOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -36873,7 +37683,10 @@ export class ReplaceTextRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -37010,7 +37823,10 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -37175,7 +37991,10 @@ export class ReplaceWithTextRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -37321,7 +38140,10 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -37395,7 +38217,10 @@ export class ResetCacheRequest implements RequestInterface {
         var filesContent: any = [];
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -37530,7 +38355,10 @@ export class SaveAsRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -37655,7 +38483,10 @@ export class SaveAsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -37814,7 +38645,10 @@ export class SaveAsRangeRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -37954,7 +38788,10 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -38200,7 +39037,10 @@ export class SaveAsTiffRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -38427,7 +39267,10 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -38560,7 +39403,10 @@ export class SearchRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -38674,7 +39520,10 @@ export class SearchOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -38828,7 +39677,10 @@ export class SplitDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -38972,7 +39824,10 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -39096,7 +39951,10 @@ export class UnprotectDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -39201,7 +40059,10 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -39372,7 +40233,10 @@ export class UpdateBookmarkRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -39524,7 +40388,10 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -39702,7 +40569,10 @@ export class UpdateBorderRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -39861,7 +40731,10 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -40032,7 +40905,10 @@ export class UpdateCommentRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -40184,7 +41060,10 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -40355,7 +41234,10 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -40507,7 +41389,10 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -40701,7 +41586,10 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -40876,7 +41764,10 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -41053,7 +41944,10 @@ export class UpdateFieldRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -41211,7 +42105,10 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -41335,7 +42232,10 @@ export class UpdateFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -41440,7 +42340,10 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -41617,7 +42520,10 @@ export class UpdateFootnoteRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -41775,7 +42681,10 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -41952,7 +42861,10 @@ export class UpdateFormFieldRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -42110,7 +43022,10 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -42281,7 +43196,10 @@ export class UpdateListRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -42458,7 +43376,10 @@ export class UpdateListLevelRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -42625,7 +43546,10 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -42786,7 +43710,10 @@ export class UpdateListOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -42963,7 +43890,10 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -43121,7 +44051,10 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -43298,7 +44231,10 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -43456,7 +44392,10 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -43642,7 +44581,10 @@ export class UpdateRunRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -43819,7 +44761,10 @@ export class UpdateRunFontRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -43986,7 +44931,10 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -44162,7 +45110,10 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -44333,7 +45284,10 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -44485,7 +45439,10 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -44662,7 +45619,10 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -44820,7 +45780,10 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -44991,7 +45954,10 @@ export class UpdateStyleRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -45143,7 +46109,10 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -45329,7 +46298,10 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -45496,7 +46468,10 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -45673,7 +46648,10 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -45831,7 +46809,10 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -46017,7 +46998,10 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -46184,7 +47168,10 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {
@@ -46297,7 +47284,10 @@ export class UploadFileRequest implements RequestInterface {
         }
 
         for (let fileContent of filesContent) {
-            formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
         }
 
         const requestOptions: request.Options = {

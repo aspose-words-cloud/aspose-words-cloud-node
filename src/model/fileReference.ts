@@ -47,6 +47,16 @@ export class FileReference implements ModelInterface {
             name: "reference",
             baseName: "Reference",
             type: "string",
+        },
+        {
+            name: "password",
+            baseName: "Password",
+            type: "string",
+        },
+        {
+            name: "encryptedPassword",
+            baseName: "EncryptedPassword",
+            type: "string",
         }
     ];
 
@@ -59,17 +69,26 @@ export class FileReference implements ModelInterface {
 
     private source: FileReference.SourceEnum;
     private reference: string;
+    private password: string;
+    private encryptedPassword: string;
     private content: Readable;
 
-    private constructor(source: FileReference.SourceEnum, reference: string, content: Readable) {
+    private constructor(source: FileReference.SourceEnum, reference: string, content: Readable, password: string) {
         this.source = source;
         this.reference = reference;
         this.content = content;
+        this.password = password;
+        this.encryptedPassword = null;
     }
 
     public collectFilesContent(_resultFilesContent: Array<any>) {
-        if (this.source == FileReference.SourceEnum.Request) {
-            _resultFilesContent.push(this);
+        _resultFilesContent.push(this);
+    }
+
+    public async encryptPassword(encryptor: Encryptor) : Promise {
+        if (this.password !== null && this.password !== undefined) {
+            this.encryptedPassword = await encryptor.encrypt(this.password);
+            this.password = null;
         }
     }
 
@@ -89,12 +108,12 @@ export class FileReference implements ModelInterface {
         return this.content;
     }
 
-    static fromRemoteFilePath(remoteFilePath: string): FileReference {
-        return new FileReference(FileReference.SourceEnum.Storage, remoteFilePath, null);
+    static fromRemoteFilePath(remoteFilePath: string, password: string = null): FileReference {
+        return new FileReference(FileReference.SourceEnum.Storage, remoteFilePath, null, password);
     }
 
-    static fromLocalFileContent(localFileContent: Readable): FileReference {
-        return new FileReference(FileReference.SourceEnum.Request, uuidv4(), localFileContent);
+    static fromLocalFileContent(localFileContent: Readable, password: string = null): FileReference {
+        return new FileReference(FileReference.SourceEnum.Request, uuidv4(), localFileContent, password);
     }
 }
 

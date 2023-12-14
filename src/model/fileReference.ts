@@ -29,6 +29,7 @@ import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
 import { v4 as uuidv4 } from 'uuid';
 import { Readable } from "stream";
+import { Encryptor } from '../api';
 
 export const importsMapFileReference = {
 };
@@ -85,7 +86,7 @@ export class FileReference implements ModelInterface {
         _resultFilesContent.push(this);
     }
 
-    public async encryptPassword(encryptor: Encryptor) : Promise {
+    public async encryptPassword(encryptor: Encryptor) : Promise<void> {
         if (this.password !== null && this.password !== undefined) {
             this.encryptedPassword = await encryptor.encrypt(this.password);
             this.password = null;

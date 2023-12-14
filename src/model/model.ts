@@ -33,7 +33,7 @@ import request = require("request");
 import { Configuration } from "../internal/configuration";
 import { addQueryParameterToUrl, getBoundary, parseFilesCollection, findMultipartElement, parseMultipart } from "../internal/requestHelper";
 import { ObjectSerializer } from "../internal/objectSerializer";
-import { Encryptor } from '../api';
+import { Encryptor, FileReference } from '../api';
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
 import * as importedBaseEntry from './baseEntry';

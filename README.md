@@ -16,6 +16,15 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 24.1
+
+- Added support for InsertAfterNode in the insert API without NodePath.
+- Added support for inserting nodes (runs/rows/cells/bookmarks) without NodePath.
+- Added support for transparency in the Watermark API.
+- Added support for password and encryptedPassword fields in FileReference.
+- Fixed missing href value in document responses.
+
+
 ## Enhancements in Version 23.12
 
 - Properties Name, Text, StartRange, EndRange marked as required for InsertBookmark operation.

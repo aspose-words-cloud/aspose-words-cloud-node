@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="runInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,9 +27,11 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { Position } from './position';
 import { RunBase } from './runBase';
 
 export const importsMapRunInsert = {
+    Position,
     RunBase,
 };
 
@@ -41,6 +43,11 @@ export class RunInsert extends RunBase {
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "position",
+            baseName: "Position",
+            type: "Position",
+        }
     ];
 
     /**
@@ -50,6 +57,10 @@ export class RunInsert extends RunBase {
         return super.getAttributeTypeMap().concat(RunInsert.attributeTypeMap);
     }
 
+    /**
+     * Gets or sets the position of the node that will be used to determine the placement of a new run.
+     */
+    public position: Position;
 
     public constructor(init?: Partial< RunInsert >) {
         super(init);
@@ -61,6 +72,9 @@ export class RunInsert extends RunBase {
 
     public validate() {
         super.validate();
+
+        this.position?.validate();
+
     }
 }
 

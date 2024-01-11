@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="paragraphInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,8 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { Position } from './position';
 
 export const importsMapParagraphInsert = {
+    Position,
 };
 
 /**
@@ -43,6 +45,11 @@ export class ParagraphInsert implements ModelInterface {
             name: "text",
             baseName: "Text",
             type: "string",
+        },
+        {
+            name: "position",
+            baseName: "Position",
+            type: "Position",
         }
     ];
 
@@ -58,6 +65,11 @@ export class ParagraphInsert implements ModelInterface {
      */
     public text: string;
 
+    /**
+     * Gets or sets the position of the node that will be used to determine the placement of a new paragraph.
+     */
+    public position: Position;
+
     public constructor(init?: Partial< ParagraphInsert >) {
         Object.assign(this, init);
     }
@@ -70,6 +82,9 @@ export class ParagraphInsert implements ModelInterface {
         {
             throw new Error('Property Text in ParagraphInsert is required.');
         }
+
+        this.position?.validate();
+
     }
 }
 

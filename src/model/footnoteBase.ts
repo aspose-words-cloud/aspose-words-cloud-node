@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="footnoteBase.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,10 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { NewDocumentPosition } from './newDocumentPosition';
+import { Position } from './position';
 
 export const importsMapFootnoteBase = {
-    NewDocumentPosition,
+    Position,
 };
 
 /**
@@ -44,7 +44,7 @@ export abstract class FootnoteBase implements ModelInterface {
         {
             name: "position",
             baseName: "Position",
-            type: "NewDocumentPosition",
+            type: "Position",
         },
         {
             name: "footnoteType",
@@ -71,9 +71,9 @@ export abstract class FootnoteBase implements ModelInterface {
     }
 
     /**
-     * Gets or sets the link to comment range start node.
+     * Gets or sets the link to range start node.
      */
-    public position: NewDocumentPosition;
+    public position: Position;
 
     /**
      * Gets or sets the option, that specifies whether this is a footnote or endnote.

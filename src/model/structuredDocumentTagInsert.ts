@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="structuredDocumentTagInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,9 +27,11 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { Position } from './position';
 import { StructuredDocumentTagBase } from './structuredDocumentTagBase';
 
 export const importsMapStructuredDocumentTagInsert = {
+    Position,
     StructuredDocumentTagBase,
 };
 
@@ -50,6 +52,11 @@ export class StructuredDocumentTagInsert extends StructuredDocumentTagBase {
             name: "sdtType",
             baseName: "SdtType",
             type: "StructuredDocumentTagInsert.SdtTypeEnum",
+        },
+        {
+            name: "position",
+            baseName: "Position",
+            type: "Position",
         }
     ];
 
@@ -70,6 +77,11 @@ export class StructuredDocumentTagInsert extends StructuredDocumentTagBase {
      */
     public sdtType: StructuredDocumentTagInsert.SdtTypeEnum;
 
+    /**
+     * Gets or sets the position of the node that will be used to determine the placement of a new node.
+     */
+    public position: Position;
+
     public constructor(init?: Partial< StructuredDocumentTagInsert >) {
         super(init);
         Object.assign(this, init);
@@ -88,6 +100,9 @@ export class StructuredDocumentTagInsert extends StructuredDocumentTagBase {
         {
             throw new Error('Property SdtType in StructuredDocumentTagInsert is required.');
         }
+
+        this.position?.validate();
+
     }
 }
 

@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="drawingObjectInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,10 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { NewDocumentPosition } from './newDocumentPosition';
+import { Position } from './position';
 
 export const importsMapDrawingObjectInsert = {
-    NewDocumentPosition,
+    Position,
 };
 
 /**
@@ -44,7 +44,7 @@ export class DrawingObjectInsert implements ModelInterface {
         {
             name: "position",
             baseName: "Position",
-            type: "NewDocumentPosition",
+            type: "Position",
         },
         {
             name: "relativeHorizontalPosition",
@@ -91,9 +91,9 @@ export class DrawingObjectInsert implements ModelInterface {
     }
 
     /**
-     * Gets or sets the position, before which the DrawingObject will be inserted.
+     * Gets or sets the position, where the DrawingObject will be inserted.
      */
-    public position: NewDocumentPosition;
+    public position: Position;
 
     /**
      * Gets or sets the relative horizontal position, from which the distance to the image is measured.

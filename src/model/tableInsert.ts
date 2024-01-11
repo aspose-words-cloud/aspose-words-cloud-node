@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="tableInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,10 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { NewDocumentPosition } from './newDocumentPosition';
+import { Position } from './position';
 
 export const importsMapTableInsert = {
-    NewDocumentPosition,
+    Position,
 };
 
 /**
@@ -49,7 +49,7 @@ export class TableInsert implements ModelInterface {
         {
             name: "position",
             baseName: "Position",
-            type: "NewDocumentPosition",
+            type: "Position",
         },
         {
             name: "rowsCount",
@@ -71,9 +71,9 @@ export class TableInsert implements ModelInterface {
     public columnsCount: number;
 
     /**
-     * Gets or sets the position to insert the table. The table will be inserted before the specified position.
+     * Gets or sets the position to insert the table. The table will be inserted using the specified position.
      */
-    public position: NewDocumentPosition;
+    public position: Position;
 
     /**
      * Gets or sets the number of rows. The default value is 2.

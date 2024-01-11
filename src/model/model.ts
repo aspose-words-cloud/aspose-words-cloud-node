@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="model.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -178,7 +178,6 @@ import * as importedMarkdownSaveOptionsData from './markdownSaveOptionsData';
 import * as importedMetafileRenderingOptionsData from './metafileRenderingOptionsData';
 import * as importedMhtmlSaveOptionsData from './mhtmlSaveOptionsData';
 import * as importedModificationOperationResult from './modificationOperationResult';
-import * as importedNewDocumentPosition from './newDocumentPosition';
 import * as importedNodeLink from './nodeLink';
 import * as importedOdtSaveOptionsData from './odtSaveOptionsData';
 import * as importedOfficeMathLink from './officeMathLink';
@@ -211,6 +210,10 @@ import * as importedPdfEncryptionDetailsData from './pdfEncryptionDetailsData';
 import * as importedPdfPermissions from './pdfPermissions';
 import * as importedPdfSaveOptionsData from './pdfSaveOptionsData';
 import * as importedPngSaveOptionsData from './pngSaveOptionsData';
+import * as importedPosition from './position';
+import * as importedPositionAfterNode from './positionAfterNode';
+import * as importedPositionBeforeNode from './positionBeforeNode';
+import * as importedPositionInsideNode from './positionInsideNode';
 import * as importedPreferredWidth from './preferredWidth';
 import * as importedProtectionData from './protectionData';
 import * as importedProtectionDataResponse from './protectionDataResponse';
@@ -457,7 +460,6 @@ export * from './markdownSaveOptionsData';
 export * from './metafileRenderingOptionsData';
 export * from './mhtmlSaveOptionsData';
 export * from './modificationOperationResult';
-export * from './newDocumentPosition';
 export * from './nodeLink';
 export * from './odtSaveOptionsData';
 export * from './officeMathLink';
@@ -490,6 +492,10 @@ export * from './pdfEncryptionDetailsData';
 export * from './pdfPermissions';
 export * from './pdfSaveOptionsData';
 export * from './pngSaveOptionsData';
+export * from './position';
+export * from './positionAfterNode';
+export * from './positionBeforeNode';
+export * from './positionInsideNode';
 export * from './preferredWidth';
 export * from './protectionData';
 export * from './protectionDataResponse';
@@ -863,7 +869,6 @@ const typeMap = {
     MetafileRenderingOptionsData: importedMetafileRenderingOptionsData.MetafileRenderingOptionsData,
     MhtmlSaveOptionsData: importedMhtmlSaveOptionsData.MhtmlSaveOptionsData,
     ModificationOperationResult: importedModificationOperationResult.ModificationOperationResult,
-    NewDocumentPosition: importedNewDocumentPosition.NewDocumentPosition,
     NodeLink: importedNodeLink.NodeLink,
     OdtSaveOptionsData: importedOdtSaveOptionsData.OdtSaveOptionsData,
     OfficeMathLink: importedOfficeMathLink.OfficeMathLink,
@@ -894,6 +899,9 @@ const typeMap = {
     PdfPermissions: importedPdfPermissions.PdfPermissions,
     PdfSaveOptionsData: importedPdfSaveOptionsData.PdfSaveOptionsData,
     PngSaveOptionsData: importedPngSaveOptionsData.PngSaveOptionsData,
+    PositionAfterNode: importedPositionAfterNode.PositionAfterNode,
+    PositionBeforeNode: importedPositionBeforeNode.PositionBeforeNode,
+    PositionInsideNode: importedPositionInsideNode.PositionInsideNode,
     PreferredWidth: importedPreferredWidth.PreferredWidth,
     ProtectionData: importedProtectionData.ProtectionData,
     ProtectionDataResponse: importedProtectionDataResponse.ProtectionDataResponse,
@@ -28953,11 +28961,6 @@ export class InsertFieldRequest implements RequestInterface {
      */
     public revisionDateTime: string;
 
-    /**
-     * The index of the node. A new field will be inserted before the node with the specified node Id.
-     */
-    public insertBeforeNode: string;
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -29000,7 +29003,6 @@ export class InsertFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : this.field.constructor.name);
             formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
@@ -29105,11 +29107,6 @@ export class InsertFieldOnlineRequest implements RequestInterface {
      */
     public revisionDateTime: string;
 
-    /**
-     * The index of the node. A new field will be inserted before the node with the specified node Id.
-     */
-    public insertBeforeNode: string;
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -29149,7 +29146,6 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -31148,11 +31144,6 @@ export class InsertParagraphRequest implements RequestInterface {
      */
     public revisionDateTime: string;
 
-    /**
-     * The index of the node. A new paragraph will be inserted before the node with the specified index.
-     */
-    public insertBeforeNode: string;
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -31195,7 +31186,6 @@ export class InsertParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.paragraph !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : this.paragraph.constructor.name);
             formParams.push(['Paragraph', JSON.stringify(_obj), 'application/json']);
@@ -31300,11 +31290,6 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
      */
     public revisionDateTime: string;
 
-    /**
-     * The index of the node. A new paragraph will be inserted before the node with the specified index.
-     */
-    public insertBeforeNode: string;
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -31344,7 +31329,6 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -31422,14 +31406,14 @@ export class InsertRunRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The path to the paragraph in the document tree.
-     */
-    public paragraphPath: string;
-
-    /**
      * Run data.
      */
     public run: importedRunInsert.RunInsert;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
 
     /**
      * Original document folder.
@@ -31471,11 +31455,6 @@ export class InsertRunRequest implements RequestInterface {
      */
     public revisionDateTime: string;
 
-    /**
-     * The index of the node. A new Run object will be inserted before the node with the specified node Id.
-     */
-    public insertBeforeNode: string;
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -31499,15 +31478,6 @@ export class InsertRunRequest implements RequestInterface {
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertRun.');
         }
-        // verify required parameter 'this.paragraphPath' is not undefined
-        if (this.paragraphPath === undefined) {
-            throw new Error('Required parameter "this.paragraphPath" was undefined when calling insertRun.');
-        }
-
-        // verify required parameter 'this.paragraphPath' is not null
-        if (this.paragraphPath === null) {
-            throw new Error('Required parameter "this.paragraphPath" was null when calling insertRun.');
-        }
         // verify required parameter 'this.run' is not undefined
         if (this.run === undefined) {
             throw new Error('Required parameter "this.run" was undefined when calling insertRun.');
@@ -31527,7 +31497,6 @@ export class InsertRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : this.run.constructor.name);
             formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
@@ -31593,14 +31562,14 @@ export class InsertRunOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The path to the paragraph in the document tree.
-     */
-    public paragraphPath: string;
-
-    /**
      * Run data.
      */
     public run: importedRunInsert.RunInsert;
+
+    /**
+     * The path to the paragraph in the document tree.
+     */
+    public paragraphPath: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -31632,11 +31601,6 @@ export class InsertRunOnlineRequest implements RequestInterface {
      */
     public revisionDateTime: string;
 
-    /**
-     * The index of the node. A new Run object will be inserted before the node with the specified node Id.
-     */
-    public insertBeforeNode: string;
-
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -31659,15 +31623,6 @@ export class InsertRunOnlineRequest implements RequestInterface {
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertRunOnline.');
         }
-        // verify required parameter 'this.paragraphPath' is not undefined
-        if (this.paragraphPath === undefined) {
-            throw new Error('Required parameter "this.paragraphPath" was undefined when calling insertRunOnline.');
-        }
-
-        // verify required parameter 'this.paragraphPath' is not null
-        if (this.paragraphPath === null) {
-            throw new Error('Required parameter "this.paragraphPath" was null when calling insertRunOnline.');
-        }
         // verify required parameter 'this.run' is not undefined
         if (this.run === undefined) {
             throw new Error('Required parameter "this.run" was undefined when calling insertRunOnline.');
@@ -31685,7 +31640,6 @@ export class InsertRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -32809,14 +32763,14 @@ export class InsertTableCellRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The path to the table row in the document tree.
-     */
-    public tableRowPath: string;
-
-    /**
      * Table cell parameters.
      */
     public cell: importedTableCellInsert.TableCellInsert;
+
+    /**
+     * The path to the table row in the document tree.
+     */
+    public tableRowPath: string;
 
     /**
      * Original document folder.
@@ -32880,15 +32834,6 @@ export class InsertTableCellRequest implements RequestInterface {
         // verify required parameter 'this.name' is not null
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertTableCell.');
-        }
-        // verify required parameter 'this.tableRowPath' is not undefined
-        if (this.tableRowPath === undefined) {
-            throw new Error('Required parameter "this.tableRowPath" was undefined when calling insertTableCell.');
-        }
-
-        // verify required parameter 'this.tableRowPath' is not null
-        if (this.tableRowPath === null) {
-            throw new Error('Required parameter "this.tableRowPath" was null when calling insertTableCell.');
         }
         // verify required parameter 'this.cell' is not undefined
         if (this.cell === undefined) {
@@ -32974,14 +32919,14 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The path to the table row in the document tree.
-     */
-    public tableRowPath: string;
-
-    /**
      * Table cell parameters.
      */
     public cell: importedTableCellInsert.TableCellInsert;
+
+    /**
+     * The path to the table row in the document tree.
+     */
+    public tableRowPath: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -33034,15 +32979,6 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         // verify required parameter 'this.document' is not null
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertTableCellOnline.');
-        }
-        // verify required parameter 'this.tableRowPath' is not undefined
-        if (this.tableRowPath === undefined) {
-            throw new Error('Required parameter "this.tableRowPath" was undefined when calling insertTableCellOnline.');
-        }
-
-        // verify required parameter 'this.tableRowPath' is not null
-        if (this.tableRowPath === null) {
-            throw new Error('Required parameter "this.tableRowPath" was null when calling insertTableCellOnline.');
         }
         // verify required parameter 'this.cell' is not undefined
         if (this.cell === undefined) {
@@ -33293,14 +33229,14 @@ export class InsertTableRowRequest implements RequestInterface {
     public name: string;
 
     /**
-     * The path to the table in the document tree.
-     */
-    public tablePath: string;
-
-    /**
      * Table row parameters.
      */
     public row: importedTableRowInsert.TableRowInsert;
+
+    /**
+     * The path to the table in the document tree.
+     */
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -33348,9 +33284,9 @@ export class InsertTableRowRequest implements RequestInterface {
 	 * @param data encryptor 
 	 */
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
-        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{tablePath}/rows"
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/{nodePath}/rows"
             .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
-            .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
         var queryParameters: any = {};
         var headerParams: any = {};
@@ -33364,15 +33300,6 @@ export class InsertTableRowRequest implements RequestInterface {
         // verify required parameter 'this.name' is not null
         if (this.name === null) {
             throw new Error('Required parameter "this.name" was null when calling insertTableRow.');
-        }
-        // verify required parameter 'this.tablePath' is not undefined
-        if (this.tablePath === undefined) {
-            throw new Error('Required parameter "this.tablePath" was undefined when calling insertTableRow.');
-        }
-
-        // verify required parameter 'this.tablePath' is not null
-        if (this.tablePath === null) {
-            throw new Error('Required parameter "this.tablePath" was null when calling insertTableRow.');
         }
         // verify required parameter 'this.row' is not undefined
         if (this.row === undefined) {
@@ -33458,14 +33385,14 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * The path to the table in the document tree.
-     */
-    public tablePath: string;
-
-    /**
      * Table row parameters.
      */
     public row: importedTableRowInsert.TableRowInsert;
+
+    /**
+     * The path to the table in the document tree.
+     */
+    public nodePath: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -33503,8 +33430,8 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 	 * @param data encryptor 
 	 */
 	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
-        let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{tablePath}/rows"
-            .replace("/{" + "tablePath" + "}", (this.tablePath !== null && this.tablePath !== undefined) ? "/" + String(this.tablePath) : "")
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/post/{nodePath}/rows"
+            .replace("/{" + "nodePath" + "}", (this.nodePath !== null && this.nodePath !== undefined) ? "/" + String(this.nodePath) : "")
             .replace("//", "/");
         var queryParameters: any = {};
         var headerParams: any = {};
@@ -33518,15 +33445,6 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         // verify required parameter 'this.document' is not null
         if (this.document === null) {
             throw new Error('Required parameter "this.document" was null when calling insertTableRowOnline.');
-        }
-        // verify required parameter 'this.tablePath' is not undefined
-        if (this.tablePath === undefined) {
-            throw new Error('Required parameter "this.tablePath" was undefined when calling insertTableRowOnline.');
-        }
-
-        // verify required parameter 'this.tablePath' is not null
-        if (this.tablePath === null) {
-            throw new Error('Required parameter "this.tablePath" was null when calling insertTableRowOnline.');
         }
         // verify required parameter 'this.row' is not undefined
         if (this.row === undefined) {

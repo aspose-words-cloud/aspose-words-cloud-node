@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="tableRowInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,8 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { Position } from './position';
 
 export const importsMapTableRowInsert = {
+    Position,
 };
 
 /**
@@ -43,6 +45,11 @@ export class TableRowInsert implements ModelInterface {
             name: "columnsCount",
             baseName: "ColumnsCount",
             type: "number",
+        },
+        {
+            name: "existingRowPosition",
+            baseName: "ExistingRowPosition",
+            type: "Position",
         },
         {
             name: "insertAfter",
@@ -64,6 +71,11 @@ export class TableRowInsert implements ModelInterface {
     public columnsCount: number;
 
     /**
+     * Gets or sets the position of the table row that will be used to determine the placement of a new row.
+     */
+    public existingRowPosition: Position;
+
+    /**
      * Gets or sets table row will be inserted after row with specified 0-based index.
      */
     public insertAfter: number;
@@ -80,6 +92,10 @@ export class TableRowInsert implements ModelInterface {
         {
             throw new Error('Property ColumnsCount in TableRowInsert is required.');
         }
+
+        this.existingRowPosition?.validate();
+
+
     }
 }
 

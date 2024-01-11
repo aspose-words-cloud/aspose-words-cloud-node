@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="commentBase.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,10 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { NewDocumentPosition } from './newDocumentPosition';
+import { PositionInsideNode } from './positionInsideNode';
 
 export const importsMapCommentBase = {
-    NewDocumentPosition,
+    PositionInsideNode,
 };
 
 /**
@@ -44,12 +44,12 @@ export abstract class CommentBase implements ModelInterface {
         {
             name: "rangeStart",
             baseName: "RangeStart",
-            type: "NewDocumentPosition",
+            type: "PositionInsideNode",
         },
         {
             name: "rangeEnd",
             baseName: "RangeEnd",
-            type: "NewDocumentPosition",
+            type: "PositionInsideNode",
         },
         {
             name: "author",
@@ -83,12 +83,12 @@ export abstract class CommentBase implements ModelInterface {
     /**
      * Gets or sets the link to comment range start node.
      */
-    public rangeStart: NewDocumentPosition;
+    public rangeStart: PositionInsideNode;
 
     /**
      * Gets or sets the link to comment range end node.
      */
-    public rangeEnd: NewDocumentPosition;
+    public rangeEnd: PositionInsideNode;
 
     /**
      * Gets or sets the author name for a comment.

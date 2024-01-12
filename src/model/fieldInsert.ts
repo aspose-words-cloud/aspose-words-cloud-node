@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="fieldInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,9 +28,11 @@
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
 import { FieldBase } from './fieldBase';
+import { Position } from './position';
 
 export const importsMapFieldInsert = {
     FieldBase,
+    Position,
 };
 
 /**
@@ -41,6 +43,11 @@ export class FieldInsert extends FieldBase {
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "position",
+            baseName: "Position",
+            type: "Position",
+        }
     ];
 
     /**
@@ -50,6 +57,10 @@ export class FieldInsert extends FieldBase {
         return super.getAttributeTypeMap().concat(FieldInsert.attributeTypeMap);
     }
 
+    /**
+     * Gets or sets the position of the node that will be used to determine the placement of a new field.
+     */
+    public position: Position;
 
     public constructor(init?: Partial< FieldInsert >) {
         super(init);
@@ -61,6 +72,9 @@ export class FieldInsert extends FieldBase {
 
     public validate() {
         super.validate();
+
+        this.position?.validate();
+
     }
 }
 

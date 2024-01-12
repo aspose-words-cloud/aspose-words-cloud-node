@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="tableCellInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,8 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { Position } from './position';
 
 export const importsMapTableCellInsert = {
+    Position,
 };
 
 /**
@@ -39,6 +41,11 @@ export class TableCellInsert implements ModelInterface {
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
+        {
+            name: "existingCellPosition",
+            baseName: "ExistingCellPosition",
+            type: "Position",
+        },
         {
             name: "insertAfter",
             baseName: "InsertAfter",
@@ -54,6 +61,11 @@ export class TableCellInsert implements ModelInterface {
     }
 
     /**
+     * Gets or sets the position of the table cell that will be used to determine the placement of a new cell.
+     */
+    public existingCellPosition: Position;
+
+    /**
      * Gets or sets the 0-based index, the table cell will be inserted after.
      */
     public insertAfter: number;
@@ -66,6 +78,10 @@ export class TableCellInsert implements ModelInterface {
     }
 
     public validate() {
+
+        this.existingCellPosition?.validate();
+
+
     }
 }
 

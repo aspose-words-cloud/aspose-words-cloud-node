@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="commentTests.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -151,11 +151,11 @@ describe("comment", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestCommentRangeStart = new model.NewDocumentPosition({
+                const requestCommentRangeStart = new model.PositionInsideNode({
                     nodeId: "0.3.0.3",
                     offset: 0
                 })
-                const requestCommentRangeEnd = new model.NewDocumentPosition({
+                const requestCommentRangeEnd = new model.PositionInsideNode({
                     nodeId: "0.3.0.3",
                     offset: 0
                 })
@@ -194,11 +194,11 @@ describe("comment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestCommentRangeStart = new model.NewDocumentPosition({
+            const requestCommentRangeStart = new model.PositionInsideNode({
                 nodeId: "0.3.0.3",
                 offset: 0
             })
-            const requestCommentRangeEnd = new model.NewDocumentPosition({
+            const requestCommentRangeEnd = new model.PositionInsideNode({
                 nodeId: "0.3.0.3",
                 offset: 0
             })
@@ -235,11 +235,11 @@ describe("comment", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestCommentRangeStart = new model.NewDocumentPosition({
+                const requestCommentRangeStart = new model.PositionInsideNode({
                     nodeId: "0.3.0",
                     offset: 0
                 })
-                const requestCommentRangeEnd = new model.NewDocumentPosition({
+                const requestCommentRangeEnd = new model.PositionInsideNode({
                     nodeId: "0.3.0",
                     offset: 0
                 })
@@ -279,11 +279,11 @@ describe("comment", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestCommentRangeStart = new model.NewDocumentPosition({
+            const requestCommentRangeStart = new model.PositionInsideNode({
                 nodeId: "0.3.0",
                 offset: 0
             })
-            const requestCommentRangeEnd = new model.NewDocumentPosition({
+            const requestCommentRangeEnd = new model.PositionInsideNode({
                 nodeId: "0.3.0",
                 offset: 0
             })

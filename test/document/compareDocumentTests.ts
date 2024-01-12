@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="compareDocumentTests.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -156,6 +156,54 @@ describe("compareDocument", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // Test for document comparison with password protection.
+    describe("compareDocumentWithPassword test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localName = "DocWithPassword.docx";
+            const remoteName1 = "TestCompareDocument1.docx";
+            const remoteName2 = "TestCompareDocument2.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteFolder + "/" + remoteName1,
+                BaseTest.localBaseTestDataFolder + "Common/" + localName
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                return wordsApi.uploadFileToStorage(
+                    remoteFolder + "/" + remoteName2,
+                    BaseTest.localBaseTestDataFolder + "Common/" + localName
+                ).then((result1) => {
+                    expect(result1.response.statusMessage).to.equal("OK");
+                    const requestCompareDataFileReference = model.FileReference.fromRemoteFilePath(remoteFolder + "/" + remoteName2, '12345');
+                    const requestCompareData = new model.CompareData({
+                        author: "author",
+                        dateTime: new Date('2015-10-26T00:00:00Z'),
+                        fileReference: requestCompareDataFileReference
+                    })
+                    const request = new model.CompareDocumentRequest({
+                        name: remoteName1,
+                        compareData: requestCompareData,
+                        folder: remoteFolder,
+                        password: "12345",
+                        destFileName: BaseTest.remoteBaseTestOutFolder + "/TestCompareDocumentOut.docx"
+                    });
+
+                    // Act
+                    return wordsApi.compareDocument(request)
+                    .then((resultApi) => {
+                        // Assert
+                        expect(resultApi.response.statusCode).to.equal(200);
+                        expect(resultApi.body.document).to.exist;
+                        expect(resultApi.body.document.fileName).to.equal("TestCompareDocumentOut.docx");
+                    });
+
                 });
 
             });

@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="bookmarkTests.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -306,11 +306,11 @@ describe("bookmark", () => {
                 BaseTest.localBaseTestDataFolder + localFile
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
-                const requestBookmarkStartRange = new model.NewDocumentPosition({
+                const requestBookmarkStartRange = new model.PositionInsideNode({
                     nodeId: "0.0.0.0",
                     offset: 0
                 })
-                const requestBookmarkEndRange = new model.NewDocumentPosition({
+                const requestBookmarkEndRange = new model.PositionInsideNode({
                     nodeId: "0.0.0.0",
                     offset: 0
                 })
@@ -343,11 +343,11 @@ describe("bookmark", () => {
         it("should return response with code 200", () => {
             const wordsApi = BaseTest.initializeWordsApi();
             const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
-            const requestBookmarkStartRange = new model.NewDocumentPosition({
+            const requestBookmarkStartRange = new model.PositionInsideNode({
                 nodeId: "0.0.0.0",
                 offset: 0
             })
-            const requestBookmarkEndRange = new model.NewDocumentPosition({
+            const requestBookmarkEndRange = new model.PositionInsideNode({
                 nodeId: "0.0.0.0",
                 offset: 0
             })

@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="bookmarkInsert.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,10 +27,10 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { NewDocumentPosition } from './newDocumentPosition';
+import { Position } from './position';
 
 export const importsMapBookmarkInsert = {
-    NewDocumentPosition,
+    Position,
 };
 
 /**
@@ -54,12 +54,12 @@ export class BookmarkInsert implements ModelInterface {
         {
             name: "startRange",
             baseName: "StartRange",
-            type: "NewDocumentPosition",
+            type: "Position",
         },
         {
             name: "endRange",
             baseName: "EndRange",
-            type: "NewDocumentPosition",
+            type: "Position",
         }
     ];
 
@@ -83,12 +83,12 @@ export class BookmarkInsert implements ModelInterface {
     /**
      * Gets or sets the link to start bookmark node.
      */
-    public startRange: NewDocumentPosition;
+    public startRange: Position;
 
     /**
      * Gets or sets the link to end bookmark node.
      */
-    public endRange: NewDocumentPosition;
+    public endRange: Position;
 
     public constructor(init?: Partial< BookmarkInsert >) {
         Object.assign(this, init);

@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="tableTests.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -718,7 +718,7 @@ describe("table", () => {
                 const request = new model.InsertTableRowRequest({
                     name: remoteFileName,
                     row: requestRow,
-                    tablePath: "sections/0/tables/2",
+                    nodePath: "sections/0/tables/2",
                     folder: remoteDataFolder
                 });
 
@@ -748,7 +748,7 @@ describe("table", () => {
             const request = new model.InsertTableRowOnlineRequest({
                 document: requestDocument,
                 row: requestRow,
-                tablePath: "sections/0/tables/2"
+                nodePath: "sections/0/tables/2"
             });
 
             // Act

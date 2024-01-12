@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="newDocumentPosition.ts">
- *   Copyright (c) 2023 Aspose.Words for Cloud
+ * <copyright company="Aspose" file="positionInsideNode.ts">
+ *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,23 +27,20 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { Position } from './position';
 
-export const importsMapNewDocumentPosition = {
+export const importsMapPositionInsideNode = {
+    Position,
 };
 
 /**
  * DTO container with a new position in the document tree.
  */
-export class NewDocumentPosition implements ModelInterface {
+export class PositionInsideNode extends Position {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
-        {
-            name: "nodeId",
-            baseName: "NodeId",
-            type: "string",
-        },
         {
             name: "offset",
             baseName: "Offset",
@@ -55,20 +52,18 @@ export class NewDocumentPosition implements ModelInterface {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return NewDocumentPosition.attributeTypeMap;
+        return super.getAttributeTypeMap().concat(PositionInsideNode.attributeTypeMap);
     }
-
-    /**
-     * Gets or sets the node id.
-     */
-    public nodeId: string;
 
     /**
      * Gets or sets the offset in the node.
      */
     public offset: number;
 
-    public constructor(init?: Partial< NewDocumentPosition >) {
+    public constructor(init?: Partial< PositionInsideNode >) {
+        super(init);
+        this.type = 'Inside';
+
         Object.assign(this, init);
     }
 
@@ -76,10 +71,7 @@ export class NewDocumentPosition implements ModelInterface {
     }
 
     public validate() {
-        if (this.nodeId === null || this.nodeId === undefined)
-        {
-            throw new Error('Property NodeId in NewDocumentPosition is required.');
-        }
+        super.validate();
     }
 }
 

@@ -18,7 +18,6 @@ def runtests(dockerImageVersion)
 {
     dir(dockerImageVersion){
         try {
-			gitlabCommitStatus("checkout") {
 				stage('checkout'){
 					checkout([$class: 'GitSCM', branches: [[name: params.branch]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
 					
@@ -37,12 +36,10 @@ def runtests(dockerImageVersion)
                         }
                     }
 				}
-			}
             
             if (needToBuild) {
                 docker.image('node:' + dockerImageVersion).inside{
                     if (packageTesting) {
-                        gitlabCommitStatus("remove sources and redefine referencies") {
                             stage('remove sources and redefine referencies'){
                                 sh "npm uninstall asposewordscloud"
                                 sh "sed -i 's/asposewordscloud/asposewordscloudtest/g' package.json"
@@ -51,10 +48,8 @@ def runtests(dockerImageVersion)
                                 sh "find bdd -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
                                 sh "npm install asposewordscloud" 
                             }
-                        }
                     }
                 
-                    gitlabCommitStatus("build") {
                         stage('build'){
                             withEnv([
                             /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
@@ -73,9 +68,7 @@ def runtests(dockerImageVersion)
                                 }
                             }
                         }
-                    }
                     
-                    gitlabCommitStatus("tests") {
                         stage('tests'){   
                             try {
                                 sh "npm run test-jenkins"
@@ -83,9 +76,7 @@ def runtests(dockerImageVersion)
                                 junit 'reports/**.xml'
                             }
                         }
-                    }
                     
-                    gitlabCommitStatus("bdd-tests") {
                         stage('bdd-tests'){
                             try {
                                 sh "npm run cucumber"
@@ -93,7 +84,6 @@ def runtests(dockerImageVersion)
                                 cucumber 'reports/**.json'
                             }
                         }
-                    }
                 } 
             }
         } finally {                       

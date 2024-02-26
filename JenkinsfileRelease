@@ -4,7 +4,6 @@ properties([
 
 node('words-linux') {         
     try {
-		gitlabCommitStatus("checkout") {
 		   stage('checkout'){
 				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
 			
@@ -19,12 +18,10 @@ node('words-linux') {
 					sh 'echo "{\\"ClientId\\": \\"$ClientId\\",\\"ClientSecret\\": \\"$ClientSecret\\", \\"BaseUrl\\": \\"https://api-qa.aspose.cloud\\"}" > testConfig.json'
 				}
 		   }
-		}
        
         docker.image('node:latest').inside{
 			withEnv(['npm_config_cache=npm-cache', 'HOME=.']) 
 			{
-				gitlabCommitStatus("build the package") {	   
 					stage('build package')
 					{
 						sh "npm install"
@@ -33,9 +30,7 @@ node('words-linux') {
 						
 						stash name: "newPackage", includes: "${packageName}" 
 					}			
-				}
 				
-				gitlabCommitStatus("replace references") {
 					stage('replace references'){
 						sh "sed -i 's/asposewordscloud/asposewordscloudtest/g' package.json"
 					
@@ -45,9 +40,7 @@ node('words-linux') {
 						sh "find test -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
 						sh "find bdd -type f -name \"*.ts\" -exec sed -i 's+\".*/src/.*\"+\"asposewordscloud\"+g' {} +"
 					}
-				}
 				
-				gitlabCommitStatus("rebuild with the package") {
 					stage('rebuild with the package'){												
 						sh "npm run tsc"
 						
@@ -55,9 +48,7 @@ node('words-linux') {
 							sh "npm run lint"
 						}
 					}
-				}
 				
-				gitlabCommitStatus("package tests") {
 					stage('package tests'){   
 						try {
 							sh "npm run test-jenkins"
@@ -65,9 +56,7 @@ node('words-linux') {
 							junit 'reports/**.xml'
 						}
 					}
-				}
 				
-				gitlabCommitStatus("bdd package tests") {
 					stage('bdd package tests'){
 						try {
 							sh "npm run cucumber"
@@ -75,14 +64,6 @@ node('words-linux') {
 							cucumber 'reports/**.json'
 						}
 					}
-				}
-                
-				gitlabCommitStatus("audit security") {
-					stage('audit security'){
-                        //sh "npm audit fix"
-						//sh "npm audit --production --audit-level=moderate"
-                    }
-                }
 			}
 		}			                
     } finally {                       
@@ -99,7 +80,6 @@ stage('wait for publish confirmation'){
 
 node('words-linux') {         
     try {
-		gitlabCommitStatus("checkout again") {
 			stage('checkout again'){
 			   checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])          
 						
@@ -108,9 +88,7 @@ node('words-linux') {
 				
 				unstash 'newPackage'
 			}
-		}
 		
-		gitlabCommitStatus("publish package") {
 			stage('publish package'){
 				docker.image('node:latest').inside{
 					withEnv(['npm_config_cache=npm-cache', 'HOME=.']) { 
@@ -122,9 +100,7 @@ node('words-linux') {
 					}
 				}				
 			}
-		}
 		
-        gitlabCommitStatus("Merge master to release") {
             stage('Merge master to release'){
                 checkout([$class: 'GitSCM', branches: [[name: '*/release']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'LocalBranch', localBranch: "**"]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '361885ba-9425-4230-950e-0af201d90547', url: 'https://git.auckland.dynabic.com/words-cloud/words-cloud-node.git']]])
                 sh "git config user.email 'jenkins.aspose@gmail.com'"
@@ -138,9 +114,7 @@ node('words-linux') {
                     sh "git push ${gitRepoUrl} release"
                 }
             }
-        }
         
-		gitlabCommitStatus("add version tag") {
 			stage('add version tag') {
 				final fullVersion = packageName.substring(packageName.lastIndexOf('@') + 1, packageName.length())
 				final version = fullVersion.substring(0, fullVersion.lastIndexOf('.'))
@@ -150,7 +124,6 @@ node('words-linux') {
 				sh "git tag -a ${version} -m \"version ${version}\""
 				sh "git push ${gitRepoUrl} ${version}"
 			}
-		}
     } finally {                       
         deleteDir()
 		sh 'docker system prune -f'

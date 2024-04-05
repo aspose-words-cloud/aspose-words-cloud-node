@@ -360,8 +360,8 @@ export abstract class StructuredDocumentTagBase extends NodeLink {
 // tslint:disable-next-line:no-namespace
 export namespace StructuredDocumentTagBase {
     export enum AppearanceEnum {
-        Default = 'Default' as any,
         BoundingBox = 'BoundingBox' as any,
+        Default = 'Default' as any,
         Tags = 'Tags' as any,
         Hidden = 'Hidden' as any
     }

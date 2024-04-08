@@ -73,6 +73,11 @@ export class DrawingObjectUpdate implements ModelInterface {
             name: "wrapType",
             baseName: "WrapType",
             type: "DrawingObjectUpdate.WrapTypeEnum",
+        },
+        {
+            name: "aspectRatioLocked",
+            baseName: "AspectRatioLocked",
+            type: "boolean",
         }
     ];
 
@@ -117,6 +122,11 @@ export class DrawingObjectUpdate implements ModelInterface {
      * Gets or sets the option that controls how to wrap text around the image.
      */
     public wrapType: DrawingObjectUpdate.WrapTypeEnum;
+
+    /**
+     * Gets or sets a value indicating whether AspectRatioLocked option on or off.
+     */
+    public aspectRatioLocked: boolean;
 
     public constructor(init?: Partial< DrawingObjectUpdate >) {
         Object.assign(this, init);

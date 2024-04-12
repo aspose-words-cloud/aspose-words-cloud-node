@@ -19,6 +19,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 ## Enhancements in Version 24.4
 
 - Added the 'MergeWithNext' method to merge a section with the next one.
+- Added the 'LockAspectRatio' propperty for DrawingObjectInsert and DrawingObjectUpdate methods.
 
 
 ## Enhancements in Version 24.3

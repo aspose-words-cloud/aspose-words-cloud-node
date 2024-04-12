@@ -624,8 +624,8 @@ export namespace TableProperties {
     }
 
     export enum TextWrappingEnum {
-        Default = 'Default' as any,
         None = 'None' as any,
+        Default = 'Default' as any,
         Around = 'Around' as any
     }
 }

@@ -191,6 +191,55 @@ describe("section", () => {
        });
     });
 
+    // Test for merge a section with the next one.
+    describe("mergeWithNext test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestMergeWithNext.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + "DocumentElements/Sections/Source.docx"
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.MergeWithNextRequest({
+                    name: remoteFileName,
+                    sectionIndex: 0,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.mergeWithNext(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.statusCode).to.equal(200);
+                });
+
+            });
+
+       });
+    });
+
+    // Test for merge a section with the next one online.
+    describe("mergeWithNextOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + "DocumentElements/Sections/Source.docx");
+            const request = new model.MergeWithNextOnlineRequest({
+                document: requestDocument,
+                sectionIndex: 0
+            });
+
+            // Act
+            return wordsApi.mergeWithNextOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
     // Test for insertion a section.
     describe("insertSection test", () => {
         it("should return response with code 200", () => {

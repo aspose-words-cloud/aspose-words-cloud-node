@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 24.4
+
+- Added the 'MergeWithNext' method to merge a section with the next one.
+
+
 ## Enhancements in Version 24.3
 
 - Added support for 'RemoveEmptyCells' option for the 'Cleanup' parameter in the insert 'MailMerge' API method.

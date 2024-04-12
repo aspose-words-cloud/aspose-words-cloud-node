@@ -4598,6 +4598,39 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Merge the section with the next one.
+     * @param requestObj contains request parameters
+     */
+    public async mergeWithNext(requestObj: model.MergeWithNextRequest): Promise< http.IncomingMessage > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling mergeWithNext.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        return Promise.resolve(response);
+    }
+
+    /**
+     * Merge the section with the next one.
+     * @param requestObj contains request parameters
+     */
+    public async mergeWithNextOnline(requestObj: model.MergeWithNextOnlineRequest): Promise< model.WordsIncomingMessage< Map<string, Buffer> > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling mergeWithNextOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< Map<string, Buffer> >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Move file.
      * @param requestObj contains request parameters
      */

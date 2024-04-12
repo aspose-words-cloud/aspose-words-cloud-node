@@ -80,6 +80,11 @@ export class DrawingObjectInsert implements ModelInterface {
             name: "wrapType",
             baseName: "WrapType",
             type: "DrawingObjectInsert.WrapTypeEnum",
+        },
+        {
+            name: "aspectRatioLocked",
+            baseName: "AspectRatioLocked",
+            type: "boolean",
         }
     ];
 
@@ -130,6 +135,11 @@ export class DrawingObjectInsert implements ModelInterface {
      */
     public wrapType: DrawingObjectInsert.WrapTypeEnum;
 
+    /**
+     * Gets or sets a value indicating whether AspectRatioLocked option on or off.
+     */
+    public aspectRatioLocked: boolean;
+
     public constructor(init?: Partial< DrawingObjectInsert >) {
         Object.assign(this, init);
     }
@@ -168,6 +178,7 @@ export class DrawingObjectInsert implements ModelInterface {
         }
 
         this.position?.validate();
+
 
 
 

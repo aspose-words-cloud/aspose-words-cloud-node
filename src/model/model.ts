@@ -28572,19 +28572,14 @@ export class InsertDrawingObjectRequest implements RequestInterface {
     public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
 
     /**
-     * The path to the node in the document tree.
-     */
-    public nodePath: string;
-
-    /**
      * File with image.
      */
     public imageFile: Readable;
 
     /**
-     * The link to the image.
+     * The path to the node in the document tree.
      */
-    public url: string;
+    public nodePath: string;
 
     /**
      * Original document folder.
@@ -28658,9 +28653,17 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling insertDrawingObject.');
         }
+        // verify required parameter 'this.imageFile' is not undefined
+        if (this.imageFile === undefined) {
+            throw new Error('Required parameter "this.imageFile" was undefined when calling insertDrawingObject.');
+        }
+
+        // verify required parameter 'this.imageFile' is not null
+        if (this.imageFile === null) {
+            throw new Error('Required parameter "this.imageFile" was null when calling insertDrawingObject.');
+        }
         this.drawingObject?.validate();
 
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "url", this.url, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -28742,19 +28745,14 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
     public drawingObject: importedDrawingObjectInsert.DrawingObjectInsert;
 
     /**
-     * The path to the node in the document tree.
-     */
-    public nodePath: string;
-
-    /**
      * File with image.
      */
     public imageFile: Readable;
 
     /**
-     * The link to the image.
+     * The path to the node in the document tree.
      */
-    public url: string;
+    public nodePath: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -28817,9 +28815,17 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling insertDrawingObjectOnline.');
         }
+        // verify required parameter 'this.imageFile' is not undefined
+        if (this.imageFile === undefined) {
+            throw new Error('Required parameter "this.imageFile" was undefined when calling insertDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'this.imageFile' is not null
+        if (this.imageFile === null) {
+            throw new Error('Required parameter "this.imageFile" was null when calling insertDrawingObjectOnline.');
+        }
         this.drawingObject?.validate();
 
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "url", this.url, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
@@ -41654,6 +41660,11 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
     public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
 
     /**
+     * File with image.
+     */
+    public imageFile: Readable;
+
+    /**
      * Object index.
      */
     public index: number;
@@ -41662,16 +41673,6 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
      * The path to the node in the document tree.
      */
     public nodePath: string;
-
-    /**
-     * File with image.
-     */
-    public imageFile: Readable;
-
-    /**
-     * The link to the image.
-     */
-    public url: string;
 
     /**
      * Original document folder.
@@ -41746,6 +41747,15 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling updateDrawingObject.');
         }
+        // verify required parameter 'this.imageFile' is not undefined
+        if (this.imageFile === undefined) {
+            throw new Error('Required parameter "this.imageFile" was undefined when calling updateDrawingObject.');
+        }
+
+        // verify required parameter 'this.imageFile' is not null
+        if (this.imageFile === null) {
+            throw new Error('Required parameter "this.imageFile" was null when calling updateDrawingObject.');
+        }
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateDrawingObject.');
@@ -41757,7 +41767,6 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         }
         this.drawingObject?.validate();
 
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "url", this.url, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
@@ -41839,6 +41848,11 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
     public drawingObject: importedDrawingObjectUpdate.DrawingObjectUpdate;
 
     /**
+     * File with image.
+     */
+    public imageFile: Readable;
+
+    /**
      * Object index.
      */
     public index: number;
@@ -41847,16 +41861,6 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
      * The path to the node in the document tree.
      */
     public nodePath: string;
-
-    /**
-     * File with image.
-     */
-    public imageFile: Readable;
-
-    /**
-     * The link to the image.
-     */
-    public url: string;
 
     /**
      * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
@@ -41920,6 +41924,15 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         if (this.drawingObject === null) {
             throw new Error('Required parameter "this.drawingObject" was null when calling updateDrawingObjectOnline.');
         }
+        // verify required parameter 'this.imageFile' is not undefined
+        if (this.imageFile === undefined) {
+            throw new Error('Required parameter "this.imageFile" was undefined when calling updateDrawingObjectOnline.');
+        }
+
+        // verify required parameter 'this.imageFile' is not null
+        if (this.imageFile === null) {
+            throw new Error('Required parameter "this.imageFile" was null when calling updateDrawingObjectOnline.');
+        }
         // verify required parameter 'this.index' is not undefined
         if (this.index === undefined) {
             throw new Error('Required parameter "this.index" was undefined when calling updateDrawingObjectOnline.');
@@ -41931,7 +41944,6 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         }
         this.drawingObject?.validate();
 
-        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "url", this.url, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);

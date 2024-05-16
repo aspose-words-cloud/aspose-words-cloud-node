@@ -16,11 +16,6 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
-## Enhancements in Version 24.5
-
-- Added an url parameter to InsertImage / UpdateImage methods. It allows to link to an image from a web URL.
-
-
 ## Enhancements in Version 24.4
 
 - Added the 'MergeWithNext' method to merge a section with the next one.

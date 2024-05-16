@@ -552,46 +552,6 @@ describe("drawingObjects", () => {
        });
     });
 
-    // Test for adding a link to a drawing object.
-    describe("insertDrawingObjectLink test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestInsetDrawingObject.docx";
-
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                const requestDrawingObject = new model.DrawingObjectInsert({
-                    height: 0,
-                    left: 0,
-                    top: 0,
-                    width: 0,
-                    relativeHorizontalPosition: model.DrawingObjectInsert.RelativeHorizontalPositionEnum.Margin,
-                    relativeVerticalPosition: model.DrawingObjectInsert.RelativeVerticalPositionEnum.Margin,
-                    wrapType: model.DrawingObjectInsert.WrapTypeEnum.Inline
-                })
-                const request = new model.InsertDrawingObjectRequest({
-                    name: remoteFileName,
-                    drawingObject: requestDrawingObject,
-                    url: "https://products.aspose.com/words/static/img/aspose_words_cloud-for-net.png",
-                    nodePath: "",
-                    folder: remoteDataFolder
-                });
-
-                // Act
-                return wordsApi.insertDrawingObject(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                });
-
-            });
-
-       });
-    });
-
     // Test for deleting drawing object.
     describe("deleteDrawingObject test", () => {
         it("should return response with code 200", () => {
@@ -755,41 +715,6 @@ describe("drawingObjects", () => {
                     drawingObject: requestDrawingObject,
                     imageFile: requestImageFile,
                     index: 0,
-                    folder: remoteDataFolder
-                });
-
-                // Act
-                return wordsApi.updateDrawingObject(request)
-                .then((resultApi) => {
-                    // Assert
-                    expect(resultApi.response.statusCode).to.equal(200);
-                });
-
-            });
-
-       });
-    });
-
-    // Test for updating drawing object to a link to it.
-    describe("updateDrawingObjectLink test", () => {
-        it("should return response with code 200", () => {
-            const wordsApi = BaseTest.initializeWordsApi();
-            const remoteFileName = "TestUpdateDrawingObjectLink.docx";
-
-            return wordsApi.uploadFileToStorage(
-                remoteDataFolder + "/" + remoteFileName,
-                BaseTest.localBaseTestDataFolder + localFile
-            ).then((result0) => {
-                expect(result0.response.statusMessage).to.equal("OK");
-                const requestDrawingObject = new model.DrawingObjectUpdate({
-                    left: 0
-                })
-                const request = new model.UpdateDrawingObjectRequest({
-                    name: remoteFileName,
-                    drawingObject: requestDrawingObject,
-                    url: "https://products.aspose.com/words/static/img/aspose_words_cloud-for-net.png",
-                    index: 0,
-                    nodePath: "",
                     folder: remoteDataFolder
                 });
 

@@ -49,7 +49,8 @@ describe("executeMailMerge", () => {
             const requestData = fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDataFile);
             const request = new model.ExecuteMailMergeOnlineRequest({
                 template: requestTemplate,
-                data: requestData
+                data: requestData,
+                withRegions: true
             });
 
             // Act
@@ -79,7 +80,7 @@ describe("executeMailMerge", () => {
                     name: remoteFileName,
                     data: localDataFile,
                     folder: remoteDataFolder,
-                    withRegions: false,
+                    withRegions: true,
                     destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
                 });
 

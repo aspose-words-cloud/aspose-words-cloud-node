@@ -4,6 +4,7 @@ properties([
 
 parameters {
     string(name: 'testServerUrl', defaultValue: 'https://api-qa.aspose.cloud', description: 'server url')
+    booleanParam(name: 'ignorePackageTesting', defaultValue: false, description: 'Skip package testing step (not recommended)')
 }
 
 node('words-linux') {         
@@ -53,20 +54,24 @@ node('words-linux') {
 						}
 					}
 				
-					stage('package tests'){   
-						try {
-							sh "npm run test-jenkins"
-						} finally {
-							junit 'reports/**.xml'
-						}
+					stage('package tests'){
+                        if (!ignorePackageTesting) {
+                            try {
+                                sh "npm run test-jenkins"
+                            } finally {
+                                junit 'reports/**.xml'
+                            }
+                        }
 					}
 				
 					stage('bdd package tests'){
-						try {
-							sh "npm run cucumber"
-						} finally {
-							cucumber 'reports/**.json'
-						}
+                        if (!ignorePackageTesting) {
+                            try {
+                                sh "npm run cucumber"
+                            } finally {
+                                cucumber 'reports/**.json'
+                            }
+                        }
 					}
 			}
 		}			                

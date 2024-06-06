@@ -284,7 +284,7 @@ describe("range", () => {
                 .then((resultApi) => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
-                    expect(resultApi.body.text).to.equal("sections/0/body/paragraphs/0");
+                    expect(resultApi.body.path).to.equal("sections/0/body/paragraphs/0");
                 });
 
             });

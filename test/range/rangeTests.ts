@@ -276,7 +276,8 @@ describe("range", () => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.TranslateNodeIdRequest({
                     name: remoteFileName,
-                    nodeId: "id0.0.0"
+                    nodeId: "id0.0.0",
+                    folder: remoteDataFolder
                 });
 
                 // Act

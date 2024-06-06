@@ -262,4 +262,53 @@ describe("range", () => {
 
        });
     });
+
+    // Test to translate node id to node path.
+    describe("translateNodeId test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestTranslateNodeId.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.TranslateNodeIdRequest({
+                    name: remoteFileName,
+                    nodeId: "id0.0.0"
+                });
+
+                // Act
+                return wordsApi.translateNodeId(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.text).to.equal("sections/0/body/paragraphs/0");
+                });
+
+            });
+
+       });
+    });
+
+    // Test to translate node id to node path online.
+    describe("translateNodeIdOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.TranslateNodeIdOnlineRequest({
+                document: requestDocument,
+                nodeId: "id0.0.0"
+            });
+
+            // Act
+            return wordsApi.translateNodeIdOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
 });

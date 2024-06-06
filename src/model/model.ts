@@ -298,6 +298,7 @@ import * as importedTabStopsResponse from './tabStopsResponse';
 import * as importedTextSaveOptionsData from './textSaveOptionsData';
 import * as importedTiffSaveOptionsData from './tiffSaveOptionsData';
 import * as importedTimeZoneInfoData from './timeZoneInfoData';
+import * as importedTranslateNodeIdResponse from './translateNodeIdResponse';
 import * as importedTxtSaveOptionsBaseData from './txtSaveOptionsBaseData';
 import * as importedUserInformation from './userInformation';
 import * as importedWatermarkDataBase from './watermarkDataBase';
@@ -580,6 +581,7 @@ export * from './tabStopsResponse';
 export * from './textSaveOptionsData';
 export * from './tiffSaveOptionsData';
 export * from './timeZoneInfoData';
+export * from './translateNodeIdResponse';
 export * from './txtSaveOptionsBaseData';
 export * from './userInformation';
 export * from './watermarkDataBase';
@@ -981,6 +983,7 @@ const typeMap = {
     TextSaveOptionsData: importedTextSaveOptionsData.TextSaveOptionsData,
     TiffSaveOptionsData: importedTiffSaveOptionsData.TiffSaveOptionsData,
     TimeZoneInfoData: importedTimeZoneInfoData.TimeZoneInfoData,
+    TranslateNodeIdResponse: importedTranslateNodeIdResponse.TranslateNodeIdResponse,
     UserInformation: importedUserInformation.UserInformation,
     WatermarkDataImage: importedWatermarkDataImage.WatermarkDataImage,
     WatermarkDataText: importedWatermarkDataText.WatermarkDataText,
@@ -40071,6 +40074,250 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         result.document = parseFilesCollection(partDocument.body, partDocument.headers);
 
         return result;
+	}
+}
+
+/**
+ * Request model for TranslateNodeId operation.
+ * Translate a node id to a node path.
+ */
+export class TranslateNodeIdRequest implements RequestInterface {
+
+    public constructor(init?: Partial< TranslateNodeIdRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * The node identifier. Identifier examples: id0.0.0.
+     */
+    public nodeId: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/translate/{nodeId}"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("/{" + "nodeId" + "}", (this.nodeId !== null && this.nodeId !== undefined) ? "/" + String(this.nodeId) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling translateNodeId.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling translateNodeId.');
+        }
+        // verify required parameter 'this.nodeId' is not undefined
+        if (this.nodeId === undefined) {
+            throw new Error('Required parameter "this.nodeId" was undefined when calling translateNodeId.');
+        }
+
+        // verify required parameter 'this.nodeId' is not null
+        if (this.nodeId === null) {
+            throw new Error('Required parameter "this.nodeId" was null when calling translateNodeId.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TranslateNodeIdResponse");
+	}
+}
+
+/**
+ * Request model for TranslateNodeIdOnline operation.
+ * Translate a node id to a node path.
+ */
+export class TranslateNodeIdOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< TranslateNodeIdOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The node identifier. Identifier examples: id0.0.0.
+     */
+    public nodeId: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/translate/{nodeId}"
+            .replace("/{" + "nodeId" + "}", (this.nodeId !== null && this.nodeId !== undefined) ? "/" + String(this.nodeId) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling translateNodeIdOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling translateNodeIdOnline.');
+        }
+        // verify required parameter 'this.nodeId' is not undefined
+        if (this.nodeId === undefined) {
+            throw new Error('Required parameter "this.nodeId" was undefined when calling translateNodeIdOnline.');
+        }
+
+        // verify required parameter 'this.nodeId' is not null
+        if (this.nodeId === null) {
+            throw new Error('Required parameter "this.nodeId" was null when calling translateNodeIdOnline.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TranslateNodeIdResponse");
 	}
 }
 

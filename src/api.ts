@@ -5251,6 +5251,42 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Translate a node id to a node path.
+     * @param requestObj contains request parameters
+     */
+    public async translateNodeId(requestObj: model.TranslateNodeIdRequest): Promise< model.WordsIncomingMessage< model.TranslateNodeIdResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling translateNodeId.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.TranslateNodeIdResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Translate a node id to a node path.
+     * @param requestObj contains request parameters
+     */
+    public async translateNodeIdOnline(requestObj: model.TranslateNodeIdOnlineRequest): Promise< model.WordsIncomingMessage< model.TranslateNodeIdResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling translateNodeIdOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.TranslateNodeIdResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes protection from the document.
      * @param requestObj contains request parameters
      */

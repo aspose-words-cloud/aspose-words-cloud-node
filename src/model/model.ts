@@ -36,6 +36,7 @@ import { ObjectSerializer } from "../internal/objectSerializer";
 import { Encryptor, FileReference } from '../api';
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
+import * as importedAzw3SaveOptionsData from './azw3SaveOptionsData';
 import * as importedBaseEntry from './baseEntry';
 import * as importedBaseEntryList from './baseEntryList';
 import * as importedBmpSaveOptionsData from './bmpSaveOptionsData';
@@ -319,6 +320,7 @@ import * as importedXpsSaveOptionsData from './xpsSaveOptionsData';
 export { AttributeInfo } from '../internal/attributeInfo';
 export * from './apiError';
 export * from './availableFontsResponse';
+export * from './azw3SaveOptionsData';
 export * from './baseEntry';
 export * from './baseEntryList';
 export * from './bmpSaveOptionsData';
@@ -738,6 +740,7 @@ const typeMap = {
     FileReference: importedFileReference.FileReference,
     ApiError: importedApiError.ApiError,
     AvailableFontsResponse: importedAvailableFontsResponse.AvailableFontsResponse,
+    Azw3SaveOptionsData: importedAzw3SaveOptionsData.Azw3SaveOptionsData,
     BmpSaveOptionsData: importedBmpSaveOptionsData.BmpSaveOptionsData,
     Bookmark: importedBookmark.Bookmark,
     BookmarkData: importedBookmarkData.BookmarkData,

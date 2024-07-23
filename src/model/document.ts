@@ -179,7 +179,8 @@ export namespace Document {
         Pdf = 'Pdf' as any,
         Xps = 'Xps' as any,
         Tiff = 'Tiff' as any,
-        Svg = 'Svg' as any
+        Svg = 'Svg' as any,
+        Azw3 = 'Azw3' as any
     }
 }
 // tslint:enable:quotemark

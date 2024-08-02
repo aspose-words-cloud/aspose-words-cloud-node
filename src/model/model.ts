@@ -1070,6 +1070,11 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -1101,6 +1106,7 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -1178,6 +1184,11 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -1206,6 +1217,7 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -1310,6 +1322,11 @@ export class AppendDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -1362,6 +1379,7 @@ export class AppendDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -1451,6 +1469,11 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -1500,6 +1523,7 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -1616,6 +1640,11 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -1678,6 +1707,7 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -1771,6 +1801,11 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -1830,6 +1865,7 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -1945,6 +1981,11 @@ export class BuildReportRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The filename of the output document. If this parameter is omitted, the result will be saved with autogenerated name.
      */
     public destFileName: string;
@@ -1996,6 +2037,7 @@ export class BuildReportRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.data !== undefined) {
             formParams.push(['Data', this.data, 'text/plain']);
@@ -2307,6 +2349,11 @@ export class ClassifyDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The number of the best classes to return.
      */
     public bestClassesCount: string;
@@ -2343,6 +2390,7 @@ export class ClassifyDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _encryptor);
 
@@ -2421,6 +2469,11 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The number of the best classes to return.
      */
     public bestClassesCount: string;
@@ -2454,6 +2507,7 @@ export class ClassifyDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "bestClassesCount", this.bestClassesCount, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "taxonomy", this.taxonomy, _encryptor);
         if (this.document !== undefined) {
@@ -2550,6 +2604,11 @@ export class CompareDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -2592,6 +2651,7 @@ export class CompareDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
@@ -2679,6 +2739,11 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -2718,6 +2783,7 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -2828,6 +2894,11 @@ export class CompressDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -2870,6 +2941,7 @@ export class CompressDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.compressOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name === "Object" ? "importedCompressOptions.CompressOptions" : this.compressOptions.constructor.name);
@@ -2957,6 +3029,11 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -2996,6 +3073,7 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -3109,6 +3187,11 @@ export class ConvertDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -3150,6 +3233,7 @@ export class ConvertDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -3469,6 +3553,11 @@ export class CopyStyleRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -3521,6 +3610,7 @@ export class CopyStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -3609,6 +3699,11 @@ export class CopyStyleOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -3658,6 +3753,7 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -3768,6 +3864,11 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -3819,6 +3920,7 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -4101,6 +4203,11 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -4163,6 +4270,7 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -4256,6 +4364,11 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -4315,6 +4428,7 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -4430,6 +4544,11 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -4472,6 +4591,7 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -4559,6 +4679,11 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -4598,6 +4723,7 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -4702,6 +4828,11 @@ export class DeleteBookmarkRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -4753,6 +4884,7 @@ export class DeleteBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -4837,6 +4969,11 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -4885,6 +5022,7 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -4977,6 +5115,11 @@ export class DeleteBookmarksRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -5018,6 +5161,7 @@ export class DeleteBookmarksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -5097,6 +5241,11 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -5135,6 +5284,7 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -5238,6 +5388,11 @@ export class DeleteBorderRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -5290,6 +5445,7 @@ export class DeleteBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -5380,6 +5536,11 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -5429,6 +5590,7 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -5536,6 +5698,11 @@ export class DeleteBordersRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -5578,6 +5745,7 @@ export class DeleteBordersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -5663,6 +5831,11 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -5702,6 +5875,7 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -5808,6 +5982,11 @@ export class DeleteCommentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -5859,6 +6038,7 @@ export class DeleteCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -5943,6 +6123,11 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -5991,6 +6176,7 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -6083,6 +6269,11 @@ export class DeleteCommentsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -6124,6 +6315,7 @@ export class DeleteCommentsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -6203,6 +6395,11 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -6241,6 +6438,7 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -6338,6 +6536,11 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -6389,6 +6592,7 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -6473,6 +6677,11 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -6521,6 +6730,7 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -6613,6 +6823,11 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -6654,6 +6869,7 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -6733,6 +6949,11 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -6771,6 +6992,7 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -6868,6 +7090,11 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -6919,6 +7146,7 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -7003,6 +7231,11 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -7051,6 +7284,7 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -7153,6 +7387,11 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -7205,6 +7444,7 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -7294,6 +7534,11 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -7343,6 +7588,7 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -7445,6 +7691,11 @@ export class DeleteFieldRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -7497,6 +7748,7 @@ export class DeleteFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -7586,6 +7838,11 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -7635,6 +7892,7 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -7732,6 +7990,11 @@ export class DeleteFieldsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -7774,6 +8037,7 @@ export class DeleteFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -7858,6 +8122,11 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -7897,6 +8166,7 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -8187,6 +8457,11 @@ export class DeleteFootnoteRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -8239,6 +8514,7 @@ export class DeleteFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -8328,6 +8604,11 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -8377,6 +8658,7 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -8479,6 +8761,11 @@ export class DeleteFormFieldRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -8531,6 +8818,7 @@ export class DeleteFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -8620,6 +8908,11 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -8669,6 +8962,7 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -8771,6 +9065,11 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -8832,6 +9131,7 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -8921,6 +9221,11 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -8979,6 +9284,7 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -9076,6 +9382,11 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -9132,6 +9443,7 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -9217,6 +9529,11 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -9270,6 +9587,7 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -9363,6 +9681,11 @@ export class DeleteMacrosRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -9404,6 +9727,7 @@ export class DeleteMacrosRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -9483,6 +9807,11 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -9521,6 +9850,7 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -9623,6 +9953,11 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -9675,6 +10010,7 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -9764,6 +10100,11 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -9813,6 +10154,7 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -9905,6 +10247,11 @@ export class DeleteOfficeMathObjectsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -9946,6 +10293,7 @@ export class DeleteOfficeMathObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -10025,6 +10373,11 @@ export class DeleteOfficeMathObjectsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -10063,6 +10416,7 @@ export class DeleteOfficeMathObjectsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -10165,6 +10519,11 @@ export class DeleteParagraphRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -10217,6 +10576,7 @@ export class DeleteParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -10316,6 +10676,11 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -10368,6 +10733,7 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -10457,6 +10823,11 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -10506,6 +10877,7 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -10607,6 +10979,11 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -10656,6 +11033,7 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -10763,6 +11141,11 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -10815,6 +11198,7 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -10907,6 +11291,11 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -10956,6 +11345,7 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -11065,6 +11455,11 @@ export class DeleteRunRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -11126,6 +11521,7 @@ export class DeleteRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -11215,6 +11611,11 @@ export class DeleteRunOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -11273,6 +11674,7 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -11370,6 +11772,11 @@ export class DeleteSectionRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -11421,6 +11828,7 @@ export class DeleteSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -11505,6 +11913,11 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -11553,6 +11966,7 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -11655,6 +12069,11 @@ export class DeleteStructuredDocumentTagRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -11707,6 +12126,7 @@ export class DeleteStructuredDocumentTagRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -11796,6 +12216,11 @@ export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterfac
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -11845,6 +12270,7 @@ export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -11947,6 +12373,11 @@ export class DeleteTableRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -11999,6 +12430,7 @@ export class DeleteTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -12098,6 +12530,11 @@ export class DeleteTableCellRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -12159,6 +12596,7 @@ export class DeleteTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -12248,6 +12686,11 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -12306,6 +12749,7 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -12398,6 +12842,11 @@ export class DeleteTableOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -12447,6 +12896,7 @@ export class DeleteTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -12549,6 +12999,11 @@ export class DeleteTableRowRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -12610,6 +13065,7 @@ export class DeleteTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -12699,6 +13155,11 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -12757,6 +13218,7 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -12849,6 +13311,11 @@ export class DeleteWatermarkRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -12890,6 +13357,7 @@ export class DeleteWatermarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -12969,6 +13437,11 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -13007,6 +13480,7 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -13212,6 +13686,11 @@ export class ExecuteMailMergeRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The flag indicating whether to execute Mail Merge operation with regions.
      */
     public withRegions: boolean;
@@ -13265,6 +13744,7 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", this.mailMergeDataFile, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
@@ -13570,6 +14050,11 @@ export class GetBookmarkByNameRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -13607,6 +14092,7 @@ export class GetBookmarkByNameRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -13687,6 +14173,11 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -13721,6 +14212,7 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -13809,6 +14301,11 @@ export class GetBookmarksRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -13836,6 +14333,7 @@ export class GetBookmarksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -13911,6 +14409,11 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -13935,6 +14438,7 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -14034,6 +14538,11 @@ export class GetBorderRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -14072,6 +14581,7 @@ export class GetBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -14158,6 +14668,11 @@ export class GetBorderOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -14193,6 +14708,7 @@ export class GetBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -14286,6 +14802,11 @@ export class GetBordersRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -14314,6 +14835,7 @@ export class GetBordersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -14394,6 +14916,11 @@ export class GetBordersOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -14419,6 +14946,7 @@ export class GetBordersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -14512,6 +15040,11 @@ export class GetCommentRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -14549,6 +15082,7 @@ export class GetCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -14629,6 +15163,11 @@ export class GetCommentOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -14663,6 +15202,7 @@ export class GetCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -14751,6 +15291,11 @@ export class GetCommentsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -14778,6 +15323,7 @@ export class GetCommentsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -14853,6 +15399,11 @@ export class GetCommentsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -14877,6 +15428,7 @@ export class GetCommentsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -14970,6 +15522,11 @@ export class GetCustomXmlPartRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15007,6 +15564,7 @@ export class GetCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -15087,6 +15645,11 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15121,6 +15684,7 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -15209,6 +15773,11 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15236,6 +15805,7 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -15311,6 +15881,11 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15335,6 +15910,7 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -15423,6 +15999,11 @@ export class GetDocumentRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15450,6 +16031,7 @@ export class GetDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -15545,6 +16127,11 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15583,6 +16170,7 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -15668,6 +16256,11 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15703,6 +16296,7 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -15801,6 +16395,11 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15839,6 +16438,7 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -15924,6 +16524,11 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -15959,6 +16564,7 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -16057,6 +16663,11 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -16095,6 +16706,7 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -16180,6 +16792,11 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -16215,6 +16832,7 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -16308,6 +16926,11 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -16336,6 +16959,7 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -16416,6 +17040,11 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -16441,6 +17070,7 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -16530,6 +17160,11 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The flag indicating whether to use non merge fields. If true, result includes "mustache" field names.
      */
     public useNonMergeFields: boolean;
@@ -16561,6 +17196,7 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -16638,6 +17274,11 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The flag indicating whether to use non merge fields. If true, result includes "mustache" field names.
      */
     public useNonMergeFields: boolean;
@@ -16666,6 +17307,7 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
         if (this.template !== undefined) {
             formParams.push(['Template', this.template, 'application/octet-stream']);
@@ -16760,6 +17402,11 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -16797,6 +17444,7 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -16877,6 +17525,11 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -16911,6 +17564,7 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -16999,6 +17653,11 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -17026,6 +17685,7 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -17101,6 +17761,11 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -17125,6 +17790,7 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -17213,6 +17879,11 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -17240,6 +17911,7 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -17315,6 +17987,11 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -17339,6 +18016,7 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -17432,6 +18110,11 @@ export class GetDocumentPropertyRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -17469,6 +18152,7 @@ export class GetDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -17549,6 +18233,11 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -17583,6 +18272,7 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -17671,6 +18361,11 @@ export class GetDocumentProtectionRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -17698,6 +18393,7 @@ export class GetDocumentProtectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -17773,6 +18469,11 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -17797,6 +18498,7 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -17886,6 +18588,11 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The flag indicating whether to include comments from the WordCount. The default value is "false".
      */
     public includeComments: boolean;
@@ -17927,6 +18634,7 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
@@ -18006,6 +18714,11 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The flag indicating whether to include comments from the WordCount. The default value is "false".
      */
     public includeComments: boolean;
@@ -18044,6 +18757,7 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeComments", this.includeComments, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
@@ -18141,6 +18855,11 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The path to the output document.
      */
     public outPath: string;
@@ -18187,6 +18906,7 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
@@ -18284,6 +19004,11 @@ export class GetFieldRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -18322,6 +19047,7 @@ export class GetFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -18407,6 +19133,11 @@ export class GetFieldOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -18442,6 +19173,7 @@ export class GetFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -18535,6 +19267,11 @@ export class GetFieldsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -18563,6 +19300,7 @@ export class GetFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -18643,6 +19381,11 @@ export class GetFieldsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -18668,6 +19411,7 @@ export class GetFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -18854,6 +19598,11 @@ export class GetFootnoteRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -18892,6 +19641,7 @@ export class GetFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -18977,6 +19727,11 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -19012,6 +19767,7 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -19105,6 +19861,11 @@ export class GetFootnotesRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -19133,6 +19894,7 @@ export class GetFootnotesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -19213,6 +19975,11 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -19238,6 +20005,7 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -19336,6 +20104,11 @@ export class GetFormFieldRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -19374,6 +20147,7 @@ export class GetFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -19459,6 +20233,11 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -19494,6 +20273,7 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -19587,6 +20367,11 @@ export class GetFormFieldsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -19615,6 +20400,7 @@ export class GetFormFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -19695,6 +20481,11 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -19720,6 +20511,7 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -19814,6 +20606,11 @@ export class GetHeaderFooterRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The list of HeaderFooter types.
      */
     public filterByType: string;
@@ -19855,6 +20652,7 @@ export class GetHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -19952,6 +20750,11 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The list of HeaderFooter types.
      */
     public filterByType: string;
@@ -20003,6 +20806,7 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -20090,6 +20894,11 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The list of HeaderFooter types.
      */
     public filterByType: string;
@@ -20138,6 +20947,7 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -20223,6 +21033,11 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The list of HeaderFooter types.
      */
     public filterByType: string;
@@ -20261,6 +21076,7 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -20356,6 +21172,11 @@ export class GetHeaderFootersRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The list of HeaderFooter types.
      */
     public filterByType: string;
@@ -20397,6 +21218,7 @@ export class GetHeaderFootersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -20479,6 +21301,11 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * The list of HeaderFooter types.
      */
     public filterByType: string;
@@ -20517,6 +21344,7 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -20679,6 +21507,11 @@ export class GetListRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -20716,6 +21549,7 @@ export class GetListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -20796,6 +21630,11 @@ export class GetListOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -20830,6 +21669,7 @@ export class GetListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -20918,6 +21758,11 @@ export class GetListsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -20945,6 +21790,7 @@ export class GetListsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -21020,6 +21866,11 @@ export class GetListsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -21044,6 +21895,7 @@ export class GetListsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -21142,6 +21994,11 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -21180,6 +22037,7 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -21265,6 +22123,11 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -21300,6 +22163,7 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -21393,6 +22257,11 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -21421,6 +22290,7 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -21501,6 +22371,11 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -21526,6 +22401,7 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -21624,6 +22500,11 @@ export class GetParagraphRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -21662,6 +22543,7 @@ export class GetParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -21757,6 +22639,11 @@ export class GetParagraphFormatRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -21795,6 +22682,7 @@ export class GetParagraphFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -21880,6 +22768,11 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -21915,6 +22808,7 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -22013,6 +22907,11 @@ export class GetParagraphListFormatRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -22051,6 +22950,7 @@ export class GetParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -22136,6 +23036,11 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -22171,6 +23076,7 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -22259,6 +23165,11 @@ export class GetParagraphOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -22294,6 +23205,7 @@ export class GetParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -22387,6 +23299,11 @@ export class GetParagraphsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -22415,6 +23332,7 @@ export class GetParagraphsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -22495,6 +23413,11 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -22520,6 +23443,7 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -22618,6 +23542,11 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -22656,6 +23585,7 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -22741,6 +23671,11 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -22776,6 +23711,7 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -22942,6 +23878,11 @@ export class GetRangeTextRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -22980,6 +23921,7 @@ export class GetRangeTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -23065,6 +24007,11 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -23100,6 +24047,7 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -23198,6 +24146,11 @@ export class GetRunRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -23245,6 +24198,7 @@ export class GetRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -23340,6 +24294,11 @@ export class GetRunFontRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -23387,6 +24346,7 @@ export class GetRunFontRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -23472,6 +24432,11 @@ export class GetRunFontOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -23516,6 +24481,7 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -23604,6 +24570,11 @@ export class GetRunOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -23648,6 +24619,7 @@ export class GetRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -23741,6 +24713,11 @@ export class GetRunsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -23778,6 +24755,7 @@ export class GetRunsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -23858,6 +24836,11 @@ export class GetRunsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -23892,6 +24875,7 @@ export class GetRunsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -23985,6 +24969,11 @@ export class GetSectionRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24022,6 +25011,7 @@ export class GetSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -24102,6 +25092,11 @@ export class GetSectionOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24136,6 +25131,7 @@ export class GetSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -24229,6 +25225,11 @@ export class GetSectionPageSetupRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24266,6 +25267,7 @@ export class GetSectionPageSetupRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -24346,6 +25348,11 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24380,6 +25387,7 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -24468,6 +25476,11 @@ export class GetSectionsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24495,6 +25508,7 @@ export class GetSectionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -24570,6 +25584,11 @@ export class GetSectionsOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24594,6 +25613,7 @@ export class GetSectionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -24692,6 +25712,11 @@ export class GetStructuredDocumentTagRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24730,6 +25755,7 @@ export class GetStructuredDocumentTagRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -24815,6 +25841,11 @@ export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24850,6 +25881,7 @@ export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -24943,6 +25975,11 @@ export class GetStructuredDocumentTagsRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -24971,6 +26008,7 @@ export class GetStructuredDocumentTagsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -25051,6 +26089,11 @@ export class GetStructuredDocumentTagsOnlineRequest implements RequestInterface 
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -25076,6 +26119,7 @@ export class GetStructuredDocumentTagsOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -25169,6 +26213,11 @@ export class GetStyleRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -25206,6 +26255,7 @@ export class GetStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -25296,6 +26346,11 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -25333,6 +26388,7 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -25413,6 +26469,11 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -25447,6 +26508,7 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -25530,6 +26592,11 @@ export class GetStyleOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -25564,6 +26631,7 @@ export class GetStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -25652,6 +26720,11 @@ export class GetStylesRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -25679,6 +26752,7 @@ export class GetStylesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -25754,6 +26828,11 @@ export class GetStylesOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -25778,6 +26857,7 @@ export class GetStylesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -25876,6 +26956,11 @@ export class GetTableRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -25914,6 +26999,7 @@ export class GetTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -26009,6 +27095,11 @@ export class GetTableCellRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -26056,6 +27147,7 @@ export class GetTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -26151,6 +27243,11 @@ export class GetTableCellFormatRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -26198,6 +27295,7 @@ export class GetTableCellFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -26283,6 +27381,11 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -26327,6 +27430,7 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -26415,6 +27519,11 @@ export class GetTableCellOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -26459,6 +27568,7 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -26547,6 +27657,11 @@ export class GetTableOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -26582,6 +27697,7 @@ export class GetTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -26680,6 +27796,11 @@ export class GetTablePropertiesRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -26718,6 +27839,7 @@ export class GetTablePropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -26803,6 +27925,11 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -26838,6 +27965,7 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -26936,6 +28064,11 @@ export class GetTableRowRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -26983,6 +28116,7 @@ export class GetTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -27078,6 +28212,11 @@ export class GetTableRowFormatRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -27125,6 +28264,7 @@ export class GetTableRowFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -27210,6 +28350,11 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -27254,6 +28399,7 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -27342,6 +28488,11 @@ export class GetTableRowOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -27386,6 +28537,7 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -27479,6 +28631,11 @@ export class GetTablesRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -27507,6 +28664,7 @@ export class GetTablesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -27587,6 +28745,11 @@ export class GetTablesOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -27612,6 +28775,7 @@ export class GetTablesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -27706,6 +28870,11 @@ export class InsertBookmarkRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -27758,6 +28927,7 @@ export class InsertBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -27846,6 +29016,11 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -27895,6 +29070,7 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -28005,6 +29181,11 @@ export class InsertCommentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -28057,6 +29238,7 @@ export class InsertCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -28145,6 +29327,11 @@ export class InsertCommentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -28194,6 +29381,7 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -28304,6 +29492,11 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -28356,6 +29549,7 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -28444,6 +29638,11 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -28493,6 +29692,7 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -28613,6 +29813,11 @@ export class InsertDrawingObjectRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -28675,6 +29880,7 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -28776,6 +29982,11 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -28835,6 +30046,7 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -28953,6 +30165,11 @@ export class InsertFieldRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -29006,6 +30223,7 @@ export class InsertFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -29099,6 +30317,11 @@ export class InsertFieldOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -29149,6 +30372,7 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -29264,6 +30488,11 @@ export class InsertFootnoteRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -29317,6 +30546,7 @@ export class InsertFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -29410,6 +30640,11 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -29460,6 +30695,7 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -29575,6 +30811,11 @@ export class InsertFormFieldRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -29633,6 +30874,7 @@ export class InsertFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -29727,6 +30969,11 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -29782,6 +31029,7 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -29898,6 +31146,11 @@ export class InsertHeaderFooterRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -29958,6 +31211,7 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -30050,6 +31304,11 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -30107,6 +31366,7 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -30216,6 +31476,11 @@ export class InsertListRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -30268,6 +31533,7 @@ export class InsertListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -30356,6 +31622,11 @@ export class InsertListOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -30405,6 +31676,7 @@ export class InsertListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -30525,6 +31797,11 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -30578,6 +31855,7 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.tabStopInsertDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : this.tabStopInsertDto.constructor.name);
@@ -30674,6 +31952,11 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -30724,6 +32007,7 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -30832,6 +32116,11 @@ export class InsertPageNumbersRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -30884,6 +32173,7 @@ export class InsertPageNumbersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -30972,6 +32262,11 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -31021,6 +32316,7 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -31136,6 +32432,11 @@ export class InsertParagraphRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -31189,6 +32490,7 @@ export class InsertParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -31282,6 +32584,11 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -31332,6 +32639,7 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -31447,6 +32755,11 @@ export class InsertRunRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -31500,6 +32813,7 @@ export class InsertRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -31593,6 +32907,11 @@ export class InsertRunOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -31643,6 +32962,7 @@ export class InsertRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -31753,6 +33073,11 @@ export class InsertSectionRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -31804,6 +33129,7 @@ export class InsertSectionRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -31888,6 +33214,11 @@ export class InsertSectionOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -31936,6 +33267,7 @@ export class InsertSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -32038,6 +33370,11 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -32091,6 +33428,7 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -32184,6 +33522,11 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -32234,6 +33577,7 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -32344,6 +33688,11 @@ export class InsertStyleRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -32396,6 +33745,7 @@ export class InsertStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -32484,6 +33834,11 @@ export class InsertStyleOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -32533,6 +33888,7 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -32648,6 +34004,11 @@ export class InsertTableRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -32701,6 +34062,7 @@ export class InsertTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -32804,6 +34166,11 @@ export class InsertTableCellRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -32857,6 +34224,7 @@ export class InsertTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -32950,6 +34318,11 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -33000,6 +34373,7 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -33105,6 +34479,11 @@ export class InsertTableOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -33155,6 +34534,7 @@ export class InsertTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -33270,6 +34650,11 @@ export class InsertTableRowRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -33323,6 +34708,7 @@ export class InsertTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -33416,6 +34802,11 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -33466,6 +34857,7 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -33576,6 +34968,11 @@ export class InsertWatermarkRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -33628,6 +35025,7 @@ export class InsertWatermarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -33727,6 +35125,11 @@ export class InsertWatermarkImageRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -33778,6 +35181,7 @@ export class InsertWatermarkImageRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -33867,6 +35271,11 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -33915,6 +35324,7 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -34016,6 +35426,11 @@ export class InsertWatermarkOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -34065,6 +35480,7 @@ export class InsertWatermarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -34176,6 +35592,11 @@ export class InsertWatermarkTextRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -34228,6 +35649,7 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -34316,6 +35738,11 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -34365,6 +35792,7 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -34475,6 +35903,11 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -34531,6 +35964,7 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -34719,6 +36153,11 @@ export class MergeWithNextRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -34770,6 +36209,7 @@ export class MergeWithNextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -34854,6 +36294,11 @@ export class MergeWithNextOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -34902,6 +36347,7 @@ export class MergeWithNextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -35223,6 +36669,11 @@ export class OptimizeDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -35275,6 +36726,7 @@ export class OptimizeDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -35363,6 +36815,11 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -35412,6 +36869,7 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -35513,6 +36971,11 @@ export class ProtectDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -35555,6 +37018,7 @@ export class ProtectDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.protectionRequest !== undefined) {
             let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequestBase.ProtectionRequestBase" : this.protectionRequest.constructor.name);
@@ -35641,6 +37105,11 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -35680,6 +37149,7 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -35783,6 +37253,11 @@ export class RejectAllRevisionsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -35814,6 +37289,7 @@ export class RejectAllRevisionsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -35891,6 +37367,11 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -35919,6 +37400,7 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -36028,6 +37510,11 @@ export class RemoveRangeRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -36070,6 +37557,7 @@ export class RemoveRangeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -36157,6 +37645,11 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -36196,6 +37689,7 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -36310,6 +37804,11 @@ export class RenderDrawingObjectRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -36367,6 +37866,7 @@ export class RenderDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
@@ -36460,6 +37960,11 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -36514,6 +38019,7 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
@@ -36620,6 +38126,11 @@ export class RenderMathObjectRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -36677,6 +38188,7 @@ export class RenderMathObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
@@ -36770,6 +38282,11 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -36824,6 +38341,7 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
@@ -36925,6 +38443,11 @@ export class RenderPageRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -36976,6 +38499,7 @@ export class RenderPageRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -37063,6 +38587,11 @@ export class RenderPageOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -37111,6 +38640,7 @@ export class RenderPageOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -37216,6 +38746,11 @@ export class RenderParagraphRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -37273,6 +38808,7 @@ export class RenderParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
@@ -37366,6 +38902,11 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -37420,6 +38961,7 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
@@ -37526,6 +39068,11 @@ export class RenderTableRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -37583,6 +39130,7 @@ export class RenderTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
 
@@ -37676,6 +39224,11 @@ export class RenderTableOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -37730,6 +39283,7 @@ export class RenderTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
@@ -37826,6 +39380,11 @@ export class ReplaceTextRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -37878,6 +39437,7 @@ export class ReplaceTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -37966,6 +39526,11 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -38015,6 +39580,7 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -38135,6 +39701,11 @@ export class ReplaceWithTextRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -38188,6 +39759,7 @@ export class ReplaceWithTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.rangeText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : this.rangeText.constructor.name);
@@ -38284,6 +39856,11 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -38334,6 +39911,7 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -38510,6 +40088,11 @@ export class SaveAsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -38552,6 +40135,7 @@ export class SaveAsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.saveOptionsData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : this.saveOptionsData.constructor.name);
@@ -38638,6 +40222,11 @@ export class SaveAsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Folder in filestorage with custom fonts.
      */
     public fontsLocation: string;
@@ -38677,6 +40266,7 @@ export class SaveAsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -38794,6 +40384,11 @@ export class SaveAsRangeRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -38843,6 +40438,7 @@ export class SaveAsRangeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.documentParameters !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : this.documentParameters.constructor.name);
             formParams.push(['DocumentParameters', JSON.stringify(_obj), 'application/json']);
@@ -38937,6 +40533,11 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -38983,6 +40584,7 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -39088,6 +40690,11 @@ export class SaveAsTiffRequest implements RequestInterface {
      * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
      */
     public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
 
     /**
      * The flag indicating whether to use antialiasing.
@@ -39217,6 +40824,7 @@ export class SaveAsTiffRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _encryptor);
@@ -39318,6 +40926,11 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
      * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
      */
     public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
 
     /**
      * The flag indicating whether to use antialiasing.
@@ -39444,6 +41057,7 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useAntiAliasing", this.useAntiAliasing, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useHighQualityRendering", this.useHighQualityRendering, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "imageBrightness", this.imageBrightness, _encryptor);
@@ -39568,6 +41182,11 @@ export class SearchRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -39605,6 +41224,7 @@ export class SearchRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -39685,6 +41305,11 @@ export class SearchOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -39719,6 +41344,7 @@ export class SearchOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -39813,6 +41439,11 @@ export class SplitDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -39874,6 +41505,7 @@ export class SplitDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _encryptor);
@@ -39960,6 +41592,11 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -40018,6 +41655,7 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _encryptor);
@@ -40125,6 +41763,11 @@ export class TranslateNodeIdRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -40162,6 +41805,7 @@ export class TranslateNodeIdRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
@@ -40242,6 +41886,11 @@ export class TranslateNodeIdOnlineRequest implements RequestInterface {
      */
     public encryptedPassword: string;
 
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -40276,6 +41925,7 @@ export class TranslateNodeIdOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }
@@ -40365,6 +42015,11 @@ export class UnprotectDocumentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -40396,6 +42051,7 @@ export class UnprotectDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -40473,6 +42129,11 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -40501,6 +42162,7 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -40610,6 +42272,11 @@ export class UpdateBookmarkRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -40672,6 +42339,7 @@ export class UpdateBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -40765,6 +42433,11 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -40824,6 +42497,7 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -40945,6 +42619,11 @@ export class UpdateBorderRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -41008,6 +42687,7 @@ export class UpdateBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -41107,6 +42787,11 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -41167,6 +42852,7 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -41282,6 +42968,11 @@ export class UpdateCommentRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -41344,6 +43035,7 @@ export class UpdateCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -41437,6 +43129,11 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -41496,6 +43193,7 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -41611,6 +43309,11 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -41673,6 +43376,7 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -41766,6 +43470,11 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -41825,6 +43534,7 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -41950,6 +43660,11 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -42022,6 +43737,7 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -42128,6 +43844,11 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -42197,6 +43918,7 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -42320,6 +44042,11 @@ export class UpdateFieldRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -42383,6 +44110,7 @@ export class UpdateFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -42481,6 +44209,11 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -42541,6 +44274,7 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -42646,6 +44380,11 @@ export class UpdateFieldsRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -42677,6 +44416,7 @@ export class UpdateFieldsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
 
         for (let fileContent of filesContent) {
@@ -42754,6 +44494,11 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -42782,6 +44527,7 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
@@ -42896,6 +44642,11 @@ export class UpdateFootnoteRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -42959,6 +44710,7 @@ export class UpdateFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -43057,6 +44809,11 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -43117,6 +44874,7 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -43237,6 +44995,11 @@ export class UpdateFormFieldRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -43300,6 +45063,7 @@ export class UpdateFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -43398,6 +45162,11 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -43458,6 +45227,7 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -43573,6 +45343,11 @@ export class UpdateListRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -43635,6 +45410,7 @@ export class UpdateListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -43743,6 +45519,11 @@ export class UpdateListLevelRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -43815,6 +45596,7 @@ export class UpdateListLevelRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -43913,6 +45695,11 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -43982,6 +45769,7 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -44087,6 +45875,11 @@ export class UpdateListOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -44146,6 +45939,7 @@ export class UpdateListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -44266,6 +46060,11 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -44329,6 +46128,7 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -44427,6 +46227,11 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -44487,6 +46292,7 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -44607,6 +46413,11 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -44670,6 +46481,7 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -44768,6 +46580,11 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -44828,6 +46645,7 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -44948,6 +46766,11 @@ export class UpdateRunRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -45020,6 +46843,7 @@ export class UpdateRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -45128,6 +46952,11 @@ export class UpdateRunFontRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -45200,6 +47029,7 @@ export class UpdateRunFontRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -45298,6 +47128,11 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -45367,6 +47202,7 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -45477,6 +47313,11 @@ export class UpdateRunOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -45546,6 +47387,7 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -45661,6 +47503,11 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -45723,6 +47570,7 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -45816,6 +47664,11 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -45875,6 +47728,7 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -45995,6 +47849,11 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -46058,6 +47917,7 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -46156,6 +48016,11 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -46216,6 +48081,7 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -46331,6 +48197,11 @@ export class UpdateStyleRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -46393,6 +48264,7 @@ export class UpdateStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -46486,6 +48358,11 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -46545,6 +48422,7 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -46665,6 +48543,11 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -46737,6 +48620,7 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -46835,6 +48719,11 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -46904,6 +48793,7 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -47024,6 +48914,11 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -47087,6 +48982,7 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -47185,6 +49081,11 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -47245,6 +49146,7 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -47365,6 +49267,11 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -47437,6 +49344,7 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
@@ -47535,6 +49443,11 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
     public encryptedPassword: string;
 
     /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
      * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
      */
     public destFileName: string;
@@ -47604,6 +49517,7 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);

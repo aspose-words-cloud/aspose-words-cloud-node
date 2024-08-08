@@ -24,6 +24,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 - Added support for azw3 (Amazon Kindle Format) documents.
 - Added the support of OpenType standard. It is usefull for languages required advanced typography.
+- Added 'MaxImageResolution' property for SvgSaveOptionsData class.
 
 
 ## Enhancements in Version 24.6

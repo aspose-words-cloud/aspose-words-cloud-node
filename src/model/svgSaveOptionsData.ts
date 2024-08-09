@@ -52,6 +52,11 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         },
         {
+            name: "maxImageResolution",
+            baseName: "MaxImageResolution",
+            type: "number",
+        },
+        {
             name: "resourcesFolder",
             baseName: "ResourcesFolder",
             type: "string",
@@ -89,6 +94,13 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets a value indicating whether the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
      */
     public fitToViewPort: boolean;
+
+    /**
+     * Gets or sets a value in pixels per inch that limits resolution of exported raster images.
+     * If the value of this property is non-zero, it limits resolution of exported raster images.
+     * That is, higher-resolution images are resampled down to the limit and lower-resolution images are exported as is.
+     */
+    public maxImageResolution: number;
 
     /**
      * Gets or sets the physical folder where resources (images) are saved when exporting.

@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="xamlFlowSaveOptionsData.ts">
+ * <copyright company="Aspose" file="digitalSignatureDetails.ts">
  *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,34 +27,29 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { SaveOptionsData } from './saveOptionsData';
+import { SignOptions } from './signOptions';
 
-export const importsMapXamlFlowSaveOptionsData = {
-    SaveOptionsData,
+export const importsMapDigitalSignatureDetails = {
+    SignOptions,
 };
 
 /**
- * Container class for xaml flow save options.
+ * Container class for details of digital signature.
  */
-export class XamlFlowSaveOptionsData extends SaveOptionsData {
+export class DigitalSignatureDetails implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "imagesFolder",
-            baseName: "ImagesFolder",
+            name: "certificateFilename",
+            baseName: "CertificateFilename",
             type: "string",
         },
         {
-            name: "imagesFolderAlias",
-            baseName: "ImagesFolderAlias",
-            type: "string",
-        },
-        {
-            name: "replaceBackslashWithYenSign",
-            baseName: "ReplaceBackslashWithYenSign",
-            type: "boolean",
+            name: "signOptions",
+            baseName: "SignOptions",
+            type: "SignOptions",
         }
     ];
 
@@ -62,32 +57,20 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(XamlFlowSaveOptionsData.attributeTypeMap);
+        return DigitalSignatureDetails.attributeTypeMap;
     }
 
     /**
-     * Gets or sets the physical folder where images are saved when exporting.
+     * Gets or sets the certificate's filename using for signing.
      */
-    public imagesFolder: string;
+    public certificateFilename: string;
 
     /**
-     * Gets or sets the name of the folder used to construct image URIs.
+     * Gets or sets signing options.
      */
-    public imagesFolderAlias: string;
+    public signOptions: SignOptions;
 
-    /**
-     * Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs.
-     * Default value is false.
-     * By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in
-     * generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain
-     * scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.
-     */
-    public replaceBackslashWithYenSign: boolean;
-
-    public constructor(init?: Partial< XamlFlowSaveOptionsData >) {
-        super(init);
-        this.saveFormat = 'xamlflow';
-
+    public constructor(init?: Partial< DigitalSignatureDetails >) {
         Object.assign(this, init);
     }
 
@@ -95,7 +78,9 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
     }
 
     public validate() {
-        super.validate();
+
+        this.signOptions?.validate();
+
     }
 }
 

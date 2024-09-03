@@ -27,10 +27,12 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
+import { DigitalSignatureDetails } from './digitalSignatureDetails';
 import { FixedPageSaveOptionsData } from './fixedPageSaveOptionsData';
 import { OutlineOptionsData } from './outlineOptionsData';
 
 export const importsMapXpsSaveOptionsData = {
+    DigitalSignatureDetails,
     FixedPageSaveOptionsData,
     OutlineOptionsData,
 };
@@ -47,6 +49,11 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
             name: "bookmarksOutlineLevel",
             baseName: "BookmarksOutlineLevel",
             type: "number",
+        },
+        {
+            name: "digitalSignatureDetails",
+            baseName: "DigitalSignatureDetails",
+            type: "DigitalSignatureDetails",
         },
         {
             name: "headingsOutlineLevels",
@@ -78,6 +85,11 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
     public bookmarksOutlineLevel: number;
 
     /**
+     * Gets or sets the details for signing the output document.
+     */
+    public digitalSignatureDetails: DigitalSignatureDetails;
+
+    /**
      * Gets or sets the number of heading levels (paragraphs formatted with the Heading styles) to include in the XPS document outline.
      */
     public headingsOutlineLevels: number;
@@ -104,6 +116,11 @@ export class XpsSaveOptionsData extends FixedPageSaveOptionsData {
 
     public validate() {
         super.validate();
+
+        this.digitalSignatureDetails?.validate();
+
+
+
 
         this.outlineOptions?.validate();
 

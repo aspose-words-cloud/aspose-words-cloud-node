@@ -16,6 +16,13 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 24.9
+
+- Added ReplaceBackslashWithYenSign property for XpsSaveOptions and HtmlSaveOptions.
+- Added DigitalSignature property for XpsSaveOptions.
+- Added UseSdtTagAsFormFieldName property for PdfSaveOptions.
+
+
 ## Enhancements in Version 24.8
 
 - Added the support of OpenType standard. It is usefull for languages required advanced typography.

@@ -73,6 +73,7 @@ import * as importedCustomXmlPartResponse from './customXmlPartResponse';
 import * as importedCustomXmlPartsCollection from './customXmlPartsCollection';
 import * as importedCustomXmlPartsResponse from './customXmlPartsResponse';
 import * as importedCustomXmlPartUpdate from './customXmlPartUpdate';
+import * as importedDigitalSignatureDetails from './digitalSignatureDetails';
 import * as importedDocmSaveOptionsData from './docmSaveOptionsData';
 import * as importedDocSaveOptionsData from './docSaveOptionsData';
 import * as importedDocument from './document';
@@ -253,6 +254,7 @@ import * as importedSectionLinkCollectionResponse from './sectionLinkCollectionR
 import * as importedSectionPageSetupResponse from './sectionPageSetupResponse';
 import * as importedSectionResponse from './sectionResponse';
 import * as importedShading from './shading';
+import * as importedSignOptions from './signOptions';
 import * as importedSplitDocumentResponse from './splitDocumentResponse';
 import * as importedSplitDocumentResult from './splitDocumentResult';
 import * as importedStatDataResponse from './statDataResponse';
@@ -357,6 +359,7 @@ export * from './customXmlPartResponse';
 export * from './customXmlPartsCollection';
 export * from './customXmlPartsResponse';
 export * from './customXmlPartUpdate';
+export * from './digitalSignatureDetails';
 export * from './docmSaveOptionsData';
 export * from './docSaveOptionsData';
 export * from './document';
@@ -537,6 +540,7 @@ export * from './sectionLinkCollectionResponse';
 export * from './sectionPageSetupResponse';
 export * from './sectionResponse';
 export * from './shading';
+export * from './signOptions';
 export * from './splitDocumentResponse';
 export * from './splitDocumentResult';
 export * from './statDataResponse';
@@ -774,6 +778,7 @@ const typeMap = {
     CustomXmlPartsCollection: importedCustomXmlPartsCollection.CustomXmlPartsCollection,
     CustomXmlPartsResponse: importedCustomXmlPartsResponse.CustomXmlPartsResponse,
     CustomXmlPartUpdate: importedCustomXmlPartUpdate.CustomXmlPartUpdate,
+    DigitalSignatureDetails: importedDigitalSignatureDetails.DigitalSignatureDetails,
     DocmSaveOptionsData: importedDocmSaveOptionsData.DocmSaveOptionsData,
     DocSaveOptionsData: importedDocSaveOptionsData.DocSaveOptionsData,
     Document: importedDocument.Document,
@@ -942,6 +947,7 @@ const typeMap = {
     SectionPageSetupResponse: importedSectionPageSetupResponse.SectionPageSetupResponse,
     SectionResponse: importedSectionResponse.SectionResponse,
     Shading: importedShading.Shading,
+    SignOptions: importedSignOptions.SignOptions,
     SplitDocumentResponse: importedSplitDocumentResponse.SplitDocumentResponse,
     SplitDocumentResult: importedSplitDocumentResult.SplitDocumentResult,
     StatDataResponse: importedStatDataResponse.StatDataResponse,

@@ -18,9 +18,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 ## Enhancements in Version 24.9
 
+- Added digital signature methds for DOC, DOCX, XPS, or ODT documents.
 - Added ReplaceBackslashWithYenSign property for XpsSaveOptions and HtmlSaveOptions.
 - Added DigitalSignature property for XpsSaveOptions.
 - Added UseSdtTagAsFormFieldName property for PdfSaveOptions.
+- Added MergeWholeDocument parameter to the MailMerge operations to update fields in whole document after executing of a mail merge with regions.
 
 
 ## Enhancements in Version 24.8

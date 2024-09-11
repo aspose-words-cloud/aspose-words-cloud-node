@@ -63,7 +63,7 @@ export class Signature implements ModelInterface {
         {
             name: "signatureValue",
             baseName: "SignatureValue",
-            type: "Readable",
+            type: "string",
         },
         {
             name: "signTime",
@@ -105,9 +105,9 @@ export class Signature implements ModelInterface {
     public signatureType: Signature.SignatureTypeEnum;
 
     /**
-     * Gets or sets an array of bytes representing a signature value.
+     * Gets or sets an array of bytes representing a signature value as base64 string.
      */
-    public signatureValue: Readable;
+    public signatureValue: string;
 
     /**
      * Gets or sets the time the document was signed.

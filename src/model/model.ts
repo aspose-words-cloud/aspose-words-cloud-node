@@ -715,7 +715,6 @@ const enumsMap = {
     "SaveOptionsData.DmlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.DmlRenderingModeEnum,
     "SaveOptionsData.ImlRenderingModeEnum": importedSaveOptionsData.SaveOptionsData.ImlRenderingModeEnum,
     "Shading.TextureEnum": importedShading.Shading.TextureEnum,
-    "Signature.SignatureTypeEnum": importedSignature.Signature.SignatureTypeEnum,
     "StructuredDocumentTag.LevelEnum": importedStructuredDocumentTag.StructuredDocumentTag.LevelEnum,
     "StructuredDocumentTag.SdtTypeEnum": importedStructuredDocumentTag.StructuredDocumentTag.SdtTypeEnum,
     "StructuredDocumentTagBase.AppearanceEnum": importedStructuredDocumentTagBase.StructuredDocumentTagBase.AppearanceEnum,

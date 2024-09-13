@@ -58,7 +58,7 @@ export class Signature implements ModelInterface {
         {
             name: "signatureType",
             baseName: "SignatureType",
-            type: "Signature.SignatureTypeEnum",
+            type: "string",
         },
         {
             name: "signatureValue",
@@ -102,7 +102,7 @@ export class Signature implements ModelInterface {
     /**
      * Gets or sets the type of the digital signature.
      */
-    public signatureType: Signature.SignatureTypeEnum;
+    public signatureType: string;
 
     /**
      * Gets or sets an array of bytes representing a signature value as base64 string.
@@ -131,28 +131,10 @@ export class Signature implements ModelInterface {
         {
             throw new Error('Property IsValid in Signature is required.');
         }
-        if (this.signatureType === null || this.signatureType === undefined)
-        {
-            throw new Error('Property SignatureType in Signature is required.');
-        }
         if (this.signTime === null || this.signTime === undefined)
         {
             throw new Error('Property SignTime in Signature is required.');
         }
     }
 }
-
-/**
- * Enums for Signature
- */
-// tslint:disable:quotemark
-// tslint:disable-next-line:no-namespace
-export namespace Signature {
-    export enum SignatureTypeEnum {
-        Unknown = 'Unknown' as any,
-        CryptoApi = 'CryptoApi' as any,
-        XmlDsig = 'XmlDsig' as any
-    }
-}
-// tslint:enable:quotemark
 

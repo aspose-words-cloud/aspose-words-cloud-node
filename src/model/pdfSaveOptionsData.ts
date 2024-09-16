@@ -175,6 +175,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         },
         {
+            name: "useSdtTagAsFormFieldName",
+            baseName: "UseSdtTagAsFormFieldName",
+            type: "boolean",
+        },
+        {
             name: "zoomBehavior",
             baseName: "ZoomBehavior",
             type: "PdfSaveOptionsData.ZoomBehaviorEnum",
@@ -339,6 +344,13 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public useCoreFonts: boolean;
 
     /**
+     * Gets or sets a value indicating whether to use SDT control Tag or Id property as a name of form field in PDF.
+     * The default value is false.When set to false, SDT control Id property is used as a name of form field in PDF.When set to true, SDT control Tag property is used as a name of form field in PDF.If set to true and Tag is empty, Id property will be used as a form field name.If set to true and Tag values are not unique, duplicate Tag values will be altered to build
+     * unique PDF form field names.
+     */
+    public useSdtTagAsFormFieldName: boolean;
+
+    /**
      * Gets or sets the option that controls what type of zoom should be applied when a document is opened with a PDF viewer.
      */
     public zoomBehavior: PdfSaveOptionsData.ZoomBehaviorEnum;
@@ -385,6 +397,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
 
         this.outlineOptions?.validate();
+
 
 
 

@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="xamlFlowSaveOptionsData.ts">
+ * <copyright company="Aspose" file="signatureCollectionResponse.ts">
  *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,34 +27,32 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { SaveOptionsData } from './saveOptionsData';
+import { Signature } from './signature';
+import { WordsResponse } from './wordsResponse';
 
-export const importsMapXamlFlowSaveOptionsData = {
-    SaveOptionsData,
+export const importsMapSignatureCollectionResponse = {
+    Signature,
+    WordsResponse,
 };
 
 /**
- * Container class for xaml flow save options.
+ * The REST response with a document signature collection.
+ * This response is returned by the Service when handling any "https://api.aspose.cloud/v4.0/words/Test.doc/signatures" REST API requests.
  */
-export class XamlFlowSaveOptionsData extends SaveOptionsData {
+export class SignatureCollectionResponse extends WordsResponse {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "imagesFolder",
-            baseName: "ImagesFolder",
-            type: "string",
-        },
-        {
-            name: "imagesFolderAlias",
-            baseName: "ImagesFolderAlias",
-            type: "string",
-        },
-        {
-            name: "replaceBackslashWithYenSign",
-            baseName: "ReplaceBackslashWithYenSign",
+            name: "isValid",
+            baseName: "IsValid",
             type: "boolean",
+        },
+        {
+            name: "signatures",
+            baseName: "Signatures",
+            type: "Array<Signature>",
         }
     ];
 
@@ -62,32 +60,21 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(XamlFlowSaveOptionsData.attributeTypeMap);
+        return super.getAttributeTypeMap().concat(SignatureCollectionResponse.attributeTypeMap);
     }
 
     /**
-     * Gets or sets the physical folder where images are saved when exporting.
+     * Gets or sets a value indicating whether all signatures are valid. Returns true if there is no signatures.
      */
-    public imagesFolder: string;
+    public isValid: boolean;
 
     /**
-     * Gets or sets the name of the folder used to construct image URIs.
+     * Gets or sets signatures.
      */
-    public imagesFolderAlias: string;
+    public signatures: Array<Signature>;
 
-    /**
-     * Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs.
-     * Default value is false.
-     * By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in
-     * generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain
-     * scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.
-     */
-    public replaceBackslashWithYenSign: boolean;
-
-    public constructor(init?: Partial< XamlFlowSaveOptionsData >) {
+    public constructor(init?: Partial< SignatureCollectionResponse >) {
         super(init);
-        this.saveFormat = 'xamlflow';
-
         Object.assign(this, init);
     }
 
@@ -96,6 +83,19 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
 
     public validate() {
         super.validate();
+        if (this.isValid === null || this.isValid === undefined)
+        {
+            throw new Error('Property IsValid in SignatureCollectionResponse is required.');
+        }
+
+        if (this.signatures !== null && this.signatures !== undefined)
+        {
+            for (let elementSignatures of this.signatures)
+            {
+                elementSignatures?.validate();
+            }
+        }
+
     }
 }
 

@@ -207,6 +207,11 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         },
         {
+            name: "replaceBackslashWithYenSign",
+            baseName: "ReplaceBackslashWithYenSign",
+            type: "boolean",
+        },
+        {
             name: "resolveFontNames",
             baseName: "ResolveFontNames",
             type: "boolean",
@@ -418,6 +423,15 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      * Gets or sets a value indicating whether to use pretty formats output.
      */
     public prettyFormat: boolean;
+
+    /**
+     * Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs.
+     * Default value is false.
+     * By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in
+     * generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain
+     * scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.
+     */
+    public replaceBackslashWithYenSign: boolean;
 
     /**
      * Gets or sets a value indicating whether font family names used in the document are resolved and substituted according to FontSettings when being written into HTML-based formats.

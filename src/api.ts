@@ -3340,6 +3340,42 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Gets signatures from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getSignatures(requestObj: model.GetSignaturesRequest): Promise< model.WordsIncomingMessage< model.SignatureCollectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getSignatures.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.SignatureCollectionResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Gets signatures from the document.
+     * @param requestObj contains request parameters
+     */
+    public async getSignaturesOnline(requestObj: model.GetSignaturesOnlineRequest): Promise< model.WordsIncomingMessage< model.SignatureCollectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling getSignaturesOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.SignatureCollectionResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Reads a StructuredDocumentTag (SDT) from the document node.
      * @param requestObj contains request parameters
      */
@@ -4766,6 +4802,42 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Removes all signatures of the document.
+     * @param requestObj contains request parameters
+     */
+    public async removeAllSignatures(requestObj: model.RemoveAllSignaturesRequest): Promise< model.WordsIncomingMessage< model.SignatureCollectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling removeAllSignatures.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.SignatureCollectionResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Removes all signatures of the document.
+     * @param requestObj contains request parameters
+     */
+    public async removeAllSignaturesOnline(requestObj: model.RemoveAllSignaturesOnlineRequest): Promise< model.WordsIncomingMessage< model.RemoveAllSignaturesOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling removeAllSignaturesOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.RemoveAllSignaturesOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Removes a range from the document.
      * @param requestObj contains request parameters
      */
@@ -5209,6 +5281,42 @@ export class WordsApi implements Encryptor {
 
         const response = await invokeApiMethod(requestOptions, this.configuration);
         const result = new model.WordsIncomingMessage< model.SearchResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Signs the document with given certificate.
+     * @param requestObj contains request parameters
+     */
+    public async signDocument(requestObj: model.SignDocumentRequest): Promise< model.WordsIncomingMessage< model.SignatureCollectionResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling signDocument.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.SignatureCollectionResponse >();    
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
+     * Signs the document with given certificate.
+     * @param requestObj contains request parameters
+     */
+    public async signDocumentOnline(requestObj: model.SignDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.SignDocumentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling signDocumentOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.SignDocumentOnlineResponse >();
         result.response = response;
         result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);

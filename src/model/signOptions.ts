@@ -1,6 +1,6 @@
 /*
  * --------------------------------------------------------------------------------
- * <copyright company="Aspose" file="xamlFlowSaveOptionsData.ts">
+ * <copyright company="Aspose" file="signOptions.ts">
  *   Copyright (c) 2024 Aspose.Words for Cloud
  * </copyright>
  * <summary>
@@ -27,34 +27,47 @@
 
 import { AttributeInfo } from '../internal/attributeInfo';
 import { ModelInterface } from './modelInterface';
-import { SaveOptionsData } from './saveOptionsData';
 
-export const importsMapXamlFlowSaveOptionsData = {
-    SaveOptionsData,
+export const importsMapSignOptions = {
 };
 
 /**
- * Container class for xaml flow save options.
+ * Container class for digital signature options.
  */
-export class XamlFlowSaveOptionsData extends SaveOptionsData {
+export class SignOptions implements ModelInterface {
     /**
      * Attribute type map
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
-            name: "imagesFolder",
-            baseName: "ImagesFolder",
+            name: "comments",
+            baseName: "Comments",
             type: "string",
         },
         {
-            name: "imagesFolderAlias",
-            baseName: "ImagesFolderAlias",
+            name: "decryptionPassword",
+            baseName: "DecryptionPassword",
             type: "string",
         },
         {
-            name: "replaceBackslashWithYenSign",
-            baseName: "ReplaceBackslashWithYenSign",
-            type: "boolean",
+            name: "providerId",
+            baseName: "ProviderId",
+            type: "string",
+        },
+        {
+            name: "signatureLineId",
+            baseName: "SignatureLineId",
+            type: "string",
+        },
+        {
+            name: "signatureLineImageFilename",
+            baseName: "SignatureLineImageFilename",
+            type: "string",
+        },
+        {
+            name: "signTime",
+            baseName: "SignTime",
+            type: "Date",
         }
     ];
 
@@ -62,32 +75,40 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
      * Returns attribute type map
      */
     public static getAttributeTypeMap() {
-        return super.getAttributeTypeMap().concat(XamlFlowSaveOptionsData.attributeTypeMap);
+        return SignOptions.attributeTypeMap;
     }
 
     /**
-     * Gets or sets the physical folder where images are saved when exporting.
+     * Gets or sets comments on the digital signature. Default value is empty string.
      */
-    public imagesFolder: string;
+    public comments: string;
 
     /**
-     * Gets or sets the name of the folder used to construct image URIs.
+     * Gets or sets the password to decrypt source document. Default value is empty string.
      */
-    public imagesFolderAlias: string;
+    public decryptionPassword: string;
 
     /**
-     * Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs.
-     * Default value is false.
-     * By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in
-     * generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain
-     * scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.
+     * Gets or sets the class Guid of the signature cryptography provider. Default value is Empty (all zeroes) Guid.
      */
-    public replaceBackslashWithYenSign: boolean;
+    public providerId: string;
 
-    public constructor(init?: Partial< XamlFlowSaveOptionsData >) {
-        super(init);
-        this.saveFormat = 'xamlflow';
+    /**
+     * Gets or sets user defined signature line Guid. Default value is Empty (all zeroes) Guid.
+     */
+    public signatureLineId: string;
 
+    /**
+     * Gets or sets the image that will be shown in associated SignatureLine. Default value is empty string.
+     */
+    public signatureLineImageFilename: string;
+
+    /**
+     * Gets or sets the date of signing. Default value is current time (Now).
+     */
+    public signTime: Date;
+
+    public constructor(init?: Partial< SignOptions >) {
         Object.assign(this, init);
     }
 
@@ -95,7 +116,6 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
     }
 
     public validate() {
-        super.validate();
     }
 }
 

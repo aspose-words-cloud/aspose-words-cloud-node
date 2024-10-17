@@ -168,7 +168,7 @@ describe("revisions", () => {
                     // Assert
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.revisions).to.exist;
-                    expect(resultApi.body.revisions).to.have.lengthOf(6);
+                    expect(resultApi.body.revisions.revisions).to.have.lengthOf(6);
                 });
 
             });
@@ -190,9 +190,8 @@ describe("revisions", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
-                expect(resultApi.body.document).to.exist;
-                expect(resultApi.body.model).to.exist;
-                expect(resultApi.body.model.revisions).to.exist;
+                expect(resultApi.body.revisions).to.exist;
+                expect(resultApi.body.revisions.revisions).to.have.lengthOf(6);
             });
 
        });

@@ -36,7 +36,7 @@ import * as BaseTest from "../baseTest";
 describe("revisions", () => {
     expect(fs);
     const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/DocumentActions/Revisions";
-    const localFile = "Common/test_multi_pages.docx";
+    const localFile = "DocumentElements/Revisions/TestRevisions.doc";
 
     // Test for accepting revisions in document.
     describe("acceptAllRevisions test", () => {

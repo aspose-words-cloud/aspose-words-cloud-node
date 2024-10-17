@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 24.11
+
+- Added GetAllRevisions method to obtain all available revisions in document.
+
+
 ## Enhancements in Version 24.9
 
 - Added digital signature methds for DOC, DOCX, XPS, or ODT documents.

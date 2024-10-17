@@ -231,7 +231,10 @@ import * as importedReplaceTextParameters from './replaceTextParameters';
 import * as importedReplaceTextResponse from './replaceTextResponse';
 import * as importedReportBuildOptions from './reportBuildOptions';
 import * as importedReportEngineSettings from './reportEngineSettings';
+import * as importedRevision from './revision';
+import * as importedRevisionCollection from './revisionCollection';
 import * as importedRevisionsModificationResponse from './revisionsModificationResponse';
+import * as importedRevisionsResponse from './revisionsResponse';
 import * as importedRtfSaveOptionsData from './rtfSaveOptionsData';
 import * as importedRun from './run';
 import * as importedRunBase from './runBase';
@@ -519,7 +522,10 @@ export * from './replaceTextParameters';
 export * from './replaceTextResponse';
 export * from './reportBuildOptions';
 export * from './reportEngineSettings';
+export * from './revision';
+export * from './revisionCollection';
 export * from './revisionsModificationResponse';
+export * from './revisionsResponse';
 export * from './rtfSaveOptionsData';
 export * from './run';
 export * from './runBase';
@@ -930,7 +936,10 @@ const typeMap = {
     ReplaceTextResponse: importedReplaceTextResponse.ReplaceTextResponse,
     ReportBuildOptions: importedReportBuildOptions.ReportBuildOptions,
     ReportEngineSettings: importedReportEngineSettings.ReportEngineSettings,
+    Revision: importedRevision.Revision,
+    RevisionCollection: importedRevisionCollection.RevisionCollection,
     RevisionsModificationResponse: importedRevisionsModificationResponse.RevisionsModificationResponse,
+    RevisionsResponse: importedRevisionsResponse.RevisionsResponse,
     RtfSaveOptionsData: importedRtfSaveOptionsData.RtfSaveOptionsData,
     Run: importedRun.Run,
     RunInsert: importedRunInsert.RunInsert,
@@ -13953,6 +13962,232 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
+	}
+}
+
+/**
+ * Request model for GetAllRevisions operation.
+ * Get all information about revisions.
+ */
+export class GetAllRevisionsRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetAllRevisionsRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/{name}/revisions/getAll"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling getAllRevisions.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling getAllRevisions.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "GET",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RevisionsResponse");
+	}
+}
+
+/**
+ * Request model for GetAllRevisionsOnline operation.
+ * Get all information about revisions.
+ */
+export class GetAllRevisionsOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< GetAllRevisionsOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/online/get/revisions/getAll"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling getAllRevisionsOnline.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling getAllRevisionsOnline.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RevisionsResponse");
 	}
 }
 

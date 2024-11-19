@@ -61,7 +61,7 @@ describe("documentProperties", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.documentProperties).to.exist;
                     expect(resultApi.body.documentProperties.list).to.exist;
-                    expect(resultApi.body.documentProperties.list).to.have.lengthOf(24);
+                    expect(resultApi.body.documentProperties.list).to.have.lengthOf(27);
                     expect(resultApi.body.documentProperties.list[0]).to.exist;
                     expect(resultApi.body.documentProperties.list[0].name).to.equal("Author");
                     expect(resultApi.body.documentProperties.list[0].value).to.equal("");

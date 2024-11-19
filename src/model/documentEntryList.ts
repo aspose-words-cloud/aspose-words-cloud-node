@@ -44,6 +44,11 @@ export class DocumentEntryList extends BaseEntryList {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "appendAllEntriesToOneSection",
+            baseName: "AppendAllEntriesToOneSection",
+            type: "boolean",
+        },
+        {
             name: "applyBaseDocumentHeadersAndFootersToAppendingDocuments",
             baseName: "ApplyBaseDocumentHeadersAndFootersToAppendingDocuments",
             type: "boolean",
@@ -61,6 +66,11 @@ export class DocumentEntryList extends BaseEntryList {
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(DocumentEntryList.attributeTypeMap);
     }
+
+    /**
+     * Gets or sets a value indicating whether to append all documents to the same section.
+     */
+    public appendAllEntriesToOneSection: boolean;
 
     /**
      * Gets or sets a value indicating whether to apply headers and footers from base document to appending documents. The default value is true.

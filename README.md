@@ -19,6 +19,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 ## Enhancements in Version 24.11
 
 - Added GetAllRevisions method to obtain all available revisions in document.
+- Added AppendAllEntriesToOneSection parameter to AppendDocument method to append entries to the same section.
 
 
 ## Enhancements in Version 24.9

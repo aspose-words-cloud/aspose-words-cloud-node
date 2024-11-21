@@ -36,7 +36,7 @@ import * as BaseTest from "../baseTest";
 describe("revisions", () => {
     expect(fs);
     const remoteDataFolder = BaseTest.remoteBaseTestDataFolder + "/DocumentActions/Revisions";
-    const localFile = "Common/test_multi_pages.docx";
+    const localFile = "DocumentElements/Revisions/TestRevisions.doc";
 
     // Test for accepting revisions in document.
     describe("acceptAllRevisions test", () => {
@@ -141,6 +141,57 @@ describe("revisions", () => {
                 expect(resultApi.body.model).to.exist;
                 expect(resultApi.body.model.result).to.exist;
                 expect(resultApi.body.model.result.dest).to.exist;
+            });
+
+       });
+    });
+
+    // Test for getting revisions from document.
+    describe("getAllRevisions test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestAcceptAllRevisions.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.GetAllRevisionsRequest({
+                    name: remoteFileName,
+                    folder: remoteDataFolder
+                });
+
+                // Act
+                return wordsApi.getAllRevisions(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi.response.statusCode).to.equal(200);
+                    expect(resultApi.body.revisions).to.exist;
+                    expect(resultApi.body.revisions.revisions).to.have.lengthOf(6);
+                });
+
+            });
+
+       });
+    });
+
+    // Test for getting revisions online from document.
+    describe("getAllRevisionsOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.GetAllRevisionsOnlineRequest({
+                document: requestDocument
+            });
+
+            // Act
+            return wordsApi.getAllRevisionsOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+                expect(resultApi.body.revisions).to.exist;
+                expect(resultApi.body.revisions.revisions).to.have.lengthOf(6);
             });
 
        });

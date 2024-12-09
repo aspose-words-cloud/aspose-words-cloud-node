@@ -16,6 +16,12 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 24.12
+
+- Added 'RenderChoiceFormFieldBorder' property for PdfSaveOptionsData class.
+- Added 'ApplySuperscript' property for ReplaceTextParameters class.
+
+
 ## Enhancements in Version 24.11
 
 - Added GetAllRevisions method to obtain all available revisions in document.

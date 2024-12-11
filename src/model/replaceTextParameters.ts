@@ -40,6 +40,11 @@ export class ReplaceTextParameters implements ModelInterface {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "applySuperscript",
+            baseName: "ApplySuperscript",
+            type: "boolean",
+        },
+        {
             name: "isMatchCase",
             baseName: "IsMatchCase",
             type: "boolean",
@@ -72,6 +77,11 @@ export class ReplaceTextParameters implements ModelInterface {
     public static getAttributeTypeMap() {
         return ReplaceTextParameters.attributeTypeMap;
     }
+
+    /**
+     * Gets or sets a value indicating whether apply superscript to font or not.
+     */
+    public applySuperscript: boolean;
 
     /**
      * Gets or sets a value indicating whether flag, true means the search is case-sensitive; false means the search is not case-sensitive.

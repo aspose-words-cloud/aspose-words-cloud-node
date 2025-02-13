@@ -52,6 +52,11 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
             type: "boolean",
         },
         {
+            name: "idPrefix",
+            baseName: "IdPrefix",
+            type: "string",
+        },
+        {
             name: "maxImageResolution",
             baseName: "MaxImageResolution",
             type: "number",
@@ -94,6 +99,14 @@ export class SvgSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets a value indicating whether the output SVG should fill the available viewport area (browser window or container). When set to true width and height of output SVG are set to 100%.
      */
     public fitToViewPort: boolean;
+
+    /**
+     * Gets or sets specifies a prefix that is prepended to all generated element IDs in the output document.
+     * Default value is null and no prefix is prepended.
+     * If the prefix is specified, it can contain only letters, digits, underscores, and hyphens,
+     * and must start with a letter.
+     */
+    public idPrefix: string;
 
     /**
      * Gets or sets a value in pixels per inch that limits resolution of exported raster images.

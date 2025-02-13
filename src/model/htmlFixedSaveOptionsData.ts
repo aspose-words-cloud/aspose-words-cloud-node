@@ -77,6 +77,11 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
             type: "HtmlFixedSaveOptionsData.FontFormatEnum",
         },
         {
+            name: "idPrefix",
+            baseName: "IdPrefix",
+            type: "string",
+        },
+        {
             name: "pageHorizontalAlignment",
             baseName: "PageHorizontalAlignment",
             type: "HtmlFixedSaveOptionsData.PageHorizontalAlignmentEnum",
@@ -155,6 +160,14 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
      * Gets or sets the export format of fonts.
      */
     public fontFormat: HtmlFixedSaveOptionsData.FontFormatEnum;
+
+    /**
+     * Gets or sets a prefix that is prepended to all generated element IDs in the output document.
+     * Default value is null and no prefix is prepended.
+     * If the prefix is specified, it can contain only letters, digits, underscores, and hyphens,
+     * and must start with a letter.
+     */
+    public idPrefix: string;
 
     /**
      * Gets or sets the horizontal alignment of pages in the HTML document.

@@ -702,6 +702,7 @@ const enumsMap = {
     "ParagraphFormatBase.StyleIdentifierEnum": importedParagraphFormatBase.ParagraphFormatBase.StyleIdentifierEnum,
     "PdfDigitalSignatureDetailsData.HashAlgorithmEnum": importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData.HashAlgorithmEnum,
     "PdfPermissions": importedPdfPermissions.PdfPermissions,
+    "PdfSaveOptionsData.AttachmentsEmbeddingModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.AttachmentsEmbeddingModeEnum,
     "PdfSaveOptionsData.ComplianceEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ComplianceEnum,
     "PdfSaveOptionsData.CustomPropertiesExportEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.CustomPropertiesExportEnum,
     "PdfSaveOptionsData.FontEmbeddingModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.FontEmbeddingModeEnum,

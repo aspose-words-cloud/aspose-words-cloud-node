@@ -633,6 +633,7 @@ export class WordsIncomingMessage<T> {
 const enumsMap = {
     "Border.BorderTypeEnum": importedBorder.Border.BorderTypeEnum,
     "Border.LineStyleEnum": importedBorder.Border.LineStyleEnum,
+    "CompareOptions.GranularityEnum": importedCompareOptions.CompareOptions.GranularityEnum,
     "CompareOptions.TargetEnum": importedCompareOptions.CompareOptions.TargetEnum,
     "Document.SourceFormatEnum": importedDocument.Document.SourceFormatEnum,
     "DocumentEntry.ImportFormatModeEnum": importedDocumentEntry.DocumentEntry.ImportFormatModeEnum,

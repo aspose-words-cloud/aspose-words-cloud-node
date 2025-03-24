@@ -20,6 +20,7 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 
 - Added 'AttachmentsEmbeddingMode' property for PdfSaveOptionsData class.
 - Added 'UpdateAmbiguousTextFont' property for SaveOptionsData class.
+- Added 'Granularity' property for CompareOptions class.
 
 
 ## Enhancements in Version 25.2

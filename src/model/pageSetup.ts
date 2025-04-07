@@ -473,6 +473,8 @@ export namespace PageSetup {
         Paper10x14 = 'Paper10x14' as any,
         Paper11x17 = 'Paper11x17' as any,
         Number10Envelope = 'Number10Envelope' as any,
+        JisB4 = 'JisB4' as any,
+        JisB5 = 'JisB5' as any,
         Custom = 'Custom' as any
     }
 

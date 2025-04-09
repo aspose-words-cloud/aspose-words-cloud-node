@@ -50,6 +50,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public static attributeTypeMap: Array<AttributeInfo> = [
         {
+            name: "attachmentsEmbeddingMode",
+            baseName: "AttachmentsEmbeddingMode",
+            type: "PdfSaveOptionsData.AttachmentsEmbeddingModeEnum",
+        },
+        {
             name: "cacheBackgroundGraphics",
             baseName: "CacheBackgroundGraphics",
             type: "boolean",
@@ -202,6 +207,14 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
     public static getAttributeTypeMap() {
         return super.getAttributeTypeMap().concat(PdfSaveOptionsData.attributeTypeMap);
     }
+
+    /**
+     * Gets or sets a value determining how attachments are embedded to the PDF document.
+     * Default value is None and attachments are not embedded.
+     * PDF/A-1, PDF/A-2 and regular PDF/A-4 (not PDF/A-4f) standards do not allow embedded files.
+     * None value will be used automatically.
+     */
+    public attachmentsEmbeddingMode: PdfSaveOptionsData.AttachmentsEmbeddingModeEnum;
 
     /**
      * Gets or sets a value determining whether or not to cache graphics placed in document's background.
@@ -430,6 +443,12 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace PdfSaveOptionsData {
+    export enum AttachmentsEmbeddingModeEnum {
+        None = 'None' as any,
+        Annotations = 'Annotations' as any,
+        DocumentEmbeddedFiles = 'DocumentEmbeddedFiles' as any
+    }
+
     export enum ComplianceEnum {
         Pdf17 = 'Pdf17' as any,
         Pdf20 = 'Pdf20' as any,

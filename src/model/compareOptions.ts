@@ -45,6 +45,11 @@ export class CompareOptions implements ModelInterface {
             type: "boolean",
         },
         {
+            name: "granularity",
+            baseName: "Granularity",
+            type: "CompareOptions.GranularityEnum",
+        },
+        {
             name: "ignoreCaseChanges",
             baseName: "IgnoreCaseChanges",
             type: "boolean",
@@ -102,6 +107,11 @@ export class CompareOptions implements ModelInterface {
      * Gets or sets whether accept revisions before comparison or not.
      */
     public acceptAllRevisionsBeforeComparison: boolean;
+
+    /**
+     * Gets or sets the option indicating whether changes are tracked by character or by word.
+     */
+    public granularity: CompareOptions.GranularityEnum;
 
     /**
      * Gets or sets a value indicating whether documents comparison is case insensitive. By default comparison is case sensitive.
@@ -165,6 +175,11 @@ export class CompareOptions implements ModelInterface {
 // tslint:disable:quotemark
 // tslint:disable-next-line:no-namespace
 export namespace CompareOptions {
+    export enum GranularityEnum {
+        CharLevel = 'CharLevel' as any,
+        WordLevel = 'WordLevel' as any
+    }
+
     export enum TargetEnum {
         Current = 'Current' as any,
         New = 'New' as any

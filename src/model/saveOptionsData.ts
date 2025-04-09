@@ -77,6 +77,11 @@ export abstract class SaveOptionsData implements ModelInterface {
             type: "SaveOptionsData.ImlRenderingModeEnum",
         },
         {
+            name: "updateAmbiguousTextFont",
+            baseName: "UpdateAmbiguousTextFont",
+            type: "boolean",
+        },
+        {
             name: "updateCreatedTimeProperty",
             baseName: "UpdateCreatedTimeProperty",
             type: "boolean",
@@ -161,6 +166,11 @@ export abstract class SaveOptionsData implements ModelInterface {
     public imlRenderingMode: SaveOptionsData.ImlRenderingModeEnum;
 
     /**
+     * Gets or sets a value indicating whether the font attributes will be changed according to the character code being used.
+     */
+    public updateAmbiguousTextFont: boolean;
+
+    /**
      * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
      * Default value is false.
      */
@@ -208,6 +218,7 @@ export abstract class SaveOptionsData implements ModelInterface {
         }
 
         this.customTimeZoneInfoData?.validate();
+
 
 
 

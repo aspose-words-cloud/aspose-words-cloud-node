@@ -633,6 +633,7 @@ export class WordsIncomingMessage<T> {
 const enumsMap = {
     "Border.BorderTypeEnum": importedBorder.Border.BorderTypeEnum,
     "Border.LineStyleEnum": importedBorder.Border.LineStyleEnum,
+    "CompareOptions.GranularityEnum": importedCompareOptions.CompareOptions.GranularityEnum,
     "CompareOptions.TargetEnum": importedCompareOptions.CompareOptions.TargetEnum,
     "Document.SourceFormatEnum": importedDocument.Document.SourceFormatEnum,
     "DocumentEntry.ImportFormatModeEnum": importedDocumentEntry.DocumentEntry.ImportFormatModeEnum,
@@ -702,6 +703,7 @@ const enumsMap = {
     "ParagraphFormatBase.StyleIdentifierEnum": importedParagraphFormatBase.ParagraphFormatBase.StyleIdentifierEnum,
     "PdfDigitalSignatureDetailsData.HashAlgorithmEnum": importedPdfDigitalSignatureDetailsData.PdfDigitalSignatureDetailsData.HashAlgorithmEnum,
     "PdfPermissions": importedPdfPermissions.PdfPermissions,
+    "PdfSaveOptionsData.AttachmentsEmbeddingModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.AttachmentsEmbeddingModeEnum,
     "PdfSaveOptionsData.ComplianceEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.ComplianceEnum,
     "PdfSaveOptionsData.CustomPropertiesExportEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.CustomPropertiesExportEnum,
     "PdfSaveOptionsData.FontEmbeddingModeEnum": importedPdfSaveOptionsData.PdfSaveOptionsData.FontEmbeddingModeEnum,

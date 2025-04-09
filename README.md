@@ -16,6 +16,13 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 25.4
+
+- Added 'AttachmentsEmbeddingMode' property for PdfSaveOptionsData class.
+- Added 'UpdateAmbiguousTextFont' property for SaveOptionsData class.
+- Added 'Granularity' property for CompareOptions class.
+
+
 ## Enhancements in Version 25.2
 
 - Added 'IdPrefix' property for HtmlFixedSaveOptionsData and SvgSaveOptionsData class.

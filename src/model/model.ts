@@ -57,6 +57,8 @@ import * as importedComment from './comment';
 import * as importedCommentBase from './commentBase';
 import * as importedCommentInsert from './commentInsert';
 import * as importedCommentLink from './commentLink';
+import * as importedCommentRangeEnd from './commentRangeEnd';
+import * as importedCommentRangeStart from './commentRangeStart';
 import * as importedCommentResponse from './commentResponse';
 import * as importedCommentsCollection from './commentsCollection';
 import * as importedCommentsResponse from './commentsResponse';
@@ -138,11 +140,14 @@ import * as importedFootnotesStatData from './footnotesStatData';
 import * as importedFootnoteUpdate from './footnoteUpdate';
 import * as importedFormField from './formField';
 import * as importedFormFieldCheckbox from './formFieldCheckbox';
+import * as importedFormFieldCheckboxLink from './formFieldCheckboxLink';
 import * as importedFormFieldCollection from './formFieldCollection';
 import * as importedFormFieldDropDown from './formFieldDropDown';
+import * as importedFormFieldDropDownLink from './formFieldDropDownLink';
 import * as importedFormFieldResponse from './formFieldResponse';
 import * as importedFormFieldsResponse from './formFieldsResponse';
 import * as importedFormFieldTextInput from './formFieldTextInput';
+import * as importedFormFieldTextInputLink from './formFieldTextInputLink';
 import * as importedGifSaveOptionsData from './gifSaveOptionsData';
 import * as importedHeaderFooter from './headerFooter';
 import * as importedHeaderFooterLink from './headerFooterLink';
@@ -348,6 +353,8 @@ export * from './comment';
 export * from './commentBase';
 export * from './commentInsert';
 export * from './commentLink';
+export * from './commentRangeEnd';
+export * from './commentRangeStart';
 export * from './commentResponse';
 export * from './commentsCollection';
 export * from './commentsResponse';
@@ -429,11 +436,14 @@ export * from './footnotesStatData';
 export * from './footnoteUpdate';
 export * from './formField';
 export * from './formFieldCheckbox';
+export * from './formFieldCheckboxLink';
 export * from './formFieldCollection';
 export * from './formFieldDropDown';
+export * from './formFieldDropDownLink';
 export * from './formFieldResponse';
 export * from './formFieldsResponse';
 export * from './formFieldTextInput';
+export * from './formFieldTextInputLink';
 export * from './gifSaveOptionsData';
 export * from './headerFooter';
 export * from './headerFooterLink';
@@ -774,6 +784,8 @@ const typeMap = {
     Comment: importedComment.Comment,
     CommentInsert: importedCommentInsert.CommentInsert,
     CommentLink: importedCommentLink.CommentLink,
+    CommentRangeEnd: importedCommentRangeEnd.CommentRangeEnd,
+    CommentRangeStart: importedCommentRangeStart.CommentRangeStart,
     CommentResponse: importedCommentResponse.CommentResponse,
     CommentsCollection: importedCommentsCollection.CommentsCollection,
     CommentsResponse: importedCommentsResponse.CommentsResponse,
@@ -850,11 +862,14 @@ const typeMap = {
     FootnotesStatData: importedFootnotesStatData.FootnotesStatData,
     FootnoteUpdate: importedFootnoteUpdate.FootnoteUpdate,
     FormFieldCheckbox: importedFormFieldCheckbox.FormFieldCheckbox,
+    FormFieldCheckboxLink: importedFormFieldCheckboxLink.FormFieldCheckboxLink,
     FormFieldCollection: importedFormFieldCollection.FormFieldCollection,
     FormFieldDropDown: importedFormFieldDropDown.FormFieldDropDown,
+    FormFieldDropDownLink: importedFormFieldDropDownLink.FormFieldDropDownLink,
     FormFieldResponse: importedFormFieldResponse.FormFieldResponse,
     FormFieldsResponse: importedFormFieldsResponse.FormFieldsResponse,
     FormFieldTextInput: importedFormFieldTextInput.FormFieldTextInput,
+    FormFieldTextInputLink: importedFormFieldTextInputLink.FormFieldTextInputLink,
     GifSaveOptionsData: importedGifSaveOptionsData.GifSaveOptionsData,
     HeaderFooter: importedHeaderFooter.HeaderFooter,
     HeaderFooterLink: importedHeaderFooterLink.HeaderFooterLink,

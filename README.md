@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 25.6
+
+- Added support for SVG images format in Watermark API.
+
+
 ## Enhancements in Version 25.5
 
 - Added data models support for classes 'CommentRangeStart', 'CommentRangeEnd'.

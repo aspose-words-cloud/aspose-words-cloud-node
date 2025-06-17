@@ -207,6 +207,11 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
             type: "boolean",
         },
         {
+            name: "removeJavaScriptFromLinks",
+            baseName: "RemoveJavaScriptFromLinks",
+            type: "boolean",
+        },
+        {
             name: "replaceBackslashWithYenSign",
             baseName: "ReplaceBackslashWithYenSign",
             type: "boolean",
@@ -423,6 +428,14 @@ export class HtmlSaveOptionsData extends SaveOptionsData {
      * Gets or sets a value indicating whether to use pretty formats output.
      */
     public prettyFormat: boolean;
+
+    /**
+     * Gets or sets the flag that indicates whether JavaScript will be removed from links.
+     * Default is false.
+     * If this option is enabled, all links containing JavaScript (e.g., links with "javascript:" in the href attribute)
+     * will be replaced with "javascript:void(0)". This can help prevent potential security risks, such as XSS attacks.
+     */
+    public removeJavaScriptFromLinks: boolean;
 
     /**
      * Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs.

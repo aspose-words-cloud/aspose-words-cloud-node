@@ -4,7 +4,7 @@
         "noImplicitAny": false,
         "noUnusedLocals": false,
         "noUnusedParameters": true,
-        "suppressImplicitAnyIndexErrors": true,
+        //"suppressImplicitAnyIndexErrors": true,
         "allowSyntheticDefaultImports": true,
         "target": "ES6",        
         "moduleResolution": "node",
@@ -13,7 +13,9 @@
         "noLib": false,
         "declaration": true,
         "lib": ["es5", "es6", "scripthost", "dom"],
-        "outDir": "dist"
+        "outDir": "dist",
+        "types": [],
+        "skipLibCheck": true
     },
     "include": [
         "src/**/*",

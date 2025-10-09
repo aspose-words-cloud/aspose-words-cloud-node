@@ -4670,6 +4670,24 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Downloads a document from the Web using URL and saves it to cloud storage in the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async loadWebDocumentOnline(requestObj: model.LoadWebDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.LoadWebDocumentOnlineResponse > > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling loadWebDocumentOnline.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const result = new model.WordsIncomingMessage< model.LoadWebDocumentOnlineResponse >();
+        result.response = response;
+        result.body = requestObj.createResponse(response.body, response.headers);
+        return Promise.resolve(result);
+    }
+
+    /**
      * Merge the section with the next one.
      * @param requestObj contains request parameters
      */

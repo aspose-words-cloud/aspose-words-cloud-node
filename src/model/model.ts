@@ -36610,6 +36610,102 @@ export class LoadWebDocumentRequest implements RequestInterface {
 }
 
 /**
+ * Request model for LoadWebDocumentOnline operation.
+ * Downloads a document from the Web using URL and saves it to cloud storage in the specified format.
+ */
+export class LoadWebDocumentOnlineRequest implements RequestInterface {
+
+    public constructor(init?: Partial< LoadWebDocumentOnlineRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The properties of data downloading.
+     */
+    public data: importedLoadWebDocumentData.LoadWebDocumentData;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        const localVarPath = configuration.getApiBaseUrl() + "/words/online/put/loadWebDocument"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.data' is not undefined
+        if (this.data === undefined) {
+            throw new Error('Required parameter "this.data" was undefined when calling loadWebDocumentOnline.');
+        }
+
+        // verify required parameter 'this.data' is not null
+        if (this.data === null) {
+            throw new Error('Required parameter "this.data" was null when calling loadWebDocumentOnline.');
+        }
+        this.data?.validate();
+
+        if (this.data !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.data, this.data.constructor.name === "Object" ? "importedLoadWebDocumentData.LoadWebDocumentData" : this.data.constructor.name);
+            formParams.push(['Data', JSON.stringify(_obj), 'application/json']);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        const result = new LoadWebDocumentOnlineResponse();
+        const boundary = getBoundary(_headers);
+        const parts = parseMultipart(_response, boundary);
+        result.model = ObjectSerializer.deserialize(JSON.parse(findMultipartElement(parts, "Model").body.toString()), "SaveResponse");
+
+
+        const partDocument = findMultipartElement(parts, "Document");
+        result.document = parseFilesCollection(partDocument.body, partDocument.headers);
+
+        return result;
+	}
+}
+
+/**
  * Request model for MergeWithNext operation.
  * Merge the section with the next one.
  */
@@ -51307,6 +51403,22 @@ export class InsertWatermarkTextOnlineResponse {
      * The REST response with a document description.
      */
     public model: importedDocumentResponse.DocumentResponse;
+
+    /**
+     * The document after modification.
+     */
+    public document: Map<string, Buffer>;
+}
+
+/**
+ * Response model for LoadWebDocumentOnline operation.
+ * Downloads a document from the Web using URL and saves it to cloud storage in the specified format.
+ */
+export class LoadWebDocumentOnlineResponse {
+    /**
+     * The REST response with a save result.
+     */
+    public model: importedSaveResponse.SaveResponse;
 
     /**
      * The document after modification.

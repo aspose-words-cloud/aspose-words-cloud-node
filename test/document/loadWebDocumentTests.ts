@@ -65,4 +65,32 @@ describe("loadWebDocument", () => {
 
        });
     });
+
+    // Test for loading web document online.
+    describe("loadWebDocumentOnline test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDataSaveOptions = new model.DocSaveOptionsData({
+                fileName: "google.doc",
+                dmlEffectsRenderingMode: model.DocSaveOptionsData.DmlEffectsRenderingModeEnum.None,
+                dmlRenderingMode: model.DocSaveOptionsData.DmlRenderingModeEnum.DrawingML,
+                zipOutput: false
+            })
+            const requestData = new model.LoadWebDocumentData({
+                loadingDocumentUrl: "http://google.com",
+                saveOptions: requestDataSaveOptions
+            })
+            const request = new model.LoadWebDocumentOnlineRequest({
+                data: requestData
+            });
+
+            // Act
+            return wordsApi.loadWebDocumentOnline(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
 });

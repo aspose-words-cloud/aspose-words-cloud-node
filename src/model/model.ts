@@ -755,6 +755,7 @@ const enumsMap = {
     "TableRowFormat.HeightRuleEnum": importedTableRowFormat.TableRowFormat.HeightRuleEnum,
     "TabStopBase.AlignmentEnum": importedTabStopBase.TabStopBase.AlignmentEnum,
     "TabStopBase.LeaderEnum": importedTabStopBase.TabStopBase.LeaderEnum,
+    "TextSaveOptionsData.OfficeMathExportModeEnum": importedTextSaveOptionsData.TextSaveOptionsData.OfficeMathExportModeEnum,
     "TiffSaveOptionsData.TiffBinarizationMethodEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffBinarizationMethodEnum,
     "TiffSaveOptionsData.TiffCompressionEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffCompressionEnum,
     "TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum": importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum,

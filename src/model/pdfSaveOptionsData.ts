@@ -198,6 +198,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             name: "zoomFactor",
             baseName: "ZoomFactor",
             type: "number",
+        },
+        {
+            name: "exportFloatingShapesAsInlineTag",
+            baseName: "ExportFloatingShapesAsInlineTag",
+            type: "boolean",
         }
     ];
 
@@ -385,6 +390,14 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public zoomFactor: number;
 
+    /**
+     * Gets or sets a value determining whether floating shapes are exported as inline tags in the document structure.
+     * Default value is false and floating shapes will be exported as block-level tags,
+     * placed after the paragraph in which they are anchored. When the value is true floating shapes will be exported as inline tags,
+     * placed within the paragraph where they are anchored. This value is ignored when ExportDocumentStructure is false.
+     */
+    public exportFloatingShapesAsInlineTag: boolean;
+
     public constructor(init?: Partial< PdfSaveOptionsData >) {
         super(init);
         this.saveFormat = 'pdf';
@@ -422,6 +435,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
 
         this.outlineOptions?.validate();
+
 
 
 

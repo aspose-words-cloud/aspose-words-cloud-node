@@ -126,7 +126,7 @@ export abstract class FormField extends NodeLink {
 
     /**
      * Gets or sets a value indicating whether the source of the text that's displayed in a message box when a form field has the focus and the user presses F1.
-     * If True, the text specified by the HelpText property is displayed. If False, the text in the AutoText entry specified by the HelpText property is displayed.
+     * If true, the text specified by the HelpText property is displayed. If False, the text in the AutoText entry specified by the HelpText property is displayed.
      */
     public ownHelp: boolean;
 

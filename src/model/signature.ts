@@ -90,7 +90,7 @@ export class Signature implements ModelInterface {
     public comments: string;
 
     /**
-     * Gets or sets the subject distinguished name of the certificate isuuer.
+     * Gets or sets the subject distinguished name of the certificate issuer.
      */
     public issuerName: string;
 

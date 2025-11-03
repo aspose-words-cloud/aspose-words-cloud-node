@@ -77,7 +77,7 @@ export class XamlFlowSaveOptionsData extends SaveOptionsData {
 
     /**
      * Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs.
-     * Default value is false.
+     * The default value is false.
      * By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in
      * generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain
      * scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.

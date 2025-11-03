@@ -79,32 +79,32 @@ export class SignOptions implements ModelInterface {
     }
 
     /**
-     * Gets or sets comments on the digital signature. Default value is empty string.
+     * Gets or sets comments on the digital signature. The default value is an empty string.
      */
     public comments: string;
 
     /**
-     * Gets or sets the password to decrypt source document. Default value is empty string.
+     * Gets or sets the password to decrypt source document. The default value is an empty string.
      */
     public decryptionPassword: string;
 
     /**
-     * Gets or sets the class Guid of the signature cryptography provider. Default value is Empty (all zeroes) Guid.
+     * Gets or sets the class Guid of the signature cryptography provider. The default value is Empty (all zeroes) Guid.
      */
     public providerId: string;
 
     /**
-     * Gets or sets user defined signature line Guid. Default value is Empty (all zeroes) Guid.
+     * Gets or sets user defined signature line Guid. The default value is Empty (all zeroes) Guid.
      */
     public signatureLineId: string;
 
     /**
-     * Gets or sets the image that will be shown in associated SignatureLine. Default value is empty string.
+     * Gets or sets the image that will be shown in associated SignatureLine. The default value is an empty string.
      */
     public signatureLineImageFilename: string;
 
     /**
-     * Gets or sets the date of signing. Default value is current time (Now).
+     * Gets or sets the date of signing. The default value is current time (Now).
      */
     public signTime: Date;
 

@@ -116,7 +116,7 @@ export class ListLevel extends LinkElement {
 
     /**
      * Gets or sets the starting number for this list level.
-     * Default value is 1.
+     * The default value is 1.
      */
     public startAt: number;
 

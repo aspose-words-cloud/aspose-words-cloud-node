@@ -172,7 +172,7 @@ export abstract class SaveOptionsData implements ModelInterface {
 
     /**
      * Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving.
-     * Default value is false.
+     * The default value is false.
      */
     public updateCreatedTimeProperty: boolean;
 

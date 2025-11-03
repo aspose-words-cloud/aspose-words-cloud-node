@@ -164,7 +164,7 @@ export class Style extends LinkElement {
 
     /**
      * Gets or sets the name of the style.
-     * Can not be empty string. If there already is a style with such name in the collection, then this style will override it. All affected nodes will reference new style.
+     * Cannot be an empty string. If there already is a style with such name in the collection, then this style will override it. All affected nodes will reference new style.
      */
     public name: string;
 

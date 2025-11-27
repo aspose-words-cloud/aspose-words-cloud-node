@@ -68,7 +68,8 @@ describe("folder", () => {
             ).then((result0) => {
                 expect(result0.response.statusMessage).to.equal("OK");
                 const request = new model.DeleteFolderRequest({
-                    path: testDeleteFolder
+                    path: testDeleteFolder,
+                    recursive: true
                 });
 
                 // Act

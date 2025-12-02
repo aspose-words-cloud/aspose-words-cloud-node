@@ -755,6 +755,7 @@ const enumsMap = {
     "TableRowFormat.HeightRuleEnum": importedTableRowFormat.TableRowFormat.HeightRuleEnum,
     "TabStopBase.AlignmentEnum": importedTabStopBase.TabStopBase.AlignmentEnum,
     "TabStopBase.LeaderEnum": importedTabStopBase.TabStopBase.LeaderEnum,
+    "TextSaveOptionsData.OfficeMathExportModeEnum": importedTextSaveOptionsData.TextSaveOptionsData.OfficeMathExportModeEnum,
     "TiffSaveOptionsData.TiffBinarizationMethodEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffBinarizationMethodEnum,
     "TiffSaveOptionsData.TiffCompressionEnum": importedTiffSaveOptionsData.TiffSaveOptionsData.TiffCompressionEnum,
     "TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum": importedTxtSaveOptionsBaseData.TxtSaveOptionsBaseData.ExportHeadersFootersModeEnum,
@@ -1069,7 +1070,7 @@ export {enumsMap, typeMap};
 
 /**
  * Request model for AcceptAllRevisions operation.
- * Accepts all revisions in the document.
+ * Accepts all the revisions in the document.
  */
 export class AcceptAllRevisionsRequest implements RequestInterface {
 
@@ -1193,7 +1194,7 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 
 /**
  * Request model for AcceptAllRevisionsOnline operation.
- * Accepts all revisions in the document.
+ * Accepts all the revisions in the document.
  */
 export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 
@@ -1984,12 +1985,12 @@ export class BuildReportRequest implements RequestInterface {
     public name: string;
 
     /**
-     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv.
+     * A string providing data to populate the specified template. The string must be of one of the following types: xml, json, csv.
      */
     public data: string;
 
     /**
-     * An object providing a settings of report engine.
+     * An object providing settings of a report engine.
      */
     public reportEngineSettings: importedReportEngineSettings.ReportEngineSettings;
 
@@ -2145,12 +2146,12 @@ export class BuildReportOnlineRequest implements RequestInterface {
     public template: Readable;
 
     /**
-     * A string providing a data to populate the specified template. The string must be of one of the following types: xml, json, csv.
+     * A string providing data to populate the specified template. The string must be of one of the following types: xml, json, csv.
      */
     public data: string;
 
     /**
-     * An object providing a settings of report engine.
+     * An object providing settings of a report engine.
      */
     public reportEngineSettings: importedReportEngineSettings.ReportEngineSettings;
 
@@ -24038,7 +24039,7 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 
 /**
  * Request model for GetPublicKey operation.
- * Get assymetric public key.
+ * Get asymmetric public key.
  */
 export class GetPublicKeyRequest implements RequestInterface {
 
@@ -42254,7 +42255,7 @@ export class SignDocumentRequest implements RequestInterface {
     public name: string;
 
     /**
-     * certifate file path.
+     * certificate file path.
      */
     public certificatePath: string;
 
@@ -42408,7 +42409,7 @@ export class SignDocumentOnlineRequest implements RequestInterface {
     public document: Readable;
 
     /**
-     * certifate file path.
+     * certificate file path.
      */
     public certificatePath: string;
 
@@ -50843,7 +50844,7 @@ export class UploadFileRequest implements RequestInterface {
 
 /**
  * Response model for AcceptAllRevisionsOnline operation.
- * Accepts all revisions in the document.
+ * Accepts all the revisions in the document.
  */
 export class AcceptAllRevisionsOnlineResponse {
     /**

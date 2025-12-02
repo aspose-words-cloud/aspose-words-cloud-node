@@ -68,7 +68,7 @@ export class CustomXmlPart extends CustomXmlPartLink {
 
     /**
      * Gets or sets the custom xml part data.
-     * Cannot be null.Default is empty string.
+     * Cannot be null.Default is an empty string.
      */
     public data: string;
 

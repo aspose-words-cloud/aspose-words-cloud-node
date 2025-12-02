@@ -127,7 +127,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
      * Gets or sets the prefix which is added to all class names in style.css file.
-     * Default value is "aw".
+     * The default value is "aw".
      */
     public cssClassNamesPrefix: string;
 
@@ -163,7 +163,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
      * Gets or sets a prefix that is prepended to all generated element IDs in the output document.
-     * Default value is null and no prefix is prepended.
+     * The default value is null and no prefix is prepended.
      * If the prefix is specified, it can contain only letters, digits, underscores, and hyphens,
      * and must start with a letter.
      */
@@ -178,7 +178,7 @@ export class HtmlFixedSaveOptionsData extends FixedPageSaveOptionsData {
     /**
      * Gets or sets the margin around pages in HTML document.
      * The margins value is measured in points and should be equal to or greater than 0.
-     * Default value is 10 points.
+     * The default value is 10 points.
      * Depends on the value of PageHorizontalAlignment property:
      * Defines top, bottom and left page margins if the value is Left.
      * Defines top, bottom and right page margins if the value is Right.

@@ -198,6 +198,11 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
             name: "zoomFactor",
             baseName: "ZoomFactor",
             type: "number",
+        },
+        {
+            name: "exportFloatingShapesAsInlineTag",
+            baseName: "ExportFloatingShapesAsInlineTag",
+            type: "boolean",
         }
     ];
 
@@ -210,7 +215,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
      * Gets or sets a value determining how attachments are embedded to the PDF document.
-     * Default value is None and attachments are not embedded.
+     * The default value is None and attachments are not embedded.
      * PDF/A-1, PDF/A-2 and regular PDF/A-4 (not PDF/A-4f) standards do not allow embedded files.
      * None value will be used automatically.
      */
@@ -218,7 +223,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
      * Gets or sets a value determining whether or not to cache graphics placed in document's background.
-     * Default value is true and background graphics are written to the PDF document as an xObject. When the value is false background graphics are not cached. Some shapes are not supported for caching(shapes with fields, bookmarks, HRefs). Document background graphic is various shapes, charts, images placed in the footer or header,
+     * The default value is true and background graphics are written to the PDF document as an xObject. When the value is false background graphics are not cached. Some shapes are not supported for caching(shapes with fields, bookmarks, HRefs). Document background graphic is various shapes, charts, images placed in the footer or header,
      * well as background and border of a page.
      */
     public cacheBackgroundGraphics: boolean;
@@ -260,7 +265,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
      * Gets or sets a value determining whether or not to embed attachments to the PDF document.
-     * Default value is false and attachments are not embedded.
+     * The default value is false and attachments are not embedded.
      * When the value is true attachments are embedded to the PDF document.
      * Embedding attachments is not supported when saving to PDF/A and PDF/UA compliance.
      * false value will be used automatically.
@@ -285,7 +290,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
     /**
      * Gets or sets a value determining whether or not to create a "Span" tag in the document structure to export the text language.
-     * Default value is false and "Lang" attribute is attached to a marked-content sequence in a page content stream.
+     * The default value is false and "Lang" attribute is attached to a marked-content sequence in a page content stream.
      * When the value is true "Span" tag is created for the text with non-default language and "Lang" attribute is attached to this tag.
      * This value is ignored when Aspose.Words.Saving.PdfSaveOptions.ExportDocumentStructure is false.
      */
@@ -385,6 +390,14 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
      */
     public zoomFactor: number;
 
+    /**
+     * Gets or sets a value determining whether floating shapes are exported as inline tags in the document structure.
+     * The default value is false and floating shapes will be exported as block-level tags,
+     * placed after the paragraph in which they are anchored. When the value is true floating shapes will be exported as inline tags,
+     * placed within the paragraph where they are anchored. This value is ignored when ExportDocumentStructure is false.
+     */
+    public exportFloatingShapesAsInlineTag: boolean;
+
     public constructor(init?: Partial< PdfSaveOptionsData >) {
         super(init);
         this.saveFormat = 'pdf';
@@ -422,6 +435,7 @@ export class PdfSaveOptionsData extends FixedPageSaveOptionsData {
 
 
         this.outlineOptions?.validate();
+
 
 
 

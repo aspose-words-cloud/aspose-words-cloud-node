@@ -116,7 +116,7 @@ export class FieldOptions implements ModelInterface {
     }
 
     /**
-     * Gets or sets Curren tUser.
+     * Gets or sets Current User.
      */
     public currentUser: UserInformation;
 

@@ -106,7 +106,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Accepts all revisions in the document.
+     * Accepts all the revisions in the document.
      * @param requestObj contains request parameters
      */
     public async acceptAllRevisions(requestObj: model.AcceptAllRevisionsRequest): Promise< model.WordsIncomingMessage< model.RevisionsModificationResponse > > {
@@ -124,7 +124,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Accepts all revisions in the document.
+     * Accepts all the revisions in the document.
      * @param requestObj contains request parameters
      */
     public async acceptAllRevisionsOnline(requestObj: model.AcceptAllRevisionsOnlineRequest): Promise< model.WordsIncomingMessage< model.AcceptAllRevisionsOnlineResponse > > {
@@ -3106,7 +3106,7 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Get assymetric public key.
+     * Get asymmetric public key.
      * @param requestObj contains request parameters
      */
     public async getPublicKey(requestObj: model.GetPublicKeyRequest): Promise< model.WordsIncomingMessage< model.PublicKeyResponse > > {

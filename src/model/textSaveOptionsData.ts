@@ -52,6 +52,11 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
             type: "number",
         },
         {
+            name: "officeMathExportMode",
+            baseName: "OfficeMathExportMode",
+            type: "TextSaveOptionsData.OfficeMathExportModeEnum",
+        },
+        {
             name: "preserveTableLayout",
             baseName: "PreserveTableLayout",
             type: "boolean",
@@ -83,6 +88,12 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
     public maxCharactersPerLine: number;
 
     /**
+     * Gets or sets a value that specifies how OfficeMath will be written to the output file.
+     * The default value is Text.
+     */
+    public officeMathExportMode: TextSaveOptionsData.OfficeMathExportModeEnum;
+
+    /**
      * Gets or sets a value indicating whether the program should attempt to preserve layout of tables when saving in the plain text format.
      */
     public preserveTableLayout: boolean;
@@ -110,4 +121,17 @@ export class TextSaveOptionsData extends TxtSaveOptionsBaseData {
         }
     }
 }
+
+/**
+ * Enums for TextSaveOptionsData
+ */
+// tslint:disable:quotemark
+// tslint:disable-next-line:no-namespace
+export namespace TextSaveOptionsData {
+    export enum OfficeMathExportModeEnum {
+        Text = 'Text' as any,
+        Latex = 'Latex' as any
+    }
+}
+// tslint:enable:quotemark
 

@@ -101,13 +101,13 @@ export class Comment extends CommentLink {
 
     /**
      * Gets or sets the author name for a comment.
-     * Cannot be null.Default is empty string.
+     * Cannot be null.Default is an empty string.
      */
     public author: string;
 
     /**
      * Gets or sets the initials of the user associated with a specific comment.
-     * Cannot be null.Default is empty string.
+     * Cannot be null.Default is an empty string.
      */
     public initial: string;
 

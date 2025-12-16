@@ -59,6 +59,11 @@ export class Document implements ModelInterface {
             type: "string",
         },
         {
+            name: "fileSize",
+            baseName: "FileSize",
+            type: "number",
+        },
+        {
             name: "isEncrypted",
             baseName: "IsEncrypted",
             type: "boolean",
@@ -96,6 +101,11 @@ export class Document implements ModelInterface {
      * Gets or sets the name of the file.
      */
     public fileName: string;
+
+    /**
+     * Gets or sets the file size.
+     */
+    public fileSize: number;
 
     /**
      * Gets or sets a value indicating whether the document is encrypted and requires a password to open.
@@ -144,6 +154,7 @@ export class Document implements ModelInterface {
 
 
         this.documentProperties?.validate();
+
 
 
 

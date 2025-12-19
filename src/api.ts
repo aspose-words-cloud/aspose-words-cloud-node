@@ -250,60 +250,6 @@ export class WordsApi implements Encryptor {
     }
 
     /**
-     * Runs a multi-class text classification for the specified raw text.
-     * @param requestObj contains request parameters
-     */
-    public async classify(requestObj: model.ClassifyRequest): Promise< model.WordsIncomingMessage< model.ClassificationResponse > > {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "request" was null or undefined when calling classify.');
-        }
-
-        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
-        result.response = response;
-        result.body = requestObj.createResponse(response.body, response.headers);
-        return Promise.resolve(result);
-    }
-
-    /**
-     * Runs a multi-class text classification for the document.
-     * @param requestObj contains request parameters
-     */
-    public async classifyDocument(requestObj: model.ClassifyDocumentRequest): Promise< model.WordsIncomingMessage< model.ClassificationResponse > > {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "request" was null or undefined when calling classifyDocument.');
-        }
-
-        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
-        result.response = response;
-        result.body = requestObj.createResponse(response.body, response.headers);
-        return Promise.resolve(result);
-    }
-
-    /**
-     * Runs a multi-class text classification for the document.
-     * @param requestObj contains request parameters
-     */
-    public async classifyDocumentOnline(requestObj: model.ClassifyDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.ClassificationResponse > > {
-        if (requestObj === null || requestObj === undefined) {
-            throw new Error('Required parameter "request" was null or undefined when calling classifyDocumentOnline.');
-        }
-
-        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
-
-        const response = await invokeApiMethod(requestOptions, this.configuration);
-        const result = new model.WordsIncomingMessage< model.ClassificationResponse >();    
-        result.response = response;
-        result.body = requestObj.createResponse(response.body, response.headers);
-        return Promise.resolve(result);
-    }
-
-    /**
      * Compares two documents.
      * @param requestObj contains request parameters
      */

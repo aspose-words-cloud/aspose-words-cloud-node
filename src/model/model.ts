@@ -2306,6 +2306,11 @@ export class CompareDocumentRequest implements RequestInterface {
      */
     public destFileName: string;
 
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -2346,6 +2351,7 @@ export class CompareDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
             formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
@@ -2441,6 +2447,11 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
      */
     public destFileName: string;
 
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
 	/**
 	 * create the requst options for this request
 	 * @param configuration a configuration for the request
@@ -2478,6 +2489,7 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
             formParams.push(['Document', this.document, 'application/octet-stream']);
         }

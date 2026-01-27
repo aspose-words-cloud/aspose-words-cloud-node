@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="requestHelper.ts">
- *   Copyright (c) 2025 Aspose.Words for Cloud
+ *   Copyright (c) 2026 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -131,7 +131,7 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
     requestOptions.timeout = 1000 * confguration.timeout;
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "25.12";
+    requestOptions.headers["x-aspose-client-version"] = "26.1";
     requestOptions.encoding = null;
 
 	requestOptions.uri = encodeURI(requestOptions.uri.toString());

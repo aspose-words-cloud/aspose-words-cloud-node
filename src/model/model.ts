@@ -74,6 +74,7 @@ import * as importedCustomXmlPartsCollection from './customXmlPartsCollection';
 import * as importedCustomXmlPartsResponse from './customXmlPartsResponse';
 import * as importedCustomXmlPartUpdate from './customXmlPartUpdate';
 import * as importedDigitalSignatureDetails from './digitalSignatureDetails';
+import * as importedDoclingSaveOptionsData from './doclingSaveOptionsData';
 import * as importedDocmSaveOptionsData from './docmSaveOptionsData';
 import * as importedDocSaveOptionsData from './docSaveOptionsData';
 import * as importedDocument from './document';
@@ -368,6 +369,7 @@ export * from './customXmlPartsCollection';
 export * from './customXmlPartsResponse';
 export * from './customXmlPartUpdate';
 export * from './digitalSignatureDetails';
+export * from './doclingSaveOptionsData';
 export * from './docmSaveOptionsData';
 export * from './docSaveOptionsData';
 export * from './document';
@@ -798,6 +800,7 @@ const typeMap = {
     CustomXmlPartsResponse: importedCustomXmlPartsResponse.CustomXmlPartsResponse,
     CustomXmlPartUpdate: importedCustomXmlPartUpdate.CustomXmlPartUpdate,
     DigitalSignatureDetails: importedDigitalSignatureDetails.DigitalSignatureDetails,
+    DoclingSaveOptionsData: importedDoclingSaveOptionsData.DoclingSaveOptionsData,
     DocmSaveOptionsData: importedDocmSaveOptionsData.DocmSaveOptionsData,
     DocSaveOptionsData: importedDocSaveOptionsData.DocSaveOptionsData,
     Document: importedDocument.Document,

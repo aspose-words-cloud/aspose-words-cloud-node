@@ -16,6 +16,11 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 26.2
+
+- Implemented ability to save documents as Docling JSON format.
+
+
 ## Enhancements in Version 26.1
 
 - Add fontsLocation parameter for Compare API.

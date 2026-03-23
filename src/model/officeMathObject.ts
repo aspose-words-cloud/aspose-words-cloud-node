@@ -163,7 +163,8 @@ export namespace OfficeMathObject {
         PreSubSuperscript = 'PreSubSuperscript' as any,
         Subscript = 'Subscript' as any,
         SubSuperscript = 'SubSuperscript' as any,
-        Supercript = 'Supercript' as any
+        Superscript = 'Superscript' as any,
+        None = 'None' as any
     }
 }
 // tslint:enable:quotemark

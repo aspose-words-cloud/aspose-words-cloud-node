@@ -164,6 +164,7 @@ import * as importedImageEntryList from './imageEntryList';
 import * as importedImageSaveOptionsData from './imageSaveOptionsData';
 import * as importedInfoAdditionalItem from './infoAdditionalItem';
 import * as importedInfoResponse from './infoResponse';
+import * as importedJobInfo from './jobInfo';
 import * as importedJpegSaveOptionsData from './jpegSaveOptionsData';
 import * as importedJsonDataLoadOptions from './jsonDataLoadOptions';
 import * as importedLink from './link';
@@ -459,6 +460,7 @@ export * from './imageEntryList';
 export * from './imageSaveOptionsData';
 export * from './infoAdditionalItem';
 export * from './infoResponse';
+export * from './jobInfo';
 export * from './jpegSaveOptionsData';
 export * from './jsonDataLoadOptions';
 export * from './link';
@@ -678,6 +680,7 @@ const enumsMap = {
     "HtmlSaveOptionsData.TableWidthOutputModeEnum": importedHtmlSaveOptionsData.HtmlSaveOptionsData.TableWidthOutputModeEnum,
     "ImageSaveOptionsData.ImageColorModeEnum": importedImageSaveOptionsData.ImageSaveOptionsData.ImageColorModeEnum,
     "ImageSaveOptionsData.PixelFormatEnum": importedImageSaveOptionsData.ImageSaveOptionsData.PixelFormatEnum,
+    "JobInfo.StatusEnum": importedJobInfo.JobInfo.StatusEnum,
     "JsonDataLoadOptions.SimpleValueParseModeEnum": importedJsonDataLoadOptions.JsonDataLoadOptions.SimpleValueParseModeEnum,
     "ListInsert.TemplateEnum": importedListInsert.ListInsert.TemplateEnum,
     "ListLevel.NumberStyleEnum": importedListLevel.ListLevel.NumberStyleEnum,
@@ -884,6 +887,7 @@ const typeMap = {
     ImageEntryList: importedImageEntryList.ImageEntryList,
     InfoAdditionalItem: importedInfoAdditionalItem.InfoAdditionalItem,
     InfoResponse: importedInfoResponse.InfoResponse,
+    JobInfo: importedJobInfo.JobInfo,
     JpegSaveOptionsData: importedJpegSaveOptionsData.JpegSaveOptionsData,
     JsonDataLoadOptions: importedJsonDataLoadOptions.JsonDataLoadOptions,
     Link: importedLink.Link,
@@ -1054,6 +1058,11 @@ export interface RequestInterface {
 	 * create response from string
 	 */
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any;
+
+    /**
+     * create original request for job method
+     */
+    getOriginalRequest(): RequestInterface;
 }
 
 /**
@@ -1064,6 +1073,15 @@ export function createUid(): string {
 }
 
 export {enumsMap, typeMap};
+
+/**
+ * Deserialize object helper.
+ * @param data json string
+ * @param type target type
+ */
+export function deserializeObject(data: string, type: string): any {
+    return ObjectSerializer.deserialize(JSON.parse(data), type);
+}
 
 /**
  * Request model for AcceptAllRevisions operation.
@@ -1187,6 +1205,10 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RevisionsModificationResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -1310,6 +1332,10 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -1467,6 +1493,183 @@ export class AppendDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
+}
+
+/**
+ * Request model for AppendDocumentJob operation.
+ * Appends documents to the original document.
+ */
+export class AppendDocumentJobRequest implements RequestInterface {
+
+    public constructor(init?: Partial< AppendDocumentJobRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * <see cref="BaseEntryList"/> with a list of entries to append.
+     */
+    public documentList: importedBaseEntryList.BaseEntryList;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/job/put/{name}/appendDocument"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling appendDocumentJob.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling appendDocumentJob.');
+        }
+        // verify required parameter 'this.documentList' is not undefined
+        if (this.documentList === undefined) {
+            throw new Error('Required parameter "this.documentList" was undefined when calling appendDocumentJob.');
+        }
+
+        // verify required parameter 'this.documentList' is not null
+        if (this.documentList === null) {
+            throw new Error('Required parameter "this.documentList" was null when calling appendDocumentJob.');
+        }
+        this.documentList?.validate();
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.documentList !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name);
+            formParams.push(['DocumentList', JSON.stringify(_obj), 'application/json']);
+            this.documentList.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "JobInfo");
+	}
+
+    public getOriginalRequest(): RequestInterface {
+        return new AppendDocumentRequest({
+            name: this.name,
+            documentList: this.documentList,
+            folder: this.folder,
+            storage: this.storage,
+            loadEncoding: this.loadEncoding,
+            password: this.password,
+            encryptedPassword: this.encryptedPassword,
+            openTypeSupport: this.openTypeSupport,
+            destFileName: this.destFileName,
+            revisionAuthor: this.revisionAuthor,
+            revisionDateTime: this.revisionDateTime
+        });
+    }
 }
 
 /**
@@ -1623,6 +1826,171 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
+}
+
+/**
+ * Request model for AppendDocumentOnlineJob operation.
+ * Appends documents to the original document.
+ */
+export class AppendDocumentOnlineJobRequest implements RequestInterface {
+
+    public constructor(init?: Partial< AppendDocumentOnlineJobRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * Original document.
+     */
+    public document: Readable;
+
+    /**
+     * <see cref="BaseEntryList"/> with a list of entries to append.
+     */
+    public documentList: importedBaseEntryList.BaseEntryList;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * Initials of the author to use for revisions.If you set this parameter and then make some changes to the document programmatically, save the document and later open the document in MS Word you will see these changes as revisions.
+     */
+    public revisionAuthor: string;
+
+    /**
+     * The date and time to use for revisions.
+     */
+    public revisionDateTime: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/job/put/online/put/appendDocument"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling appendDocumentOnlineJob.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling appendDocumentOnlineJob.');
+        }
+        // verify required parameter 'this.documentList' is not undefined
+        if (this.documentList === undefined) {
+            throw new Error('Required parameter "this.documentList" was undefined when calling appendDocumentOnlineJob.');
+        }
+
+        // verify required parameter 'this.documentList' is not null
+        if (this.documentList === null) {
+            throw new Error('Required parameter "this.documentList" was null when calling appendDocumentOnlineJob.');
+        }
+        this.documentList?.validate();
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+        if (this.documentList !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name);
+            formParams.push(['DocumentList', JSON.stringify(_obj), 'application/json']);
+            this.documentList.collectFilesContent(filesContent);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "JobInfo");
+	}
+
+    public getOriginalRequest(): RequestInterface {
+        return new AppendDocumentOnlineRequest({
+            document: this.document,
+            documentList: this.documentList,
+            loadEncoding: this.loadEncoding,
+            password: this.password,
+            encryptedPassword: this.encryptedPassword,
+            openTypeSupport: this.openTypeSupport,
+            destFileName: this.destFileName,
+            revisionAuthor: this.revisionAuthor,
+            revisionDateTime: this.revisionDateTime
+        });
+    }
 }
 
 /**
@@ -1794,6 +2162,10 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "WordsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -1964,6 +2336,10 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -2125,6 +2501,10 @@ export class BuildReportRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -2252,6 +2632,10 @@ export class BuildReportOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -2403,6 +2787,10 @@ export class CompareDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -2553,6 +2941,10 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -2698,6 +3090,10 @@ export class CompressDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CompressResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -2842,6 +3238,10 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -2989,6 +3389,172 @@ export class ConvertDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
+}
+
+/**
+ * Request model for ConvertDocumentJob operation.
+ * Converts a document on a local drive to the specified format.
+ */
+export class ConvertDocumentJobRequest implements RequestInterface {
+
+    public constructor(init?: Partial< ConvertDocumentJobRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * Converting document.
+     */
+    public document: Readable;
+
+    /**
+     * The format to convert.
+     */
+    public format: string;
+
+    /**
+     * The path to the output document on a local storage.
+     */
+    public outPath: string;
+
+    /**
+     * The filename of the output document, that will be used when the resulting document has a dynamic field {filename}. If it is not set, the "sourceFilename" will be used instead.
+     */
+    public fileNameFieldValue: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/job/put/convert"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling convertDocumentJob.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling convertDocumentJob.');
+        }
+        // verify required parameter 'this.format' is not undefined
+        if (this.format === undefined) {
+            throw new Error('Required parameter "this.format" was undefined when calling convertDocumentJob.');
+        }
+
+        // verify required parameter 'this.format' is not null
+        if (this.format === null) {
+            throw new Error('Required parameter "this.format" was null when calling convertDocumentJob.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "outPath", this.outPath, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fileNameFieldValue", this.fileNameFieldValue, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "JobInfo");
+	}
+
+    public getOriginalRequest(): RequestInterface {
+        return new ConvertDocumentRequest({
+            document: this.document,
+            format: this.format,
+            outPath: this.outPath,
+            fileNameFieldValue: this.fileNameFieldValue,
+            storage: this.storage,
+            loadEncoding: this.loadEncoding,
+            password: this.password,
+            encryptedPassword: this.encryptedPassword,
+            openTypeSupport: this.openTypeSupport,
+            fontsLocation: this.fontsLocation
+        });
+    }
 }
 
 /**
@@ -3104,6 +3670,10 @@ export class CopyFileRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -3213,6 +3783,10 @@ export class CopyFolderRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -3369,6 +3943,10 @@ export class CopyStyleRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -3524,6 +4102,10 @@ export class CopyStyleOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -3675,6 +4257,10 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "WordsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -3770,6 +4356,10 @@ export class CreateDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -3858,6 +4448,10 @@ export class CreateFolderRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -4029,6 +4623,10 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertyResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -4199,6 +4797,10 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -4344,6 +4946,10 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -4488,6 +5094,10 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -4639,6 +5249,10 @@ export class DeleteBookmarkRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -4780,6 +5394,10 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -4916,6 +5534,10 @@ export class DeleteBookmarksRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -5042,6 +5664,10 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -5200,6 +5826,10 @@ export class DeleteBorderRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BorderResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -5357,6 +5987,10 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -5500,6 +6134,10 @@ export class DeleteBordersRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BordersResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -5642,6 +6280,10 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -5793,6 +6435,10 @@ export class DeleteCommentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -5934,6 +6580,10 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -6070,6 +6720,10 @@ export class DeleteCommentsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -6196,6 +6850,10 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -6347,6 +7005,10 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -6488,6 +7150,10 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -6624,6 +7290,10 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -6750,6 +7420,10 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -6901,6 +7575,10 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -7042,6 +7720,10 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -7199,6 +7881,10 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -7346,6 +8032,10 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -7503,6 +8193,10 @@ export class DeleteFieldRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -7650,6 +8344,10 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -7792,6 +8490,10 @@ export class DeleteFieldsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -7924,6 +8626,10 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -8018,6 +8724,10 @@ export class DeleteFileRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -8112,6 +8822,10 @@ export class DeleteFolderRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -8269,6 +8983,10 @@ export class DeleteFootnoteRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -8416,6 +9134,10 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -8573,6 +9295,10 @@ export class DeleteFormFieldRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -8720,6 +9446,10 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -8886,6 +9616,10 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -9042,6 +9776,10 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -9199,6 +9937,10 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -9346,6 +10088,10 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -9482,6 +10228,10 @@ export class DeleteMacrosRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -9608,6 +10358,10 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -9765,6 +10519,10 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -9912,6 +10670,10 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -10048,6 +10810,10 @@ export class DeleteOfficeMathObjectsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -10174,6 +10940,10 @@ export class DeleteOfficeMathObjectsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -10331,6 +11101,10 @@ export class DeleteParagraphRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -10488,6 +11262,10 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphListFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -10644,6 +11422,10 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -10791,6 +11573,10 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -10951,6 +11737,10 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -11110,6 +11900,10 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -11276,6 +12070,10 @@ export class DeleteRunRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -11432,6 +12230,10 @@ export class DeleteRunOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -11583,6 +12385,10 @@ export class DeleteSectionRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -11724,6 +12530,10 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -11881,6 +12691,10 @@ export class DeleteStructuredDocumentTagRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -12028,6 +12842,10 @@ export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterfac
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -12185,6 +13003,10 @@ export class DeleteTableRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -12351,6 +13173,10 @@ export class DeleteTableCellRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -12507,6 +13333,10 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -12654,6 +13484,10 @@ export class DeleteTableOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -12820,6 +13654,10 @@ export class DeleteTableRowRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -12976,6 +13814,10 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -13112,6 +13954,10 @@ export class DeleteWatermarkRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -13247,6 +14093,10 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -13341,6 +14191,10 @@ export class DownloadFileRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -13514,6 +14368,203 @@ export class ExecuteMailMergeRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
+}
+
+/**
+ * Request model for ExecuteMailMergeJob operation.
+ * Executes a Mail Merge operation.
+ */
+export class ExecuteMailMergeJobRequest implements RequestInterface {
+
+    public constructor(init?: Partial< ExecuteMailMergeJobRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * Mail merge data.
+     */
+    public data: string;
+
+    /**
+     * Field options.
+     */
+    public options: importedFieldOptions.FieldOptions;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
+     * The flag indicating whether to execute Mail Merge operation with regions.
+     */
+    public withRegions: boolean;
+
+    /**
+     * The data file.
+     */
+    public mailMergeDataFile: string;
+
+    /**
+     * The cleanup options.
+     */
+    public cleanup: string;
+
+    /**
+     * The flag indicating whether paragraph with TableStart or TableEnd field should be fully included into mail merge region or particular range between TableStart and TableEnd fields. The default value is true.
+     */
+    public useWholeParagraphAsRegion: boolean;
+
+    /**
+     * The flag indicating whether fields in whole document are updated while executing of a mail merge with regions.
+     */
+    public mergeWholeDocument: boolean;
+
+    /**
+     * The filename of the output document. If this parameter is omitted, the result will be saved with autogenerated name.
+     */
+    public destFileName: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/job/put/{name}/MailMerge"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling executeMailMergeJob.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling executeMailMergeJob.');
+        }
+        this.options?.validate();
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mailMergeDataFile", this.mailMergeDataFile, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useWholeParagraphAsRegion", this.useWholeParagraphAsRegion, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mergeWholeDocument", this.mergeWholeDocument, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        if (this.data !== undefined) {
+            formParams.push(['Data', this.data, 'text/plain']);
+        }
+        if (this.options !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
+            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "JobInfo");
+	}
+
+    public getOriginalRequest(): RequestInterface {
+        return new ExecuteMailMergeRequest({
+            name: this.name,
+            data: this.data,
+            options: this.options,
+            folder: this.folder,
+            storage: this.storage,
+            loadEncoding: this.loadEncoding,
+            password: this.password,
+            encryptedPassword: this.encryptedPassword,
+            openTypeSupport: this.openTypeSupport,
+            withRegions: this.withRegions,
+            mailMergeDataFile: this.mailMergeDataFile,
+            cleanup: this.cleanup,
+            useWholeParagraphAsRegion: this.useWholeParagraphAsRegion,
+            mergeWholeDocument: this.mergeWholeDocument,
+            destFileName: this.destFileName
+        });
+    }
 }
 
 /**
@@ -13650,6 +14701,158 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
+}
+
+/**
+ * Request model for ExecuteMailMergeOnlineJob operation.
+ * Executes a Mail Merge operation online.
+ */
+export class ExecuteMailMergeOnlineJobRequest implements RequestInterface {
+
+    public constructor(init?: Partial< ExecuteMailMergeOnlineJobRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * File with template.
+     */
+    public template: Readable;
+
+    /**
+     * File with mailmerge data.
+     */
+    public data: Readable;
+
+    /**
+     * Field options.
+     */
+    public options: importedFieldOptions.FieldOptions;
+
+    /**
+     * The flag indicating whether to execute Mail Merge operation with regions.
+     */
+    public withRegions: boolean;
+
+    /**
+     * The flag indicating whether fields in whole document are updated while executing of a mail merge with regions.
+     */
+    public mergeWholeDocument: boolean;
+
+    /**
+     * The cleanup options.
+     */
+    public cleanup: string;
+
+    /**
+     * The filename of the output document, that will be used when the resulting document has a dynamic field {filename}. If it is not set, the "template" will be used instead.
+     */
+    public documentFileName: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/job/put/MailMerge"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.template' is not undefined
+        if (this.template === undefined) {
+            throw new Error('Required parameter "this.template" was undefined when calling executeMailMergeOnlineJob.');
+        }
+
+        // verify required parameter 'this.template' is not null
+        if (this.template === null) {
+            throw new Error('Required parameter "this.template" was null when calling executeMailMergeOnlineJob.');
+        }
+        // verify required parameter 'this.data' is not undefined
+        if (this.data === undefined) {
+            throw new Error('Required parameter "this.data" was undefined when calling executeMailMergeOnlineJob.');
+        }
+
+        // verify required parameter 'this.data' is not null
+        if (this.data === null) {
+            throw new Error('Required parameter "this.data" was null when calling executeMailMergeOnlineJob.');
+        }
+        this.options?.validate();
+
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "withRegions", this.withRegions, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mergeWholeDocument", this.mergeWholeDocument, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
+        if (this.template !== undefined) {
+            formParams.push(['Template', this.template, 'application/octet-stream']);
+        }
+        if (this.data !== undefined) {
+            formParams.push(['Data', this.data, 'application/octet-stream']);
+        }
+        if (this.options !== undefined) {
+            let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
+            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "JobInfo");
+	}
+
+    public getOriginalRequest(): RequestInterface {
+        return new ExecuteMailMergeOnlineRequest({
+            template: this.template,
+            data: this.data,
+            options: this.options,
+            withRegions: this.withRegions,
+            mergeWholeDocument: this.mergeWholeDocument,
+            cleanup: this.cleanup,
+            documentFileName: this.documentFileName
+        });
+    }
 }
 
 /**
@@ -13768,6 +14971,10 @@ export class GetAllRevisionsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RevisionsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -13876,6 +15083,10 @@ export class GetAllRevisionsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RevisionsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -13949,6 +15160,10 @@ export class GetAvailableFontsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "AvailableFontsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -14082,6 +15297,10 @@ export class GetBookmarkByNameRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarkResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -14205,6 +15424,10 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarkResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -14323,6 +15546,10 @@ export class GetBookmarksRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarksResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -14431,6 +15658,10 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarksResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -14571,6 +15802,10 @@ export class GetBorderRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BorderResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -14701,6 +15936,10 @@ export class GetBorderOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BorderResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -14825,6 +16064,10 @@ export class GetBordersRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BordersResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -14939,6 +16182,10 @@ export class GetBordersOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BordersResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -15072,6 +16319,10 @@ export class GetCommentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -15195,6 +16446,10 @@ export class GetCommentOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -15313,6 +16568,10 @@ export class GetCommentsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -15421,6 +16680,10 @@ export class GetCommentsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -15554,6 +16817,10 @@ export class GetCustomXmlPartRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -15677,6 +16944,10 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -15795,6 +17066,10 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -15903,6 +17178,10 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -16021,6 +17300,10 @@ export class GetDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -16160,6 +17443,10 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -16289,6 +17576,10 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -16428,6 +17719,10 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -16557,6 +17852,10 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -16696,6 +17995,10 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -16825,6 +18128,10 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -16949,6 +18256,10 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -17063,6 +18374,10 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -17187,6 +18502,10 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldNamesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -17301,6 +18620,10 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldNamesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -17434,6 +18757,10 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HyperlinkResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -17557,6 +18884,10 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HyperlinkResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -17675,6 +19006,10 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HyperlinksResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -17783,6 +19118,10 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HyperlinksResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -17901,6 +19240,10 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertiesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -18009,6 +19352,10 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertiesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -18142,6 +19489,10 @@ export class GetDocumentPropertyRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertyResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -18265,6 +19616,10 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentPropertyResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -18383,6 +19738,10 @@ export class GetDocumentProtectionRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ProtectionDataResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -18491,6 +19850,10 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ProtectionDataResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -18627,6 +19990,10 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StatDataResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -18753,6 +20120,10 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StatDataResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -18898,6 +20269,10 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19037,6 +20412,10 @@ export class GetFieldRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19166,6 +20545,10 @@ export class GetFieldOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19290,6 +20673,10 @@ export class GetFieldsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19404,6 +20791,10 @@ export class GetFieldsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19492,6 +20883,10 @@ export class GetFilesListRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FilesList");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19631,6 +21026,10 @@ export class GetFootnoteRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnoteResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19760,6 +21159,10 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnoteResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19884,6 +21287,10 @@ export class GetFootnotesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnotesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -19998,6 +21405,10 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnotesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -20137,6 +21548,10 @@ export class GetFormFieldRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -20266,6 +21681,10 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -20390,6 +21809,10 @@ export class GetFormFieldsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -20504,6 +21927,10 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -20643,6 +22070,10 @@ export class GetHeaderFooterRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -20797,6 +22228,10 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -20941,6 +22376,10 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -21070,6 +22509,10 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -21209,6 +22652,10 @@ export class GetHeaderFootersRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFootersResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -21338,6 +22785,10 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFootersResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -21406,6 +22857,10 @@ export class GetInfoRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "InfoResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -21539,6 +22994,10 @@ export class GetListRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -21662,6 +23121,10 @@ export class GetListOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -21780,6 +23243,10 @@ export class GetListsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -21888,6 +23355,10 @@ export class GetListsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -22027,6 +23498,10 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "OfficeMathObjectResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -22156,6 +23631,10 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "OfficeMathObjectResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -22280,6 +23759,10 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "OfficeMathObjectsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -22394,6 +23877,10 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "OfficeMathObjectsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -22533,6 +24020,10 @@ export class GetParagraphRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -22672,6 +24163,10 @@ export class GetParagraphFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -22801,6 +24296,10 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -22940,6 +24439,10 @@ export class GetParagraphListFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphListFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -23069,6 +24572,10 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphListFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -23198,6 +24705,10 @@ export class GetParagraphOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -23322,6 +24833,10 @@ export class GetParagraphsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphLinkCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -23436,6 +24951,10 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphLinkCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -23575,6 +25094,10 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -23704,6 +25227,10 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -23772,6 +25299,10 @@ export class GetPublicKeyRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "PublicKeyResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -23911,6 +25442,10 @@ export class GetRangeTextRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RangeTextResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -24040,6 +25575,10 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RangeTextResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -24188,6 +25727,10 @@ export class GetRunRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -24336,6 +25879,10 @@ export class GetRunFontRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FontResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -24474,6 +26021,10 @@ export class GetRunFontOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FontResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -24612,6 +26163,10 @@ export class GetRunOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -24745,6 +26300,10 @@ export class GetRunsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -24868,6 +26427,10 @@ export class GetRunsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25001,6 +26564,10 @@ export class GetSectionRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25124,6 +26691,10 @@ export class GetSectionOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25257,6 +26828,10 @@ export class GetSectionPageSetupRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionPageSetupResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25380,6 +26955,10 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionPageSetupResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25498,6 +27077,10 @@ export class GetSectionsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionLinkCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25606,6 +27189,10 @@ export class GetSectionsOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionLinkCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25724,6 +27311,10 @@ export class GetSignaturesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SignatureCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25832,6 +27423,10 @@ export class GetSignaturesOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SignatureCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -25971,6 +27566,10 @@ export class GetStructuredDocumentTagRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -26100,6 +27699,10 @@ export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -26224,6 +27827,10 @@ export class GetStructuredDocumentTagsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -26338,6 +27945,10 @@ export class GetStructuredDocumentTagsOnlineRequest implements RequestInterface 
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -26471,6 +28082,10 @@ export class GetStyleRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -26604,6 +28219,10 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -26727,6 +28346,10 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -26850,6 +28473,10 @@ export class GetStyleOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -26968,6 +28595,10 @@ export class GetStylesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StylesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -27076,6 +28707,10 @@ export class GetStylesOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StylesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -27215,6 +28850,10 @@ export class GetTableRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -27363,6 +29002,10 @@ export class GetTableCellRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -27511,6 +29154,10 @@ export class GetTableCellFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -27649,6 +29296,10 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -27787,6 +29438,10 @@ export class GetTableCellOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -27916,6 +29571,10 @@ export class GetTableOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -28055,6 +29714,10 @@ export class GetTablePropertiesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TablePropertiesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -28184,6 +29847,10 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TablePropertiesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -28332,6 +29999,10 @@ export class GetTableRowRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -28480,6 +30151,10 @@ export class GetTableRowFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -28618,6 +30293,10 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -28756,6 +30435,10 @@ export class GetTableRowOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -28880,6 +30563,10 @@ export class GetTablesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableLinkCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -28994,6 +30681,10 @@ export class GetTablesOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableLinkCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -29150,6 +30841,10 @@ export class InsertBookmarkRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarkResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -29305,6 +31000,10 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -29461,6 +31160,10 @@ export class InsertCommentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -29616,6 +31319,10 @@ export class InsertCommentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -29772,6 +31479,10 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -29927,6 +31638,10 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -30106,6 +31821,10 @@ export class InsertDrawingObjectRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -30284,6 +32003,10 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -30446,6 +32169,10 @@ export class InsertFieldRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -30607,6 +32334,10 @@ export class InsertFieldOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -30769,6 +32500,10 @@ export class InsertFootnoteRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnoteResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -30930,6 +32665,10 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -31098,6 +32837,10 @@ export class InsertFormFieldRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -31265,6 +33008,10 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -31433,6 +33180,10 @@ export class InsertHeaderFooterRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "HeaderFooterResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -31600,6 +33351,10 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -31756,6 +33511,10 @@ export class InsertListRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -31911,6 +33670,10 @@ export class InsertListOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -32076,6 +33839,10 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TabStopsResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -32240,6 +34007,10 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -32396,6 +34167,10 @@ export class InsertPageNumbersRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -32551,6 +34326,10 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -32713,6 +34492,10 @@ export class InsertParagraphRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -32874,6 +34657,10 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -33036,6 +34823,10 @@ export class InsertRunRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -33197,6 +34988,10 @@ export class InsertRunOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -33348,6 +35143,10 @@ export class InsertSectionRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -33489,6 +35288,10 @@ export class InsertSectionOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -33651,6 +35454,10 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -33812,6 +35619,10 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -33968,6 +35779,10 @@ export class InsertStyleRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -34123,6 +35938,10 @@ export class InsertStyleOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -34285,6 +36104,10 @@ export class InsertTableRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -34447,6 +36270,10 @@ export class InsertTableCellRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -34608,6 +36435,10 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -34769,6 +36600,10 @@ export class InsertTableOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -34931,6 +36766,10 @@ export class InsertTableRowRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -35092,6 +36931,10 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -35249,6 +37092,10 @@ export class InsertWatermarkRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -35405,6 +37252,10 @@ export class InsertWatermarkImageRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -35560,6 +37411,10 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -35716,6 +37571,10 @@ export class InsertWatermarkOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -35872,6 +37731,10 @@ export class InsertWatermarkTextRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -36027,6 +37890,10 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -36184,6 +38051,10 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -36277,6 +38148,10 @@ export class LoadWebDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SaveResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -36373,6 +38248,10 @@ export class LoadWebDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -36524,6 +38403,10 @@ export class MergeWithNextRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -36665,6 +38548,10 @@ export class MergeWithNextOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -36780,6 +38667,10 @@ export class MoveFileRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -36889,6 +38780,10 @@ export class MoveFolderRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -37045,6 +38940,10 @@ export class OptimizeDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -37191,6 +39090,10 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return parseFilesCollection(_response, _headers);
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -37335,6 +39238,10 @@ export class ProtectDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ProtectionDataResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -37478,6 +39385,10 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -37602,6 +39513,10 @@ export class RejectAllRevisionsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RevisionsModificationResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -37725,6 +39640,10 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -37849,6 +39768,10 @@ export class RemoveAllSignaturesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SignatureCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -37972,6 +39895,10 @@ export class RemoveAllSignaturesOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -38117,6 +40044,10 @@ export class RemoveRangeRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -38261,6 +40192,10 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -38427,6 +40362,10 @@ export class RenderDrawingObjectRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -38583,6 +40522,10 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -38749,6 +40692,10 @@ export class RenderMathObjectRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -38905,6 +40852,10 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -39059,6 +41010,10 @@ export class RenderPageRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -39203,6 +41158,10 @@ export class RenderPageOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -39369,6 +41328,10 @@ export class RenderParagraphRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -39525,6 +41488,10 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -39691,6 +41658,10 @@ export class RenderTableRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -39847,6 +41818,10 @@ export class RenderTableOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return _response;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -40003,6 +41978,10 @@ export class ReplaceTextRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ReplaceTextResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -40158,6 +42137,10 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -40323,6 +42306,10 @@ export class ReplaceWithTextRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -40487,6 +42474,10 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -40555,6 +42546,10 @@ export class ResetCacheRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return null;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -40699,6 +42694,10 @@ export class SaveAsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SaveResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -40842,6 +42841,10 @@ export class SaveAsOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -41001,6 +43004,10 @@ export class SaveAsRangeRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -41159,6 +43166,10 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -41405,6 +43416,10 @@ export class SaveAsTiffRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SaveResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -41650,6 +43665,10 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -41783,6 +43802,10 @@ export class SearchRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SearchResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -41906,6 +43929,10 @@ export class SearchOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SearchResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -42060,6 +44087,10 @@ export class SignDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SignatureCollectionResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -42213,6 +44244,10 @@ export class SignDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -42376,6 +44411,191 @@ export class SplitDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SplitDocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
+}
+
+/**
+ * Request model for SplitDocumentJob operation.
+ * Splits a document into parts and saves them in the specified format.
+ */
+export class SplitDocumentJobRequest implements RequestInterface {
+
+    public constructor(init?: Partial< SplitDocumentJobRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The filename of the input document.
+     */
+    public name: string;
+
+    /**
+     * The format to split.
+     */
+    public format: string;
+
+    /**
+     * Original document folder.
+     */
+    public folder: string;
+
+    /**
+     * Original document storage.
+     */
+    public storage: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * The start page.
+     */
+    public from: number;
+
+    /**
+     * The end page.
+     */
+    public to: number;
+
+    /**
+     * The flag indicating whether to ZIP the output.
+     */
+    public zipOutput: boolean;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/job/put/{name}/split"
+            .replace("/{" + "name" + "}", (this.name !== null && this.name !== undefined) ? "/" + String(this.name) : "")
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.name' is not undefined
+        if (this.name === undefined) {
+            throw new Error('Required parameter "this.name" was undefined when calling splitDocumentJob.');
+        }
+
+        // verify required parameter 'this.name' is not null
+        if (this.name === null) {
+            throw new Error('Required parameter "this.name" was null when calling splitDocumentJob.');
+        }
+        // verify required parameter 'this.format' is not undefined
+        if (this.format === undefined) {
+            throw new Error('Required parameter "this.format" was undefined when calling splitDocumentJob.');
+        }
+
+        // verify required parameter 'this.format' is not null
+        if (this.format === null) {
+            throw new Error('Required parameter "this.format" was null when calling splitDocumentJob.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "folder", this.folder, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "JobInfo");
+	}
+
+    public getOriginalRequest(): RequestInterface {
+        return new SplitDocumentRequest({
+            name: this.name,
+            format: this.format,
+            folder: this.folder,
+            storage: this.storage,
+            loadEncoding: this.loadEncoding,
+            password: this.password,
+            encryptedPassword: this.encryptedPassword,
+            openTypeSupport: this.openTypeSupport,
+            destFileName: this.destFileName,
+            from: this.from,
+            to: this.to,
+            zipOutput: this.zipOutput,
+            fontsLocation: this.fontsLocation
+        });
+    }
 }
 
 /**
@@ -42538,6 +44758,179 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
+}
+
+/**
+ * Request model for SplitDocumentOnlineJob operation.
+ * Splits a document into parts and saves them in the specified format.
+ */
+export class SplitDocumentOnlineJobRequest implements RequestInterface {
+
+    public constructor(init?: Partial< SplitDocumentOnlineJobRequest >) {
+        Object.assign(this, init);
+    }
+
+    /**
+     * The document.
+     */
+    public document: Readable;
+
+    /**
+     * The format to split.
+     */
+    public format: string;
+
+    /**
+     * Encoding that will be used to load an HTML (or TXT) document if the encoding is not specified in HTML.
+     */
+    public loadEncoding: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass a password via SDK. SDK encrypts it automatically. We don't recommend to use the parameter to pass a plain password for direct call of API.
+     */
+    public password: string;
+
+    /**
+     * Password of protected Word document. Use the parameter to pass an encrypted password for direct calls of API. See SDK code for encyption details.
+     */
+    public encryptedPassword: string;
+
+    /**
+     * The value indicates whether OpenType support is on.
+     */
+    public openTypeSupport: boolean;
+
+    /**
+     * Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
+     */
+    public destFileName: string;
+
+    /**
+     * The start page.
+     */
+    public from: number;
+
+    /**
+     * The end page.
+     */
+    public to: number;
+
+    /**
+     * The flag indicating whether to ZIP the output.
+     */
+    public zipOutput: boolean;
+
+    /**
+     * Folder in filestorage with custom fonts.
+     */
+    public fontsLocation: string;
+
+	/**
+	 * create the requst options for this request
+	 * @param configuration a configuration for the request
+	 * @param data encryptor 
+	 */
+	public async createRequestOptions(configuration: Configuration, _encryptor: Encryptor) : Promise<request.OptionsWithUri> {
+        let localVarPath = configuration.getApiBaseUrl() + "/words/job/put/online/put/split"
+            .replace("//", "/");
+        var queryParameters: any = {};
+        var headerParams: any = {};
+        var formParams: any = [];
+        var filesContent: any = [];
+        // verify required parameter 'this.document' is not undefined
+        if (this.document === undefined) {
+            throw new Error('Required parameter "this.document" was undefined when calling splitDocumentOnlineJob.');
+        }
+
+        // verify required parameter 'this.document' is not null
+        if (this.document === null) {
+            throw new Error('Required parameter "this.document" was null when calling splitDocumentOnlineJob.');
+        }
+        // verify required parameter 'this.format' is not undefined
+        if (this.format === undefined) {
+            throw new Error('Required parameter "this.format" was undefined when calling splitDocumentOnlineJob.');
+        }
+
+        // verify required parameter 'this.format' is not null
+        if (this.format === null) {
+            throw new Error('Required parameter "this.format" was null when calling splitDocumentOnlineJob.');
+        }
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "format", this.format, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "loadEncoding", this.loadEncoding, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "password", this.password, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "from", this.from, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "to", this.to, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
+        localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
+        if (this.document !== undefined) {
+            formParams.push(['Document', this.document, 'application/octet-stream']);
+        }
+
+        for (let fileContent of filesContent) {
+            await fileContent.encryptPassword(_encryptor);
+            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+                formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
+            }
+        }
+
+        const requestOptions: request.Options = {
+            method: "PUT",
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+        };
+
+        if (formParams.length == 1) {
+            let formFirstParam = formParams[0];
+            requestOptions.body = formFirstParam[1];
+            requestOptions.headers["Content-Type"] = formFirstParam[2];
+        }
+        else if (formParams.length > 1) {
+            const requestParts = [];
+            for (let formParam of formParams) {
+                requestParts.push({
+                    'Content-Type': formParam[2],
+                    'Content-Disposition': 'form-data; name="' + formParam[0] + '"',
+                    body: formParam[1],
+                });
+            }
+
+            requestOptions.headers["Content-Type"] = 'multipart/form-data';
+            requestOptions.multipart = requestParts;
+        }
+
+        return Promise.resolve(requestOptions);
+    }
+
+	/**
+	 * create response from string
+	 */
+	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
+        return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "JobInfo");
+	}
+
+    public getOriginalRequest(): RequestInterface {
+        return new SplitDocumentOnlineRequest({
+            document: this.document,
+            format: this.format,
+            loadEncoding: this.loadEncoding,
+            password: this.password,
+            encryptedPassword: this.encryptedPassword,
+            openTypeSupport: this.openTypeSupport,
+            destFileName: this.destFileName,
+            from: this.from,
+            to: this.to,
+            zipOutput: this.zipOutput,
+            fontsLocation: this.fontsLocation
+        });
+    }
 }
 
 /**
@@ -42671,6 +45064,10 @@ export class TranslateNodeIdRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TranslateNodeIdResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -42794,6 +45191,10 @@ export class TranslateNodeIdOnlineRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TranslateNodeIdResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -42918,6 +45319,10 @@ export class UnprotectDocumentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ProtectionDataResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -43041,6 +45446,10 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -43212,6 +45621,10 @@ export class UpdateBookmarkRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BookmarkResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -43382,6 +45795,10 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -43560,6 +45977,10 @@ export class UpdateBorderRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "BorderResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -43737,6 +46158,10 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -43908,6 +46333,10 @@ export class UpdateCommentRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CommentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -44078,6 +46507,10 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -44249,6 +46682,10 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "CustomXmlPartResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -44419,6 +46856,10 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -44613,6 +47054,10 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DrawingObjectResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -44806,6 +47251,10 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -44983,6 +47432,10 @@ export class UpdateFieldRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FieldResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -45159,6 +47612,10 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -45283,6 +47740,10 @@ export class UpdateFieldsRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "DocumentResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -45406,6 +47867,10 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -45583,6 +48048,10 @@ export class UpdateFootnoteRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FootnoteResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -45759,6 +48228,10 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -45936,6 +48409,10 @@ export class UpdateFormFieldRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FormFieldResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -46112,6 +48589,10 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -46283,6 +48764,10 @@ export class UpdateListRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -46469,6 +48954,10 @@ export class UpdateListLevelRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ListResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -46654,6 +49143,10 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -46824,6 +49317,10 @@ export class UpdateListOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -47001,6 +49498,10 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -47177,6 +49678,10 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -47354,6 +49859,10 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "ParagraphListFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -47530,6 +50039,10 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -47716,6 +50229,10 @@ export class UpdateRunRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "RunResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -47902,6 +50419,10 @@ export class UpdateRunFontRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FontResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -48087,6 +50608,10 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -48272,6 +50797,10 @@ export class UpdateRunOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -48443,6 +50972,10 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "SectionPageSetupResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -48613,6 +51146,10 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -48790,6 +51327,10 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StructuredDocumentTagResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -48966,6 +51507,10 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -49137,6 +51682,10 @@ export class UpdateStyleRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "StyleResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -49307,6 +51856,10 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -49493,6 +52046,10 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableCellFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -49678,6 +52235,10 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -49855,6 +52416,10 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TablePropertiesResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -50031,6 +52596,10 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -50217,6 +52786,10 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "TableRowFormatResponse");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -50402,6 +52975,10 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
 
         return result;
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**
@@ -50509,6 +53086,10 @@ export class UploadFileRequest implements RequestInterface {
 	createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any {
         return ObjectSerializer.deserialize(JSON.parse(_response.toString()), "FilesUploadResult");
 	}
+
+    public getOriginalRequest(): RequestInterface {
+        return this;
+    }
 }
 
 /**

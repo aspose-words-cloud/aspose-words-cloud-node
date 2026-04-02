@@ -239,4 +239,29 @@ describe("convertDocument", () => {
 
        });
     });
+
+    // A test for ConvertDocument as a job.
+    describe("convertDocumentJob test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFolder + "/test_uploadfile.docx");
+            const request = new model.ConvertDocumentJobRequest({
+                document: requestDocument,
+                format: "pdf"
+            });
+
+            // Act
+            return wordsApi.convertDocumentJob(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi).to.exist;
+                return resultApi.waitResult()
+                .then((jobResult) => {
+                    const resultApi = { body: jobResult };
+                    expect(jobResult).to.exist;
+                });
+            });
+
+       });
+    });
 });

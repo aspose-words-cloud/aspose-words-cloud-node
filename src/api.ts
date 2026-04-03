@@ -6438,6 +6438,18 @@ export class WordsApi implements Encryptor {
                         }
                     }
 
+                    if (value && value.hasOwnProperty('value') && value.hasOwnProperty('options') && value.value instanceof require("stream").Readable) {
+                        try {
+                            value = {
+                                value: await readStream(value.value),
+                                options: value.options,
+                            };
+                        }
+                        catch (error) {
+                            throw error;
+                        }
+                    }
+
                     if (value && value.hasOwnProperty('value') && value.hasOwnProperty('options')) {
                         requestForm.append(key, value.value, value.options)
                     } else {

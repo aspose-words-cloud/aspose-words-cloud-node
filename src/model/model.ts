@@ -33,7 +33,7 @@ import request = require("request");
 import { Configuration } from "../internal/configuration";
 import { addQueryParameterToUrl, getBoundary, parseFilesCollection, findMultipartElement, parseMultipart } from "../internal/requestHelper";
 import { ObjectSerializer } from "../internal/objectSerializer";
-import { Encryptor, FileReference } from '../api';
+import { Encryptor } from '../api';
 import * as importedApiError from './apiError';
 import * as importedAvailableFontsResponse from './availableFontsResponse';
 import * as importedAzw3SaveOptionsData from './azw3SaveOptionsData';
@@ -1165,7 +1165,7 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -1177,7 +1177,38 @@ export class AcceptAllRevisionsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -1278,12 +1309,12 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -1295,7 +1326,38 @@ export class AcceptAllRevisionsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -1447,13 +1509,13 @@ export class AppendDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.documentList !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name);
-            formParams.push(['DocumentList', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['documentList', JSON.stringify(_obj), 'application/json']);
             this.documentList.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -1465,7 +1527,38 @@ export class AppendDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -1608,13 +1701,13 @@ export class AppendDocumentJobRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.documentList !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name);
-            formParams.push(['DocumentList', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['documentList', JSON.stringify(_obj), 'application/json']);
             this.documentList.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -1626,7 +1719,38 @@ export class AppendDocumentJobRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -1767,17 +1891,17 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.documentList !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name);
-            formParams.push(['DocumentList', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['documentList', JSON.stringify(_obj), 'application/json']);
             this.documentList.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -1789,7 +1913,38 @@ export class AppendDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -1927,17 +2082,17 @@ export class AppendDocumentOnlineJobRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.documentList !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentList, this.documentList.constructor.name === "Object" ? "importedBaseEntryList.BaseEntryList" : this.documentList.constructor.name);
-            formParams.push(['DocumentList', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['documentList', JSON.stringify(_obj), 'application/json']);
             this.documentList.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -1949,7 +2104,38 @@ export class AppendDocumentOnlineJobRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -2117,12 +2303,12 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.styleApply !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleApply, this.styleApply.constructor.name === "Object" ? "importedStyleApply.StyleApply" : this.styleApply.constructor.name);
-            formParams.push(['StyleApply', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['styleApply', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -2134,7 +2320,38 @@ export class ApplyStyleToDocumentElementRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -2278,16 +2495,16 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.styleApply !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleApply, this.styleApply.constructor.name === "Object" ? "importedStyleApply.StyleApply" : this.styleApply.constructor.name);
-            formParams.push(['StyleApply', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['styleApply', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -2299,7 +2516,38 @@ export class ApplyStyleToDocumentElementOnlineRequest implements RequestInterfac
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -2452,16 +2700,16 @@ export class BuildReportRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.data !== undefined) {
-            formParams.push(['Data', this.data, 'text/plain']);
+            formParams.push(['data', this.data, 'text/plain']);
         }
         if (this.reportEngineSettings !== undefined) {
             let _obj = ObjectSerializer.serialize(this.reportEngineSettings, this.reportEngineSettings.constructor.name === "Object" ? "importedReportEngineSettings.ReportEngineSettings" : this.reportEngineSettings.constructor.name);
-            formParams.push(['ReportEngineSettings', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['reportEngineSettings', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -2473,7 +2721,38 @@ export class BuildReportRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -2580,19 +2859,19 @@ export class BuildReportOnlineRequest implements RequestInterface {
 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
-            formParams.push(['Template', this.template, 'application/octet-stream']);
+            formParams.push(['template', this.template, 'application/octet-stream']);
         }
         if (this.data !== undefined) {
-            formParams.push(['Data', this.data, 'text/plain']);
+            formParams.push(['data', this.data, 'text/plain']);
         }
         if (this.reportEngineSettings !== undefined) {
             let _obj = ObjectSerializer.serialize(this.reportEngineSettings, this.reportEngineSettings.constructor.name === "Object" ? "importedReportEngineSettings.ReportEngineSettings" : this.reportEngineSettings.constructor.name);
-            formParams.push(['ReportEngineSettings', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['reportEngineSettings', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -2604,7 +2883,38 @@ export class BuildReportOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -2741,13 +3051,13 @@ export class CompareDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
-            formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['compareData', JSON.stringify(_obj), 'application/json']);
             this.compareData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -2759,7 +3069,38 @@ export class CompareDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -2882,17 +3223,17 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.compareData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compareData, this.compareData.constructor.name === "Object" ? "importedCompareData.CompareData" : this.compareData.constructor.name);
-            formParams.push(['CompareData', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['compareData', JSON.stringify(_obj), 'application/json']);
             this.compareData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -2904,7 +3245,38 @@ export class CompareDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -3045,12 +3417,12 @@ export class CompressDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.compressOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name === "Object" ? "importedCompressOptions.CompressOptions" : this.compressOptions.constructor.name);
-            formParams.push(['CompressOptions', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['compressOptions', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -3062,7 +3434,38 @@ export class CompressDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -3180,16 +3583,16 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.compressOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.compressOptions, this.compressOptions.constructor.name === "Object" ? "importedCompressOptions.CompressOptions" : this.compressOptions.constructor.name);
-            formParams.push(['CompressOptions', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['compressOptions', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -3201,7 +3604,38 @@ export class CompressDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -3344,12 +3778,12 @@ export class ConvertDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -3361,7 +3795,38 @@ export class ConvertDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -3495,12 +3960,12 @@ export class ConvertDocumentJobRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -3512,7 +3977,38 @@ export class ConvertDocumentJobRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -3630,7 +4126,7 @@ export class CopyFileRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -3642,7 +4138,38 @@ export class CopyFileRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -3743,7 +4270,7 @@ export class CopyFolderRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -3755,7 +4282,38 @@ export class CopyFolderRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -3898,12 +4456,12 @@ export class CopyStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.styleCopy !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleCopy, this.styleCopy.constructor.name === "Object" ? "importedStyleCopy.StyleCopy" : this.styleCopy.constructor.name);
-            formParams.push(['StyleCopy', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['styleCopy', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -3915,7 +4473,38 @@ export class CopyStyleRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -4044,16 +4633,16 @@ export class CopyStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.styleCopy !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleCopy, this.styleCopy.constructor.name === "Object" ? "importedStyleCopy.StyleCopy" : this.styleCopy.constructor.name);
-            formParams.push(['StyleCopy', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['styleCopy', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -4065,7 +4654,38 @@ export class CopyStyleOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -4217,7 +4837,7 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -4229,7 +4849,38 @@ export class CopyStylesFromTemplateRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -4316,7 +4967,7 @@ export class CreateDocumentRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -4328,7 +4979,38 @@ export class CreateDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -4408,7 +5090,7 @@ export class CreateFolderRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -4420,7 +5102,38 @@ export class CreateFolderRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -4578,12 +5291,12 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.property !== undefined) {
             let _obj = ObjectSerializer.serialize(this.property, this.property.constructor.name === "Object" ? "importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate" : this.property.constructor.name);
-            formParams.push(['Property', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['property', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -4595,7 +5308,38 @@ export class CreateOrUpdateDocumentPropertyRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -4739,16 +5483,16 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.property !== undefined) {
             let _obj = ObjectSerializer.serialize(this.property, this.property.constructor.name === "Object" ? "importedDocumentPropertyCreateOrUpdate.DocumentPropertyCreateOrUpdate" : this.property.constructor.name);
-            formParams.push(['Property', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['property', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -4760,7 +5504,38 @@ export class CreateOrUpdateDocumentPropertyOnlineRequest implements RequestInter
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -4906,7 +5681,7 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -4918,7 +5693,38 @@ export class DeleteAllParagraphTabStopsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -5040,12 +5846,12 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -5057,7 +5863,38 @@ export class DeleteAllParagraphTabStopsOnlineRequest implements RequestInterface
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -5209,7 +6046,7 @@ export class DeleteBookmarkRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -5221,7 +6058,38 @@ export class DeleteBookmarkRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -5349,12 +6217,12 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -5366,7 +6234,38 @@ export class DeleteBookmarkOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -5494,7 +6393,7 @@ export class DeleteBookmarksRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -5506,7 +6405,38 @@ export class DeleteBookmarksRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -5619,12 +6549,12 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -5636,7 +6566,38 @@ export class DeleteBookmarksOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -5786,7 +6747,7 @@ export class DeleteBorderRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -5798,7 +6759,38 @@ export class DeleteBorderRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -5933,12 +6925,12 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -5950,7 +6942,38 @@ export class DeleteBorderOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -6094,7 +7117,7 @@ export class DeleteBordersRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -6106,7 +7129,38 @@ export class DeleteBordersRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -6226,12 +7280,12 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -6243,7 +7297,38 @@ export class DeleteBordersOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -6395,7 +7480,7 @@ export class DeleteCommentRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -6407,7 +7492,38 @@ export class DeleteCommentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -6535,12 +7651,12 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -6552,7 +7668,38 @@ export class DeleteCommentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -6680,7 +7827,7 @@ export class DeleteCommentsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -6692,7 +7839,38 @@ export class DeleteCommentsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -6805,12 +7983,12 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -6822,7 +8000,38 @@ export class DeleteCommentsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -6965,7 +8174,7 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -6977,7 +8186,38 @@ export class DeleteCustomXmlPartRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -7105,12 +8345,12 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -7122,7 +8362,38 @@ export class DeleteCustomXmlPartOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -7250,7 +8521,7 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -7262,7 +8533,38 @@ export class DeleteCustomXmlPartsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -7375,12 +8677,12 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -7392,7 +8694,38 @@ export class DeleteCustomXmlPartsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -7535,7 +8868,7 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -7547,7 +8880,38 @@ export class DeleteDocumentPropertyRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -7675,12 +9039,12 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -7692,7 +9056,38 @@ export class DeleteDocumentPropertyOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -7841,7 +9236,7 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -7853,7 +9248,38 @@ export class DeleteDrawingObjectRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -7987,12 +9413,12 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -8004,7 +9430,38 @@ export class DeleteDrawingObjectOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -8153,7 +9610,7 @@ export class DeleteFieldRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -8165,7 +9622,38 @@ export class DeleteFieldRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -8299,12 +9787,12 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -8316,7 +9804,38 @@ export class DeleteFieldOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -8450,7 +9969,7 @@ export class DeleteFieldsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -8462,7 +9981,38 @@ export class DeleteFieldsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -8581,12 +10131,12 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -8598,7 +10148,38 @@ export class DeleteFieldsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -8684,7 +10265,7 @@ export class DeleteFileRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -8696,7 +10277,38 @@ export class DeleteFileRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -8782,7 +10394,7 @@ export class DeleteFolderRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -8794,7 +10406,38 @@ export class DeleteFolderRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -8943,7 +10586,7 @@ export class DeleteFootnoteRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -8955,7 +10598,38 @@ export class DeleteFootnoteRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -9089,12 +10763,12 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -9106,7 +10780,38 @@ export class DeleteFootnoteOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -9255,7 +10960,7 @@ export class DeleteFormFieldRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -9267,7 +10972,38 @@ export class DeleteFormFieldRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -9401,12 +11137,12 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -9418,7 +11154,38 @@ export class DeleteFormFieldOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -9576,7 +11343,7 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -9588,7 +11355,38 @@ export class DeleteHeaderFooterRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -9731,12 +11529,12 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -9748,7 +11546,38 @@ export class DeleteHeaderFooterOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -9897,7 +11726,7 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -9909,7 +11738,38 @@ export class DeleteHeadersFootersRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -10043,12 +11903,12 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "headersFootersTypes", this.headersFootersTypes, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -10060,7 +11920,38 @@ export class DeleteHeadersFootersOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -10188,7 +12079,7 @@ export class DeleteMacrosRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -10200,7 +12091,38 @@ export class DeleteMacrosRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -10313,12 +12235,12 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -10330,7 +12252,38 @@ export class DeleteMacrosOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -10479,7 +12432,7 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -10491,7 +12444,38 @@ export class DeleteOfficeMathObjectRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -10625,12 +12609,12 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -10642,7 +12626,38 @@ export class DeleteOfficeMathObjectOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -10770,7 +12785,7 @@ export class DeleteOfficeMathObjectsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -10782,7 +12797,38 @@ export class DeleteOfficeMathObjectsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -10895,12 +12941,12 @@ export class DeleteOfficeMathObjectsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -10912,7 +12958,38 @@ export class DeleteOfficeMathObjectsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -11061,7 +13138,7 @@ export class DeleteParagraphRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -11073,7 +13150,38 @@ export class DeleteParagraphRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -11222,7 +13330,7 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -11234,7 +13342,38 @@ export class DeleteParagraphListFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -11368,12 +13507,12 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -11385,7 +13524,38 @@ export class DeleteParagraphListFormatOnlineRequest implements RequestInterface 
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -11528,12 +13698,12 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -11545,7 +13715,38 @@ export class DeleteParagraphOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -11697,7 +13898,7 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -11709,7 +13910,38 @@ export class DeleteParagraphTabStopRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -11846,12 +14078,12 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -11863,7 +14095,38 @@ export class DeleteParagraphTabStopOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -12030,7 +14293,7 @@ export class DeleteRunRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -12042,7 +14305,38 @@ export class DeleteRunRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -12185,12 +14479,12 @@ export class DeleteRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -12202,7 +14496,38 @@ export class DeleteRunOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -12345,7 +14670,7 @@ export class DeleteSectionRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -12357,7 +14682,38 @@ export class DeleteSectionRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -12485,12 +14841,12 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -12502,7 +14858,38 @@ export class DeleteSectionOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -12651,7 +15038,7 @@ export class DeleteStructuredDocumentTagRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -12663,7 +15050,38 @@ export class DeleteStructuredDocumentTagRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -12797,12 +15215,12 @@ export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -12814,7 +15232,38 @@ export class DeleteStructuredDocumentTagOnlineRequest implements RequestInterfac
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -12963,7 +15412,7 @@ export class DeleteTableRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -12975,7 +15424,38 @@ export class DeleteTableRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -13133,7 +15613,7 @@ export class DeleteTableCellRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -13145,7 +15625,38 @@ export class DeleteTableCellRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -13288,12 +15799,12 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -13305,7 +15816,38 @@ export class DeleteTableCellOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -13439,12 +15981,12 @@ export class DeleteTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -13456,7 +15998,38 @@ export class DeleteTableOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -13614,7 +16187,7 @@ export class DeleteTableRowRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -13626,7 +16199,38 @@ export class DeleteTableRowRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -13769,12 +16373,12 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -13786,7 +16390,38 @@ export class DeleteTableRowOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -13914,7 +16549,7 @@ export class DeleteWatermarkRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -13926,7 +16561,38 @@ export class DeleteWatermarkRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -14039,12 +16705,12 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -14056,7 +16722,38 @@ export class DeleteWatermarkOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -14151,7 +16848,7 @@ export class DownloadFileRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -14163,7 +16860,38 @@ export class DownloadFileRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -14319,16 +17047,16 @@ export class ExecuteMailMergeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mergeWholeDocument", this.mergeWholeDocument, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.data !== undefined) {
-            formParams.push(['Data', this.data, 'text/plain']);
+            formParams.push(['data', this.data, 'text/plain']);
         }
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
-            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['options', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -14340,7 +17068,38 @@ export class ExecuteMailMergeRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -14496,16 +17255,16 @@ export class ExecuteMailMergeJobRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "mergeWholeDocument", this.mergeWholeDocument, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.data !== undefined) {
-            formParams.push(['Data', this.data, 'text/plain']);
+            formParams.push(['data', this.data, 'text/plain']);
         }
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
-            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['options', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -14517,7 +17276,38 @@ export class ExecuteMailMergeJobRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -14649,19 +17439,19 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
-            formParams.push(['Template', this.template, 'application/octet-stream']);
+            formParams.push(['template', this.template, 'application/octet-stream']);
         }
         if (this.data !== undefined) {
-            formParams.push(['Data', this.data, 'application/octet-stream']);
+            formParams.push(['data', this.data, 'application/octet-stream']);
         }
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
-            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['options', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -14673,7 +17463,38 @@ export class ExecuteMailMergeOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -14789,19 +17610,19 @@ export class ExecuteMailMergeOnlineJobRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "cleanup", this.cleanup, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "documentFileName", this.documentFileName, _encryptor);
         if (this.template !== undefined) {
-            formParams.push(['Template', this.template, 'application/octet-stream']);
+            formParams.push(['template', this.template, 'application/octet-stream']);
         }
         if (this.data !== undefined) {
-            formParams.push(['Data', this.data, 'application/octet-stream']);
+            formParams.push(['data', this.data, 'application/octet-stream']);
         }
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedFieldOptions.FieldOptions" : this.options.constructor.name);
-            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['options', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -14813,7 +17634,38 @@ export class ExecuteMailMergeOnlineJobRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -14931,7 +17783,7 @@ export class GetAllRevisionsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -14943,7 +17795,38 @@ export class GetAllRevisionsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -15038,12 +17921,12 @@ export class GetAllRevisionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -15055,7 +17938,38 @@ export class GetAllRevisionsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -15120,7 +18034,7 @@ export class GetAvailableFontsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -15132,7 +18046,38 @@ export class GetAvailableFontsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -15257,7 +18202,7 @@ export class GetBookmarkByNameRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -15269,7 +18214,38 @@ export class GetBookmarkByNameRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -15379,12 +18355,12 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -15396,7 +18372,38 @@ export class GetBookmarkByNameOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -15506,7 +18513,7 @@ export class GetBookmarksRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -15518,7 +18525,38 @@ export class GetBookmarksRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -15613,12 +18651,12 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -15630,7 +18668,38 @@ export class GetBookmarksOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -15762,7 +18831,7 @@ export class GetBorderRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -15774,7 +18843,38 @@ export class GetBorderRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -15891,12 +18991,12 @@ export class GetBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -15908,7 +19008,38 @@ export class GetBorderOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -16024,7 +19155,7 @@ export class GetBordersRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -16036,7 +19167,38 @@ export class GetBordersRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -16137,12 +19299,12 @@ export class GetBordersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -16154,7 +19316,38 @@ export class GetBordersOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -16279,7 +19472,7 @@ export class GetCommentRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -16291,7 +19484,38 @@ export class GetCommentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -16401,12 +19625,12 @@ export class GetCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -16418,7 +19642,38 @@ export class GetCommentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -16528,7 +19783,7 @@ export class GetCommentsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -16540,7 +19795,38 @@ export class GetCommentsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -16635,12 +19921,12 @@ export class GetCommentsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -16652,7 +19938,38 @@ export class GetCommentsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -16777,7 +20094,7 @@ export class GetCustomXmlPartRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -16789,7 +20106,38 @@ export class GetCustomXmlPartRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -16899,12 +20247,12 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -16916,7 +20264,38 @@ export class GetCustomXmlPartOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -17026,7 +20405,7 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -17038,7 +20417,38 @@ export class GetCustomXmlPartsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -17133,12 +20543,12 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -17150,7 +20560,38 @@ export class GetCustomXmlPartsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -17260,7 +20701,7 @@ export class GetDocumentRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -17272,7 +20713,38 @@ export class GetDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -17403,7 +20875,7 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -17415,7 +20887,38 @@ export class GetDocumentDrawingObjectByIndexRequest implements RequestInterface 
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -17531,12 +21034,12 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -17548,7 +21051,38 @@ export class GetDocumentDrawingObjectByIndexOnlineRequest implements RequestInte
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -17679,7 +21213,7 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -17691,7 +21225,38 @@ export class GetDocumentDrawingObjectImageDataRequest implements RequestInterfac
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -17807,12 +21372,12 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -17824,7 +21389,38 @@ export class GetDocumentDrawingObjectImageDataOnlineRequest implements RequestIn
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -17955,7 +21551,7 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -17967,7 +21563,38 @@ export class GetDocumentDrawingObjectOleDataRequest implements RequestInterface 
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -18083,12 +21710,12 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -18100,7 +21727,38 @@ export class GetDocumentDrawingObjectOleDataOnlineRequest implements RequestInte
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -18216,7 +21874,7 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -18228,7 +21886,38 @@ export class GetDocumentDrawingObjectsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -18329,12 +22018,12 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -18346,7 +22035,38 @@ export class GetDocumentDrawingObjectsOnlineRequest implements RequestInterface 
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -18462,7 +22182,7 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -18474,7 +22194,38 @@ export class GetDocumentFieldNamesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -18575,12 +22326,12 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "useNonMergeFields", this.useNonMergeFields, _encryptor);
         if (this.template !== undefined) {
-            formParams.push(['Template', this.template, 'application/octet-stream']);
+            formParams.push(['template', this.template, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -18592,7 +22343,38 @@ export class GetDocumentFieldNamesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -18717,7 +22499,7 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -18729,7 +22511,38 @@ export class GetDocumentHyperlinkByIndexRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -18839,12 +22652,12 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -18856,7 +22669,38 @@ export class GetDocumentHyperlinkByIndexOnlineRequest implements RequestInterfac
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -18966,7 +22810,7 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -18978,7 +22822,38 @@ export class GetDocumentHyperlinksRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -19073,12 +22948,12 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -19090,7 +22965,38 @@ export class GetDocumentHyperlinksOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -19200,7 +23106,7 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -19212,7 +23118,38 @@ export class GetDocumentPropertiesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -19307,12 +23244,12 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -19324,7 +23261,38 @@ export class GetDocumentPropertiesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -19449,7 +23417,7 @@ export class GetDocumentPropertyRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -19461,7 +23429,38 @@ export class GetDocumentPropertyRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -19571,12 +23570,12 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -19588,7 +23587,38 @@ export class GetDocumentPropertyOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -19698,7 +23728,7 @@ export class GetDocumentProtectionRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -19710,7 +23740,38 @@ export class GetDocumentProtectionRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -19805,12 +23866,12 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -19822,7 +23883,38 @@ export class GetDocumentProtectionOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -19950,7 +24042,7 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -19962,7 +24054,38 @@ export class GetDocumentStatisticsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -20075,12 +24198,12 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeFootnotes", this.includeFootnotes, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "includeTextInShapes", this.includeTextInShapes, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -20092,7 +24215,38 @@ export class GetDocumentStatisticsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -20229,7 +24383,7 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -20241,7 +24395,38 @@ export class GetDocumentWithFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -20372,7 +24557,7 @@ export class GetFieldRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -20384,7 +24569,38 @@ export class GetFieldRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -20500,12 +24716,12 @@ export class GetFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -20517,7 +24733,38 @@ export class GetFieldOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -20633,7 +24880,7 @@ export class GetFieldsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -20645,7 +24892,38 @@ export class GetFieldsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -20746,12 +25024,12 @@ export class GetFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -20763,7 +25041,38 @@ export class GetFieldsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -20843,7 +25152,7 @@ export class GetFilesListRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -20855,7 +25164,38 @@ export class GetFilesListRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -20986,7 +25326,7 @@ export class GetFootnoteRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -20998,7 +25338,38 @@ export class GetFootnoteRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -21114,12 +25485,12 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -21131,7 +25502,38 @@ export class GetFootnoteOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -21247,7 +25649,7 @@ export class GetFootnotesRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -21259,7 +25661,38 @@ export class GetFootnotesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -21360,12 +25793,12 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -21377,7 +25810,38 @@ export class GetFootnotesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -21508,7 +25972,7 @@ export class GetFormFieldRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -21520,7 +25984,38 @@ export class GetFormFieldRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -21636,12 +26131,12 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -21653,7 +26148,38 @@ export class GetFormFieldOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -21769,7 +26295,7 @@ export class GetFormFieldsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -21781,7 +26307,38 @@ export class GetFormFieldsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -21882,12 +26439,12 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -21899,7 +26456,38 @@ export class GetFormFieldsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -22030,7 +26618,7 @@ export class GetHeaderFooterRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -22042,7 +26630,38 @@ export class GetHeaderFooterRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -22188,7 +26807,7 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -22200,7 +26819,38 @@ export class GetHeaderFooterOfSectionRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -22331,12 +26981,12 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -22348,7 +26998,38 @@ export class GetHeaderFooterOfSectionOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -22464,12 +27145,12 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -22481,7 +27162,38 @@ export class GetHeaderFooterOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -22612,7 +27324,7 @@ export class GetHeaderFootersRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -22624,7 +27336,38 @@ export class GetHeaderFootersRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -22740,12 +27483,12 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "filterByType", this.filterByType, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -22757,7 +27500,38 @@ export class GetHeaderFootersOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -22817,7 +27591,7 @@ export class GetInfoRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -22829,7 +27603,38 @@ export class GetInfoRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -22954,7 +27759,7 @@ export class GetListRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -22966,7 +27771,38 @@ export class GetListRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -23076,12 +27912,12 @@ export class GetListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -23093,7 +27929,38 @@ export class GetListOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -23203,7 +28070,7 @@ export class GetListsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -23215,7 +28082,38 @@ export class GetListsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -23310,12 +28208,12 @@ export class GetListsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -23327,7 +28225,38 @@ export class GetListsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -23458,7 +28387,7 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -23470,7 +28399,38 @@ export class GetOfficeMathObjectRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -23586,12 +28546,12 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -23603,7 +28563,38 @@ export class GetOfficeMathObjectOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -23719,7 +28710,7 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -23731,7 +28722,38 @@ export class GetOfficeMathObjectsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -23832,12 +28854,12 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -23849,7 +28871,38 @@ export class GetOfficeMathObjectsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -23980,7 +29033,7 @@ export class GetParagraphRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -23992,7 +29045,38 @@ export class GetParagraphRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -24123,7 +29207,7 @@ export class GetParagraphFormatRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -24135,7 +29219,38 @@ export class GetParagraphFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -24251,12 +29366,12 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -24268,7 +29383,38 @@ export class GetParagraphFormatOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -24399,7 +29545,7 @@ export class GetParagraphListFormatRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -24411,7 +29557,38 @@ export class GetParagraphListFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -24527,12 +29704,12 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -24544,7 +29721,38 @@ export class GetParagraphListFormatOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -24660,12 +29868,12 @@ export class GetParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -24677,7 +29885,38 @@ export class GetParagraphOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -24793,7 +30032,7 @@ export class GetParagraphsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -24805,7 +30044,38 @@ export class GetParagraphsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -24906,12 +30176,12 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -24923,7 +30193,38 @@ export class GetParagraphsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -25054,7 +30355,7 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -25066,7 +30367,38 @@ export class GetParagraphTabStopsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -25182,12 +30514,12 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -25199,7 +30531,38 @@ export class GetParagraphTabStopsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -25259,7 +30622,7 @@ export class GetPublicKeyRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -25271,7 +30634,38 @@ export class GetPublicKeyRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -25402,7 +30796,7 @@ export class GetRangeTextRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -25414,7 +30808,38 @@ export class GetRangeTextRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -25530,12 +30955,12 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -25547,7 +30972,38 @@ export class GetRangeTextOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -25687,7 +31143,7 @@ export class GetRunRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -25699,7 +31155,38 @@ export class GetRunRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -25839,7 +31326,7 @@ export class GetRunFontRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -25851,7 +31338,38 @@ export class GetRunFontRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -25976,12 +31494,12 @@ export class GetRunFontOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -25993,7 +31511,38 @@ export class GetRunFontOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -26118,12 +31667,12 @@ export class GetRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -26135,7 +31684,38 @@ export class GetRunOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -26260,7 +31840,7 @@ export class GetRunsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -26272,7 +31852,38 @@ export class GetRunsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -26382,12 +31993,12 @@ export class GetRunsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -26399,7 +32010,38 @@ export class GetRunsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -26524,7 +32166,7 @@ export class GetSectionRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -26536,7 +32178,38 @@ export class GetSectionRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -26646,12 +32319,12 @@ export class GetSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -26663,7 +32336,38 @@ export class GetSectionOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -26788,7 +32492,7 @@ export class GetSectionPageSetupRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -26800,7 +32504,38 @@ export class GetSectionPageSetupRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -26910,12 +32645,12 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -26927,7 +32662,38 @@ export class GetSectionPageSetupOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -27037,7 +32803,7 @@ export class GetSectionsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -27049,7 +32815,38 @@ export class GetSectionsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -27144,12 +32941,12 @@ export class GetSectionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -27161,7 +32958,38 @@ export class GetSectionsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -27271,7 +33099,7 @@ export class GetSignaturesRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -27283,7 +33111,38 @@ export class GetSignaturesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -27378,12 +33237,12 @@ export class GetSignaturesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -27395,7 +33254,38 @@ export class GetSignaturesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -27526,7 +33416,7 @@ export class GetStructuredDocumentTagRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -27538,7 +33428,38 @@ export class GetStructuredDocumentTagRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -27654,12 +33575,12 @@ export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -27671,7 +33592,38 @@ export class GetStructuredDocumentTagOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -27787,7 +33739,7 @@ export class GetStructuredDocumentTagsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -27799,7 +33751,38 @@ export class GetStructuredDocumentTagsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -27900,12 +33883,12 @@ export class GetStructuredDocumentTagsOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -27917,7 +33900,38 @@ export class GetStructuredDocumentTagsOnlineRequest implements RequestInterface 
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -28042,7 +34056,7 @@ export class GetStyleRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -28054,7 +34068,38 @@ export class GetStyleRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -28179,7 +34224,7 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -28191,7 +34236,38 @@ export class GetStyleFromDocumentElementRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -28301,12 +34377,12 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -28318,7 +34394,38 @@ export class GetStyleFromDocumentElementOnlineRequest implements RequestInterfac
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -28428,12 +34535,12 @@ export class GetStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -28445,7 +34552,38 @@ export class GetStyleOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -28555,7 +34693,7 @@ export class GetStylesRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -28567,7 +34705,38 @@ export class GetStylesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -28662,12 +34831,12 @@ export class GetStylesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -28679,7 +34848,38 @@ export class GetStylesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -28810,7 +35010,7 @@ export class GetTableRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -28822,7 +35022,38 @@ export class GetTableRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -28962,7 +35193,7 @@ export class GetTableCellRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -28974,7 +35205,38 @@ export class GetTableCellRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -29114,7 +35376,7 @@ export class GetTableCellFormatRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -29126,7 +35388,38 @@ export class GetTableCellFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -29251,12 +35544,12 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -29268,7 +35561,38 @@ export class GetTableCellFormatOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -29393,12 +35717,12 @@ export class GetTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -29410,7 +35734,38 @@ export class GetTableCellOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -29526,12 +35881,12 @@ export class GetTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -29543,7 +35898,38 @@ export class GetTableOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -29674,7 +36060,7 @@ export class GetTablePropertiesRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -29686,7 +36072,38 @@ export class GetTablePropertiesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -29802,12 +36219,12 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -29819,7 +36236,38 @@ export class GetTablePropertiesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -29959,7 +36407,7 @@ export class GetTableRowRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -29971,7 +36419,38 @@ export class GetTableRowRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -30111,7 +36590,7 @@ export class GetTableRowFormatRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -30123,7 +36602,38 @@ export class GetTableRowFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -30248,12 +36758,12 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -30265,7 +36775,38 @@ export class GetTableRowFormatOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -30390,12 +36931,12 @@ export class GetTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -30407,7 +36948,38 @@ export class GetTableRowOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -30523,7 +37095,7 @@ export class GetTablesRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -30535,7 +37107,38 @@ export class GetTablesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -30636,12 +37239,12 @@ export class GetTablesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -30653,7 +37256,38 @@ export class GetTablesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -30796,12 +37430,12 @@ export class InsertBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.bookmark !== undefined) {
             let _obj = ObjectSerializer.serialize(this.bookmark, this.bookmark.constructor.name === "Object" ? "importedBookmarkInsert.BookmarkInsert" : this.bookmark.constructor.name);
-            formParams.push(['Bookmark', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['bookmark', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -30813,7 +37447,38 @@ export class InsertBookmarkRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -30942,16 +37607,16 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.bookmark !== undefined) {
             let _obj = ObjectSerializer.serialize(this.bookmark, this.bookmark.constructor.name === "Object" ? "importedBookmarkInsert.BookmarkInsert" : this.bookmark.constructor.name);
-            formParams.push(['Bookmark', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['bookmark', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -30963,7 +37628,38 @@ export class InsertBookmarkOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -31115,12 +37811,12 @@ export class InsertCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.comment !== undefined) {
             let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentInsert.CommentInsert" : this.comment.constructor.name);
-            formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['comment', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -31132,7 +37828,38 @@ export class InsertCommentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -31261,16 +37988,16 @@ export class InsertCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.comment !== undefined) {
             let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentInsert.CommentInsert" : this.comment.constructor.name);
-            formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['comment', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -31282,7 +38009,38 @@ export class InsertCommentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -31434,12 +38192,12 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.customXmlPart !== undefined) {
             let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartInsert.CustomXmlPartInsert" : this.customXmlPart.constructor.name);
-            formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['customXmlPart', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -31451,7 +38209,38 @@ export class InsertCustomXmlPartRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -31580,16 +38369,16 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.customXmlPart !== undefined) {
             let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartInsert.CustomXmlPartInsert" : this.customXmlPart.constructor.name);
-            formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['customXmlPart', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -31601,7 +38390,38 @@ export class InsertCustomXmlPartOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -31773,15 +38593,15 @@ export class InsertDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.drawingObject !== undefined) {
             let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectInsert.DrawingObjectInsert" : this.drawingObject.constructor.name);
-            formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['drawingObject', JSON.stringify(_obj), 'application/json']);
         }
         if (this.imageFile !== undefined) {
-            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+            formParams.push(['imageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -31793,7 +38613,38 @@ export class InsertDrawingObjectRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -31942,19 +38793,19 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.drawingObject !== undefined) {
             let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectInsert.DrawingObjectInsert" : this.drawingObject.constructor.name);
-            formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['drawingObject', JSON.stringify(_obj), 'application/json']);
         }
         if (this.imageFile !== undefined) {
-            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+            formParams.push(['imageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -31966,7 +38817,38 @@ export class InsertDrawingObjectOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -32124,12 +39006,12 @@ export class InsertFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : this.field.constructor.name);
-            formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['field', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -32141,7 +39023,38 @@ export class InsertFieldRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -32276,16 +39189,16 @@ export class InsertFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldInsert.FieldInsert" : this.field.constructor.name);
-            formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['field', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -32297,7 +39210,38 @@ export class InsertFieldOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -32455,12 +39399,12 @@ export class InsertFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.footnoteDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : this.footnoteDto.constructor.name);
-            formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['footnoteDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -32472,7 +39416,38 @@ export class InsertFootnoteRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -32607,16 +39582,16 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.footnoteDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteInsert.FootnoteInsert" : this.footnoteDto.constructor.name);
-            formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['footnoteDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -32628,7 +39603,38 @@ export class InsertFootnoteOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -32792,12 +39798,12 @@ export class InsertFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.formField !== undefined) {
             let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
-            formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['formField', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -32809,7 +39815,38 @@ export class InsertFormFieldRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -32950,16 +39987,16 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "insertBeforeNode", this.insertBeforeNode, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.formField !== undefined) {
             let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
-            formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['formField', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -32971,7 +40008,38 @@ export class InsertFormFieldOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -33135,12 +40203,12 @@ export class InsertHeaderFooterRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.headerFooterType !== undefined) {
-            formParams.push(['HeaderFooterType', this.headerFooterType, 'text/plain']);
+            formParams.push(['headerFooterType', this.headerFooterType, 'text/plain']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -33152,7 +40220,38 @@ export class InsertHeaderFooterRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -33294,15 +40393,15 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.headerFooterType !== undefined) {
-            formParams.push(['HeaderFooterType', this.headerFooterType, 'text/plain']);
+            formParams.push(['headerFooterType', this.headerFooterType, 'text/plain']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -33314,7 +40413,38 @@ export class InsertHeaderFooterOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -33466,12 +40596,12 @@ export class InsertListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.listInsert !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listInsert, this.listInsert.constructor.name === "Object" ? "importedListInsert.ListInsert" : this.listInsert.constructor.name);
-            formParams.push(['ListInsert', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['listInsert', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -33483,7 +40613,38 @@ export class InsertListRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -33612,16 +40773,16 @@ export class InsertListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.listInsert !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listInsert, this.listInsert.constructor.name === "Object" ? "importedListInsert.ListInsert" : this.listInsert.constructor.name);
-            formParams.push(['ListInsert', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['listInsert', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -33633,7 +40794,38 @@ export class InsertListOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -33794,12 +40986,12 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.tabStopInsertDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : this.tabStopInsertDto.constructor.name);
-            formParams.push(['TabStopInsertDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['tabStopInsertDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -33811,7 +41003,38 @@ export class InsertOrUpdateParagraphTabStopRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -33949,16 +41172,16 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.tabStopInsertDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.tabStopInsertDto, this.tabStopInsertDto.constructor.name === "Object" ? "importedTabStopInsert.TabStopInsert" : this.tabStopInsertDto.constructor.name);
-            formParams.push(['TabStopInsertDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['tabStopInsertDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -33970,7 +41193,38 @@ export class InsertOrUpdateParagraphTabStopOnlineRequest implements RequestInter
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -34122,12 +41376,12 @@ export class InsertPageNumbersRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.pageNumber !== undefined) {
             let _obj = ObjectSerializer.serialize(this.pageNumber, this.pageNumber.constructor.name === "Object" ? "importedPageNumber.PageNumber" : this.pageNumber.constructor.name);
-            formParams.push(['PageNumber', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['pageNumber', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -34139,7 +41393,38 @@ export class InsertPageNumbersRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -34268,16 +41553,16 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.pageNumber !== undefined) {
             let _obj = ObjectSerializer.serialize(this.pageNumber, this.pageNumber.constructor.name === "Object" ? "importedPageNumber.PageNumber" : this.pageNumber.constructor.name);
-            formParams.push(['PageNumber', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['pageNumber', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -34289,7 +41574,38 @@ export class InsertPageNumbersOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -34447,12 +41763,12 @@ export class InsertParagraphRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.paragraph !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : this.paragraph.constructor.name);
-            formParams.push(['Paragraph', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['paragraph', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -34464,7 +41780,38 @@ export class InsertParagraphRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -34599,16 +41946,16 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.paragraph !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraph, this.paragraph.constructor.name === "Object" ? "importedParagraphInsert.ParagraphInsert" : this.paragraph.constructor.name);
-            formParams.push(['Paragraph', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['paragraph', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -34620,7 +41967,38 @@ export class InsertParagraphOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -34778,12 +42156,12 @@ export class InsertRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : this.run.constructor.name);
-            formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['run', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -34795,7 +42173,38 @@ export class InsertRunRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -34930,16 +42339,16 @@ export class InsertRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunInsert.RunInsert" : this.run.constructor.name);
-            formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['run', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -34951,7 +42360,38 @@ export class InsertRunOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -35103,7 +42543,7 @@ export class InsertSectionRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -35115,7 +42555,38 @@ export class InsertSectionRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -35243,12 +42714,12 @@ export class InsertSectionOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -35260,7 +42731,38 @@ export class InsertSectionOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -35409,12 +42911,12 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.structuredDocumentTag !== undefined) {
             let _obj = ObjectSerializer.serialize(this.structuredDocumentTag, this.structuredDocumentTag.constructor.name === "Object" ? "importedStructuredDocumentTagInsert.StructuredDocumentTagInsert" : this.structuredDocumentTag.constructor.name);
-            formParams.push(['StructuredDocumentTag', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['structuredDocumentTag', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -35426,7 +42928,38 @@ export class InsertStructuredDocumentTagRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -35561,16 +43094,16 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.structuredDocumentTag !== undefined) {
             let _obj = ObjectSerializer.serialize(this.structuredDocumentTag, this.structuredDocumentTag.constructor.name === "Object" ? "importedStructuredDocumentTagInsert.StructuredDocumentTagInsert" : this.structuredDocumentTag.constructor.name);
-            formParams.push(['StructuredDocumentTag', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['structuredDocumentTag', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -35582,7 +43115,38 @@ export class InsertStructuredDocumentTagOnlineRequest implements RequestInterfac
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -35734,12 +43298,12 @@ export class InsertStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.styleInsert !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleInsert, this.styleInsert.constructor.name === "Object" ? "importedStyleInsert.StyleInsert" : this.styleInsert.constructor.name);
-            formParams.push(['StyleInsert', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['styleInsert', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -35751,7 +43315,38 @@ export class InsertStyleRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -35880,16 +43475,16 @@ export class InsertStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.styleInsert !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleInsert, this.styleInsert.constructor.name === "Object" ? "importedStyleInsert.StyleInsert" : this.styleInsert.constructor.name);
-            formParams.push(['StyleInsert', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['styleInsert', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -35901,7 +43496,38 @@ export class InsertStyleOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -36059,12 +43685,12 @@ export class InsertTableRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.table !== undefined) {
             let _obj = ObjectSerializer.serialize(this.table, this.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : this.table.constructor.name);
-            formParams.push(['Table', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['table', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -36076,7 +43702,38 @@ export class InsertTableRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -36225,12 +43882,12 @@ export class InsertTableCellRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.cell !== undefined) {
             let _obj = ObjectSerializer.serialize(this.cell, this.cell.constructor.name === "Object" ? "importedTableCellInsert.TableCellInsert" : this.cell.constructor.name);
-            formParams.push(['Cell', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['cell', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -36242,7 +43899,38 @@ export class InsertTableCellRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -36377,16 +44065,16 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.cell !== undefined) {
             let _obj = ObjectSerializer.serialize(this.cell, this.cell.constructor.name === "Object" ? "importedTableCellInsert.TableCellInsert" : this.cell.constructor.name);
-            formParams.push(['Cell', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['cell', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -36398,7 +44086,38 @@ export class InsertTableCellOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -36542,16 +44261,16 @@ export class InsertTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.table !== undefined) {
             let _obj = ObjectSerializer.serialize(this.table, this.table.constructor.name === "Object" ? "importedTableInsert.TableInsert" : this.table.constructor.name);
-            formParams.push(['Table', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['table', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -36563,7 +44282,38 @@ export class InsertTableOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -36721,12 +44471,12 @@ export class InsertTableRowRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.row !== undefined) {
             let _obj = ObjectSerializer.serialize(this.row, this.row.constructor.name === "Object" ? "importedTableRowInsert.TableRowInsert" : this.row.constructor.name);
-            formParams.push(['Row', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['row', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -36738,7 +44488,38 @@ export class InsertTableRowRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -36873,16 +44654,16 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.row !== undefined) {
             let _obj = ObjectSerializer.serialize(this.row, this.row.constructor.name === "Object" ? "importedTableRowInsert.TableRowInsert" : this.row.constructor.name);
-            formParams.push(['Row', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['row', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -36894,7 +44675,38 @@ export class InsertTableRowOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -37046,13 +44858,13 @@ export class InsertWatermarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.watermarkData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.watermarkData, this.watermarkData.constructor.name === "Object" ? "importedWatermarkDataBase.WatermarkDataBase" : this.watermarkData.constructor.name);
-            formParams.push(['WatermarkData', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['watermarkData', JSON.stringify(_obj), 'application/json']);
             this.watermarkData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -37064,7 +44876,38 @@ export class InsertWatermarkRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -37207,12 +45050,12 @@ export class InsertWatermarkImageRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _encryptor);
         if (this.imageFile !== undefined) {
-            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+            formParams.push(['imageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -37224,7 +45067,38 @@ export class InsertWatermarkImageRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -37354,15 +45228,15 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "rotationAngle", this.rotationAngle, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "image", this.image, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.imageFile !== undefined) {
-            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+            formParams.push(['imageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -37374,7 +45248,38 @@ export class InsertWatermarkImageOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -37512,17 +45417,17 @@ export class InsertWatermarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.watermarkData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.watermarkData, this.watermarkData.constructor.name === "Object" ? "importedWatermarkDataBase.WatermarkDataBase" : this.watermarkData.constructor.name);
-            formParams.push(['WatermarkData', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['watermarkData', JSON.stringify(_obj), 'application/json']);
             this.watermarkData.collectFilesContent(filesContent);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -37534,7 +45439,38 @@ export class InsertWatermarkOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -37686,12 +45622,12 @@ export class InsertWatermarkTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.watermarkText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.watermarkText, this.watermarkText.constructor.name === "Object" ? "importedWatermarkText.WatermarkText" : this.watermarkText.constructor.name);
-            formParams.push(['WatermarkText', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['watermarkText', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -37703,7 +45639,38 @@ export class InsertWatermarkTextRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -37832,16 +45799,16 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.watermarkText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.watermarkText, this.watermarkText.constructor.name === "Object" ? "importedWatermarkText.WatermarkText" : this.watermarkText.constructor.name);
-            formParams.push(['WatermarkText', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['watermarkText', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -37853,7 +45820,38 @@ export class InsertWatermarkTextOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -38011,7 +46009,7 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -38023,7 +46021,38 @@ export class LinkHeaderFootersToPreviousRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -38103,12 +46132,12 @@ export class LoadWebDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storage", this.storage, _encryptor);
         if (this.data !== undefined) {
             let _obj = ObjectSerializer.serialize(this.data, this.data.constructor.name === "Object" ? "importedLoadWebDocumentData.LoadWebDocumentData" : this.data.constructor.name);
-            formParams.push(['Data', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['data', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -38120,7 +46149,38 @@ export class LoadWebDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -38194,12 +46254,12 @@ export class LoadWebDocumentOnlineRequest implements RequestInterface {
 
         if (this.data !== undefined) {
             let _obj = ObjectSerializer.serialize(this.data, this.data.constructor.name === "Object" ? "importedLoadWebDocumentData.LoadWebDocumentData" : this.data.constructor.name);
-            formParams.push(['Data', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['data', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -38211,7 +46271,38 @@ export class LoadWebDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -38363,7 +46454,7 @@ export class MergeWithNextRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -38375,7 +46466,38 @@ export class MergeWithNextRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -38503,12 +46625,12 @@ export class MergeWithNextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -38520,7 +46642,38 @@ export class MergeWithNextOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -38627,7 +46780,7 @@ export class MoveFileRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -38639,7 +46792,38 @@ export class MoveFileRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -38740,7 +46924,7 @@ export class MoveFolderRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -38752,7 +46936,38 @@ export class MoveFolderRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -38895,12 +47110,12 @@ export class OptimizeDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : this.options.constructor.name);
-            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['options', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -38912,7 +47127,38 @@ export class OptimizeDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -39041,16 +47287,16 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.options !== undefined) {
             let _obj = ObjectSerializer.serialize(this.options, this.options.constructor.name === "Object" ? "importedOptimizationOptions.OptimizationOptions" : this.options.constructor.name);
-            formParams.push(['Options', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['options', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -39062,7 +47308,38 @@ export class OptimizeDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -39193,12 +47470,12 @@ export class ProtectDocumentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.protectionRequest !== undefined) {
             let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequestBase.ProtectionRequestBase" : this.protectionRequest.constructor.name);
-            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['protectionRequest', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -39210,7 +47487,38 @@ export class ProtectDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -39327,16 +47635,16 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.protectionRequest !== undefined) {
             let _obj = ObjectSerializer.serialize(this.protectionRequest, this.protectionRequest.constructor.name === "Object" ? "importedProtectionRequestBase.ProtectionRequestBase" : this.protectionRequest.constructor.name);
-            formParams.push(['ProtectionRequest', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['protectionRequest', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -39348,7 +47656,38 @@ export class ProtectDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -39473,7 +47812,7 @@ export class RejectAllRevisionsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -39485,7 +47824,38 @@ export class RejectAllRevisionsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -39586,12 +47956,12 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -39603,7 +47973,38 @@ export class RejectAllRevisionsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -39728,7 +48129,7 @@ export class RemoveAllSignaturesRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -39740,7 +48141,38 @@ export class RemoveAllSignaturesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -39841,12 +48273,12 @@ export class RemoveAllSignaturesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -39858,7 +48290,38 @@ export class RemoveAllSignaturesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -40004,7 +48467,7 @@ export class RemoveRangeRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -40016,7 +48479,38 @@ export class RemoveRangeRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -40138,12 +48632,12 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -40155,7 +48649,38 @@ export class RemoveRangeOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -40322,7 +48847,7 @@ export class RenderDrawingObjectRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -40334,7 +48859,38 @@ export class RenderDrawingObjectRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -40477,12 +49033,12 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -40494,7 +49050,38 @@ export class RenderDrawingObjectOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -40652,7 +49239,7 @@ export class RenderMathObjectRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -40664,7 +49251,38 @@ export class RenderMathObjectRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -40807,12 +49425,12 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -40824,7 +49442,38 @@ export class RenderMathObjectOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -40970,7 +49619,7 @@ export class RenderPageRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -40982,7 +49631,38 @@ export class RenderPageRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -41113,12 +49793,12 @@ export class RenderPageOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -41130,7 +49810,38 @@ export class RenderPageOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -41288,7 +49999,7 @@ export class RenderParagraphRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -41300,7 +50011,38 @@ export class RenderParagraphRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -41443,12 +50185,12 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -41460,7 +50202,38 @@ export class RenderParagraphOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -41618,7 +50391,7 @@ export class RenderTableRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -41630,7 +50403,38 @@ export class RenderTableRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -41773,12 +50577,12 @@ export class RenderTableOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -41790,7 +50594,38 @@ export class RenderTableOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -41933,12 +50768,12 @@ export class ReplaceTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.replaceText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.replaceText, this.replaceText.constructor.name === "Object" ? "importedReplaceTextParameters.ReplaceTextParameters" : this.replaceText.constructor.name);
-            formParams.push(['ReplaceText', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['replaceText', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -41950,7 +50785,38 @@ export class ReplaceTextRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -42079,16 +50945,16 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.replaceText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.replaceText, this.replaceText.constructor.name === "Object" ? "importedReplaceTextParameters.ReplaceTextParameters" : this.replaceText.constructor.name);
-            formParams.push(['ReplaceText', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['replaceText', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -42100,7 +50966,38 @@ export class ReplaceTextOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -42261,12 +51158,12 @@ export class ReplaceWithTextRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.rangeText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : this.rangeText.constructor.name);
-            formParams.push(['RangeText', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['rangeText', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -42278,7 +51175,38 @@ export class ReplaceWithTextRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -42416,16 +51344,16 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.rangeText !== undefined) {
             let _obj = ObjectSerializer.serialize(this.rangeText, this.rangeText.constructor.name === "Object" ? "importedReplaceRange.ReplaceRange" : this.rangeText.constructor.name);
-            formParams.push(['RangeText', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['rangeText', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -42437,7 +51365,38 @@ export class ReplaceWithTextOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -42506,7 +51465,7 @@ export class ResetCacheRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -42518,7 +51477,38 @@ export class ResetCacheRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -42649,12 +51639,12 @@ export class SaveAsRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.saveOptionsData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : this.saveOptionsData.constructor.name);
-            formParams.push(['SaveOptionsData', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['saveOptionsData', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -42666,7 +51656,38 @@ export class SaveAsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -42783,16 +51804,16 @@ export class SaveAsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.saveOptionsData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptionsData, this.saveOptionsData.constructor.name === "Object" ? "importedSaveOptionsData.SaveOptionsData" : this.saveOptionsData.constructor.name);
-            formParams.push(['SaveOptionsData', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['saveOptionsData', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -42804,7 +51825,38 @@ export class SaveAsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -42959,12 +52011,12 @@ export class SaveAsRangeRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.documentParameters !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : this.documentParameters.constructor.name);
-            formParams.push(['DocumentParameters', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['documentParameters', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -42976,7 +52028,38 @@ export class SaveAsRangeRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -43108,16 +52191,16 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.documentParameters !== undefined) {
             let _obj = ObjectSerializer.serialize(this.documentParameters, this.documentParameters.constructor.name === "Object" ? "importedRangeDocument.RangeDocument" : this.documentParameters.constructor.name);
-            formParams.push(['DocumentParameters', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['documentParameters', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -43129,7 +52212,38 @@ export class SaveAsRangeOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -43371,12 +52485,12 @@ export class SaveAsTiffRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.saveOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptions, this.saveOptions.constructor.name === "Object" ? "importedTiffSaveOptionsData.TiffSaveOptionsData" : this.saveOptions.constructor.name);
-            formParams.push(['SaveOptions', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['saveOptions', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -43388,7 +52502,38 @@ export class SaveAsTiffRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -43607,16 +52752,16 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.saveOptions !== undefined) {
             let _obj = ObjectSerializer.serialize(this.saveOptions, this.saveOptions.constructor.name === "Object" ? "importedTiffSaveOptionsData.TiffSaveOptionsData" : this.saveOptions.constructor.name);
-            formParams.push(['SaveOptions', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['saveOptions', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -43628,7 +52773,38 @@ export class SaveAsTiffOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -43762,7 +52938,7 @@ export class SearchRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -43774,7 +52950,38 @@ export class SearchRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -43884,12 +53091,12 @@ export class SearchOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -43901,7 +53108,38 @@ export class SearchOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -44047,7 +53285,7 @@ export class SignDocumentRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -44059,7 +53297,38 @@ export class SignDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -44190,12 +53459,12 @@ export class SignDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -44207,7 +53476,38 @@ export class SignDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -44371,7 +53671,7 @@ export class SplitDocumentRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -44383,7 +53683,38 @@ export class SplitDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -44538,7 +53869,7 @@ export class SplitDocumentJobRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -44550,7 +53881,38 @@ export class SplitDocumentJobRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -44704,12 +54066,12 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -44721,7 +54083,38 @@ export class SplitDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -44870,12 +54263,12 @@ export class SplitDocumentOnlineJobRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "zipOutput", this.zipOutput, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "fontsLocation", this.fontsLocation, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -44887,7 +54280,38 @@ export class SplitDocumentOnlineJobRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -45024,7 +54448,7 @@ export class TranslateNodeIdRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -45036,7 +54460,38 @@ export class TranslateNodeIdRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -45146,12 +54601,12 @@ export class TranslateNodeIdOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "encryptedPassword", this.encryptedPassword, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -45163,7 +54618,38 @@ export class TranslateNodeIdOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -45279,7 +54765,7 @@ export class UnprotectDocumentRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -45291,7 +54777,38 @@ export class UnprotectDocumentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -45392,12 +54909,12 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -45409,7 +54926,38 @@ export class UnprotectDocumentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -45576,12 +55124,12 @@ export class UpdateBookmarkRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.bookmarkData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.bookmarkData, this.bookmarkData.constructor.name === "Object" ? "importedBookmarkData.BookmarkData" : this.bookmarkData.constructor.name);
-            formParams.push(['BookmarkData', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['bookmarkData', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -45593,7 +55141,38 @@ export class UpdateBookmarkRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -45737,16 +55316,16 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.bookmarkData !== undefined) {
             let _obj = ObjectSerializer.serialize(this.bookmarkData, this.bookmarkData.constructor.name === "Object" ? "importedBookmarkData.BookmarkData" : this.bookmarkData.constructor.name);
-            formParams.push(['BookmarkData', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['bookmarkData', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -45758,7 +55337,38 @@ export class UpdateBookmarkOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -45932,12 +55542,12 @@ export class UpdateBorderRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.borderProperties !== undefined) {
             let _obj = ObjectSerializer.serialize(this.borderProperties, this.borderProperties.constructor.name === "Object" ? "importedBorder.Border" : this.borderProperties.constructor.name);
-            formParams.push(['BorderProperties', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['borderProperties', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -45949,7 +55559,38 @@ export class UpdateBorderRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -46100,16 +55741,16 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.borderProperties !== undefined) {
             let _obj = ObjectSerializer.serialize(this.borderProperties, this.borderProperties.constructor.name === "Object" ? "importedBorder.Border" : this.borderProperties.constructor.name);
-            formParams.push(['BorderProperties', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['borderProperties', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -46121,7 +55762,38 @@ export class UpdateBorderOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -46288,12 +55960,12 @@ export class UpdateCommentRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.comment !== undefined) {
             let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentUpdate.CommentUpdate" : this.comment.constructor.name);
-            formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['comment', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -46305,7 +55977,38 @@ export class UpdateCommentRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -46449,16 +56152,16 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.comment !== undefined) {
             let _obj = ObjectSerializer.serialize(this.comment, this.comment.constructor.name === "Object" ? "importedCommentUpdate.CommentUpdate" : this.comment.constructor.name);
-            formParams.push(['Comment', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['comment', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -46470,7 +56173,38 @@ export class UpdateCommentOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -46637,12 +56371,12 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.customXmlPart !== undefined) {
             let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartUpdate.CustomXmlPartUpdate" : this.customXmlPart.constructor.name);
-            formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['customXmlPart', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -46654,7 +56388,38 @@ export class UpdateCustomXmlPartRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -46798,16 +56563,16 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.customXmlPart !== undefined) {
             let _obj = ObjectSerializer.serialize(this.customXmlPart, this.customXmlPart.constructor.name === "Object" ? "importedCustomXmlPartUpdate.CustomXmlPartUpdate" : this.customXmlPart.constructor.name);
-            formParams.push(['CustomXmlPart', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['customXmlPart', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -46819,7 +56584,38 @@ export class UpdateCustomXmlPartOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -47006,15 +56802,15 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.drawingObject !== undefined) {
             let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectUpdate.DrawingObjectUpdate" : this.drawingObject.constructor.name);
-            formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['drawingObject', JSON.stringify(_obj), 'application/json']);
         }
         if (this.imageFile !== undefined) {
-            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+            formParams.push(['imageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -47026,7 +56822,38 @@ export class UpdateDrawingObjectRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -47190,19 +57017,19 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.drawingObject !== undefined) {
             let _obj = ObjectSerializer.serialize(this.drawingObject, this.drawingObject.constructor.name === "Object" ? "importedDrawingObjectUpdate.DrawingObjectUpdate" : this.drawingObject.constructor.name);
-            formParams.push(['DrawingObject', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['drawingObject', JSON.stringify(_obj), 'application/json']);
         }
         if (this.imageFile !== undefined) {
-            formParams.push(['ImageFile', this.imageFile, 'application/octet-stream']);
+            formParams.push(['imageFile', this.imageFile, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -47214,7 +57041,38 @@ export class UpdateDrawingObjectOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -47387,12 +57245,12 @@ export class UpdateFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldUpdate.FieldUpdate" : this.field.constructor.name);
-            formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['field', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -47404,7 +57262,38 @@ export class UpdateFieldRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -47554,16 +57443,16 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.field !== undefined) {
             let _obj = ObjectSerializer.serialize(this.field, this.field.constructor.name === "Object" ? "importedFieldUpdate.FieldUpdate" : this.field.constructor.name);
-            formParams.push(['Field', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['field', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -47575,7 +57464,38 @@ export class UpdateFieldOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -47700,7 +57620,7 @@ export class UpdateFieldsRequest implements RequestInterface {
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -47712,7 +57632,38 @@ export class UpdateFieldsRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -47813,12 +57764,12 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "openTypeSupport", this.openTypeSupport, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "destFileName", this.destFileName, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -47830,7 +57781,38 @@ export class UpdateFieldsOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -48003,12 +57985,12 @@ export class UpdateFootnoteRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.footnoteDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : this.footnoteDto.constructor.name);
-            formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['footnoteDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -48020,7 +58002,38 @@ export class UpdateFootnoteRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -48170,16 +58183,16 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.footnoteDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.footnoteDto, this.footnoteDto.constructor.name === "Object" ? "importedFootnoteUpdate.FootnoteUpdate" : this.footnoteDto.constructor.name);
-            formParams.push(['FootnoteDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['footnoteDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -48191,7 +58204,38 @@ export class UpdateFootnoteOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -48364,12 +58408,12 @@ export class UpdateFormFieldRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.formField !== undefined) {
             let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
-            formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['formField', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -48381,7 +58425,38 @@ export class UpdateFormFieldRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -48531,16 +58606,16 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.formField !== undefined) {
             let _obj = ObjectSerializer.serialize(this.formField, this.formField.constructor.name === "Object" ? "importedFormField.FormField" : this.formField.constructor.name);
-            formParams.push(['FormField', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['formField', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -48552,7 +58627,38 @@ export class UpdateFormFieldOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -48719,12 +58825,12 @@ export class UpdateListRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.listUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListUpdate.ListUpdate" : this.listUpdate.constructor.name);
-            formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['listUpdate', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -48736,7 +58842,38 @@ export class UpdateListRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -48909,12 +59046,12 @@ export class UpdateListLevelRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.listUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListLevelUpdate.ListLevelUpdate" : this.listUpdate.constructor.name);
-            formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['listUpdate', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -48926,7 +59063,38 @@ export class UpdateListLevelRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -49085,16 +59253,16 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.listUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListLevelUpdate.ListLevelUpdate" : this.listUpdate.constructor.name);
-            formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['listUpdate', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -49106,7 +59274,38 @@ export class UpdateListLevelOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -49259,16 +59458,16 @@ export class UpdateListOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.listUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listUpdate, this.listUpdate.constructor.name === "Object" ? "importedListUpdate.ListUpdate" : this.listUpdate.constructor.name);
-            formParams.push(['ListUpdate', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['listUpdate', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -49280,7 +59479,38 @@ export class UpdateListOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -49453,12 +59683,12 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.paragraphFormatDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraphFormatDto, this.paragraphFormatDto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : this.paragraphFormatDto.constructor.name);
-            formParams.push(['ParagraphFormatDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['paragraphFormatDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -49470,7 +59700,38 @@ export class UpdateParagraphFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -49620,16 +59881,16 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.paragraphFormatDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.paragraphFormatDto, this.paragraphFormatDto.constructor.name === "Object" ? "importedParagraphFormatUpdate.ParagraphFormatUpdate" : this.paragraphFormatDto.constructor.name);
-            formParams.push(['ParagraphFormatDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['paragraphFormatDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -49641,7 +59902,38 @@ export class UpdateParagraphFormatOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -49814,12 +60106,12 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.listFormatDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listFormatDto, this.listFormatDto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : this.listFormatDto.constructor.name);
-            formParams.push(['ListFormatDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['listFormatDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -49831,7 +60123,38 @@ export class UpdateParagraphListFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -49981,16 +60304,16 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.listFormatDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.listFormatDto, this.listFormatDto.constructor.name === "Object" ? "importedListFormatUpdate.ListFormatUpdate" : this.listFormatDto.constructor.name);
-            formParams.push(['ListFormatDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['listFormatDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -50002,7 +60325,38 @@ export class UpdateParagraphListFormatOnlineRequest implements RequestInterface 
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -50184,12 +60538,12 @@ export class UpdateRunRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunUpdate.RunUpdate" : this.run.constructor.name);
-            formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['run', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -50201,7 +60555,38 @@ export class UpdateRunRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -50374,12 +60759,12 @@ export class UpdateRunFontRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.fontDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.fontDto, this.fontDto.constructor.name === "Object" ? "importedFont.Font" : this.fontDto.constructor.name);
-            formParams.push(['FontDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['fontDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -50391,7 +60776,38 @@ export class UpdateRunFontRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -50550,16 +60966,16 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.fontDto !== undefined) {
             let _obj = ObjectSerializer.serialize(this.fontDto, this.fontDto.constructor.name === "Object" ? "importedFont.Font" : this.fontDto.constructor.name);
-            formParams.push(['FontDto', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['fontDto', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -50571,7 +60987,38 @@ export class UpdateRunFontOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -50739,16 +61186,16 @@ export class UpdateRunOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.run !== undefined) {
             let _obj = ObjectSerializer.serialize(this.run, this.run.constructor.name === "Object" ? "importedRunUpdate.RunUpdate" : this.run.constructor.name);
-            formParams.push(['Run', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['run', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -50760,7 +61207,38 @@ export class UpdateRunOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -50927,12 +61405,12 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.pageSetup !== undefined) {
             let _obj = ObjectSerializer.serialize(this.pageSetup, this.pageSetup.constructor.name === "Object" ? "importedPageSetup.PageSetup" : this.pageSetup.constructor.name);
-            formParams.push(['PageSetup', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['pageSetup', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -50944,7 +61422,38 @@ export class UpdateSectionPageSetupRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -51088,16 +61597,16 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.pageSetup !== undefined) {
             let _obj = ObjectSerializer.serialize(this.pageSetup, this.pageSetup.constructor.name === "Object" ? "importedPageSetup.PageSetup" : this.pageSetup.constructor.name);
-            formParams.push(['PageSetup', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['pageSetup', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -51109,7 +61618,38 @@ export class UpdateSectionPageSetupOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -51282,12 +61822,12 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.structuredDocumentTag !== undefined) {
             let _obj = ObjectSerializer.serialize(this.structuredDocumentTag, this.structuredDocumentTag.constructor.name === "Object" ? "importedStructuredDocumentTagUpdate.StructuredDocumentTagUpdate" : this.structuredDocumentTag.constructor.name);
-            formParams.push(['StructuredDocumentTag', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['structuredDocumentTag', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -51299,7 +61839,38 @@ export class UpdateStructuredDocumentTagRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -51449,16 +62020,16 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.structuredDocumentTag !== undefined) {
             let _obj = ObjectSerializer.serialize(this.structuredDocumentTag, this.structuredDocumentTag.constructor.name === "Object" ? "importedStructuredDocumentTagUpdate.StructuredDocumentTagUpdate" : this.structuredDocumentTag.constructor.name);
-            formParams.push(['StructuredDocumentTag', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['structuredDocumentTag', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -51470,7 +62041,38 @@ export class UpdateStructuredDocumentTagOnlineRequest implements RequestInterfac
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -51637,12 +62239,12 @@ export class UpdateStyleRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.styleUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleUpdate, this.styleUpdate.constructor.name === "Object" ? "importedStyleUpdate.StyleUpdate" : this.styleUpdate.constructor.name);
-            formParams.push(['StyleUpdate', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['styleUpdate', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -51654,7 +62256,38 @@ export class UpdateStyleRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -51798,16 +62431,16 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.styleUpdate !== undefined) {
             let _obj = ObjectSerializer.serialize(this.styleUpdate, this.styleUpdate.constructor.name === "Object" ? "importedStyleUpdate.StyleUpdate" : this.styleUpdate.constructor.name);
-            formParams.push(['StyleUpdate', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['styleUpdate', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -51819,7 +62452,38 @@ export class UpdateStyleOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -52001,12 +62665,12 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.format !== undefined) {
             let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableCellFormat.TableCellFormat" : this.format.constructor.name);
-            formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['format', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -52018,7 +62682,38 @@ export class UpdateTableCellFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -52177,16 +62872,16 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.format !== undefined) {
             let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableCellFormat.TableCellFormat" : this.format.constructor.name);
-            formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['format', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -52198,7 +62893,38 @@ export class UpdateTableCellFormatOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -52371,12 +63097,12 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.properties !== undefined) {
             let _obj = ObjectSerializer.serialize(this.properties, this.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : this.properties.constructor.name);
-            formParams.push(['Properties', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['properties', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -52388,7 +63114,38 @@ export class UpdateTablePropertiesRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -52538,16 +63295,16 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.properties !== undefined) {
             let _obj = ObjectSerializer.serialize(this.properties, this.properties.constructor.name === "Object" ? "importedTableProperties.TableProperties" : this.properties.constructor.name);
-            formParams.push(['Properties', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['properties', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -52559,7 +63316,38 @@ export class UpdateTablePropertiesOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -52741,12 +63529,12 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.format !== undefined) {
             let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableRowFormat.TableRowFormat" : this.format.constructor.name);
-            formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['format', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -52758,7 +63546,38 @@ export class UpdateTableRowFormatRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -52917,16 +63736,16 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionAuthor", this.revisionAuthor, _encryptor);
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "revisionDateTime", this.revisionDateTime, _encryptor);
         if (this.document !== undefined) {
-            formParams.push(['Document', this.document, 'application/octet-stream']);
+            formParams.push(['document', this.document, 'application/octet-stream']);
         }
         if (this.format !== undefined) {
             let _obj = ObjectSerializer.serialize(this.format, this.format.constructor.name === "Object" ? "importedTableRowFormat.TableRowFormat" : this.format.constructor.name);
-            formParams.push(['Format', JSON.stringify(_obj), 'application/json']);
+            formParams.push(['format', JSON.stringify(_obj), 'application/json']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -52938,7 +63757,38 @@ export class UpdateTableRowFormatOnlineRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];
@@ -53041,12 +63891,12 @@ export class UploadFileRequest implements RequestInterface {
         }
         localVarPath = await addQueryParameterToUrl(localVarPath, queryParameters, "storageName", this.storageName, _encryptor);
         if (this.fileContent !== undefined) {
-            formParams.push(['FileContent', this.fileContent, 'application/octet-stream']);
+            formParams.push(['fileContent', this.fileContent, 'application/octet-stream']);
         }
 
         for (let fileContent of filesContent) {
             await fileContent.encryptPassword(_encryptor);
-            if (fileContent.getSource() == FileReference.SourceEnum.Request) {
+            if (fileContent.getSource() === "Request") {
                 formParams.push([fileContent.getReference(), fileContent.getContent(), 'application/octet-stream']);
             }
         }
@@ -53058,7 +63908,38 @@ export class UploadFileRequest implements RequestInterface {
             uri: localVarPath,
         };
 
-        if (formParams.length == 1) {
+        const hasBinaryFormParam = formParams.some((formParam) => formParam[2] === 'application/octet-stream');
+
+        if (hasBinaryFormParam) {
+            const requestFormData = {};
+            for (let formParam of formParams) {
+                const formValue = {
+                    value: formParam[1],
+                    options: {
+                        contentType: formParam[2],
+                    },
+                };
+
+                if (formParam[2] === 'application/octet-stream') {
+                    formValue.options["filename"] = formParam[0];
+                }
+
+                if (requestFormData[formParam[0]] !== undefined) {
+                    if (requestFormData[formParam[0]] instanceof Array) {
+                        requestFormData[formParam[0]].push(formValue);
+                    }
+                    else {
+                        requestFormData[formParam[0]] = [requestFormData[formParam[0]], formValue];
+                    }
+                }
+                else {
+                    requestFormData[formParam[0]] = formValue;
+                }
+            }
+
+            requestOptions.formData = requestFormData;
+        }
+        else if (formParams.length == 1) {
             let formFirstParam = formParams[0];
             requestOptions.body = formFirstParam[1];
             requestOptions.headers["Content-Type"] = formFirstParam[2];

@@ -50,7 +50,25 @@ export function getPartBoundary(headers: {[key: string]: string}): string {
  * Get boundary value from content-type header
  */
 function parseContentType(contentType: string) : string {
-    return contentType.split(" ")[1].split("=")[1].slice(1, -1);
+    if (!contentType) {
+        throw new Error("Failed to parse content-type header.");
+    }
+
+    const boundaryPart = contentType
+        .split(";")
+        .map((part) => part.trim())
+        .find((part) => part.toLowerCase().startsWith("boundary="));
+
+    if (!boundaryPart) {
+        throw new Error("Failed to parse content-type header.");
+    }
+
+    const boundary = boundaryPart.substring("boundary=".length).trim();
+    if (boundary.length >= 2 && boundary.startsWith("\"") && boundary.endsWith("\"")) {
+        return boundary.slice(1, -1);
+    }
+
+    return boundary;
 }
 
 /**
@@ -131,7 +149,7 @@ async function invokeApiMethodInternal(requestOptions: request.OptionsWithUri, c
     requestOptions.timeout = 1000 * confguration.timeout;
 
     requestOptions.headers["x-aspose-client"] = "nodejs sdk";
-    requestOptions.headers["x-aspose-client-version"] = "26.3";
+    requestOptions.headers["x-aspose-client-version"] = "26.4";
     requestOptions.encoding = null;
 
 	requestOptions.uri = encodeURI(requestOptions.uri.toString());
@@ -385,6 +403,79 @@ export function parseFilesCollection(response: Buffer, headers: http.IncomingHtt
     }
 
     return result;
+}
+
+/**
+ * Call job result endpoint.
+ * @param configuration api configuration
+ * @param jobId job id
+ */
+export async function callJobResult(configuration: Configuration, jobId: string): Promise<any[]> {
+    const requestOptions: request.OptionsWithUri = {
+        method: "GET",
+        uri: configuration.getApiBaseUrl() + "/words/job",
+        qs: { id: jobId },
+        headers: {},
+        encoding: null
+    };
+
+    const response = await invokeApiMethod(requestOptions, configuration);
+    return parseMultipart(response.body, getBoundary(response.headers));
+}
+
+/**
+ * Deserialize embedded HTTP response part.
+ * @param request request model
+ * @param part multipart part with embedded HTTP response
+ */
+export function deserializeHttpResponsePart<T>(request: { createResponse(_response: Buffer, _headers: http.IncomingHttpHeaders): any }, part: any): T {
+    const parsedPart = parseHttpResponsePart(part.body);
+    if (parsedPart.code < 200 || parsedPart.code > 299) {
+        return null;
+    }
+
+    return request.createResponse(parsedPart.body, parsedPart.headers) as T;
+}
+
+/**
+ * Parse embedded HTTP response part.
+ * @param responseBody embedded HTTP response bytes
+ */
+export function parseHttpResponsePart(responseBody: Buffer): any {
+    let info = "";
+    let bodyStart = -1;
+    const headers = {};
+
+    const responseText = responseBody.toString("binary");
+    const headersEnd = responseText.indexOf("\r\n\r\n");
+    if (headersEnd >= 0) {
+        bodyStart = headersEnd + 4;
+    }
+
+    const headText = bodyStart >= 0 ? responseText.substring(0, bodyStart - 4) : responseText;
+    const headerLines = headText.split("\r\n");
+    if (headerLines.length === 0) {
+        throw new Error("Failed to parse HTTP response part.");
+    }
+
+    info = headerLines[0];
+    const infoParts = info.split(" ");
+    if (infoParts.length < 3 || !infoParts[0].startsWith("HTTP/")) {
+        throw new Error("Failed to parse HTTP response part.");
+    }
+
+    for (const header of headerLines.slice(1)) {
+        if (header.indexOf(":") !== -1) {
+            const [ key, value ] = header.split(/:\s+/);
+            headers[key.toLowerCase()] = value;
+        }
+    }
+
+    return {
+        code: parseInt(infoParts[1], 10),
+        headers,
+        body: bodyStart >= 0 ? responseBody.slice(bodyStart) : Buffer.alloc(0)
+    };
 }
 
 /**

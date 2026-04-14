@@ -63,6 +63,36 @@ describe("executeMailMerge", () => {
        });
     });
 
+    // Test for executing mail merge online job.
+    describe("executeMailMergeOnlineJob test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localDocumentFile = "SampleExecuteTemplate.docx";
+            const localDataFile = "SampleExecuteTemplateData.txt";
+
+            const requestTemplate = fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDocumentFile);
+            const requestData = fs.createReadStream(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDataFile);
+            const request = new model.ExecuteMailMergeOnlineJobRequest({
+                template: requestTemplate,
+                data: requestData,
+                withRegions: true
+            });
+
+            // Act
+            return wordsApi.executeMailMergeOnlineJob(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi).to.exist;
+                return resultApi.waitResult()
+                .then((jobResult) => {
+                    const resultApi = { body: jobResult };
+                    expect(jobResult).to.exist;
+                });
+            });
+
+       });
+    });
+
     // Test for executing mail merge.
     describe("executeMailMerge test", () => {
         it("should return response with code 200", () => {
@@ -91,6 +121,45 @@ describe("executeMailMerge", () => {
                     expect(resultApi.response.statusCode).to.equal(200);
                     expect(resultApi.body.document).to.exist;
                     expect(resultApi.body.document.fileName).to.equal("TestExecuteMailMerge.docx");
+                });
+
+            });
+
+       });
+    });
+
+    // Test for executing mail merge job.
+    describe("executeMailMergeJob test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const localDocumentFile = "SampleExecuteTemplate.docx";
+            const remoteFileName = "TestExecuteMailMerge.docx";
+            const localDataFile = fs.readFileSync(BaseTest.localBaseTestDataFolder + mailMergeFolder + "/SampleMailMergeTemplateData.txt", 'utf8');
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + mailMergeFolder + "/" + localDocumentFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.ExecuteMailMergeJobRequest({
+                    name: remoteFileName,
+                    data: localDataFile,
+                    folder: remoteDataFolder,
+                    withRegions: true,
+                    destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
+                });
+
+                // Act
+                return wordsApi.executeMailMergeJob(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi).to.exist;
+                    return resultApi.waitResult()
+                    .then((jobResult) => {
+                        const resultApi = { body: jobResult };
+                        expect(resultApi.body.document).to.exist;
+                        expect(resultApi.body.document.fileName).to.equal("TestExecuteMailMerge.docx");
+                    });
                 });
 
             });

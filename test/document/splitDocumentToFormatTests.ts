@@ -73,6 +73,45 @@ describe("splitDocumentToFormat", () => {
        });
     });
 
+    // Test for document splitting job.
+    describe("splitDocumentJob test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestSplitDocument.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const request = new model.SplitDocumentJobRequest({
+                    name: remoteFileName,
+                    format: "text",
+                    folder: remoteDataFolder,
+                    destFileName: BaseTest.remoteBaseTestOutFolder + "/TestSplitDocument.text",
+                    from: 1,
+                    to: 2
+                });
+
+                // Act
+                return wordsApi.splitDocumentJob(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi).to.exist;
+                    return resultApi.waitResult()
+                    .then((jobResult) => {
+                        const resultApi = { body: jobResult };
+                        expect(resultApi.body.splitResult).to.exist;
+                        expect(resultApi.body.splitResult.pages).to.exist;
+                        expect(resultApi.body.splitResult.pages).to.have.lengthOf(2);
+                    });
+                });
+
+            });
+
+       });
+    });
+
     // Test for document splitting online.
     describe("splitDocumentOnline test", () => {
         it("should return response with code 200", () => {
@@ -91,6 +130,34 @@ describe("splitDocumentToFormat", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
+    // Test for document splitting online job.
+    describe("splitDocumentOnlineJob test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const request = new model.SplitDocumentOnlineJobRequest({
+                document: requestDocument,
+                format: "text",
+                destFileName: BaseTest.remoteBaseTestOutFolder + "/TestSplitDocument.text",
+                from: 1,
+                to: 2
+            });
+
+            // Act
+            return wordsApi.splitDocumentOnlineJob(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi).to.exist;
+                return resultApi.waitResult()
+                .then((jobResult) => {
+                    const resultApi = { body: jobResult };
+                    expect(jobResult).to.exist;
+                });
             });
 
        });

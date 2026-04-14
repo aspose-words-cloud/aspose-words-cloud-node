@@ -81,6 +81,53 @@ describe("appendDocument", () => {
        });
     });
 
+    // Test for appending document job.
+    describe("appendDocumentJob test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const remoteFileName = "TestAppendDocument.docx";
+
+            return wordsApi.uploadFileToStorage(
+                remoteDataFolder + "/" + remoteFileName,
+                BaseTest.localBaseTestDataFolder + localFile
+            ).then((result0) => {
+                expect(result0.response.statusMessage).to.equal("OK");
+                const requestDocumentListDocumentEntries0FileReference = model.FileReference.fromRemoteFilePath(remoteDataFolder + "/" + remoteFileName);
+                const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
+                    fileReference: requestDocumentListDocumentEntries0FileReference,
+                    importFormatMode: model.DocumentEntry.ImportFormatModeEnum.KeepSourceFormatting
+                })
+                const requestDocumentListDocumentEntries = [
+                    requestDocumentListDocumentEntries0
+                ]
+                const requestDocumentList = new model.DocumentEntryList({
+                    documentEntries: requestDocumentListDocumentEntries
+                })
+                const request = new model.AppendDocumentJobRequest({
+                    name: remoteFileName,
+                    documentList: requestDocumentList,
+                    folder: remoteDataFolder,
+                    destFileName: BaseTest.remoteBaseTestOutFolder + "/" + remoteFileName
+                });
+
+                // Act
+                return wordsApi.appendDocumentJob(request)
+                .then((resultApi) => {
+                    // Assert
+                    expect(resultApi).to.exist;
+                    return resultApi.waitResult()
+                    .then((jobResult) => {
+                        const resultApi = { body: jobResult };
+                        expect(resultApi.body.document).to.exist;
+                        expect(resultApi.body.document.fileName).to.equal("TestAppendDocument.docx");
+                    });
+                });
+
+            });
+
+       });
+    });
+
     // Test for appending document online.
     describe("appendDocumentOnline test", () => {
         it("should return response with code 200", () => {
@@ -108,6 +155,43 @@ describe("appendDocument", () => {
             .then((resultApi) => {
                 // Assert
                 expect(resultApi.response.statusCode).to.equal(200);
+            });
+
+       });
+    });
+
+    // Test for appending document online job.
+    describe("appendDocumentOnlineJob test", () => {
+        it("should return response with code 200", () => {
+            const wordsApi = BaseTest.initializeWordsApi();
+            const requestDocument = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocumentListDocumentEntries0FileReferenceStream = fs.createReadStream(BaseTest.localBaseTestDataFolder + localFile);
+            const requestDocumentListDocumentEntries0FileReference = model.FileReference.fromLocalFileContent(requestDocumentListDocumentEntries0FileReferenceStream);
+            const requestDocumentListDocumentEntries0 = new model.DocumentEntry({
+                fileReference: requestDocumentListDocumentEntries0FileReference,
+                importFormatMode: model.DocumentEntry.ImportFormatModeEnum.KeepSourceFormatting
+            })
+            const requestDocumentListDocumentEntries = [
+                requestDocumentListDocumentEntries0
+            ]
+            const requestDocumentList = new model.DocumentEntryList({
+                documentEntries: requestDocumentListDocumentEntries
+            })
+            const request = new model.AppendDocumentOnlineJobRequest({
+                document: requestDocument,
+                documentList: requestDocumentList
+            });
+
+            // Act
+            return wordsApi.appendDocumentOnlineJob(request)
+            .then((resultApi) => {
+                // Assert
+                expect(resultApi).to.exist;
+                return resultApi.waitResult()
+                .then((jobResult) => {
+                    const resultApi = { body: jobResult };
+                    expect(jobResult).to.exist;
+                });
             });
 
        });

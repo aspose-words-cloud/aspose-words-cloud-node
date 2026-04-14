@@ -16,6 +16,12 @@ Feel free to explore the [Developer's Guide](https://docs.aspose.cloud/display/w
 - Add & remove watermarks and protection.
 - Read & write access to Document Object Model.
 
+## Enhancements in Version 26.4
+
+- Implemented jobs system to perform operations without an active connection to the server.
+- Added job operations: 'AppendDocumentJob', 'AppendDocumentOnlineJob', 'ConvertDocumentJob', 'ExecuteMailMergeJob', 'ExecuteMailMergeOnlineJob', 'SplitDocumentJob', 'SplitDocumentOnlineJob'.
+
+
 ## Enhancements in Version 26.3
 
 - Various stability and performance improvements.

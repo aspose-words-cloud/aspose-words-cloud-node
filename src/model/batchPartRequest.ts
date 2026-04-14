@@ -80,6 +80,13 @@ export class BatchPartRequest {
         return this.innerRequest.createResponse(_response, _headers);
     }
 
+    /**
+     * get original request
+     */
+    getOriginalRequest(): RequestInterface {
+        return this.innerRequest.getOriginalRequest();
+    }
+
 	/**
 	 * create resultOf stream
 	 */

@@ -36,9 +36,11 @@ import { invokeApiMethod, getBoundary, parseBatchParts } from "./internal/reques
 import { ObjectSerializer } from "./internal/objectSerializer";
 import * as model from "./model/model";
 import { BatchPartRequest } from "./model/batchPartRequest";
+import { JobHandler } from "./jobHandler";
 
 export * from "./model/model";
 export * from "./model/batchPartRequest";
+export * from "./jobHandler";
 
 /**
  * encryptor interface
@@ -163,6 +165,22 @@ export class WordsApi implements Encryptor {
      * Appends documents to the original document.
      * @param requestObj contains request parameters
      */
+    public async appendDocumentJob(requestObj: model.AppendDocumentJobRequest): Promise< JobHandler<model.DocumentResponse> > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling appendDocumentJob.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const jobInfo = requestObj.createResponse(response.body, response.headers) as model.JobInfo;
+        return Promise.resolve(new JobHandler< model.DocumentResponse >(this, requestObj.getOriginalRequest(), jobInfo));
+    }
+
+    /**
+     * Appends documents to the original document.
+     * @param requestObj contains request parameters
+     */
     public async appendDocumentOnline(requestObj: model.AppendDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.AppendDocumentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling appendDocumentOnline.');
@@ -175,6 +193,22 @@ export class WordsApi implements Encryptor {
         result.response = response;
         result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
+    }
+
+    /**
+     * Appends documents to the original document.
+     * @param requestObj contains request parameters
+     */
+    public async appendDocumentOnlineJob(requestObj: model.AppendDocumentOnlineJobRequest): Promise< JobHandler<model.AppendDocumentOnlineResponse> > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling appendDocumentOnlineJob.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const jobInfo = requestObj.createResponse(response.body, response.headers) as model.JobInfo;
+        return Promise.resolve(new JobHandler< model.AppendDocumentOnlineResponse >(this, requestObj.getOriginalRequest(), jobInfo));
     }
 
     /**
@@ -339,6 +373,22 @@ export class WordsApi implements Encryptor {
         result.response = response;
         result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
+    }
+
+    /**
+     * Converts a document on a local drive to the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async convertDocumentJob(requestObj: model.ConvertDocumentJobRequest): Promise< JobHandler<Buffer> > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling convertDocumentJob.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const jobInfo = requestObj.createResponse(response.body, response.headers) as model.JobInfo;
+        return Promise.resolve(new JobHandler< Buffer >(this, requestObj.getOriginalRequest(), jobInfo));
     }
 
     /**
@@ -1574,6 +1624,22 @@ export class WordsApi implements Encryptor {
     }
 
     /**
+     * Executes a Mail Merge operation.
+     * @param requestObj contains request parameters
+     */
+    public async executeMailMergeJob(requestObj: model.ExecuteMailMergeJobRequest): Promise< JobHandler<model.DocumentResponse> > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling executeMailMergeJob.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const jobInfo = requestObj.createResponse(response.body, response.headers) as model.JobInfo;
+        return Promise.resolve(new JobHandler< model.DocumentResponse >(this, requestObj.getOriginalRequest(), jobInfo));
+    }
+
+    /**
      * Executes a Mail Merge operation online.
      * @param requestObj contains request parameters
      */
@@ -1589,6 +1655,22 @@ export class WordsApi implements Encryptor {
         result.response = response;
         result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
+    }
+
+    /**
+     * Executes a Mail Merge operation online.
+     * @param requestObj contains request parameters
+     */
+    public async executeMailMergeOnlineJob(requestObj: model.ExecuteMailMergeOnlineJobRequest): Promise< JobHandler<Buffer> > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling executeMailMergeOnlineJob.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const jobInfo = requestObj.createResponse(response.body, response.headers) as model.JobInfo;
+        return Promise.resolve(new JobHandler< Buffer >(this, requestObj.getOriginalRequest(), jobInfo));
     }
 
     /**
@@ -5344,6 +5426,22 @@ export class WordsApi implements Encryptor {
      * Splits a document into parts and saves them in the specified format.
      * @param requestObj contains request parameters
      */
+    public async splitDocumentJob(requestObj: model.SplitDocumentJobRequest): Promise< JobHandler<model.SplitDocumentResponse> > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling splitDocumentJob.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const jobInfo = requestObj.createResponse(response.body, response.headers) as model.JobInfo;
+        return Promise.resolve(new JobHandler< model.SplitDocumentResponse >(this, requestObj.getOriginalRequest(), jobInfo));
+    }
+
+    /**
+     * Splits a document into parts and saves them in the specified format.
+     * @param requestObj contains request parameters
+     */
     public async splitDocumentOnline(requestObj: model.SplitDocumentOnlineRequest): Promise< model.WordsIncomingMessage< model.SplitDocumentOnlineResponse > > {
         if (requestObj === null || requestObj === undefined) {
             throw new Error('Required parameter "request" was null or undefined when calling splitDocumentOnline.');
@@ -5356,6 +5454,22 @@ export class WordsApi implements Encryptor {
         result.response = response;
         result.body = requestObj.createResponse(response.body, response.headers);
         return Promise.resolve(result);
+    }
+
+    /**
+     * Splits a document into parts and saves them in the specified format.
+     * @param requestObj contains request parameters
+     */
+    public async splitDocumentOnlineJob(requestObj: model.SplitDocumentOnlineJobRequest): Promise< JobHandler<model.SplitDocumentOnlineResponse> > {
+        if (requestObj === null || requestObj === undefined) {
+            throw new Error('Required parameter "request" was null or undefined when calling splitDocumentOnlineJob.');
+        }
+
+        const requestOptions = await requestObj.createRequestOptions(this.configuration, this); 
+
+        const response = await invokeApiMethod(requestOptions, this.configuration);
+        const jobInfo = requestObj.createResponse(response.body, response.headers) as model.JobInfo;
+        return Promise.resolve(new JobHandler< model.SplitDocumentOnlineResponse >(this, requestObj.getOriginalRequest(), jobInfo));
     }
 
     /**
@@ -6317,6 +6431,18 @@ export class WordsApi implements Encryptor {
                                 options: {
                                     filename: key
                                 }
+                            };
+                        }
+                        catch (error) {
+                            throw error;
+                        }
+                    }
+
+                    if (value && value.hasOwnProperty('value') && value.hasOwnProperty('options') && value.value instanceof require("stream").Readable) {
+                        try {
+                            value = {
+                                value: await readStream(value.value),
+                                options: value.options,
                             };
                         }
                         catch (error) {

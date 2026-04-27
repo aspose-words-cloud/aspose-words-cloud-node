@@ -88,6 +88,7 @@ def runtests(dockerImageVersion)
             }
         } finally {                       
             deleteDir()
+			cleanWs()
 			sh 'docker system prune -f'
         }
     }

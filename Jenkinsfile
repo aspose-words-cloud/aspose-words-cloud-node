@@ -107,6 +107,6 @@ def runtests(dockerImageVersion)
     }
 }
 
-node('words-linux') {        
+node('sdk-linux') {        
     runtests("24-alpine")   
 }
